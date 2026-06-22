@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -90,21 +90,25 @@ const STEPS = [
   },
 ];
 
-const FREE_FEATURES = [
-  "1 Free Generation",
-  "Colors",
-  "Typography",
-  "Layout",
-  "Native Figma Variables",
-];
-
-const UNLIMITED_FEATURES = [
+const MONTHLY_FEATURES = [
   "Unlimited Generations",
   "Colors",
   "Typography",
   "Layout",
   "Variable Collections",
   "Future Updates",
+  "Priority Support",
+];
+
+const LIFETIME_FEATURES = [
+  "Unlimited Generations",
+  "Colors",
+  "Typography",
+  "Layout",
+  "Variable Collections",
+  "Future Updates",
+  "Priority Support",
+  "One-time Payment",
 ];
 
 const FAQS = [
@@ -988,6 +992,40 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  
+  // Capture URL parameters from plugin (user_id or email)
+  const [userId, setUserId] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const userIdParam = params.get('user_id');
+    const emailParam = params.get('email');
+    
+    if (userIdParam) setUserId(userIdParam);
+    if (emailParam) setEmail(emailParam);
+  }, []);
+
+  // Stripe payment link configuration
+  const STRIPE_MONTHLY_LINK = "https://buy.stripe.com/dRm00jcm90Jq2L0ezrgYU01"; // Replace with actual Stripe Payment Link
+  const STRIPE_LIFETIME_LINK = "https://buy.stripe.com/3cI00jdqd9fWgBQ9f7gYU02"; // Replace with actual Stripe Payment Link
+
+  const handlePayment = (plan: 'monthly' | 'lifetime') => {
+    const link = plan === 'monthly' ? STRIPE_MONTHLY_LINK : STRIPE_LIFETIME_LINK;
+    const url = new URL(link);
+    
+    // Pass user_id as client_reference_id
+    if (userId) {
+      url.searchParams.set('client_reference_id', userId);
+    }
+    
+    // Pass email as prefilled_email
+    if (email) {
+      url.searchParams.set('prefilled_email', email);
+    }
+    
+    window.location.href = url.toString();
+  };
 
   return (
     <div
@@ -1336,28 +1374,32 @@ export default function App() {
           <div className="mb-10">
             <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">Pricing</span>
             <h2 className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]">
-              Simple, one-time pricing
+              Choose your plan
             </h2>
             <p className="mt-3 text-base text-muted-foreground">
-              Generate your first Design System free. Unlock unlimited generations with a one-time payment.
+              Unlock unlimited Design System generations with flexible pricing options.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:max-w-2xl">
-            {/* Free */}
+            {/* Monthly */}
             <div className="rounded-xl border border-border bg-white p-7">
               <div className="mb-7">
-                <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Free</span>
+                <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Monthly</span>
                 <div className="mt-2 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-foreground">$0</span>
+                  <span className="text-4xl font-bold text-foreground">$5.99</span>
+                  <span className="text-sm text-muted-foreground">/month</span>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">Generate your first Design System for free.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Pay monthly, cancel anytime.</p>
               </div>
-              <a href="#" className="block w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-center text-foreground hover:bg-muted transition-colors mb-7">
-                Generate Free
-              </a>
+              <button 
+                onClick={() => handlePayment('monthly')}
+                className="block w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-center text-foreground hover:bg-muted transition-colors mb-7"
+              >
+                Get Started
+              </button>
               <ul className="space-y-3">
-                {FREE_FEATURES.map((f) => (
+                {MONTHLY_FEATURES.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
                     <MI icon="check" size={15} className="shrink-0 text-muted-foreground" style={{ marginTop: 1 }} />
                     {f}
@@ -1366,7 +1408,7 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Unlimited */}
+            {/* Lifetime */}
             <div
               className="rounded-xl p-7 relative overflow-hidden"
               style={{ border: "1.5px solid rgba(94,106,210,0.35)", background: "linear-gradient(135deg,rgba(94,106,210,0.04) 0%,rgba(94,106,210,0.01) 100%)" }}
@@ -1377,18 +1419,22 @@ export default function App() {
                 </span>
               </div>
               <div className="mb-7">
-                <span className="text-[11px] font-mono uppercase tracking-widest" style={{ color: "#5E6AD2" }}>Unlimited</span>
+                <span className="text-[11px] font-mono uppercase tracking-widest" style={{ color: "#5E6AD2" }}>Lifetime</span>
                 <div className="mt-2 flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-foreground">$29</span>
+                  <span className="text-4xl font-bold text-foreground">$49.90</span>
                 </div>
                 <p className="mt-1 text-xs font-medium" style={{ color: "#5E6AD2" }}>One-time payment</p>
-                <p className="mt-2 text-sm text-muted-foreground">Unlock everything, forever.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Pay once, own forever.</p>
               </div>
-              <a href="#" className="block w-full py-2.5 rounded-lg text-sm font-semibold text-center text-white hover:opacity-90 transition-opacity mb-7" style={{ background: "#5E6AD2" }}>
-                Unlock Unlimited
-              </a>
+              <button 
+                onClick={() => handlePayment('lifetime')}
+                className="block w-full py-2.5 rounded-lg text-sm font-semibold text-center text-white hover:opacity-90 transition-opacity mb-7" 
+                style={{ background: "#5E6AD2" }}
+              >
+                Get Lifetime Access
+              </button>
               <ul className="space-y-3">
-                {UNLIMITED_FEATURES.map((f) => (
+                {LIFETIME_FEATURES.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
                     <MI icon="check" size={15} className="shrink-0" style={{ color: "#5E6AD2", marginTop: 1 }} />
                     {f}
@@ -1456,16 +1502,16 @@ export default function App() {
             Stop creating variables manually. Generate a complete, organized foundation in seconds and start building immediately.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity">
-              Generate Your First System Free
+            <a href="#pricing" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity">
+              Get Started — $5.99/mo
               <MI icon="arrow_forward" size={15} style={{ color: "#fff" }} />
             </a>
             <a href="#pricing" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors">
-              Unlock Unlimited — $29
+              Lifetime — $49.90
             </a>
           </div>
           <p className="mt-5 text-xs text-muted-foreground">
-            One-time payment · No subscription · Future updates included
+            Monthly or Lifetime · Cancel anytime · Future updates included
           </p>
         </div>
       </section>
