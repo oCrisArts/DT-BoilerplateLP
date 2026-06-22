@@ -1013,8 +1013,10 @@ export default function App() {
   }, []);
 
   // Stripe payment link configuration
-  const STRIPE_MONTHLY_LINK = "https://buy.stripe.com/dRm00jcm90Jq2L0ezrgYU01"; // Replace with actual Stripe Payment Link
-  const STRIPE_LIFETIME_LINK = "https://buy.stripe.com/3cI00jdqd9fWgBQ9f7gYU02"; // Replace with actual Stripe Payment Link
+  //const STRIPE_MONTHLY_LINK = "https://buy.stripe.com/dRm00jcm90Jq2L0ezrgYU01"; // Replace with actual Stripe Payment Link
+  const STRIPE_MONTHLY_LINK = "https://buy.stripe.com/test_dRm00jcm90Jq2L0ezrgYU01"; // Replace with actual Stripe Payment Link
+  //const STRIPE_LIFETIME_LINK = "https://buy.stripe.com/3cI00jdqd9fWgBQ9f7gYU02"; // Replace with actual Stripe Payment Link
+  const STRIPE_LIFETIME_LINK = "https://buy.stripe.com/test_14A5kD99X77OfxM4YRgYU00"; // Replace with actual Stripe Payment Link
 
   const handlePayment = (plan: 'monthly' | 'lifetime') => {
     const link = plan === 'monthly' ? STRIPE_MONTHLY_LINK : STRIPE_LIFETIME_LINK;
