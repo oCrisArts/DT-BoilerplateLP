@@ -1002,7 +1002,13 @@ export default function App() {
     const userIdParam = params.get('user_id');
     const emailParam = params.get('email');
     
-    if (userIdParam) setUserId(userIdParam);
+    if (userIdParam) {
+      setUserId(userIdParam);
+      // Rolar automaticamente para a secção de preços
+      setTimeout(() => {
+        document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
     if (emailParam) setEmail(emailParam);
   }, []);
 
