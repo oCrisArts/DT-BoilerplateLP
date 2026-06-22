@@ -15,7 +15,6 @@ const PRODUCT_IDS = {
 serve(async (req) => {
   const signature = req.headers.get('Stripe-Signature')
   const webhookSecret = Deno.env.get('STRIPE_WEBHOOK_SECRET')! // Replace with your Stripe Webhook Secret
-
   let event
 
   try {
