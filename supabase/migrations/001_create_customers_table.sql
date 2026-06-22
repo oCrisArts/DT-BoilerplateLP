@@ -1,8 +1,7 @@
 -- Create customers table for Stripe integration
 CREATE TABLE IF NOT EXISTS public.customers (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id TEXT UNIQUE,
-  email TEXT UNIQUE,
+  email TEXT UNIQUE NOT NULL,
   subscription_status TEXT DEFAULT 'inactive' CHECK (subscription_status IN ('active', 'inactive', 'canceled', 'past_due')),
   lifetime BOOLEAN DEFAULT false,
   stripe_customer_id TEXT UNIQUE,
@@ -10,9 +9,6 @@ CREATE TABLE IF NOT EXISTS public.customers (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
-
--- Create index on user_id for faster lookups
-CREATE INDEX IF NOT EXISTS idx_customers_user_id ON public.customers(user_id);
 
 -- Create index on email for faster lookups
 CREATE INDEX IF NOT EXISTS idx_customers_email ON public.customers(email);
@@ -31,15 +27,12 @@ CREATE POLICY "Service role can manage customers"
   USING (true)
   WITH CHECK (true);
 
--- Create policy to allow users to read their own customer data
+-- Create policy to allow users to read their own customer data by email
 CREATE POLICY "Users can read own customer data"
   ON public.customers
   FOR SELECT
   TO authenticated
-  USING (
-    auth.uid()::text = user_id OR 
-    auth.email() = email
-  );
+  USING (auth.email() = email);
 
 -- Create a function to update the updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -58,8 +51,7 @@ CREATE TRIGGER update_customers_updated_at
 
 -- Add comments for documentation
 COMMENT ON TABLE public.customers IS 'Stores customer subscription data from Stripe';
-COMMENT ON COLUMN public.customers.user_id IS 'User identifier from the plugin (client_reference_id)';
-COMMENT ON COLUMN public.customers.email IS 'Customer email from Stripe checkout';
+COMMENT ON COLUMN public.customers.email IS 'Customer email from Stripe checkout (primary identifier)';
 COMMENT ON COLUMN public.customers.subscription_status IS 'Current subscription status: active, inactive, canceled, past_due';
 COMMENT ON COLUMN public.customers.lifetime IS 'True if customer has lifetime access';
 COMMENT ON COLUMN public.customers.stripe_customer_id IS 'Stripe customer ID';

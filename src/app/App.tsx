@@ -1012,27 +1012,36 @@ export default function App() {
     if (emailParam) setEmail(emailParam);
   }, []);
 
-  // Stripe payment link configuration
-  //const STRIPE_MONTHLY_LINK = "https://buy.stripe.com/dRm00jcm90Jq2L0ezrgYU01"; // Replace with actual Stripe Payment Link
-  const STRIPE_MONTHLY_LINK = "https://buy.stripe.com/test_dRm00jcm90Jq2L0ezrgYU01"; // Replace with actual Stripe Payment Link
-  //const STRIPE_LIFETIME_LINK = "https://buy.stripe.com/3cI00jdqd9fWgBQ9f7gYU02"; // Replace with actual Stripe Payment Link
-  const STRIPE_LIFETIME_LINK = "https://buy.stripe.com/test_14A5kD99X77OfxM4YRgYU00"; // Replace with actual Stripe Payment Link
+  // Stripe Checkout API configuration
+  const SUPABASE_URL = "https://lyexuguaeuwdtjeqwmst.supabase.co";
+  const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
-  const handlePayment = (plan: 'monthly' | 'lifetime') => {
-    const link = plan === 'monthly' ? STRIPE_MONTHLY_LINK : STRIPE_LIFETIME_LINK;
-    const url = new URL(link);
-    
-    // Pass user_id as client_reference_id
-    if (userId) {
-      url.searchParams.set('client_reference_id', userId);
+  const handlePayment = async (plan: 'monthly' | 'lifetime') => {
+    try {
+      const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          plan,
+          email: email || undefined,
+          userId: userId || undefined
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Failed to create checkout session:', data.error);
+        alert('Failed to create checkout session. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      alert('Failed to create checkout session. Please try again.');
     }
-    
-    // Pass email as prefilled_email
-    if (email) {
-      url.searchParams.set('prefilled_email', email);
-    }
-    
-    window.location.href = url.toString();
   };
 
   return (
