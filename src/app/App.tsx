@@ -998,6 +998,7 @@ export default function App() {
   // Capture URL parameters from plugin (user_id or email)
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   // Handle hash scrolling for navigation from other pages
   useEffect(() => {
@@ -1018,7 +1019,8 @@ export default function App() {
     const params = new URLSearchParams(window.location.search);
     const userIdParam = params.get('user_id');
     const emailParam = params.get('email');
-    
+    const planParam = params.get('plan');
+
     if (userIdParam) {
       setUserId(userIdParam);
       // Rolar automaticamente para a secção de preços
@@ -1027,7 +1029,16 @@ export default function App() {
       }, 100);
     }
     if (emailParam) setEmail(emailParam);
-  }, []);
+
+    // Se o parâmetro plan existir e for válido, aciona o redirecionamento automático
+    if (planParam === 'monthly' || planParam === 'lifetime') {
+      setIsRedirecting(true);
+      // Pequeno timeout para garantir que o estado do React (email) foi atualizado antes do fetch
+      setTimeout(() => {
+        handlePayment(planParam);
+      }, 500);
+    }
+  }, []); // Dependências vazias para rodar apenas na montagem
 
   // Stripe Checkout API configuration
   const SUPABASE_URL = "https://lyexuguaeuwdtjeqwmst.supabase.co";
@@ -1060,6 +1071,16 @@ export default function App() {
       alert('Failed to create checkout session. Please try again.');
     }
   };
+
+  if (isRedirecting) {
+    return (
+      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-background text-foreground">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-6"></div>
+        <h2 className="text-2xl font-semibold">Redirecting to secure checkout...</h2>
+        <p className="text-muted-foreground mt-2">Please wait while we prepare your transaction.</p>
+      </div>
+    );
+  }
 
   return (
     <>
