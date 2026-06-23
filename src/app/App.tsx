@@ -1033,9 +1033,9 @@ export default function App() {
     // Se o parâmetro plan existir e for válido, aciona o redirecionamento automático
     if (planParam === 'monthly' || planParam === 'lifetime') {
       setIsRedirecting(true);
-      // Pequeno timeout para garantir que o estado do React (email) foi atualizado antes do fetch
+      // Pequeno timeout para garantir que o estado do React foi atualizado antes do fetch
       setTimeout(() => {
-        handlePayment(planParam);
+        handlePayment(planParam, emailParam, userIdParam);
       }, 500);
     }
   }, []); // Dependências vazias para rodar apenas na montagem
@@ -1044,7 +1044,7 @@ export default function App() {
   const SUPABASE_URL = "https://lyexuguaeuwdtjeqwmst.supabase.co";
   const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
-  const handlePayment = async (plan: 'monthly' | 'lifetime') => {
+  const handlePayment = async (plan: 'monthly' | 'lifetime', passedEmail?: string | null, passedUserId?: string | null) => {
     try {
       const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
         method: 'POST',
@@ -1053,8 +1053,8 @@ export default function App() {
         },
         body: JSON.stringify({
           plan,
-          email: email || undefined,
-          userId: userId || undefined
+          email: passedEmail || email || undefined,
+          userId: passedUserId || userId || undefined
         })
       });
 
