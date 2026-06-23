@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -991,11 +992,27 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App() {
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   
   // Capture URL parameters from plugin (user_id or email)
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+
+  // Handle hash scrolling for navigation from other pages
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        // Pequeno atraso para garantir a renderização do DOM
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
