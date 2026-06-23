@@ -2,8 +2,8 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import Stripe from "npm:stripe"
 
 const PRICE_IDS = {
-  MONTHLY: 'price_1Q7YEWGjwjNbQit1H4WfgMbZ', // Replace with actual Stripe Price ID for $5.99/month
-  LIFETIME: 'price_1Q7YEWGjwjNbQit1H4WfgMbZ' // Replace with actual Stripe Price ID for $49 one-time
+  MONTHLY: 'price_1Tl8XDGjwjNbQit1cNafBUxk', // Replace with actual Stripe Price ID for $5.99/month
+  LIFETIME: 'price_1Tl8UgGjwjNbQit1TtLP764N' // Replace with actual Stripe Price ID for $49 one-time
 }
 
 serve(async (req) => {

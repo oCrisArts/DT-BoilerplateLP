@@ -3,8 +3,8 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 import Stripe from "npm:stripe"
 
 const PRODUCT_IDS = {
-  MONTHLY: 'prod_UkaqmahkivPdmI',
-  LIFETIME: 'prod_Ukaj6CALYh322z'
+  MONTHLY: 'prod_UkdoEv0GrJSWP9',
+  LIFETIME: 'prod_UkdmgT3cV6LpRA'
 }
 
 serve(async (req) => {
