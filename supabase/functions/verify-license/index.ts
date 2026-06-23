@@ -27,8 +27,10 @@ serve(async (req) => {
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')
+    // Modificação: Capturar a chave de serviço (Service Role)
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
-    if (!supabaseUrl || !supabaseAnonKey) {
+    if (!supabaseUrl || !supabaseServiceKey) {
       console.error('Missing environment variables')
       return new Response(JSON.stringify({ error: 'Server configuration error' }), {
         status: 500,
@@ -36,7 +38,7 @@ serve(async (req) => {
       })
     }
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
+    const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
     // Query customer by email
     const { data: customer, error } = await supabase

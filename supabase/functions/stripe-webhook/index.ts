@@ -107,6 +107,7 @@ serve(async (req) => {
         const { error: insertError } = await supabase
           .from('customers')
           .insert({
+            id: crypto.randomUUID(), // Geração nativa do UUID no Deno
             email: customerEmail,
             subscription_status: 'active',
             lifetime: isLifetime,
