@@ -6,17 +6,16 @@ const PRICE_IDS = {
   LIFETIME: 'price_1Tl8UgGjwjNbQit1TtLP764N' // Replace with actual Stripe Price ID for $49 one-time
 }
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+}
+
 serve(async (req) => {
-  // Handle CORS preflight request
+  // Trata a requisição de preflight do CORS
   if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
-    })
+    return new Response('ok', { headers: corsHeaders })
   }
 
   try {
@@ -25,7 +24,7 @@ serve(async (req) => {
     if (!plan || (plan !== 'monthly' && plan !== 'lifetime')) {
       return new Response(JSON.stringify({ error: 'Invalid plan' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       })
     }
 
@@ -34,7 +33,7 @@ serve(async (req) => {
       console.error('Missing STRIPE_SECRET_KEY')
       return new Response(JSON.stringify({ error: 'Server configuration error' }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       })
     }
 
@@ -74,16 +73,16 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({ url: session.url }), {
       status: 200,
-      headers: {
+      headers: {  
+        ...corsHeaders,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       }
     })
   } catch (error) {
     console.error('Error creating checkout session:', error)
     return new Response(JSON.stringify({ error: 'Failed to create checkout session' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
   }
 })
