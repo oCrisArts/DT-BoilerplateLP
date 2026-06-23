@@ -1,9 +1,13 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import Stripe from "npm:stripe"
-
+/* teste
 const PRICE_IDS = {
   MONTHLY: 'price_1Tl8XDGjwjNbQit1cNafBUxk', // Replace with actual Stripe Price ID for $5.99/month
   LIFETIME: 'price_1Tl8UgGjwjNbQit1TtLP764N' // Replace with actual Stripe Price ID for $49 one-time
+}*/
+const PRICE_IDS = {
+  MONTHLY: 'price_1Tl5f2GjwjNbQit1yFRXBqBA',
+  LIFETIME: 'price_1Tl5YCGjwjNbQit1821CEBPI'
 }
 
 const corsHeaders = {

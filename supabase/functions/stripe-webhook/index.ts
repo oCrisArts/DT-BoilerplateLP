@@ -1,11 +1,16 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 import Stripe from "npm:stripe"
-
-const PRODUCT_IDS = {
+//teste
+/*const PRODUCT_IDS = {
   MONTHLY: 'prod_UkdoEv0GrJSWP9',
   LIFETIME: 'prod_UkdmgT3cV6LpRA'
+}*/
+const PRODUCT_IDS = {
+  MONTHLY: 'prod_UkaqmahkivPdmI',
+  LIFETIME: 'prod_Ukaj6CALYh322z'
 }
+
 
 serve(async (req) => {
   const stripeSecretKey = Deno.env.get('STRIPE_SECRET_KEY');
