@@ -82,7 +82,9 @@ export default function Layout() {
 
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="#"
+              href="https://www.figma.com/community/plugin/1651310914400769393"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
             >
               Install Plugin
@@ -113,7 +115,9 @@ export default function Layout() {
               </Link>
             ))}
             <a
-              href="#"
+              href="https://www.figma.com/community/plugin/1651310914400769393"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block w-full py-2.5 rounded-lg bg-foreground text-background text-sm font-medium text-center mt-2"
             >
               Install Plugin

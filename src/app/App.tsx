@@ -1064,10 +1064,13 @@ export default function App() {
         window.location.href = data.url;
       } else {
         console.error('Failed to create checkout session:', data.error);
+        console.error('Response status:', response.status);
+        console.error('Full response data:', data);
         alert('Failed to create checkout session. Please try again.');
       }
     } catch (error) {
       console.error('Error creating checkout session:', error);
+      console.error('Error details:', error instanceof Error ? error.message : String(error));
       alert('Failed to create checkout session. Please try again.');
     }
   };
