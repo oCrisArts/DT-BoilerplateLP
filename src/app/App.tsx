@@ -1050,6 +1050,7 @@ export default function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer sb_publishable_BJYVAnl9Arx7gEcHOXzHfA_Bj4iJXGO`,
         },
         body: JSON.stringify({
           plan,
@@ -1057,6 +1058,14 @@ export default function App() {
           userId: passedUserId || userId || undefined
         })
       });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Failed to create checkout session - Response status:', response.status);
+        console.error('Failed to create checkout session - Response body:', errorText);
+        alert(`Failed to create checkout session (${response.status}). Please try again.`);
+        return;
+      }
 
       const data = await response.json();
 
