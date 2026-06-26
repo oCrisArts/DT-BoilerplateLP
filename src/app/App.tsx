@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted } from "../utils/analytics";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -968,7 +969,10 @@ function FAQItem({ q, a }: { q: string; a: string }) {
     <div className="border-b border-border last:border-0">
       <button
         className="w-full flex items-center justify-between py-5 text-left gap-4 group"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open);
+          if (!open) trackFAQExpand(q);
+        }}
       >
         <span className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">
           {q}
@@ -1045,6 +1049,7 @@ export default function App() {
   const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
   const handlePayment = async (plan: 'monthly' | 'lifetime', passedEmail?: string | null, passedUserId?: string | null) => {
+    trackCheckoutStarted(plan);
     try {
       const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
         method: 'POST',
@@ -1125,6 +1130,7 @@ export default function App() {
               <div className="flex items-center gap-3 flex-wrap justify-center lg:justify-start">
                 <a
                   href="#"
+                  onClick={(e) => { e.preventDefault(); trackHeroCTA(); }}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity"
                 >
                   Generate Your First System Free
@@ -1132,6 +1138,7 @@ export default function App() {
                 </a>
                 <a
                   href="#how-it-works"
+                  onClick={trackHeroCTA}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors"
                 >
                   See How It Works

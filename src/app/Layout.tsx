@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { trackInstallPlugin } from "../utils/analytics";
 
 function MI({
   icon,
@@ -85,6 +86,7 @@ export default function Layout() {
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackInstallPlugin}
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
             >
               Install Plugin
@@ -118,6 +120,7 @@ export default function Layout() {
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackInstallPlugin}
               className="block w-full py-2.5 rounded-lg bg-foreground text-background text-sm font-medium text-center mt-2"
             >
               Install Plugin
@@ -166,7 +169,10 @@ export default function Layout() {
               Changelog
             </a>
             <a
-              href="#"
+              href="https://www.figma.com/community/plugin/1651310914400769393"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={trackInstallPlugin}
               className="hover:text-foreground transition-colors"
             >
               Figma Community
