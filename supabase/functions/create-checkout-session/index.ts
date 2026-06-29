@@ -56,6 +56,7 @@ serve(async (req) => {
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: plan === 'monthly' ? 'subscription' : 'payment',
       payment_method_types: ['card'],
+      allow_promotion_codes: true, // <--- ADICIONE ESTA LINHA
       line_items: [
         {
           price: priceId,
