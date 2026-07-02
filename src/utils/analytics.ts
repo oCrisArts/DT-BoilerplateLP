@@ -41,6 +41,10 @@ export function trackHeroCTA() {
   trackEvent('hero_cta_click');
 }
 
+export function trackPricingClick(plan?: string) {
+  trackEvent('pricing_click', plan ? { plan } : undefined);
+}
+
 export function trackInstallPlugin() {
   trackEvent('install_plugin_click');
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted } from "../utils/analytics";
+import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick } from "../utils/analytics";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -1121,11 +1121,10 @@ export default function App() {
                 The fastest way to start a Design System in Figma
               </div>
               <h1 className="text-[46px] lg:text-[58px] font-bold text-foreground tracking-[-0.03em] leading-[1.05] mb-6">
-                Start your Design System{" "}
-                <span style={{ color: "#5E6AD2" }}>in seconds.</span>
+                Stop wasting hours on Design System setup
               </h1>
               <p className="text-[17px] text-muted-foreground leading-relaxed mb-9 max-w-md mx-auto lg:mx-0">
-                Generate Colors, Typography and Layout variables automatically and create a structured Design System foundation directly inside Figma.
+                Create production-ready design tokens in 30 seconds. Native Figma variables, zero workarounds.
               </p>
               <div className="flex items-center gap-3 flex-wrap justify-center lg:justify-start">
                 <a
@@ -1382,7 +1381,7 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">Pay monthly, cancel anytime.</p>
               </div>
               <button 
-                onClick={() => handlePayment('monthly')}
+                onClick={() => { trackPricingClick('monthly'); handlePayment('monthly'); }}
                 className="block w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-center text-foreground hover:bg-muted transition-colors mb-7"
               >
                 Get Started
@@ -1416,7 +1415,7 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">Pay once, own forever.</p>
               </div>
               <button 
-                onClick={() => handlePayment('lifetime')}
+                onClick={() => { trackPricingClick('lifetime'); handlePayment('lifetime'); }}
                 className="block w-full py-2.5 rounded-lg text-sm font-semibold text-center text-white hover:opacity-90 transition-opacity mb-7" 
                 style={{ background: "#5E6AD2" }}
               >
@@ -1491,11 +1490,11 @@ export default function App() {
             Stop creating variables manually. Generate a complete, organized foundation in seconds and start building immediately.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            <a href="#pricing" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity">
+            <a href="#pricing" onClick={() => trackPricingClick('monthly')} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity">
               Get Started — $5.99/mo
               <MI icon="arrow_forward" size={15} style={{ color: "#fff" }} />
             </a>
-            <a href="#pricing" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors">
+            <a href="#pricing" onClick={() => trackPricingClick('lifetime')} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors">
               Lifetime — $49.90
             </a>
           </div>
