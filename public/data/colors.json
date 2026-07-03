@@ -1,0 +1,46 @@
+{
+  "module": "colors",
+  "label": "Colors",
+  "tabIcon": "palette",
+  "submodules": [
+    {
+      "id": "palette",
+      "label": "Palette",
+      "icon": "palette",
+      "variables": [
+        { "id": "colors.palette.MidnightDepth", "module": "colors", "submodule": "palette", "name": "MidnightDepth", "figmaName": "Colors/Palette/Primary-950", "type": "COLOR", "value": { "r": 0.0196078431372549, "g": 0.023529411764705882, "b": 0.10196078431372549, "a": 1 }, "displayValue": "#05061a", "preview": "#05061a" },
+        { "id": "colors.palette.MidnightDepth-900", "module": "colors", "submodule": "palette", "name": "MidnightDepth-900", "figmaName": "Colors/Palette/Primary-900", "type": "COLOR", "value": { "r": 0.03529411764705882, "g": 0.047058823529411764, "b": 0.1803921568627451, "a": 1 }, "displayValue": "#090c2e", "preview": "#090c2e" },
+        { "id": "colors.palette.MidnightDepth-800", "module": "colors", "submodule": "palette", "name": "MidnightDepth-800", "figmaName": "Colors/Palette/Primary-800", "type": "COLOR", "value": { "r": 0.0784313725490196, "g": 0.09411764705882353, "b": 0.3215686274509804, "a": 1 }, "displayValue": "#141852", "preview": "#141852" },
+        { "id": "colors.palette.MidnightDepth-700", "module": "colors", "submodule": "palette", "name": "MidnightDepth-700", "figmaName": "Colors/Palette/Primary-700", "type": "COLOR", "value": { "r": 0.11764705882352941, "g": 0.13333333333333333, "b": 0.4392156862745098, "a": 1 }, "displayValue": "#1e2270", "preview": "#1e2270" },
+        { "id": "colors.palette.MidnightDepth-600", "module": "colors", "submodule": "palette", "name": "MidnightDepth-600", "figmaName": "Colors/Palette/Primary-600", "type": "COLOR", "value": { "r": 0.17647058823529413, "g": 0.19607843137254902, "b": 0.5568627450980392, "a": 1 }, "displayValue": "#2d328e", "preview": "#2d328e" },
+        { "id": "colors.palette.MidnightDepth-500", "module": "colors", "submodule": "palette", "name": "MidnightDepth-500", "figmaName": "Colors/Palette/Primary-500", "type": "COLOR", "value": { "r": 0.3686274509803922, "g": 0.41568627450980394, "b": 0.8235294117647058, "a": 1 }, "displayValue": "#5e6ad2", "preview": "#5e6ad2" },
+        { "id": "colors.palette.MidnightDepth-400", "module": "colors", "submodule": "palette", "name": "MidnightDepth-400", "figmaName": "Colors/Palette/Primary-400", "type": "COLOR", "value": { "r": 0.5450980392156862, "g": 0.5803921568627451, "b": 0.8784313725490196, "a": 1 }, "displayValue": "#8b94e0", "preview": "#8b94e0" },
+        { "id": "colors.palette.MidnightDepth-300", "module": "colors", "submodule": "palette", "name": "MidnightDepth-300", "figmaName": "Colors/Palette/Primary-300", "type": "COLOR", "value": { "r": 0.7019607843137254, "g": 0.7372549019607844, "b": 0.9176470588235294, "a": 1 }, "displayValue": "#b3bcea", "preview": "#b3bcea" },
+        { "id": "colors.palette.MidnightDepth-200", "module": "colors", "submodule": "palette", "name": "MidnightDepth-200", "figmaName": "Colors/Palette/Primary-200", "type": "COLOR", "value": { "r": 0.8352941176470589, "g": 0.8509803921568627, "b": 0.9529411764705882, "a": 1 }, "displayValue": "#d5d9f3", "preview": "#d5d9f3" },
+        { "id": "colors.palette.MidnightDepth-100", "module": "colors", "submodule": "palette", "name": "MidnightDepth-100", "figmaName": "Colors/Palette/Primary-100", "type": "COLOR", "value": { "r": 0.9254901960784314, "g": 0.9333333333333333, "b": 0.9764705882352941, "a": 1 }, "displayValue": "#eceef9", "preview": "#eceef9" }
+      ]
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic",
+      "icon": "gradient",
+      "variables": [
+        { "id": "colors.semantic.Danger", "module": "colors", "submodule": "semantic", "name": "Danger", "figmaName": "Colors/Semantic/Danger", "type": "COLOR", "value": { "r": 0.9372549019607843, "g": 0.26666666666666666, "b": 0.26666666666666666, "a": 1 }, "displayValue": "#ef4444", "preview": "#ef4444" },
+        { "id": "colors.semantic.Warning", "module": "colors", "submodule": "semantic", "name": "Warning", "figmaName": "Colors/Semantic/Warning", "type": "COLOR", "value": { "r": 0.9607843137254902, "g": 0.6196078431372549, "b": 0.043137254901960784, "a": 1 }, "displayValue": "#f59e0b", "preview": "#f59e0b" },
+        { "id": "colors.semantic.Info", "module": "colors", "submodule": "semantic", "name": "Info", "figmaName": "Colors/Semantic/Info", "type": "COLOR", "value": { "r": 0.23137254901960785, "g": 0.5098039215686274, "b": 0.9647058823529412, "a": 1 }, "displayValue": "#3b82f6", "preview": "#3b82f6" },
+        { "id": "colors.semantic.Success", "module": "colors", "submodule": "semantic", "name": "Success", "figmaName": "Colors/Semantic/Success", "type": "COLOR", "value": { "r": 0.13333333333333333, "g": 0.7725490196078432, "b": 0.3686274509803922, "a": 1 }, "displayValue": "#22c55e", "preview": "#22c55e" }
+      ]
+    },
+    {
+      "id": "color-tokens",
+      "label": "Tokens",
+      "icon": "diamond",
+      "variables": [
+        { "id": "colors.color-tokens.surface-primary", "module": "colors", "submodule": "color-tokens", "name": "surface-primary", "figmaName": "Colors/Color Tokens/surface-primary", "type": "COLOR", "value": { "r": 1, "g": 1, "b": 1, "a": 1 }, "displayValue": "#ffffff", "preview": "#ffffff" },
+        { "id": "colors.color-tokens.bg-primary-dark", "module": "colors", "submodule": "color-tokens", "name": "bg-primary-dark", "figmaName": "Colors/Color Tokens/bg-primary-dark", "type": "COLOR", "value": { "r": 0.0196078431372549, "g": 0.023529411764705882, "b": 0.10196078431372549, "a": 1 }, "displayValue": "#05061a", "preview": "#05061a" },
+        { "id": "colors.color-tokens.text-primary", "module": "colors", "submodule": "color-tokens", "name": "text-primary", "figmaName": "Colors/Color Tokens/text-primary", "type": "COLOR", "value": { "r": 0.047058823529411764, "g": 0.047058823529411764, "b": 0.050980392156862744, "a": 1 }, "displayValue": "#0c0c0d", "preview": "#0c0c0d" },
+        { "id": "colors.color-tokens.border-primary", "module": "colors", "submodule": "color-tokens", "name": "border-primary", "figmaName": "Colors/Color Tokens/border-primary", "type": "COLOR", "value": { "r": 0, "g": 0, "b": 0, "a": 0.0784313725490196 }, "displayValue": "#00000014", "preview": "rgba(0,0,0,0.08)" }
+      ]
+    }
+  ]
+}

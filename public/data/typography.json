@@ -1,0 +1,64 @@
+{
+  "module": "typography",
+  "label": "Typography",
+  "tabIcon": "font_download",
+  "submodules": [
+    {
+      "id": "family",
+      "label": "Family",
+      "icon": "font_download",
+      "variables": [
+        { "id": "typography.family.font-family-sans", "module": "typography", "submodule": "family", "name": "font-family-sans", "figmaName": "Typography/Family/font-family-sans", "type": "STRING", "value": "DM Sans", "displayValue": "DM Sans", "icon": "format_shapes" },
+        { "id": "typography.family.font-family-icon", "module": "typography", "submodule": "family", "name": "font-family-icon", "figmaName": "Typography/Family/font-family-icon", "type": "STRING", "value": "Material Symbols Outlined", "displayValue": "Material Symbols Outlined", "icon": "shapes" }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Sizes",
+      "icon": "format_size",
+      "variables": [
+        { "id": "typography.sizes.caption", "module": "typography", "submodule": "sizes", "name": "caption", "figmaName": "Typography/Sizes/caption", "type": "FLOAT", "value": 10, "unit": "px", "displayValue": "10px", "icon": "text_fields" },
+        { "id": "typography.sizes.small", "module": "typography", "submodule": "sizes", "name": "small", "figmaName": "Typography/Sizes/small", "type": "FLOAT", "value": 12, "unit": "px", "displayValue": "12px", "icon": "text_fields" },
+        { "id": "typography.sizes.p", "module": "typography", "submodule": "sizes", "name": "p", "figmaName": "Typography/Sizes/p", "type": "FLOAT", "value": 14, "unit": "px", "displayValue": "14px", "icon": "text_fields" },
+        { "id": "typography.sizes.h6", "module": "typography", "submodule": "sizes", "name": "h6", "figmaName": "Typography/Sizes/h6", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "text_fields" },
+        { "id": "typography.sizes.h5", "module": "typography", "submodule": "sizes", "name": "h5", "figmaName": "Typography/Sizes/h5", "type": "FLOAT", "value": 18, "unit": "px", "displayValue": "18px", "icon": "text_fields" },
+        { "id": "typography.sizes.h4", "module": "typography", "submodule": "sizes", "name": "h4", "figmaName": "Typography/Sizes/h4", "type": "FLOAT", "value": 20, "unit": "px", "displayValue": "20px", "icon": "text_fields" },
+        { "id": "typography.sizes.h3", "module": "typography", "submodule": "sizes", "name": "h3", "figmaName": "Typography/Sizes/h3", "type": "FLOAT", "value": 24, "unit": "px", "displayValue": "24px", "icon": "text_fields" },
+        { "id": "typography.sizes.h2", "module": "typography", "submodule": "sizes", "name": "h2", "figmaName": "Typography/Sizes/h2", "type": "FLOAT", "value": 30, "unit": "px", "displayValue": "30px", "icon": "text_fields" },
+        { "id": "typography.sizes.h1", "module": "typography", "submodule": "sizes", "name": "h1", "figmaName": "Typography/Sizes/h1", "type": "FLOAT", "value": 36, "unit": "px", "displayValue": "36px", "icon": "text_fields" },
+        { "id": "typography.sizes.display-4", "module": "typography", "submodule": "sizes", "name": "display-4", "figmaName": "Typography/Sizes/display-4", "type": "FLOAT", "value": 48, "unit": "px", "displayValue": "48px", "icon": "text_fields" },
+        { "id": "typography.sizes.display-3", "module": "typography", "submodule": "sizes", "name": "display-3", "figmaName": "Typography/Sizes/display-3", "type": "FLOAT", "value": 60, "unit": "px", "displayValue": "60px", "icon": "text_fields" },
+        { "id": "typography.sizes.display-2", "module": "typography", "submodule": "sizes", "name": "display-2", "figmaName": "Typography/Sizes/display-2", "type": "FLOAT", "value": 72, "unit": "px", "displayValue": "72px", "icon": "text_fields" },
+        { "id": "typography.sizes.display-1", "module": "typography", "submodule": "sizes", "name": "display-1", "figmaName": "Typography/Sizes/display-1", "type": "FLOAT", "value": 96, "unit": "px", "displayValue": "96px", "icon": "text_fields" }
+      ]
+    },
+    {
+      "id": "weight",
+      "label": "Weight",
+      "icon": "format_bold",
+      "variables": [
+        { "id": "typography.weight.font-weight-light", "module": "typography", "submodule": "weight", "name": "font-weight-light", "figmaName": "Typography/Weight/font-weight-light", "type": "FLOAT", "value": 300, "displayValue": "300", "icon": "format_bold" },
+        { "id": "typography.weight.font-weight-regular", "module": "typography", "submodule": "weight", "name": "font-weight-regular", "figmaName": "Typography/Weight/font-weight-regular", "type": "FLOAT", "value": 400, "displayValue": "400", "icon": "format_bold" },
+        { "id": "typography.weight.font-weight-medium", "module": "typography", "submodule": "weight", "name": "font-weight-medium", "figmaName": "Typography/Weight/font-weight-medium", "type": "FLOAT", "value": 500, "displayValue": "500", "icon": "format_bold" },
+        { "id": "typography.weight.font-weight-bold", "module": "typography", "submodule": "weight", "name": "font-weight-bold", "figmaName": "Typography/Weight/font-weight-bold", "type": "FLOAT", "value": 700, "displayValue": "700", "icon": "format_bold" }
+      ]
+    },
+    {
+      "id": "lineheight",
+      "label": "Line Height",
+      "icon": "format_line_spacing",
+      "variables": [
+        { "id": "typography.lineheight.LineHeight-tight", "module": "typography", "submodule": "lineheight", "name": "LineHeight-tight", "figmaName": "Typography/Lineheight/LineHeight-tight", "type": "FLOAT", "value": 1.2, "displayValue": "1.2", "icon": "format_line_spacing" }
+      ]
+    },
+    {
+      "id": "typo-tokens",
+      "label": "Tokens",
+      "icon": "diamond",
+      "variables": [
+        { "id": "typography.typo-tokens.text-primary", "module": "typography", "submodule": "typo-tokens", "name": "text-primary", "figmaName": "Typography/Typo Tokens/text-primary", "type": "COLOR", "value": { "r": 0.047058823529411764, "g": 0.047058823529411764, "b": 0.050980392156862744, "a": 1 }, "displayValue": "#0c0c0d", "preview": "#0c0c0d" },
+        { "id": "typography.typo-tokens.text-secondary", "module": "typography", "submodule": "typo-tokens", "name": "text-secondary", "figmaName": "Typography/Typo Tokens/text-secondary", "type": "COLOR", "value": { "r": 0.047058823529411764, "g": 0.047058823529411764, "b": 0.050980392156862744, "a": 0.5 }, "displayValue": "rgba(12,12,13,0.5)", "preview": "rgba(12,12,13,0.5)" }
+      ]
+    }
+  ]
+}

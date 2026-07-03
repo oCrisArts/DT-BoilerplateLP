@@ -117,12 +117,6 @@ const FAQS = [
   },
 ];
 
-const RESULT_MODULES = [
-  { label: "Colors",     count: 65,  icon: "palette" },
-  { label: "Typography", count: 24,  icon: "font_download" },
-  { label: "Layout",     count: 41,  icon: "grid_4x4" },
-];
-
 // ── Plugin mockup SVG paths (from Figma import svg-fdvtc7n2dr.ts) ─────────────
 const pluginSvgPaths = {
   p3542e280:
@@ -137,338 +131,53 @@ const pluginSvgPaths = {
     "M1.83333 6.41667C1.7466 6.41696 1.66156 6.39264 1.5881 6.34653C1.51464 6.30042 1.45577 6.23441 1.41834 6.15618C1.3809 6.07794 1.36643 5.99069 1.3766 5.90455C1.38678 5.81842 1.42119 5.73694 1.47583 5.66958L6.01333 0.994583C6.04737 0.955296 6.09375 0.928747 6.14487 0.919294C6.19598 0.909842 6.24879 0.918047 6.29463 0.942564C6.34046 0.967081 6.3766 1.00645 6.39711 1.05422C6.41762 1.10198 6.42129 1.1553 6.4075 1.20542L5.5275 3.96458C5.50155 4.03403 5.49284 4.10874 5.5021 4.18229C5.51137 4.25585 5.53834 4.32606 5.58071 4.3869C5.62307 4.44775 5.67956 4.4974 5.74533 4.53162C5.81111 4.56583 5.8842 4.58357 5.95833 4.58333H9.16667C9.2534 4.58304 9.33844 4.60736 9.4119 4.65347C9.48536 4.69958 9.54423 4.76559 9.58167 4.84382C9.6191 4.92206 9.63357 5.00931 9.6234 5.09545C9.61322 5.18158 9.57881 5.26306 9.52417 5.33042L4.98667 10.0054C4.95263 10.0447 4.90625 10.0713 4.85513 10.0807C4.80402 10.0902 4.75121 10.082 4.70537 10.0574C4.65954 10.0329 4.6234 9.99355 4.60289 9.94578C4.58238 9.89802 4.57871 9.8447 4.5925 9.79458L5.4725 7.03542C5.49845 6.96597 5.50716 6.89126 5.4979 6.81771C5.48863 6.74415 5.46166 6.67394 5.41929 6.6131C5.37693 6.55225 5.32044 6.5026 5.25467 6.46838C5.18889 6.43417 5.1158 6.41643 5.04167 6.41667H1.83333Z",
 };
 
-// ── Plugin mockup data ────────────────────────────────────────────────────────
-type ColorToken = {
-  type: "color";
-  name: string;
-  color: string;
-};
-type IconToken = { type: "icon"; name: string; icon: string };
-type Token = ColorToken | IconToken;
-
-type Section = {
+type VariableItem = {
   id: string;
-  icon: string;
+  module: string;
+  submodule: string;
+  name: string;
+  figmaName: string;
+  type: "COLOR" | "FLOAT" | "STRING";
+  value: string | number | { r: number; g: number; b: number; a: number };
+  unit?: string;
+  displayValue: string;
+  icon?: string;
+  preview?: string;
+};
+
+type VariableSubmodule = {
+  id: string;
   label: string;
-  tokens: Token[];
-};
-type ModuleEntry = { varCount: string; sections: Section[] };
-
-const MODULE_DATA: Record<string, ModuleEntry> = {
-  Colors: {
-    varCount: "18 variables",
-    sections: [
-      {
-        id: "palette",
-        icon: "palette",
-        label: "Palette",
-        tokens: [
-          {
-            type: "color",
-            name: "MidnightDepth",
-            color: "#05061a",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-900",
-            color: "#090c2e",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-800",
-            color: "#141852",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-700",
-            color: "#1e2270",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-600",
-            color: "#2d328e",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-500",
-            color: "#5e6ad2",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-400",
-            color: "#8b94e0",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-300",
-            color: "#b3bcea",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-200",
-            color: "#d5d9f3",
-          },
-          {
-            type: "color",
-            name: "MidnightDepth-100",
-            color: "#eceef9",
-          },
-        ],
-      },
-      {
-        id: "semantic",
-        icon: "gradient",
-        label: "Semantic",
-        tokens: [
-          { type: "color", name: "Danger", color: "#ef4444" },
-          { type: "color", name: "Warning", color: "#f59e0b" },
-          { type: "color", name: "Info", color: "#3b82f6" },
-          { type: "color", name: "Sucess", color: "#22c55e" },
-        ],
-      },
-      {
-        id: "tokens",
-        icon: "diamond",
-        label: "Tokens",
-        tokens: [
-          {
-            type: "color",
-            name: "surface-primary",
-            color: "#ffffff",
-          },
-          {
-            type: "color",
-            name: "bg-primary-dark",
-            color: "#09092e",
-          },
-          {
-            type: "color",
-            name: "text-primary",
-            color: "#0c0c0d",
-          },
-          {
-            type: "color",
-            name: "border-primary",
-            color: "#e4e4e7",
-          },
-        ],
-      },
-    ],
-  },
-
-  Typography: {
-    varCount: "22 variables",
-    sections: [
-      {
-        id: "family",
-        icon: "font_download",
-        label: "Family",
-        tokens: [
-          {
-            type: "icon",
-            name: "font-family-sans",
-            icon: "format_shapes",
-          },
-          {
-            type: "icon",
-            name: "font-family-icon",
-            icon: "shapes",
-          },
-        ],
-      },
-      {
-        id: "sizes",
-        icon: "format_size",
-        label: "Sizes",
-        tokens: [
-          {
-            type: "icon",
-            name: "caption",
-            icon: "text_decrease",
-          },
-          {
-            type: "icon",
-            name: "small",
-            icon: "text_decrease",
-          },
-          { type: "icon", name: "p", icon: "text_fields" },
-          { type: "icon", name: "h6", icon: "text_fields" },
-          { type: "icon", name: "h5", icon: "text_fields" },
-          { type: "icon", name: "h4", icon: "text_increase" },
-          { type: "icon", name: "h3", icon: "text_increase" },
-          { type: "icon", name: "h2", icon: "text_increase" },
-          { type: "icon", name: "h1", icon: "text_increase" },
-          {
-            type: "icon",
-            name: "display-4",
-            icon: "format_size",
-          },
-          {
-            type: "icon",
-            name: "display-3",
-            icon: "format_size",
-          },
-          {
-            type: "icon",
-            name: "display-2",
-            icon: "format_size",
-          },
-          {
-            type: "icon",
-            name: "display-1",
-            icon: "format_size",
-          },
-        ],
-      },
-      {
-        id: "weight",
-        icon: "format_bold",
-        label: "Weight",
-        tokens: [
-          {
-            type: "icon",
-            name: "font-weight-light",
-            icon: "text_format",
-          },
-          {
-            type: "icon",
-            name: "font-weight-regular",
-            icon: "text_format",
-          },
-          {
-            type: "icon",
-            name: "font-weight-medium",
-            icon: "format_bold",
-          },
-          {
-            type: "icon",
-            name: "font-weight-bold",
-            icon: "format_bold",
-          },
-        ],
-      },
-      {
-        id: "lineheight",
-        icon: "format_line_spacing",
-        label: "Line Height",
-        tokens: [
-          {
-            type: "icon",
-            name: "LineHeight-tight",
-            icon: "format_line_spacing",
-          },
-        ],
-      },
-      {
-        id: "tokens",
-        icon: "diamond",
-        label: "Tokens",
-        tokens: [
-          {
-            type: "icon",
-            name: "text-primary",
-            icon: "text_format",
-          },
-          {
-            type: "icon",
-            name: "text-secundary",
-            icon: "text_format",
-          },
-        ],
-      },
-    ],
-  },
-
-  Layout: {
-    varCount: "12 variables",
-    sections: [
-      {
-        id: "grid",
-        icon: "grid_4x4",
-        label: "Grid",
-        tokens: [
-          {
-            type: "icon",
-            name: "columns-mobile",
-            icon: "smartphone",
-          },
-          {
-            type: "icon",
-            name: "columns-tablet",
-            icon: "tablet",
-          },
-          {
-            type: "icon",
-            name: "columns-desktop",
-            icon: "desktop_windows",
-          },
-          { type: "icon", name: "gutters", icon: "space_bar" },
-          { type: "icon", name: "padding", icon: "padding" },
-          { type: "icon", name: "margin", icon: "margin" },
-        ],
-      },
-      {
-        id: "radius",
-        icon: "rounded_corner",
-        label: "Radius",
-        tokens: [
-          {
-            type: "icon",
-            name: "radius-sm",
-            icon: "rounded_corner",
-          },
-          {
-            type: "icon",
-            name: "radius-lg",
-            icon: "rounded_corner",
-          },
-        ],
-      },
-      {
-        id: "space",
-        icon: "space_bar",
-        label: "Space",
-        tokens: [
-          {
-            type: "icon",
-            name: "spacing-4",
-            icon: "swap_vert",
-          },
-          {
-            type: "icon",
-            name: "spacing-8",
-            icon: "swap_vert",
-          },
-          {
-            type: "icon",
-            name: "spacing-12",
-            icon: "swap_vert",
-          },
-          {
-            type: "icon",
-            name: "spacing-16",
-            icon: "swap_vert",
-          },
-        ],
-      },
-    ],
-  },
+  icon: string;
+  variables: VariableItem[];
 };
 
-type ModuleKey = keyof typeof MODULE_DATA;
-
-const MODULE_ICONS: Record<string, string> = {
-  Colors: "palette",
-  Typography: "font_download",
-  Layout: "grid_4x4",
+type VariableModule = {
+  module: string;
+  label: string;
+  tabIcon: string;
+  submodules: VariableSubmodule[];
 };
+
+const EMPTY_MODULES: VariableModule[] = [];
+
+function moduleCount(module: VariableModule) {
+  return module.submodules.reduce((total, submodule) => total + submodule.variables.length, 0);
+}
+
+function allVariables(modules: VariableModule[]) {
+  return modules.flatMap((module) => module.submodules.flatMap((submodule) => submodule.variables));
+}
+
 
 // ── Components ────────────────────────────────────────────────────────────────
-function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey }) {
+function PluginMockup({ modules = EMPTY_MODULES, initialModule = "colors" }: { modules?: VariableModule[]; initialModule?: string }) {
+  const fallbackModule = modules[0];
+  const initialModuleId = modules.some((module) => module.module === initialModule) ? initialModule : fallbackModule?.module ?? "";
   const [activeModule, setActiveModule] =
-    useState<string>(initialModule);
+    useState<string>(initialModuleId);
   const [openSection, setOpenSection] =
-    useState<string>(MODULE_DATA[initialModule].sections[0].id);
+    useState<string>(fallbackModule?.submodules[0]?.id ?? "");
   const [search, setSearch] = useState("");
   const [hoveredToken, setHoveredToken] = useState<
     string | null
@@ -480,48 +189,48 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
     Record<string, string>
   >({});
 
-  const modules = Object.keys(MODULE_DATA);
-  const currentModule = MODULE_DATA[activeModule];
+  const currentModule = modules.find((module) => module.module === activeModule) ?? fallbackModule;
 
   useEffect(() => {
-    setActiveModule(initialModule);
-    setOpenSection(MODULE_DATA[initialModule].sections[0].id);
+    const nextModule = modules.find((module) => module.module === initialModule) ?? fallbackModule;
+    setActiveModule(nextModule?.module ?? "");
+    setOpenSection(nextModule?.submodules[0]?.id ?? "");
     setSearch("");
     setEditingToken(null);
-  }, [initialModule]);
+  }, [initialModule, modules, fallbackModule]);
 
   const handleTabClick = (mod: string) => {
     setActiveModule(mod);
-    setOpenSection(MODULE_DATA[mod].sections[0].id);
+    setOpenSection(modules.find((module) => module.module === mod)?.submodules[0]?.id ?? "");
     setSearch("");
     setEditingToken(null);
   };
 
   // Filter tokens in every section by the search query
-  const filteredSections = currentModule.sections.map(
+  const filteredSections = (currentModule?.submodules ?? []).map(
     (section) => ({
       ...section,
-      tokens: search.trim()
-        ? (section.tokens as Token[]).filter((t) =>
+      variables: search.trim()
+        ? section.variables.filter((t) =>
             t.name.toLowerCase().includes(search.toLowerCase()),
           )
-        : (section.tokens as Token[]),
+        : section.variables,
     }),
   );
 
   // If search has text, auto-expand sections that have matches
   const effectiveOpen = search.trim()
-    ? (filteredSections.find((s) => s.tokens.length > 0)?.id ??
+    ? (filteredSections.find((s) => s.variables.length > 0)?.id ??
       openSection)
     : openSection;
 
-  const getDisplayValue = (token: Token): string => {
-    if (tokenValues[token.name]) return tokenValues[token.name];
-    return token.type === "color" ? token.color : token.icon;
+  const getDisplayValue = (token: VariableItem): string => {
+    if (tokenValues[token.id]) return tokenValues[token.id];
+    return token.displayValue;
   };
 
-  const commitEdit = (name: string, value: string) => {
-    setTokenValues((prev) => ({ ...prev, [name]: value }));
+  const commitEdit = (id: string, value: string) => {
+    setTokenValues((prev) => ({ ...prev, [id]: value }));
     setEditingToken(null);
   };
 
@@ -605,11 +314,11 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
         style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
       >
         {modules.map((mod) => {
-          const isActive = mod === activeModule;
+          const isActive = mod.module === activeModule;
           return (
             <button
-              key={mod}
-              onClick={() => handleTabClick(mod)}
+              key={mod.module}
+              onClick={() => handleTabClick(mod.module)}
               className="flex-1 relative flex flex-col items-center justify-center pb-[12px] pt-[8px] cursor-pointer"
               style={{
                 height: "51px",
@@ -617,7 +326,7 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
               }}
             >
               <MI
-                icon={MODULE_ICONS[mod]}
+                icon={mod.tabIcon}
                 size={14}
                 style={{
                   color: isActive ? "#5e6ad2" : "#6e6e80",
@@ -631,7 +340,7 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
                   fontFamily: "'Source Sans 3', sans-serif",
                 }}
               >
-                {mod}
+                {mod.label}
               </span>
             </button>
           );
@@ -695,7 +404,7 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
         {/* Accordion sections */}
         {filteredSections.map((section) => {
           const isOpen = effectiveOpen === section.id;
-          const hasTokens = section.tokens.length > 0;
+          const hasTokens = section.variables.length > 0;
 
           return (
             <div
@@ -747,16 +456,16 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
                     overflowY: "auto",
                   }}
                 >
-                  {section.tokens.map((token) => {
+                  {section.variables.map((token) => {
                     const displayValue = getDisplayValue(token);
                     const isEditing =
-                      editingToken === token.name;
+                      editingToken === token.id;
                     const isHovered =
-                      hoveredToken === token.name;
+                      hoveredToken === token.id;
 
                     return (
                       <div
-                        key={token.name}
+                        key={token.id}
                         className="relative flex gap-[10px] items-center px-[8px] rounded-[6px] cursor-pointer"
                         style={{
                           minHeight: "40px",
@@ -766,26 +475,27 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
                               : undefined,
                         }}
                         onMouseEnter={() =>
-                          setHoveredToken(token.name)
+                          setHoveredToken(token.id)
                         }
                         onMouseLeave={() =>
                           setHoveredToken(null)
                         }
                         onClick={() => {
                           if (!isEditing)
-                            setEditingToken(token.name);
+                            setEditingToken(token.id);
                         }}
                       >
                         {/* Swatch / icon */}
-                        {token.type === "color" ? (
+                        {token.type === "COLOR" ? (
                           <div
                             className="rounded-[4px] shrink-0"
                             style={{
                               width: 24,
                               height: 24,
                               background:
-                                tokenValues[token.name] ||
-                                token.color,
+                                tokenValues[token.id] ||
+                                token.preview ||
+                                token.displayValue,
                               border:
                                 "1px solid rgba(0,0,0,0.05)",
                             }}
@@ -801,7 +511,7 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
                             }}
                           >
                             <MI
-                              icon={token.icon}
+                              icon={token.icon ?? "token"}
                               size={10}
                               style={{ color: "#0c0c0d" }}
                             />
@@ -823,14 +533,14 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
                             onClick={(e) => e.stopPropagation()}
                             onBlur={(e) =>
                               commitEdit(
-                                token.name,
+                                token.id,
                                 e.target.value,
                               )
                             }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 commitEdit(
-                                  token.name,
+                                  token.id,
                                   e.currentTarget.value,
                                 );
                               }
@@ -904,7 +614,7 @@ function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey 
                 fontFamily: "'Source Sans 3', sans-serif",
               }}
             >
-              {currentModule.varCount}
+              {moduleCount(currentModule ?? modules[0] ?? { module: "", label: "", tabIcon: "", submodules: [] })} variables
             </span>
             <span
               className="text-[10px] font-medium leading-[15px] cursor-pointer"
@@ -987,7 +697,22 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 // ── App ───────────────────────────────────────────────────────────────────────
-function ResultMockup() {
+function ResultMockup({ modules }: { modules: VariableModule[] }) {
+  const summary = modules.map((module) => ({
+    label: module.label,
+    icon: module.tabIcon,
+    count: moduleCount(module),
+  }));
+  const rows = modules.flatMap((module) =>
+    module.submodules.flatMap((submodule) =>
+      submodule.variables.slice(0, 4).map((variable) => ({
+        ...variable,
+        moduleLabel: module.label,
+      })),
+    ),
+  );
+  const total = summary.reduce((sum, module) => sum + module.count, 0);
+
   return (
     <div className="w-full max-w-md overflow-hidden rounded-[16px] border border-border bg-white shadow-[0px_24px_64px_-12px_rgba(0,0,0,0.14)]">
       <div className="flex items-center gap-2 border-b border-border bg-[#f7f7f8] px-4 py-3">
@@ -999,11 +724,11 @@ function ResultMockup() {
         <div className="flex-1 text-center text-[11px] font-semibold text-foreground/70">
           Example Design System
         </div>
-        <span className="text-[10px] text-muted-foreground">130</span>
+        <span className="text-[10px] text-muted-foreground">{total}</span>
       </div>
       <div className="p-4 sm:p-5">
         <div className="mb-5 grid grid-cols-3 gap-3">
-          {RESULT_MODULES.map((mod) => (
+          {summary.map((mod) => (
             <div key={mod.label} className="rounded-lg border border-border bg-background p-3">
               <MI icon={mod.icon} size={16} style={{ color: "#5E6AD2" }} />
               <p className="mt-2 text-xs font-semibold text-foreground">{mod.label}</p>
@@ -1012,22 +737,23 @@ function ResultMockup() {
           ))}
         </div>
         <div className="overflow-hidden rounded-lg border border-border">
-          {RESULT_MODULES.flatMap((mod) =>
-            Array.from({ length: 3 }, (_, index) => (
+          {rows.slice(0, 9).map((variable) => (
               <div
-                key={`${mod.label}-${index}`}
+                key={variable.id}
                 className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-border px-3 py-2.5 last:border-b-0"
               >
                 <div className="flex min-w-0 items-center gap-2">
-                  <span className="h-3 w-3 shrink-0 rounded-sm bg-accent/70" />
+                  <span
+                    className="h-3 w-3 shrink-0 rounded-sm bg-accent/70"
+                    style={variable.preview ? { background: variable.preview } : undefined}
+                  />
                   <span className="truncate text-xs text-foreground">
-                    {mod.label.toLowerCase()}-{index + 1}
+                    {variable.figmaName}
                   </span>
                 </div>
-                <span className="text-[11px] text-muted-foreground">{mod.count}</span>
+                <span className="text-[11px] text-muted-foreground">{variable.displayValue}</span>
               </div>
-            )),
-          )}
+            ))}
         </div>
         <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-xs font-semibold text-background">
           <MI icon="bolt" size={13} style={{ color: "#fff" }} />
@@ -1047,6 +773,7 @@ export default function App() {
   const [email, setEmail] = useState<string | null>(null);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [variableModules, setVariableModules] = useState<VariableModule[]>(EMPTY_MODULES);
 
   // Handle hash scrolling for navigation from other pages
   useEffect(() => {
@@ -1087,6 +814,22 @@ export default function App() {
       }, 500);
     }
   }, []); // Dependências vazias para rodar apenas na montagem
+
+  useEffect(() => {
+    let mounted = true;
+
+    Promise.all([
+      fetch("/data/colors.json").then((response) => response.json()),
+      fetch("/data/typography.json").then((response) => response.json()),
+      fetch("/data/layout.json").then((response) => response.json()),
+    ]).then((modules) => {
+      if (mounted) setVariableModules(modules as VariableModule[]);
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   // Stripe Checkout API configuration
   const SUPABASE_URL = "https://lyexuguaeuwdtjeqwmst.supabase.co";
@@ -1132,6 +875,18 @@ export default function App() {
       alert('Failed to create checkout session. Please try again.');
     }
   };
+
+  const variableCards = variableModules.length
+    ? variableModules.map((module) => ({
+        icon: module.tabIcon,
+        title: module.label,
+        desc: FEATURES.find((feature) => feature.title === module.label)?.desc ?? "",
+        count: moduleCount(module),
+        previews: allVariables([module]).slice(0, 4),
+      }))
+    : FEATURES.map((feature) => ({ ...feature, count: 0, previews: [] as VariableItem[] }));
+
+  const totalVariables = variableModules.reduce((total, module) => total + moduleCount(module), 0);
 
   if (isRedirecting) {
     return (
@@ -1201,7 +956,7 @@ export default function App() {
 
             <div className="shrink-0 w-full flex justify-center lg:justify-end">
               <div className="origin-top drop-shadow-2xl scale-100 sm:scale-110 lg:scale-125">
-                <PluginMockup />
+                <PluginMockup modules={variableModules} />
               </div>
             </div>
           </div>
@@ -1236,7 +991,7 @@ export default function App() {
 
             <div className="flex-1 w-full">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {FEATURES.map((f) => (
+                {variableCards.map((f) => (
                   <div
                     key={f.title}
                     className="p-6 border border-border rounded-xl bg-white hover:bg-muted/20 transition-colors group"
@@ -1253,12 +1008,15 @@ export default function App() {
                         <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
                       </div>
                       <div className="mt-2 grid grid-cols-4 gap-2 w-full">
-                        {Array.from({ length: 4 }).map((_, index) => (
+                        {f.previews.map((preview, index) => (
                           <span
-                            key={index}
+                            key={preview.id}
                             className="h-8 rounded-md border border-border bg-background flex items-center justify-center"
+                            style={preview.preview ? { background: preview.preview } : undefined}
                           >
-                            <MI icon={index === 0 ? f.icon : "token"} size={13} style={{ color: index === 0 ? "#5E6AD2" : "#6e6e80" }} />
+                            {!preview.preview && (
+                              <MI icon={preview.icon ?? f.icon} size={13} style={{ color: index === 0 ? "#5E6AD2" : "#6e6e80" }} />
+                            )}
                           </span>
                         ))}
                       </div>
@@ -1323,9 +1081,9 @@ export default function App() {
             {/* Tab content */}
             <div className="w-full flex justify-center min-h-[420px]">
               <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                {activeStep === 0 && <PluginMockup initialModule="Colors" />}
-                {activeStep === 1 && <PluginMockup initialModule="Typography" />}
-                {activeStep === 2 && <ResultMockup />}
+                {activeStep === 0 && <PluginMockup modules={variableModules} initialModule="colors" />}
+                {activeStep === 1 && <PluginMockup modules={variableModules} initialModule="typography" />}
+                {activeStep === 2 && <ResultMockup modules={variableModules} />}
               </div>
             </div>
           </div>
@@ -1417,7 +1175,7 @@ export default function App() {
             <div className="flex-1 max-w-xl">
               <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">What you get</span>
               <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
-                130 variables. Structured and ready.
+                {totalVariables} variables. Structured and ready.
               </h2>
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
                 Everything organized automatically and ready to use inside Figma.
@@ -1426,7 +1184,7 @@ export default function App() {
 
             <div className="w-full flex justify-center lg:justify-end">
               <div className="w-full max-w-lg">
-                <ResultMockup />
+                <ResultMockup modules={variableModules} />
               </div>
             </div>
           </div>

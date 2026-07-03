@@ -1,0 +1,41 @@
+{
+  "module": "layout",
+  "label": "Layout",
+  "tabIcon": "grid_4x4",
+  "submodules": [
+    {
+      "id": "grid",
+      "label": "Grid",
+      "icon": "grid_4x4",
+      "variables": [
+        { "id": "layout.grid.columns-mobile", "module": "layout", "submodule": "grid", "name": "columns-mobile", "figmaName": "Layout/Grid/columns-mobile", "type": "FLOAT", "value": 4, "displayValue": "4", "icon": "smartphone" },
+        { "id": "layout.grid.columns-tablet", "module": "layout", "submodule": "grid", "name": "columns-tablet", "figmaName": "Layout/Grid/columns-tablet", "type": "FLOAT", "value": 8, "displayValue": "8", "icon": "tablet" },
+        { "id": "layout.grid.columns-desktop", "module": "layout", "submodule": "grid", "name": "columns-desktop", "figmaName": "Layout/Grid/columns-desktop", "type": "FLOAT", "value": 12, "displayValue": "12", "icon": "desktop_windows" },
+        { "id": "layout.grid.gutters", "module": "layout", "submodule": "grid", "name": "gutters", "figmaName": "Layout/Grid/gutters", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "space_bar" },
+        { "id": "layout.grid.padding", "module": "layout", "submodule": "grid", "name": "padding", "figmaName": "Layout/Grid/padding", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "padding" },
+        { "id": "layout.grid.margin", "module": "layout", "submodule": "grid", "name": "margin", "figmaName": "Layout/Grid/margin", "type": "FLOAT", "value": 24, "unit": "px", "displayValue": "24px", "icon": "margin" }
+      ]
+    },
+    {
+      "id": "radius",
+      "label": "Radius",
+      "icon": "rounded_corner",
+      "variables": [
+        { "id": "layout.radius.radius-sm", "module": "layout", "submodule": "radius", "name": "radius-sm", "figmaName": "Layout/Radius/radius-sm", "type": "FLOAT", "value": 4, "unit": "px", "displayValue": "4px", "icon": "rounded_corner" },
+        { "id": "layout.radius.radius-lg", "module": "layout", "submodule": "radius", "name": "radius-lg", "figmaName": "Layout/Radius/radius-lg", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "rounded_corner" }
+      ]
+    },
+    {
+      "id": "space",
+      "label": "Space",
+      "icon": "space_bar",
+      "variables": [
+        { "id": "layout.space.spacing-4", "module": "layout", "submodule": "space", "name": "spacing-4", "figmaName": "Layout/Space/4", "type": "FLOAT", "value": 4, "unit": "px", "displayValue": "4px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-8", "module": "layout", "submodule": "space", "name": "spacing-8", "figmaName": "Layout/Space/8", "type": "FLOAT", "value": 8, "unit": "px", "displayValue": "8px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-12", "module": "layout", "submodule": "space", "name": "spacing-12", "figmaName": "Layout/Space/12", "type": "FLOAT", "value": 12, "unit": "px", "displayValue": "12px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-16", "module": "layout", "submodule": "space", "name": "spacing-16", "figmaName": "Layout/Space/16", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-24", "module": "layout", "submodule": "space", "name": "spacing-24", "figmaName": "Layout/Space/24", "type": "FLOAT", "value": 24, "unit": "px", "displayValue": "24px", "icon": "space_bar" }
+      ]
+    }
+  ]
+}
