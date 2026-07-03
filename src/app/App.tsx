@@ -464,11 +464,11 @@ const MODULE_ICONS: Record<string, string> = {
 };
 
 // ── Components ────────────────────────────────────────────────────────────────
-function PluginMockup() {
+function PluginMockup({ initialModule = "Colors" }: { initialModule?: ModuleKey }) {
   const [activeModule, setActiveModule] =
-    useState<string>("Colors");
+    useState<string>(initialModule);
   const [openSection, setOpenSection] =
-    useState<string>("palette");
+    useState<string>(MODULE_DATA[initialModule].sections[0].id);
   const [search, setSearch] = useState("");
   const [hoveredToken, setHoveredToken] = useState<
     string | null
@@ -482,6 +482,13 @@ function PluginMockup() {
 
   const modules = Object.keys(MODULE_DATA);
   const currentModule = MODULE_DATA[activeModule];
+
+  useEffect(() => {
+    setActiveModule(initialModule);
+    setOpenSection(MODULE_DATA[initialModule].sections[0].id);
+    setSearch("");
+    setEditingToken(null);
+  }, [initialModule]);
 
   const handleTabClick = (mod: string) => {
     setActiveModule(mod);
@@ -980,6 +987,57 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 // ── App ───────────────────────────────────────────────────────────────────────
+function ResultMockup() {
+  return (
+    <div className="w-full max-w-md overflow-hidden rounded-[16px] border border-border bg-white shadow-[0px_24px_64px_-12px_rgba(0,0,0,0.14)]">
+      <div className="flex items-center gap-2 border-b border-border bg-[#f7f7f8] px-4 py-3">
+        <div className="flex gap-1.5">
+          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+          <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+        </div>
+        <div className="flex-1 text-center text-[11px] font-semibold text-foreground/70">
+          Example Design System
+        </div>
+        <span className="text-[10px] text-muted-foreground">130</span>
+      </div>
+      <div className="p-4 sm:p-5">
+        <div className="mb-5 grid grid-cols-3 gap-3">
+          {RESULT_MODULES.map((mod) => (
+            <div key={mod.label} className="rounded-lg border border-border bg-background p-3">
+              <MI icon={mod.icon} size={16} style={{ color: "#5E6AD2" }} />
+              <p className="mt-2 text-xs font-semibold text-foreground">{mod.label}</p>
+              <p className="text-[11px] text-muted-foreground">{mod.count} variables</p>
+            </div>
+          ))}
+        </div>
+        <div className="overflow-hidden rounded-lg border border-border">
+          {RESULT_MODULES.flatMap((mod) =>
+            Array.from({ length: 3 }, (_, index) => (
+              <div
+                key={`${mod.label}-${index}`}
+                className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-border px-3 py-2.5 last:border-b-0"
+              >
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className="h-3 w-3 shrink-0 rounded-sm bg-accent/70" />
+                  <span className="truncate text-xs text-foreground">
+                    {mod.label.toLowerCase()}-{index + 1}
+                  </span>
+                </div>
+                <span className="text-[11px] text-muted-foreground">{mod.count}</span>
+              </div>
+            )),
+          )}
+        </div>
+        <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-xs font-semibold text-background">
+          <MI icon="bolt" size={13} style={{ color: "#fff" }} />
+          Generate Variables
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -1088,7 +1146,7 @@ export default function App() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative pt-20 pb-24 overflow-hidden">
+      <section className="relative overflow-hidden py-20 lg:py-32">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -1099,17 +1157,17 @@ export default function App() {
         />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent pointer-events-none" />
 
-        <div className="relative max-w-6xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
-            <div className="flex-1  text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-background text-xs text-muted-foreground mb-7 font-mono">
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-14 lg:gap-24">
+            <div className="max-w-3xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-background/80 text-xs text-muted-foreground mb-7 font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse" />
                 The fastest way to start a Design System in Figma
               </div>
-              <h1 className="text-[46px] lg:text-[58px] font-bold text-foreground tracking-[-0.03em] leading-[1.05] mb-6">
+              <h1 className="text-[46px] sm:text-[56px] lg:text-[72px] font-extrabold text-foreground leading-[0.98] mb-5">
                 Stop Building Figma Variables From Scratch.
               </h1>
-              <p className="text-[17px] text-muted-foreground leading-relaxed mb-9 max-w-md mx-auto lg:mx-0">
+              <p className="text-[17px] text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
                 Generate a Complete Design Tokens Starter in 30 Seconds.
               </p>
               <div className="flex items-center gap-3 flex-wrap justify-center lg:justify-start">
@@ -1141,8 +1199,8 @@ export default function App() {
               </div>
             </div>
 
-            <div className="shrink-0 w-full flex justify-center lg:w-auto lg:justify-start">
-              <div style={{ transform: "scale(min(1, calc((100vw - 2rem) / 300px)))", transformOrigin: "top center" }} className="lg:transform-none">
+            <div className="shrink-0 w-full flex justify-center lg:justify-end">
+              <div className="origin-top drop-shadow-2xl scale-100 sm:scale-110 lg:scale-125">
                 <PluginMockup />
               </div>
             </div>
@@ -1151,15 +1209,23 @@ export default function App() {
       </section>
 
       {/* ── Features ── */}
-      <section id="features" className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="flex-1 max-w-xl">
+      <section id="features" className="relative overflow-hidden py-20 lg:py-28">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+            <div className="max-w-xl">
               <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
                 Features
               </span>
               <h2
-                className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]"
+                className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight"
                             >
                 Everything in one generation
               </h2>
@@ -1169,13 +1235,13 @@ export default function App() {
             </div>
 
             <div className="flex-1 w-full">
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {FEATURES.map((f) => (
                   <div
                     key={f.title}
-                    className="p-6 border border-border rounded-xl hover:bg-muted/20 transition-colors group"
+                    className="p-6 border border-border rounded-xl bg-white hover:bg-muted/20 transition-colors group"
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex flex-col items-start gap-5">
                       <div
                         className="w-10 h-10 rounded-lg border border-border flex items-center justify-center shrink-0 group-hover:border-accent/40 transition-colors"
                         style={{ background: "rgba(94,106,210,0.05)" }}
@@ -1185,6 +1251,16 @@ export default function App() {
                       <div>
                         <h3 className="text-sm font-semibold text-foreground mb-1">{f.title}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                      </div>
+                      <div className="mt-2 grid grid-cols-4 gap-2 w-full">
+                        {Array.from({ length: 4 }).map((_, index) => (
+                          <span
+                            key={index}
+                            className="h-8 rounded-md border border-border bg-background flex items-center justify-center"
+                          >
+                            <MI icon={index === 0 ? f.icon : "token"} size={13} style={{ color: index === 0 ? "#5E6AD2" : "#6e6e80" }} />
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -1198,29 +1274,29 @@ export default function App() {
       {/* ── How it works ── */}
       <section
         id="how-it-works"
-        className="py-24 border-t border-border"
+        className="py-20 lg:py-28 bg-background border-t border-border"
       >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-16">
-            <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-14 text-center">
+            <span className="sr-only">
               How it works
             </span>
-            <h2 className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]">
+            <h2 className="text-[42px] lg:text-[54px] leading-none font-extrabold text-foreground">
               From zero to foundation in seconds
             </h2>
           </div>
 
           {/* Tabbed interface */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10 items-center">
             {/* Tab buttons */}
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1116px]">
               {STEPS.map((step, index) => (
                 <button
                   key={step.num}
                   onClick={() => setActiveStep(index)}
-                  className={`flex-1 text-left p-6 rounded-xl border transition-all ${
+                  className={`text-left p-0 border-b-2 pb-5 transition-all ${
                     activeStep === index
-                      ? 'border-accent bg-accent/5'
+                      ? 'border-accent'
                       : 'border-border hover:border-accent/30'
                   }`}
                 >
@@ -1245,13 +1321,11 @@ export default function App() {
             </div>
 
             {/* Tab content */}
-            <div className="bg-background border border-border rounded-xl p-8 min-h-[200px] flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full border-2 border-accent/20 flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(94,106,210,0.05)" }}>
-                  <MI icon="check_circle" size={32} style={{ color: "#5E6AD2" }} />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{STEPS[activeStep].title}</h3>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto">{STEPS[activeStep].desc}</p>
+            <div className="w-full flex justify-center min-h-[420px]">
+              <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
+                {activeStep === 0 && <PluginMockup initialModule="Colors" />}
+                {activeStep === 1 && <PluginMockup initialModule="Typography" />}
+                {activeStep === 2 && <ResultMockup />}
               </div>
             </div>
           </div>
@@ -1259,11 +1333,11 @@ export default function App() {
       </section>
 
       {/* ── Pricing ── */}
-      <section id="pricing" className="py-24 border-t border-border">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-10">
+      <section id="pricing" className="py-20 lg:py-28 border-t border-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-10 max-w-3xl">
             <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">Pricing</span>
-            <h2 className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]">
+            <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
               Choose your plan
             </h2>
             <p className="mt-3 text-base text-muted-foreground">
@@ -1271,9 +1345,9 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Monthly */}
-            <div className="rounded-xl border border-border bg-white p-7">
+            <div className="rounded-xl border border-border bg-white p-7 lg:p-8">
               <div className="mb-7">
                 <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Monthly</span>
                 <div className="mt-2 flex items-baseline gap-1">
@@ -1300,7 +1374,7 @@ export default function App() {
 
             {/* Lifetime */}
             <div
-              className="rounded-xl p-7 relative overflow-hidden"
+              className="rounded-xl p-7 lg:p-8 relative overflow-hidden"
               style={{ border: "1.5px solid rgba(94,106,210,0.35)", background: "linear-gradient(135deg,rgba(94,106,210,0.04) 0%,rgba(94,106,210,0.01) 100%)" }}
             >
               <div className="absolute top-4 right-4">
@@ -1337,12 +1411,12 @@ export default function App() {
       </section>
 
       {/* ── Results ── */}
-      <section className="py-24 border-t border-border" style={{ background: "#F7F7F8" }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
+      <section className="py-20 lg:py-28 border-t border-border" style={{ background: "#F7F7F8" }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(320px,1fr)] gap-14 lg:gap-20 items-center">
             <div className="flex-1 max-w-xl">
               <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">What you get</span>
-              <h2 className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]">
+              <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
                 130 variables. Structured and ready.
               </h2>
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
@@ -1350,55 +1424,9 @@ export default function App() {
               </p>
             </div>
 
-            <div className="flex-1 w-full">
-              {/* Preset result card */}
-              <div className="rounded-2xl border border-border bg-white overflow-hidden max-w-2xl">
-                {/* Card header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(94,106,210,0.08)" }}>
-                      <MI icon="style" size={16} style={{ color: "#5E6AD2" }} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">Example Design System</p>
-                      <p className="text-xs text-muted-foreground">Generated in 2 seconds</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-2xl font-bold text-foreground tracking-tight">130</p>
-                    <p className="text-xs text-muted-foreground">variables total</p>
-                  </div>
-                </div>
-
-                {/* Module breakdown */}
-                <div className="grid grid-cols-3 divide-x divide-border">
-                  {RESULT_MODULES.map((mod) => (
-                    <div key={mod.label} className="px-6 py-5">
-                      <div className="flex items-center gap-2 mb-3">
-                        <MI icon={mod.icon} size={14} style={{ color: "#5E6AD2" }} />
-                        <span className="text-xs font-medium text-muted-foreground">{mod.label}</span>
-                      </div>
-                      <p className="text-2xl font-bold text-foreground">{mod.count}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">variables</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Progress bars */}
-                <div className="px-6 pb-6 pt-2 space-y-2.5">
-                  {RESULT_MODULES.map((mod) => (
-                    <div key={mod.label} className="flex items-center gap-3">
-                      <span className="text-xs text-muted-foreground w-20 shrink-0">{mod.label}</span>
-                      <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-                        <div
-                          className="h-full rounded-full"
-                          style={{ width: `${(mod.count / 130) * 100}%`, background: "#5E6AD2" }}
-                        />
-                      </div>
-                      <span className="text-xs font-medium text-foreground w-6 text-right shrink-0">{mod.count}</span>
-                    </div>
-                  ))}
-                </div>
+            <div className="w-full flex justify-center lg:justify-end">
+              <div className="w-full max-w-lg">
+                <ResultMockup />
               </div>
             </div>
           </div>
