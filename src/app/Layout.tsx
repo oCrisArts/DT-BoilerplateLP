@@ -65,7 +65,7 @@ export default function Layout() {
             <span
               className="text-sm font-semibold"
             >
-              DS Boilerplate
+              DT Boilerplate
             </span>
           </Link>
 
@@ -146,7 +146,7 @@ export default function Layout() {
             <span
               className="text-sm font-semibold"
             >
-              DS Boilerplate
+              DT Boilerplate
             </span>
           </div>
           <div className="flex items-center gap-6 text-xs text-muted-foreground flex-wrap justify-center">
@@ -186,7 +186,7 @@ export default function Layout() {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground">            
-              © 2025 DS Boilerplate by 
+              © 2025 DT Boilerplate by 
             </span>
             <a href="https://ocris.art.br/" target="_blank" rel="noopener noreferrer">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">

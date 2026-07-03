@@ -58,7 +58,7 @@ function Text() {
     <div className="h-[16.5px] relative shrink-0 w-[74.625px]" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
         <p className="[word-break:break-word] absolute font-['DM_Sans:SemiBold',sans-serif] font-semibold leading-[16.5px] left-0 text-[11px] text-[rgba(12,12,13,0.7)] top-0 whitespace-nowrap" style={{ fontVariationSettings: '"opsz" 14' }}>
-          DS Boilerplate
+          DT Boilerplate
         </p>
       </div>
     </div>

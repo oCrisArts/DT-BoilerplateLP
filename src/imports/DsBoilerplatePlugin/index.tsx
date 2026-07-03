@@ -33,7 +33,7 @@ function Text() {
   return (
     <div className="h-[20px] relative shrink-0 w-[91.047px]" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
-        <p className="[word-break:break-word] absolute font-['Outfit:SemiBold',sans-serif] font-semibold leading-[20px] left-0 text-[#0c0c0d] text-[14px] top-0 whitespace-nowrap">DS Boilerplate</p>
+        <p className="[word-break:break-word] absolute font-['Outfit:SemiBold',sans-serif] font-semibold leading-[20px] left-0 text-[#0c0c0d] text-[14px] top-0 whitespace-nowrap">DT Boilerplate</p>
       </div>
     </div>
   );
@@ -228,7 +228,7 @@ function Paragraph() {
   return (
     <div className="h-[82.875px] max-w-[448px] relative shrink-0 w-[448px]" data-name="Paragraph">
       <p className="[word-break:break-word] absolute font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[27.625px] left-0 text-[#6e6e80] text-[17px] top-[-1px] w-[448px]" style={{ fontVariationSettings: '"opsz" 9' }}>
-        DS Boilerplate analyzes your Figma file and generates every color, typography, spacing, and effect variable — instantly, with zero configuration.
+        DT Boilerplate analyzes your Figma file and generates every color, typography, spacing, and effect variable — instantly, with zero configuration.
       </p>
     </div>
   );
@@ -459,7 +459,7 @@ function Text6() {
     <div className="h-[16.5px] relative shrink-0 w-[74.625px]" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
         <p className="[word-break:break-word] absolute font-['DM_Sans:SemiBold',sans-serif] font-semibold leading-[16.5px] left-0 text-[11px] text-[rgba(12,12,13,0.7)] top-0 whitespace-nowrap" style={{ fontVariationSettings: '"opsz" 14' }}>
-          DS Boilerplate
+          DT Boilerplate
         </p>
       </div>
     </div>
@@ -1137,7 +1137,7 @@ function Paragraph1() {
     <div className="relative shrink-0 w-full" data-name="Paragraph">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start pt-[12px] relative size-full">
         <p className="[word-break:break-word] font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[26px] relative shrink-0 text-[#6e6e80] text-[16px] w-[576px]" style={{ fontVariationSettings: '"opsz" 9' }}>
-          From token extraction to code export, DS Boilerplate handles the full variable pipeline so your team can focus on design.
+          From token extraction to code export, DT Boilerplate handles the full variable pipeline so your team can focus on design.
         </p>
       </div>
     </div>
@@ -1316,7 +1316,7 @@ function Paragraph4() {
     <div className="relative shrink-0 w-[302.344px]" data-name="Paragraph">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start pt-[8px] relative size-full">
         <p className="[word-break:break-word] font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[22.75px] relative shrink-0 text-[#6e6e80] text-[14px] w-[303px]" style={{ fontVariationSettings: '"opsz" 9' }}>
-          Re-run anytime. DS Boilerplate diffs against existing variables and only creates or updates what changed.
+          Re-run anytime. DT Boilerplate diffs against existing variables and only creates or updates what changed.
         </p>
       </div>
     </div>
@@ -1629,7 +1629,7 @@ function Paragraph8() {
     <div className="relative shrink-0 w-[346.656px]" data-name="Paragraph">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start pt-[8px] relative size-full">
         <p className="[word-break:break-word] font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[22.75px] relative shrink-0 text-[#6e6e80] text-[14px] w-[347px]" style={{ fontVariationSettings: '"opsz" 9' }}>
-          Find DS Boilerplate in the Figma Community and install in one click. Works with any Figma plan including Starter.
+          Find DT Boilerplate in the Figma Community and install in one click. Works with any Figma plan including Starter.
         </p>
       </div>
     </div>
@@ -2634,7 +2634,7 @@ function Text29() {
     <div className="h-[20px] relative shrink-0 w-[320.469px]" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
         <p className="[word-break:break-word] absolute font-['DM_Sans:Medium',sans-serif] font-medium leading-[20px] left-0 text-[#0c0c0d] text-[14px] top-0 whitespace-nowrap" style={{ fontVariationSettings: '"opsz" 14' }}>
-          Does DS Boilerplate work with existing variables?
+          Does DT Boilerplate work with existing variables?
         </p>
       </div>
     </div>
@@ -2949,7 +2949,7 @@ function ParagraphMargin1() {
     <div className="relative shrink-0 w-full" data-name="Paragraph (margin)">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center pt-[20px] relative size-full">
         <p className="[word-break:break-word] font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[28px] relative shrink-0 text-[#6e6e80] text-[18px] text-center w-[448px]" style={{ fontVariationSettings: '"opsz" 9' }}>
-          Join 1,200+ designers using DS Boilerplate to ship consistent, token-driven systems faster than ever.
+          Join 1,200+ designers using DT Boilerplate to ship consistent, token-driven systems faster than ever.
         </p>
       </div>
     </div>
@@ -3077,7 +3077,7 @@ function Text35() {
   return (
     <div className="h-[20px] relative shrink-0 w-[91.047px]" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid relative size-full">
-        <p className="[word-break:break-word] absolute font-['Outfit:SemiBold',sans-serif] font-semibold leading-[20px] left-0 text-[#0c0c0d] text-[14px] top-0 whitespace-nowrap">DS Boilerplate</p>
+        <p className="[word-break:break-word] absolute font-['Outfit:SemiBold',sans-serif] font-semibold leading-[20px] left-0 text-[#0c0c0d] text-[14px] top-0 whitespace-nowrap">DT Boilerplate</p>
       </div>
     </div>
   );
@@ -3172,7 +3172,7 @@ function Text36() {
   return (
     <div className="relative shrink-0" data-name="Text">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex gap-[10px] items-center justify-center relative size-full">
-        <p className="[word-break:break-word] font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[16px] relative shrink-0 text-[#6e6e80] text-[12px] whitespace-nowrap" style={{ fontVariationSettings: '"opsz" 9' }}>{`© 2025 DS Boilerplate by `}</p>
+        <p className="[word-break:break-word] font-['DM_Sans:9pt_Regular',sans-serif] font-normal leading-[16px] relative shrink-0 text-[#6e6e80] text-[12px] whitespace-nowrap" style={{ fontVariationSettings: '"opsz" 9' }}>{`© 2025 DT Boilerplate by `}</p>
         <div className="overflow-clip relative shrink-0 size-[40px]" data-name="Adran.brand">
           <div className="absolute inset-[23.66%_27.4%_6.6%_33.6%]" data-name="A">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15.6 27.896">
@@ -3256,7 +3256,7 @@ function Body() {
 
 export default function DsBoilerplatePlugin() {
   return (
-    <div className="bg-[#fafafa] content-stretch flex flex-col items-start relative size-full" data-name="DS Boilerplate Plugin">
+    <div className="bg-[#fafafa] content-stretch flex flex-col items-start relative size-full" data-name="DT Boilerplate Plugin">
       <Body />
     </div>
   );

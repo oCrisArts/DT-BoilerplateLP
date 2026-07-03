@@ -97,7 +97,7 @@ export default function Contact() {
                 </h2>
                 <p className="text-base text-muted-foreground leading-relaxed">
                   Found a bug or have a feature idea? Let us know! We're constantly improving 
-                  DS Boilerplate based on user feedback.
+                  DT Boilerplate based on user feedback.
                 </p>
               </section>
 

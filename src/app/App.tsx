@@ -44,33 +44,18 @@ const NAV_LINKS = [
 const FEATURES = [
   {
     icon: "palette",
-    title: "Colors Foundation",
+    title: "Colors",
     desc: "Generate color variables organized into Palette, Semantic and Tokens groups — ready to use immediately.",
   },
   {
     icon: "font_download",
-    title: "Typography Foundation",
+    title: "Typography",
     desc: "Create font families, sizes, weights, line heights and typography tokens instantly.",
   },
   {
     icon: "grid_4x4",
-    title: "Layout Foundation",
+    title: "Layout",
     desc: "Generate spacing, grid, radius and layout tokens structured and ready for production.",
-  },
-  {
-    icon: "folder_open",
-    title: "Organized Variable Collections",
-    desc: "Automatically create clean collections and groups inside Figma Variables. No manual setup.",
-  },
-  {
-    icon: "variable_insert",
-    title: "Native Figma Variables",
-    desc: "Built entirely using the official Figma Variables system. No workarounds, no external dependencies.",
-  },
-  {
-    icon: "bolt",
-    title: "Ready in Seconds",
-    desc: "Start new projects faster without manually creating hundreds of variables from scratch.",
   },
 ];
 
@@ -115,7 +100,7 @@ const LIFETIME_FEATURES = [
 
 const FAQS = [
   {
-    q: "What does DS Boilerplate generate?",
+    q: "What does DT Boilerplate generate?",
     a: "Colors, Typography and Layout variables organized into structured collections and groups inside Figma Variables. Everything is ready to use immediately after generation.",
   },
   {
@@ -128,7 +113,7 @@ const FAQS = [
   },
   {
     q: "Do I need Design System experience?",
-    a: "No. DS Boilerplate is designed to help any designer create a solid, production-ready foundation in seconds — no prior Design System expertise required.",
+    a: "No. DT Boilerplate is designed to help any designer create a solid, production-ready foundation in seconds — no prior Design System expertise required.",
   },
 ];
 
@@ -592,7 +577,7 @@ function PluginMockup() {
                 fontFamily: "'Source Sans 3', sans-serif",
               }}
             >
-              DS Boilerplate
+              DT Boilerplate
             </span>
           </div>
           <span
@@ -1003,6 +988,7 @@ export default function App() {
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
 
   // Handle hash scrolling for navigation from other pages
   useEffect(() => {
@@ -1121,18 +1107,20 @@ export default function App() {
                 The fastest way to start a Design System in Figma
               </div>
               <h1 className="text-[46px] lg:text-[58px] font-bold text-foreground tracking-[-0.03em] leading-[1.05] mb-6">
-                Stop wasting hours on Design System setup
+                Stop Building Figma Variables From Scratch.
               </h1>
               <p className="text-[17px] text-muted-foreground leading-relaxed mb-9 max-w-md mx-auto lg:mx-0">
-                Create production-ready design tokens in 30 seconds. Native Figma variables, zero workarounds.
+                Generate a Complete Design Tokens Starter in 30 Seconds.
               </p>
               <div className="flex items-center gap-3 flex-wrap justify-center lg:justify-start">
                 <a
-                  href="#"
-                  onClick={(e) => { e.preventDefault(); trackHeroCTA(); }}
+                  href="https://www.figma.com/community/plugin/1651310914400769393"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={trackInstallPlugin}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity"
                 >
-                  Generate Your First System Free
+                  Install on Figma
                   <MI icon="arrow_forward" size={15} style={{ color: "#fff" }} />
                 </a>
                 <a
@@ -1140,11 +1128,11 @@ export default function App() {
                   onClick={trackHeroCTA}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors"
                 >
-                  See How It Works
+                  See how it works
                 </a>
               </div>
               <div className="mt-7 flex items-center gap-5 text-xs text-muted-foreground justify-center lg:justify-start flex-wrap">
-                {["1 free generation", "No account needed", "Native Figma Variables"].map((t) => (
+                {["No credit card required", "Native Figma Variables", "No external dependencies"].map((t) => (
                   <span key={t} className="flex items-center gap-1.5">
                     <MI icon="check" size={13} style={{ color: "#5E6AD2" }} />
                     {t}
@@ -1162,146 +1150,46 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── Social proof strip ── */}
-      <div className="border-y border-border py-4 bg-background">
-        <div className="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
-          <span className="text-xs text-muted-foreground font-mono uppercase tracking-widest">
-            Used by teams at
-          </span>
-          <div className="flex items-center gap-8 flex-wrap">
-            {[
-              "Notion",
-              "Stripe",
-              "Loom",
-              "Vercel",
-              "Linear",
-            ].map((co) => (
-              <span
-                key={co}
-                className="text-sm font-bold tracking-wide"
-                style={{
-                  color: "rgba(110,110,128,0.4)",
-                  fontFamily: "'Source Sans 3', sans-serif",
-                }}
-              >
-                {co}
-              </span>
-            ))}
-          </div>
-          <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <MI
-                key={i}
-                icon="star"
-                size={13}
-                fill={1}
-                style={{ color: "#F59E0B" }}
-              />
-            ))}
-            <span className="text-xs text-muted-foreground ml-1.5">
-              4.9 · 1,200+ installs
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* ── Features ── */}
       <section id="features" className="py-24">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-14 max-w-xl">
-            <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
-              Features
-            </span>
-            <h2
-              className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]"
-                          >
-              Everything in one generation
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-              DS Boilerplate creates the complete variable structure your Design System needs — Colors, Typography and Layout — organized and ready to build on.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
-            {FEATURES.map((f) => (
-              <div
-                key={f.title}
-                className="p-6 md:p-8 border-b border-r border-border hover:bg-muted/20 transition-colors group"
-              >
-                <div
-                  className="w-8 h-8 rounded-lg border border-border flex items-center justify-center mb-5 group-hover:border-accent/40 transition-colors"
-                  style={{ background: "rgba(94,106,210,0.05)" }}
-                >
-                  <MI icon={f.icon} size={16} className="text-muted-foreground group-hover:text-accent transition-colors" />
-                </div>
-                <h3 className="text-sm font-semibold text-foreground mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Results ── */}
-      <section className="py-24 border-t border-border" style={{ background: "#F7F7F8" }}>
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-14 max-w-xl">
-            <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">What you get</span>
-            <h2 className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]">
-              130 variables. Structured and ready.
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-              Everything organized automatically and ready to use inside Figma.
-            </p>
-          </div>
-
-          {/* Preset result card */}
-          <div className="rounded-2xl border border-border bg-white overflow-hidden max-w-2xl">
-            {/* Card header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(94,106,210,0.08)" }}>
-                  <MI icon="style" size={16} style={{ color: "#5E6AD2" }} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">Example Design System</p>
-                  <p className="text-xs text-muted-foreground">Generated in 2 seconds</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-2xl font-bold text-foreground tracking-tight">130</p>
-                <p className="text-xs text-muted-foreground">variables total</p>
-              </div>
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            <div className="flex-1 max-w-xl">
+              <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
+                Features
+              </span>
+              <h2
+                className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]"
+                            >
+                Everything in one generation
+              </h2>
+              <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                DT Boilerplate creates the complete variable structure your Design System needs — Colors, Typography and Layout — organized and ready to build on.
+              </p>
             </div>
 
-            {/* Module breakdown */}
-            <div className="grid grid-cols-3 divide-x divide-border">
-              {RESULT_MODULES.map((mod) => (
-                <div key={mod.label} className="px-6 py-5">
-                  <div className="flex items-center gap-2 mb-3">
-                    <MI icon={mod.icon} size={14} style={{ color: "#5E6AD2" }} />
-                    <span className="text-xs font-medium text-muted-foreground">{mod.label}</span>
+            <div className="flex-1 w-full">
+              <div className="grid grid-cols-1 gap-4">
+                {FEATURES.map((f) => (
+                  <div
+                    key={f.title}
+                    className="p-6 border border-border rounded-xl hover:bg-muted/20 transition-colors group"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div
+                        className="w-10 h-10 rounded-lg border border-border flex items-center justify-center shrink-0 group-hover:border-accent/40 transition-colors"
+                        style={{ background: "rgba(94,106,210,0.05)" }}
+                      >
+                        <MI icon={f.icon} size={18} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold text-foreground mb-1">{f.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-2xl font-bold text-foreground">{mod.count}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">variables</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Progress bars */}
-            <div className="px-6 pb-6 pt-2 space-y-2.5">
-              {RESULT_MODULES.map((mod) => (
-                <div key={mod.label} className="flex items-center gap-3">
-                  <span className="text-xs text-muted-foreground w-20 shrink-0">{mod.label}</span>
-                  <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{ width: `${(mod.count / 130) * 100}%`, background: "#5E6AD2" }}
-                    />
-                  </div>
-                  <span className="text-xs font-medium text-foreground w-6 text-right shrink-0">{mod.count}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -1322,36 +1210,50 @@ export default function App() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative">
-            {/* Connector line desktop */}
-            <div
-              className="hidden md:block absolute h-px bg-border"
-              style={{
-                top: "20px",
-                left: "calc(33.333% / 2 + 20px)",
-                right: "calc(33.333% / 2 + 20px)",
-              }}
-            />
-            {STEPS.map((step) => (
-              <div key={step.num} className="relative">
-                <div className="w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center mb-6 relative z-10">
-                  <span
-                    className="text-xs font-bold font-mono"
-                    style={{ color: "#5E6AD2" }}
-                  >
-                    {step.num}
-                  </span>
+          {/* Tabbed interface */}
+          <div className="flex flex-col gap-8">
+            {/* Tab buttons */}
+            <div className="flex flex-col md:flex-row gap-4">
+              {STEPS.map((step, index) => (
+                <button
+                  key={step.num}
+                  onClick={() => setActiveStep(index)}
+                  className={`flex-1 text-left p-6 rounded-xl border transition-all ${
+                    activeStep === index
+                      ? 'border-accent bg-accent/5'
+                      : 'border-border hover:border-accent/30'
+                  }`}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <span
+                      className="text-xs font-bold font-mono"
+                      style={{ color: activeStep === index ? "#5E6AD2" : "#6e6e80" }}
+                    >
+                      {step.num}
+                    </span>
+                    <h3
+                      className="text-sm font-semibold text-foreground"
+                    >
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.desc}
+                  </p>
+                </button>
+              ))}
+            </div>
+
+            {/* Tab content */}
+            <div className="bg-background border border-border rounded-xl p-8 min-h-[200px] flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-accent/20 flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(94,106,210,0.05)" }}>
+                  <MI icon="check_circle" size={32} style={{ color: "#5E6AD2" }} />
                 </div>
-                <h3
-                  className="text-sm font-semibold text-foreground mb-2"
-                                  >
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {step.desc}
-                </p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{STEPS[activeStep].title}</h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">{STEPS[activeStep].desc}</p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1429,6 +1331,75 @@ export default function App() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Results ── */}
+      <section className="py-24 border-t border-border" style={{ background: "#F7F7F8" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            <div className="flex-1 max-w-xl">
+              <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">What you get</span>
+              <h2 className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]">
+                130 variables. Structured and ready.
+              </h2>
+              <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+                Everything organized automatically and ready to use inside Figma.
+              </p>
+            </div>
+
+            <div className="flex-1 w-full">
+              {/* Preset result card */}
+              <div className="rounded-2xl border border-border bg-white overflow-hidden max-w-2xl">
+                {/* Card header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(94,106,210,0.08)" }}>
+                      <MI icon="style" size={16} style={{ color: "#5E6AD2" }} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">Example Design System</p>
+                      <p className="text-xs text-muted-foreground">Generated in 2 seconds</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-2xl font-bold text-foreground tracking-tight">130</p>
+                    <p className="text-xs text-muted-foreground">variables total</p>
+                  </div>
+                </div>
+
+                {/* Module breakdown */}
+                <div className="grid grid-cols-3 divide-x divide-border">
+                  {RESULT_MODULES.map((mod) => (
+                    <div key={mod.label} className="px-6 py-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <MI icon={mod.icon} size={14} style={{ color: "#5E6AD2" }} />
+                        <span className="text-xs font-medium text-muted-foreground">{mod.label}</span>
+                      </div>
+                      <p className="text-2xl font-bold text-foreground">{mod.count}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">variables</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Progress bars */}
+                <div className="px-6 pb-6 pt-2 space-y-2.5">
+                  {RESULT_MODULES.map((mod) => (
+                    <div key={mod.label} className="flex items-center gap-3">
+                      <span className="text-xs text-muted-foreground w-20 shrink-0">{mod.label}</span>
+                      <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full"
+                          style={{ width: `${(mod.count / 130) * 100}%`, background: "#5E6AD2" }}
+                        />
+                      </div>
+                      <span className="text-xs font-medium text-foreground w-6 text-right shrink-0">{mod.count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
