@@ -34,7 +34,19 @@
         { "id": "layout.space.spacing-8", "module": "layout", "submodule": "space", "name": "spacing-8", "figmaName": "Layout/Space/8", "type": "FLOAT", "value": 8, "unit": "px", "displayValue": "8px", "icon": "space_bar" },
         { "id": "layout.space.spacing-12", "module": "layout", "submodule": "space", "name": "spacing-12", "figmaName": "Layout/Space/12", "type": "FLOAT", "value": 12, "unit": "px", "displayValue": "12px", "icon": "space_bar" },
         { "id": "layout.space.spacing-16", "module": "layout", "submodule": "space", "name": "spacing-16", "figmaName": "Layout/Space/16", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "space_bar" },
-        { "id": "layout.space.spacing-24", "module": "layout", "submodule": "space", "name": "spacing-24", "figmaName": "Layout/Space/24", "type": "FLOAT", "value": 24, "unit": "px", "displayValue": "24px", "icon": "space_bar" }
+        { "id": "layout.space.spacing-24", "module": "layout", "submodule": "space", "name": "spacing-24", "figmaName": "Layout/Space/24", "type": "FLOAT", "value": 24, "unit": "px", "displayValue": "24px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-32", "module": "layout", "submodule": "space", "name": "spacing-32", "figmaName": "Layout/Space/32", "type": "FLOAT", "value": 32, "unit": "px", "displayValue": "32px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-40", "module": "layout", "submodule": "space", "name": "spacing-40", "figmaName": "Layout/Space/40", "type": "FLOAT", "value": 40, "unit": "px", "displayValue": "40px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-48", "module": "layout", "submodule": "space", "name": "spacing-48", "figmaName": "Layout/Space/48", "type": "FLOAT", "value": 48, "unit": "px", "displayValue": "48px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-56", "module": "layout", "submodule": "space", "name": "spacing-56", "figmaName": "Layout/Space/56", "type": "FLOAT", "value": 56, "unit": "px", "displayValue": "56px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-64", "module": "layout", "submodule": "space", "name": "spacing-64", "figmaName": "Layout/Space/64", "type": "FLOAT", "value": 64, "unit": "px", "displayValue": "64px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-72", "module": "layout", "submodule": "space", "name": "spacing-72", "figmaName": "Layout/Space/72", "type": "FLOAT", "value": 72, "unit": "px", "displayValue": "72px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-80", "module": "layout", "submodule": "space", "name": "spacing-80", "figmaName": "Layout/Space/80", "type": "FLOAT", "value": 80, "unit": "px", "displayValue": "80px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-96", "module": "layout", "submodule": "space", "name": "spacing-96", "figmaName": "Layout/Space/96", "type": "FLOAT", "value": 96, "unit": "px", "displayValue": "96px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-112", "module": "layout", "submodule": "space", "name": "spacing-112", "figmaName": "Layout/Space/112", "type": "FLOAT", "value": 112, "unit": "px", "displayValue": "112px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-128", "module": "layout", "submodule": "space", "name": "spacing-128", "figmaName": "Layout/Space/128", "type": "FLOAT", "value": 128, "unit": "px", "displayValue": "128px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-144", "module": "layout", "submodule": "space", "name": "spacing-144", "figmaName": "Layout/Space/144", "type": "FLOAT", "value": 144, "unit": "px", "displayValue": "144px", "icon": "space_bar" },
+        { "id": "layout.space.spacing-160", "module": "layout", "submodule": "space", "name": "spacing-160", "figmaName": "Layout/Space/160", "type": "FLOAT", "value": 160, "unit": "px", "displayValue": "160px", "icon": "space_bar" }
       ]
     }
   ]
