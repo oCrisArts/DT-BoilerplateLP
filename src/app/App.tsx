@@ -169,6 +169,15 @@ function allVariables(modules: VariableModule[]) {
   return modules.flatMap((module) => module.submodules.flatMap((submodule) => submodule.variables));
 }
 
+const WHAT_YOU_GET_DESCRIPTIONS: Record<string, string> = {
+  colors:
+    "Color variables organize palettes, semantic roles and interface tokens, keeping visual decisions consistent and easy to update.",
+  typography:
+    "Typography variables organize families, sizes, weights and line heights into a clear, reusable hierarchy.",
+  layout:
+    "Layout variables standardize grids, spacing and radius, creating consistent rhythm, structure and alignment.",
+};
+
 
 // ── Components ────────────────────────────────────────────────────────────────
 function PluginMockup({ modules = EMPTY_MODULES, initialModule = "colors" }: { modules?: VariableModule[]; initialModule?: string }) {
@@ -627,7 +636,9 @@ function PluginMockup({ modules = EMPTY_MODULES, initialModule = "colors" }: { m
             </span>
           </div>
           <div className="pt-[10px]">
-            <button
+            <a
+              href="#pricing"
+              onClick={() => trackPricingClick()}
               className="flex gap-[6px] items-center justify-center w-full rounded-[8px] hover:opacity-90 transition-opacity"
               style={{
                 background: "#0c0c0d",
@@ -657,7 +668,7 @@ function PluginMockup({ modules = EMPTY_MODULES, initialModule = "colors" }: { m
               >
                 Generate Variables
               </span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -755,10 +766,14 @@ function ResultMockup({ modules }: { modules: VariableModule[] }) {
               </div>
             ))}
         </div>
-        <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-xs font-semibold text-background">
+        <a
+          href="#pricing"
+          onClick={() => trackPricingClick()}
+          className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-2.5 text-xs font-semibold text-background"
+        >
           <MI icon="bolt" size={13} style={{ color: "#fff" }} />
           Generate Variables
-        </button>
+        </a>
       </div>
     </div>
   );
@@ -960,6 +975,103 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
   );
 }
 
+function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
+  const [activeModuleId, setActiveModuleId] = useState("colors");
+  const activeModule =
+    modules.find((module) => module.module === activeModuleId) ?? modules[0];
+  const total = modules.reduce((sum, module) => sum + moduleCount(module), 0);
+  const description = activeModule
+    ? WHAT_YOU_GET_DESCRIPTIONS[activeModule.module] ?? ""
+    : "";
+
+  return (
+    <div className="w-full rounded-xl border border-border bg-white p-3 shadow-[0px_24px_64px_-18px_rgba(0,0,0,0.16)]">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {modules.map((module) => {
+          const isActive = activeModule?.module === module.module;
+          const count = moduleCount(module);
+
+          return (
+            <button
+              key={module.module}
+              type="button"
+              onClick={() => setActiveModuleId(module.module)}
+              className={`group min-h-[150px] rounded-lg border p-5 text-left transition-all duration-200 ${
+                isActive
+                  ? "border-accent bg-white shadow-[0px_12px_28px_-18px_rgba(0,0,0,0.35)]"
+                  : "border-border bg-white hover:border-accent/30 hover:bg-muted/20"
+              }`}
+            >
+              <span
+                className={`mb-6 flex h-12 w-12 items-center justify-center rounded-lg border transition-colors ${
+                  isActive ? "border-accent/25 bg-accent/10" : "border-border bg-[#eef0ff]"
+                }`}
+              >
+                <MI icon={module.tabIcon} size={24} style={{ color: "#2530B8" }} />
+              </span>
+              <span className="block text-2xl font-extrabold leading-none text-foreground">
+                {count}
+              </span>
+              <span className="mt-2 block text-sm font-semibold text-muted-foreground">
+                {module.label === "Colors" ? "Colors Tokens" : module.label === "Layout" ? "Layout Tokens" : module.label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-4 rounded-lg border border-border bg-white p-5 transition-all duration-200 sm:p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="max-w-xl">
+            <h3 className="text-base font-bold text-foreground">
+              {activeModule?.label === "Colors"
+                ? "Colors Tokens"
+                : activeModule?.label === "Layout"
+                  ? "Layout Tokens"
+                  : activeModule?.label}
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              {description}
+            </p>
+          </div>
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+            <MI icon={activeModule?.tabIcon ?? "database"} size={13} style={{ color: "#5E6AD2" }} />
+            {activeModule ? moduleCount(activeModule) : total} variables
+          </span>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {activeModule?.submodules.map((submodule) => (
+            <div
+              key={submodule.id}
+              className="flex items-center justify-between rounded-lg border border-border bg-background/60 px-3 py-2.5"
+            >
+              <span className="flex min-w-0 items-center gap-2">
+                <MI icon={submodule.icon} size={15} style={{ color: "#5E6AD2" }} />
+                <span className="truncate text-sm font-medium text-foreground">
+                  {submodule.label}
+                </span>
+              </span>
+              <span className="ml-3 shrink-0 text-xs text-muted-foreground">
+                {submodule.variables.length}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <a
+        href="#pricing"
+        onClick={() => trackPricingClick()}
+        className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-foreground py-3 text-sm font-semibold text-background hover:opacity-90 transition-opacity"
+      >
+        <MI icon="bolt" size={14} style={{ color: "#fff" }} />
+        Generate Variables
+      </a>
+    </div>
+  );
+}
+
 export default function App() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -1097,7 +1209,7 @@ export default function App() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
+      <section id="hero" className="relative overflow-hidden py-20 lg:py-32">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -1370,7 +1482,7 @@ export default function App() {
       </section>
 
       {/* ── Results ── */}
-      <section className="py-20 lg:py-28 border-t border-border" style={{ background: "#F7F7F8" }}>
+      <section id="what-you-get" className="py-20 lg:py-28 border-t border-border" style={{ background: "#F7F7F8" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(320px,1fr)] gap-14 lg:gap-20 items-center">
             <div className="flex-1 max-w-xl">
@@ -1384,8 +1496,8 @@ export default function App() {
             </div>
 
             <div className="w-full flex justify-center lg:justify-end">
-              <div className="w-full max-w-lg">
-                <ResultMockup modules={variableModules} />
+              <div className="w-full max-w-xl">
+                <WhatYouGetPanel modules={variableModules} />
               </div>
             </div>
           </div>
@@ -1418,7 +1530,7 @@ export default function App() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-28 border-t border-border relative overflow-hidden">
+      <section id="get-started" className="py-28 border-t border-border relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
