@@ -1216,10 +1216,6 @@ export default function App() {
     damping: 24,
     mass: 0.35,
   });
-  const heroMockupRotateX = useTransform(heroScroll, [0, 1], [0, 4]);
-  const heroMockupRotateY = useTransform(heroScroll, [0, 1], [0, -4]);
-  const heroMockupScale = useTransform(heroScroll, [0, 1], [1, 1.02]);
-
   // Handle hash scrolling for navigation from other pages
   useEffect(() => {
     if (location.hash) {
@@ -1416,17 +1412,9 @@ export default function App() {
 
             <div className="shrink-0 w-full flex justify-center lg:justify-end">
               <Parallax distance={40}>
-              <motion.div
-                className="origin-top drop-shadow-2xl scale-100 sm:scale-110 lg:scale-125 max-md:!transform-none"
-                style={{
-                  rotateX: reduceMotion ? 0 : heroMockupRotateX,
-                  rotateY: reduceMotion ? 0 : heroMockupRotateY,
-                  scale: reduceMotion ? undefined : heroMockupScale,
-                  transformPerspective: 1200,
-                }}
-              >
-                <PluginMockup modules={variableModules} />
-              </motion.div>
+                <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
+                  <PluginMockup modules={variableModules} />
+                </div>
               </Parallax>
             </div>
           </div>
