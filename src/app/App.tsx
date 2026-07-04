@@ -1,5 +1,13 @@
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick } from "../utils/analytics";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
@@ -34,6 +42,103 @@ function MI({
 }
 
 // ── Data ─────────────────────────────────────────────────────────────────────
+function ScrollReveal({
+  children,
+  className = "",
+  direction = "up",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "left" | "right";
+  delay?: number;
+}) {
+  const reduceMotion = useReducedMotion();
+  const offset = reduceMotion
+    ? { x: 0, y: 0 }
+    : direction === "left"
+      ? { x: -24, y: 0 }
+      : direction === "right"
+        ? { x: 24, y: 0 }
+        : { x: 0, y: 24 };
+
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, ...offset }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.22 }}
+      transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Parallax({
+  children,
+  className = "",
+  distance = 32,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  distance?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const clampedDistance = Math.min(Math.abs(distance), 40);
+  const y = useSpring(
+    useTransform(scrollYProgress, [0, 1], [-clampedDistance, clampedDistance]),
+    { stiffness: 90, damping: 24, mass: 0.35 },
+  );
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`max-md:!transform-none ${className}`}
+      style={{ y: reduceMotion ? 0 : y }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function TiltCard({
+  children,
+  className = "",
+  depth = 4,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  depth?: number;
+}) {
+  const reduceMotion = useReducedMotion();
+  const safeDepth = Math.min(Math.abs(depth), 6);
+
+  return (
+    <motion.div
+      className={`max-md:!transform-none ${className}`}
+      style={{ transformStyle: "preserve-3d" }}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : {
+              rotateX: -safeDepth,
+              rotateY: safeDepth,
+              scale: 1.015,
+            }
+      }
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "How it works", href: "#how-it-works" },
@@ -977,6 +1082,7 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
 
 function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
   const [activeModuleId, setActiveModuleId] = useState("colors");
+  const reduceMotion = useReducedMotion();
   const activeModule =
     modules.find((module) => module.module === activeModuleId) ?? modules[0];
   const total = modules.reduce((sum, module) => sum + moduleCount(module), 0);
@@ -987,15 +1093,19 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
   return (
     <div className="w-full rounded-xl border border-border bg-white p-3 shadow-[0px_24px_64px_-18px_rgba(0,0,0,0.16)]">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {modules.map((module) => {
+        {modules.map((module, index) => {
           const isActive = activeModule?.module === module.module;
           const count = moduleCount(module);
 
           return (
-            <button
+            <motion.button
               key={module.module}
               type="button"
               onClick={() => setActiveModuleId(module.module)}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: reduceMotion ? 0 : 0.42, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className={`group min-h-[150px] rounded-lg border p-5 text-left transition-all duration-200 ${
                 isActive
                   ? "border-accent bg-white shadow-[0px_12px_28px_-18px_rgba(0,0,0,0.35)]"
@@ -1015,49 +1125,62 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
               <span className="mt-2 block text-sm font-semibold text-muted-foreground">
                 {module.label === "Colors" ? "Colors Tokens" : module.label === "Layout" ? "Layout Tokens" : module.label}
               </span>
-            </button>
+            </motion.button>
           );
         })}
       </div>
 
       <div className="mt-4 rounded-lg border border-border bg-white p-5 transition-all duration-200 sm:p-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="max-w-xl">
-            <h3 className="text-base font-bold text-foreground">
-              {activeModule?.label === "Colors"
-                ? "Colors Tokens"
-                : activeModule?.label === "Layout"
-                  ? "Layout Tokens"
-                  : activeModule?.label}
-            </h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {description}
-            </p>
-          </div>
-          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
-            <MI icon={activeModule?.tabIcon ?? "database"} size={13} style={{ color: "#5E6AD2" }} />
-            {activeModule ? moduleCount(activeModule) : total} variables
-          </span>
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {activeModule?.submodules.map((submodule) => (
-            <div
-              key={submodule.id}
-              className="flex items-center justify-between rounded-lg border border-border bg-background/60 px-3 py-2.5"
-            >
-              <span className="flex min-w-0 items-center gap-2">
-                <MI icon={submodule.icon} size={15} style={{ color: "#5E6AD2" }} />
-                <span className="truncate text-sm font-medium text-foreground">
-                  {submodule.label}
-                </span>
-              </span>
-              <span className="ml-3 shrink-0 text-xs text-muted-foreground">
-                {submodule.variables.length}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={activeModule?.module ?? "empty"}
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
+            transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="max-w-xl">
+                <h3 className="text-base font-bold text-foreground">
+                  {activeModule?.label === "Colors"
+                    ? "Colors Tokens"
+                    : activeModule?.label === "Layout"
+                      ? "Layout Tokens"
+                      : activeModule?.label}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
+              </div>
+              <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+                <MI icon={activeModule?.tabIcon ?? "database"} size={13} style={{ color: "#5E6AD2" }} />
+                {activeModule ? moduleCount(activeModule) : total} variables
               </span>
             </div>
-          ))}
-        </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {activeModule?.submodules.map((submodule, index) => (
+                <motion.div
+                  key={submodule.id}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.28, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex items-center justify-between rounded-lg border border-border bg-background/60 px-3 py-2.5"
+                >
+                  <span className="flex min-w-0 items-center gap-2">
+                    <MI icon={submodule.icon} size={15} style={{ color: "#5E6AD2" }} />
+                    <span className="truncate text-sm font-medium text-foreground">
+                      {submodule.label}
+                    </span>
+                  </span>
+                  <span className="ml-3 shrink-0 text-xs text-muted-foreground">
+                    {submodule.variables.length}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <a
@@ -1082,6 +1205,20 @@ export default function App() {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [variableModules, setVariableModules] = useState<VariableModule[]>(EMPTY_MODULES);
+  const heroRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroGridY = useSpring(useTransform(heroScroll, [0, 1], [0, 24]), {
+    stiffness: 80,
+    damping: 24,
+    mass: 0.35,
+  });
+  const heroMockupRotateX = useTransform(heroScroll, [0, 1], [0, 4]);
+  const heroMockupRotateY = useTransform(heroScroll, [0, 1], [0, -4]);
+  const heroMockupScale = useTransform(heroScroll, [0, 1], [1, 1.02]);
 
   // Handle hash scrolling for navigation from other pages
   useEffect(() => {
@@ -1209,20 +1346,35 @@ export default function App() {
   return (
     <>
       {/* ── Hero ── */}
-      <section id="hero" className="relative overflow-hidden py-20 lg:py-32">
+      <section ref={heroRef} id="hero" className="relative overflow-hidden py-20 lg:py-32">
+        <motion.div
+          className="absolute inset-0 pointer-events-none max-md:!transform-none"
+          style={{ y: reduceMotion ? 0 : heroGridY }}
+          aria-hidden="true"
+        >
+          <div
+            className="absolute inset-[-48px]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px)",
+              backgroundSize: "56px 56px",
+            }}
+          />
+        </motion.div>
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px)",
             backgroundSize: "56px 56px",
+            opacity: 0,
           }}
         />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-14 lg:gap-24">
-            <div className="max-w-3xl text-center lg:text-left">
+            <ScrollReveal className="max-w-3xl text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-background/80 text-xs text-muted-foreground mb-7 font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse" />
                 The fastest way to start a Design System in Figma
@@ -1260,12 +1412,22 @@ export default function App() {
                   </span>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
 
             <div className="shrink-0 w-full flex justify-center lg:justify-end">
-              <div className="origin-top drop-shadow-2xl scale-100 sm:scale-110 lg:scale-125">
+              <Parallax distance={40}>
+              <motion.div
+                className="origin-top drop-shadow-2xl scale-100 sm:scale-110 lg:scale-125 max-md:!transform-none"
+                style={{
+                  rotateX: reduceMotion ? 0 : heroMockupRotateX,
+                  rotateY: reduceMotion ? 0 : heroMockupRotateY,
+                  scale: reduceMotion ? undefined : heroMockupScale,
+                  transformPerspective: 1200,
+                }}
+              >
                 <PluginMockup modules={variableModules} />
-              </div>
+              </motion.div>
+              </Parallax>
             </div>
           </div>
         </div>
@@ -1283,7 +1445,7 @@ export default function App() {
         />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
-            <div className="max-w-xl">
+            <ScrollReveal className="max-w-xl">
               <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
                 Features
               </span>
@@ -1295,14 +1457,15 @@ export default function App() {
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
                 DT Boilerplate creates the complete variable structure your Design System needs — Colors, Typography and Layout — organized and ready to build on.
               </p>
-            </div>
+            </ScrollReveal>
 
             <div className="flex-1 w-full">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {variableCards.map((f) => (
+                {variableCards.map((f, index) => (
+                  <ScrollReveal key={f.title} delay={index * 0.08}>
+                    <TiltCard depth={6} className="h-full">
                   <div
-                    key={f.title}
-                    className="p-6 border border-border rounded-xl bg-white hover:bg-muted/20 transition-colors group"
+                    className="h-full p-6 border border-border rounded-xl bg-white hover:bg-muted/20 transition-colors group"
                   >
                     <div className="flex flex-col items-start gap-5">
                       <div
@@ -1330,6 +1493,8 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+                    </TiltCard>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
@@ -1343,14 +1508,14 @@ export default function App() {
         className="py-20 lg:py-28 bg-background border-t border-border"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-14 text-center">
+          <ScrollReveal className="mb-14 text-center">
             <span className="sr-only">
               How it works
             </span>
             <h2 className="text-[42px] lg:text-[54px] leading-none font-extrabold text-foreground">
               From zero to foundation in seconds
             </h2>
-          </div>
+          </ScrollReveal>
 
           {/* Tabbed interface */}
           <div className="flex flex-col gap-10 items-center">
@@ -1387,17 +1552,30 @@ export default function App() {
             </div>
 
             {/* Tab content */}
-            <div className="w-full flex justify-center min-h-[420px]">
-              {activeStep === 2 ? (
-                <div className="w-full max-w-4xl drop-shadow-2xl">
-                  <VariablesPanelMockup modules={variableModules} />
-                </div>
-              ) : (
-                <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                  {activeStep === 0 && <PluginMockup modules={variableModules} initialModule="colors" />}
-                  {activeStep === 1 && <PluginMockup modules={variableModules} initialModule="typography" />}
-                </div>
-              )}
+            <div className="relative w-full min-h-[520px] md:min-h-[500px]">
+              {[0, 1, 2].map((step) => (
+                <motion.div
+                  key={step}
+                  className="absolute inset-x-0 top-0 flex justify-center"
+                  animate={{
+                    opacity: activeStep === step ? 1 : 0,
+                    y: reduceMotion ? 0 : activeStep === step ? 0 : 24,
+                    scale: reduceMotion ? 1 : activeStep === step ? 1 : step === 2 ? 0.96 : 0.98,
+                    pointerEvents: activeStep === step ? "auto" : "none",
+                  }}
+                  transition={{ duration: reduceMotion ? 0 : 0.36, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {step === 2 ? (
+                    <div className="w-full max-w-4xl drop-shadow-2xl">
+                      <VariablesPanelMockup modules={variableModules} />
+                    </div>
+                  ) : (
+                    <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
+                      <PluginMockup modules={variableModules} initialModule={step === 0 ? "colors" : "typography"} />
+                    </div>
+                  )}
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -1406,7 +1584,7 @@ export default function App() {
       {/* ── Pricing ── */}
       <section id="pricing" className="py-20 lg:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-10 max-w-3xl">
+          <ScrollReveal className="mb-10 max-w-3xl">
             <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">Pricing</span>
             <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
               Choose your plan
@@ -1414,11 +1592,12 @@ export default function App() {
             <p className="mt-3 text-base text-muted-foreground">
               Unlock unlimited Design System generations with flexible pricing options.
             </p>
-          </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Monthly */}
-            <div className="rounded-xl border border-border bg-white p-7 lg:p-8">
+            <ScrollReveal>
+            <div className="h-full rounded-xl border border-border bg-white p-7 lg:p-8">
               <div className="mb-7">
                 <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Monthly</span>
                 <div className="mt-2 flex items-baseline gap-1">
@@ -1442,10 +1621,13 @@ export default function App() {
                 ))}
               </ul>
             </div>
+            </ScrollReveal>
 
             {/* Lifetime */}
+            <ScrollReveal delay={0.08}>
+            <TiltCard depth={3} className="h-full">
             <div
-              className="rounded-xl p-7 lg:p-8 relative overflow-hidden"
+              className="h-full rounded-xl p-7 lg:p-8 relative overflow-hidden"
               style={{ border: "1.5px solid rgba(94,106,210,0.35)", background: "linear-gradient(135deg,rgba(94,106,210,0.04) 0%,rgba(94,106,210,0.01) 100%)" }}
             >
               <div className="absolute top-4 right-4">
@@ -1477,6 +1659,8 @@ export default function App() {
                 ))}
               </ul>
             </div>
+            </TiltCard>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -1485,7 +1669,7 @@ export default function App() {
       <section id="what-you-get" className="py-20 lg:py-28 border-t border-border" style={{ background: "#F7F7F8" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(320px,1fr)] gap-14 lg:gap-20 items-center">
-            <div className="flex-1 max-w-xl">
+            <ScrollReveal direction="left" className="flex-1 max-w-xl">
               <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">What you get</span>
               <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
                 {totalVariables} variables. Structured and ready.
@@ -1493,12 +1677,14 @@ export default function App() {
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
                 Everything organized automatically and ready to use inside Figma.
               </p>
-            </div>
+            </ScrollReveal>
 
             <div className="w-full flex justify-center lg:justify-end">
-              <div className="w-full max-w-xl">
-                <WhatYouGetPanel modules={variableModules} />
-              </div>
+              <ScrollReveal direction="right" className="w-full max-w-xl">
+                <TiltCard depth={3}>
+                  <WhatYouGetPanel modules={variableModules} />
+                </TiltCard>
+              </ScrollReveal>
             </div>
           </div>
         </div>
@@ -1511,21 +1697,21 @@ export default function App() {
         style={{ background: "#F7F7F8" }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-12">
+          <ScrollReveal className="mb-12">
             <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
               FAQ
             </span>
             <h2
               className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]"
-                          >
+            >
               Common questions
             </h2>
-          </div>
-          <div className="bg-white rounded-xl border border-border px-6">
+          </ScrollReveal>
+          <ScrollReveal className="bg-white rounded-xl border border-border px-6">
             {FAQS.map((item) => (
               <FAQItem key={item.q} q={item.q} a={item.a} />
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -1539,7 +1725,7 @@ export default function App() {
             backgroundSize: "56px 56px",
           }}
         />
-        <div className="relative max-w-6xl mx-auto px-6 text-center">
+        <ScrollReveal className="relative max-w-6xl mx-auto px-6 text-center">
           <div
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-mono mb-7"
             style={{
@@ -1571,7 +1757,7 @@ export default function App() {
           <p className="mt-5 text-xs text-muted-foreground">
             Monthly or Lifetime · Cancel anytime · Future updates included
           </p>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );
