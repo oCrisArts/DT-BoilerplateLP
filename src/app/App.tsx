@@ -764,6 +764,202 @@ function ResultMockup({ modules }: { modules: VariableModule[] }) {
   );
 }
 
+type VariablePanelFilter =
+  | { kind: "all" }
+  | { kind: "module"; module: string }
+  | { kind: "submodule"; module: string; submodule: string };
+
+function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
+  const [filter, setFilter] = useState<VariablePanelFilter>({ kind: "all" });
+  const total = modules.reduce((sum, module) => sum + moduleCount(module), 0);
+
+  const activeModule =
+    filter.kind === "module" || filter.kind === "submodule"
+      ? modules.find((module) => module.module === filter.module)
+      : undefined;
+  const activeSubmodule =
+    filter.kind === "submodule"
+      ? activeModule?.submodules.find((submodule) => submodule.id === filter.submodule)
+      : undefined;
+
+  const filteredVariables =
+    filter.kind === "all"
+      ? allVariables(modules)
+      : filter.kind === "module"
+        ? activeModule?.submodules.flatMap((submodule) => submodule.variables) ?? []
+        : activeSubmodule?.variables ?? [];
+
+  const activeLabel =
+    filter.kind === "all"
+      ? "All"
+      : filter.kind === "module"
+        ? activeModule?.label ?? "All"
+        : `${activeModule?.label ?? ""} / ${activeSubmodule?.label ?? ""}`;
+
+  const isActive = (nextFilter: VariablePanelFilter) =>
+    filter.kind === nextFilter.kind &&
+    (nextFilter.kind === "all" ||
+      (filter.kind !== "all" &&
+        filter.module === nextFilter.module &&
+        (nextFilter.kind === "module" ||
+          (filter.kind === "submodule" && filter.submodule === nextFilter.submodule))));
+
+  return (
+    <div className="w-full max-w-4xl overflow-hidden rounded-xl border border-border bg-white shadow-[0px_28px_72px_-18px_rgba(0,0,0,0.22)]">
+      <div className="flex h-11 items-center justify-between border-b border-border bg-white px-4">
+        <div className="flex items-center gap-2 text-[12px] font-semibold text-foreground">
+          <MI icon="database" size={14} style={{ color: "#111111" }} />
+          Variables
+        </div>
+        <div className="rounded-md border border-border bg-background px-2 py-1 text-[11px] font-medium text-foreground">
+          Mode 1
+        </div>
+      </div>
+
+      <div className="grid max-h-[min(68vh,620px)] min-h-[440px] grid-cols-1 md:grid-cols-[248px_minmax(0,1fr)]">
+        <aside className="min-h-0 overflow-y-auto border-b border-border bg-[#f6f6f7] px-3 py-3 md:border-b-0 md:border-r">
+          <div className="mb-3">
+            <div className="mb-2 flex items-center justify-between px-1 text-[11px] font-medium text-muted-foreground">
+              <span>Collections</span>
+              <MI icon="add_circle" size={13} style={{ color: "#6e6e80" }} />
+            </div>
+            <div className="flex items-center justify-between rounded-md px-2 py-1.5 text-[11px] font-semibold text-foreground">
+              <span>DT Boilerplate</span>
+              <span className="font-normal text-muted-foreground">{total}</span>
+            </div>
+          </div>
+
+          <div className="mb-2 px-1 text-[11px] font-medium text-muted-foreground">Groups</div>
+          <button
+            type="button"
+            onClick={() => setFilter({ kind: "all" })}
+            className={`mb-1 flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-[11px] transition-colors ${
+              isActive({ kind: "all" })
+                ? "bg-[#e9eafe] font-semibold text-accent"
+                : "text-foreground hover:bg-white"
+            }`}
+          >
+            <span>All</span>
+            <span className="text-muted-foreground">{total}</span>
+          </button>
+
+          <div className="space-y-1">
+            {modules.map((module) => {
+              const moduleTotal = moduleCount(module);
+              return (
+                <div key={module.module}>
+                  <button
+                    type="button"
+                    onClick={() => setFilter({ kind: "module", module: module.module })}
+                    className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-[11px] transition-colors ${
+                      isActive({ kind: "module", module: module.module })
+                        ? "bg-[#e9eafe] font-semibold text-accent"
+                        : "font-semibold text-foreground hover:bg-white"
+                    }`}
+                  >
+                    <span className="flex min-w-0 items-center gap-1.5">
+                      <MI icon={module.tabIcon} size={13} style={{ color: "#5E6AD2" }} />
+                      <span className="truncate">{module.label}</span>
+                    </span>
+                    <span className="font-normal text-muted-foreground">{moduleTotal}</span>
+                  </button>
+
+                  <div className="mt-0.5 space-y-0.5 pl-4">
+                    {module.submodules.map((submodule) => (
+                      <button
+                        key={submodule.id}
+                        type="button"
+                        onClick={() =>
+                          setFilter({
+                            kind: "submodule",
+                            module: module.module,
+                            submodule: submodule.id,
+                          })
+                        }
+                        className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-[11px] transition-colors ${
+                          isActive({
+                            kind: "submodule",
+                            module: module.module,
+                            submodule: submodule.id,
+                          })
+                            ? "bg-[#e9eafe] font-semibold text-accent"
+                            : "text-foreground hover:bg-white"
+                        }`}
+                      >
+                        <span className="flex min-w-0 items-center gap-1.5">
+                          <MI icon={submodule.icon} size={12} style={{ color: "#6e6e80" }} />
+                          <span className="truncate">{submodule.label}</span>
+                        </span>
+                        <span className="text-muted-foreground">{submodule.variables.length}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </aside>
+
+        <section className="flex min-h-0 flex-col bg-white">
+          <div className="border-b border-border px-4 py-3">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <div className="text-[11px] font-semibold text-foreground">Mode 1</div>
+                <div className="mt-1 text-[11px] text-muted-foreground">{activeLabel}</div>
+              </div>
+              <span className="shrink-0 rounded-md bg-background px-2 py-1 text-[11px] text-muted-foreground">
+                {filteredVariables.length} variables
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(128px,0.72fr)] border-b border-border bg-[#fbfbfc] px-4 py-2 text-[11px] font-semibold text-foreground">
+            <span>Name</span>
+            <span>Value</span>
+          </div>
+
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            {filteredVariables.map((variable) => (
+              <div
+                key={variable.id}
+                className="grid grid-cols-[minmax(0,1fr)_minmax(128px,0.72fr)] items-center gap-4 border-b border-border px-4 py-2.5 last:border-b-0"
+              >
+                <div className="flex min-w-0 items-center gap-2">
+                  {variable.type === "COLOR" ? (
+                    <span
+                      className="h-5 w-5 shrink-0 rounded border border-border"
+                      style={variable.preview ? { background: variable.preview } : undefined}
+                    />
+                  ) : variable.icon ? (
+                    <MI icon={variable.icon} size={15} style={{ color: "#5E6AD2" }} />
+                  ) : null}
+                  <span className="truncate text-[11px] font-medium text-foreground">
+                    {variable.name}
+                  </span>
+                </div>
+                <div className="flex min-w-0 items-center gap-2">
+                  {variable.type === "COLOR" && (
+                    <span
+                      className="h-4 w-4 shrink-0 rounded border border-border"
+                      style={variable.preview ? { background: variable.preview } : undefined}
+                    />
+                  )}
+                  {variable.type !== "COLOR" && variable.icon && (
+                    <MI icon={variable.icon} size={13} style={{ color: "#6e6e80" }} />
+                  )}
+                  <span className="truncate text-[11px] text-muted-foreground">
+                    {variable.displayValue}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -1080,11 +1276,16 @@ export default function App() {
 
             {/* Tab content */}
             <div className="w-full flex justify-center min-h-[420px]">
-              <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                {activeStep === 0 && <PluginMockup modules={variableModules} initialModule="colors" />}
-                {activeStep === 1 && <PluginMockup modules={variableModules} initialModule="typography" />}
-                {activeStep === 2 && <ResultMockup modules={variableModules} />}
-              </div>
+              {activeStep === 2 ? (
+                <div className="w-full max-w-4xl drop-shadow-2xl">
+                  <VariablesPanelMockup modules={variableModules} />
+                </div>
+              ) : (
+                <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
+                  {activeStep === 0 && <PluginMockup modules={variableModules} initialModule="colors" />}
+                  {activeStep === 1 && <PluginMockup modules={variableModules} initialModule="typography" />}
+                </div>
+              )}
             </div>
           </div>
         </div>
