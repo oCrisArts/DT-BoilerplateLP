@@ -21,7 +21,10 @@
       "label": "Radius",
       "icon": "rounded_corner",
       "variables": [
-        { "id": "layout.radius.radius-sm", "module": "layout", "submodule": "radius", "name": "radius-sm", "figmaName": "Layout/Radius/radius-sm", "type": "FLOAT", "value": 4, "unit": "px", "displayValue": "4px", "icon": "rounded_corner" },
+        { "id": "layout.radius.radius-none", "module": "layout", "submodule": "radius", "name": "radius-none", "figmaName": "Layout/Radius/radius-none", "type": "FLOAT", "value": 0, "displayValue": "0px", "icon": "rounded_corner" },
+        { "id": "layout.radius.radius-xs", "module": "layout", "submodule": "radius", "name": "radius-xs", "figmaName": "Layout/Radius/radius-xs", "type": "FLOAT", "value": 4, "unit": "px", "displayValue": "4px", "icon": "rounded_corner" },
+        { "id": "layout.radius.radius-sm", "module": "layout", "submodule": "radius", "name": "radius-sm", "figmaName": "Layout/Radius/radius-sm", "type": "FLOAT", "value": 8, "unit": "px", "displayValue": "8px", "icon": "rounded_corner" },
+        { "id": "layout.radius.radius-md", "module": "layout", "submodule": "radius", "name": "radius-md", "figmaName": "Layout/Radius/radius-md", "type": "FLOAT", "value": 12, "unit": "px", "displayValue": "12px", "icon": "rounded_corner" },
         { "id": "layout.radius.radius-lg", "module": "layout", "submodule": "radius", "name": "radius-lg", "figmaName": "Layout/Radius/radius-lg", "type": "FLOAT", "value": 16, "unit": "px", "displayValue": "16px", "icon": "rounded_corner" }
       ]
     },
