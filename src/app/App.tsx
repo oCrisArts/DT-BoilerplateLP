@@ -42,6 +42,22 @@ function MI({
 }
 
 // ── Data ─────────────────────────────────────────────────────────────────────
+function SectionTag({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border border-accent/25 bg-accent/5 px-[17px] py-[9px] font-mono text-base font-normal leading-none text-accent whitespace-nowrap ${className}`}
+    >
+      {children}
+    </span>
+  );
+}
+
 function ScrollReveal({
   children,
   className = "",
@@ -1371,9 +1387,8 @@ export default function App() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-14 lg:gap-24">
             <ScrollReveal className="max-w-3xl text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-background/80 text-xs text-muted-foreground mb-7 font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block animate-pulse" />
-                The fastest way to start a Design System in Figma
+              <div className="mb-7 flex justify-start">
+                <SectionTag>· The fastest way to start a Design Tokens in Figma ·</SectionTag>
               </div>
               <h1 className="text-[46px] sm:text-[56px] lg:text-[72px] font-extrabold text-foreground leading-[0.98] mb-5">
                 Stop Building Figma Variables From Scratch.
@@ -1434,9 +1449,7 @@ export default function App() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
             <ScrollReveal className="max-w-xl">
-              <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
-                Features
-              </span>
+              <SectionTag>· Problem solved ·</SectionTag>
               <h2
                 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight"
                             >
@@ -1573,7 +1586,7 @@ export default function App() {
       <section id="pricing" className="py-20 lg:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
-            <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">Pricing</span>
+            <SectionTag>· Simple pricing ·</SectionTag>
             <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
               Choose your plan
             </h2>
@@ -1658,7 +1671,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(320px,1fr)] gap-14 lg:gap-20 items-center">
             <ScrollReveal direction="left" className="flex-1 max-w-xl">
-              <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">What you get</span>
+              <SectionTag>· What you get ·</SectionTag>
               <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
                 {totalVariables} variables. Structured and ready.
               </h2>
@@ -1686,9 +1699,7 @@ export default function App() {
       >
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal className="mb-12">
-            <span className="text-[11px] font-mono text-accent uppercase tracking-[0.15em]">
-              FAQ
-            </span>
+            <SectionTag>· FAQ ·</SectionTag>
             <h2
               className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]"
             >
@@ -1714,16 +1725,8 @@ export default function App() {
           }}
         />
         <ScrollReveal className="relative max-w-6xl mx-auto px-6 text-center">
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-mono mb-7"
-            style={{
-              borderColor: "rgba(94,106,210,0.25)",
-              color: "#5E6AD2",
-              background: "rgba(94,106,210,0.06)",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
-            1 free generation · No account required
+          <div className="mb-7 flex justify-center">
+            <SectionTag>· 1 free generation · No account required ·</SectionTag>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-[-0.03em] mb-5">
             The fastest way to start a
