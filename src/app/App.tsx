@@ -196,6 +196,44 @@ const STEPS = [
     title: "Generate Variables",
     desc: "Hit Generate. A complete Design System foundation is created inside Figma in seconds.",
   },
+  {
+    num: "04",
+    title: "Visual Documentation",
+    desc: "DT Boilerplate also creates an organized visual foundations page inside Figma.",
+  },
+];
+
+const VISUAL_DOC_PREVIEWS = [
+  {
+    label: "Overview",
+    src: "/images/visual-docs/visual-foundations-overview.png",
+    alt: "Overview of the DT Boilerplate visual foundations documentation in Figma",
+  },
+  {
+    label: "Colors",
+    src: "/images/visual-docs/color-palette.png",
+    alt: "Color Palette board from the DT Boilerplate visual foundations documentation",
+  },
+  {
+    label: "Semantic",
+    src: "/images/visual-docs/semantic-colors.png",
+    alt: "Semantic Colors board from the DT Boilerplate visual foundations documentation",
+  },
+  {
+    label: "Tokens",
+    src: "/images/visual-docs/color-tokens.png",
+    alt: "Color Tokens board from the DT Boilerplate visual foundations documentation",
+  },
+  {
+    label: "Type",
+    src: "/images/visual-docs/typography.png",
+    alt: "Typography board from the DT Boilerplate visual foundations documentation",
+  },
+  {
+    label: "Layout",
+    src: "/images/visual-docs/layout.png",
+    alt: "Layout board from the DT Boilerplate visual foundations documentation",
+  },
 ];
 
 const MONTHLY_FEATURES = [
@@ -204,6 +242,7 @@ const MONTHLY_FEATURES = [
   "Typography",
   "Layout",
   "Variable Collections",
+  "Visual Foundations Documentation",
   "Future Updates",
   "Priority Support",
 ];
@@ -214,6 +253,7 @@ const LIFETIME_FEATURES = [
   "Typography",
   "Layout",
   "Variable Collections",
+  "Visual Foundations Documentation",
   "Future Updates",
   "Priority Support",
   "One-time Payment",
@@ -1096,6 +1136,60 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
   );
 }
 
+function VisualDocumentationPreview() {
+  const [activePreview, setActivePreview] = useState(0);
+  const preview = VISUAL_DOC_PREVIEWS[activePreview] ?? VISUAL_DOC_PREVIEWS[0];
+
+  return (
+    <div className="w-full max-w-5xl rounded-xl border border-border bg-white p-3 shadow-[0px_28px_72px_-18px_rgba(0,0,0,0.22)] sm:p-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-3">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+            <MI icon="docs" size={17} style={{ color: "#5E6AD2" }} />
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-foreground">Visual Foundations</p>
+            <p className="text-xs text-muted-foreground">Generated inside Figma</p>
+          </div>
+        </div>
+
+        <div className="flex max-w-full gap-2 overflow-x-auto pb-1 sm:pb-0">
+          {VISUAL_DOC_PREVIEWS.map((item, index) => (
+            <button
+              key={item.src}
+              type="button"
+              onClick={() => setActivePreview(index)}
+              className={`shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                activePreview === index
+                  ? "border-accent bg-accent/10 text-accent"
+                  : "border-border text-muted-foreground hover:border-accent/30"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-3 overflow-hidden rounded-lg border border-border bg-[#111111]">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.img
+            key={preview.src}
+            src={preview.src}
+            alt={preview.alt}
+            className="block h-auto max-h-[min(62vh,560px)] w-full object-contain"
+            loading="lazy"
+            initial={{ opacity: 0, scale: 0.985 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.985 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
 function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
   const [activeModuleId, setActiveModuleId] = useState("colors");
   const reduceMotion = useReducedMotion();
@@ -1521,7 +1615,7 @@ export default function App() {
           {/* Tabbed interface */}
           <div className="flex flex-col gap-10 items-center">
             {/* Tab buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1116px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1116px]">
               {STEPS.map((step, index) => (
                 <button
                   key={step.num}
@@ -1553,26 +1647,28 @@ export default function App() {
             </div>
 
             {/* Tab content */}
-            <div className="relative w-full min-h-[520px] md:min-h-[500px]">
-              {[0, 1, 2].map((step) => (
+            <div className="relative w-full min-h-[660px] sm:min-h-[620px] lg:min-h-[590px]">
+              {STEPS.map((step, index) => (
                 <motion.div
-                  key={step}
+                  key={step.num}
                   className="absolute inset-x-0 top-0 flex justify-center"
                   animate={{
-                    opacity: activeStep === step ? 1 : 0,
-                    y: reduceMotion ? 0 : activeStep === step ? 0 : 24,
-                    scale: reduceMotion ? 1 : activeStep === step ? 1 : step === 2 ? 0.96 : 0.98,
-                    pointerEvents: activeStep === step ? "auto" : "none",
+                    opacity: activeStep === index ? 1 : 0,
+                    y: reduceMotion ? 0 : activeStep === index ? 0 : 24,
+                    scale: reduceMotion ? 1 : activeStep === index ? 1 : index === 2 ? 0.96 : 0.98,
+                    pointerEvents: activeStep === index ? "auto" : "none",
                   }}
                   transition={{ duration: reduceMotion ? 0 : 0.36, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {step === 2 ? (
+                  {index === 3 ? (
+                    <VisualDocumentationPreview />
+                  ) : index === 2 ? (
                     <div className="w-full max-w-4xl drop-shadow-2xl">
                       <VariablesPanelMockup modules={variableModules} />
                     </div>
                   ) : (
                     <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                      <PluginMockup modules={variableModules} initialModule={step === 0 ? "colors" : "typography"} />
+                      <PluginMockup modules={variableModules} initialModule={index === 0 ? "colors" : "typography"} />
                     </div>
                   )}
                 </motion.div>
@@ -1673,10 +1769,10 @@ export default function App() {
             <ScrollReveal direction="left" className="flex-1 max-w-xl">
               <SectionTag>· What you get ·</SectionTag>
               <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
-                {totalVariables} variables. Structured and ready.
+                {totalVariables} variables and visual documentation.
               </h2>
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-                Everything organized automatically and ready to use inside Figma.
+                Generate structured variables and an organized visual foundations page, ready inside Figma.
               </p>
             </ScrollReveal>
 
