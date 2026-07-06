@@ -1118,20 +1118,63 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
   );
 }
 
-function VisualDocumentationPreview() {
+function VisualDocumentationPreview({ isActive }: { isActive: boolean }) {
   const [activePreview, setActivePreview] = useState(0);
+  const [autoplayKey, setAutoplayKey] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isDocumentHidden, setIsDocumentHidden] = useState(
+    typeof document !== "undefined" ? document.hidden : false,
+  );
+  const reduceMotion = useReducedMotion();
   const preview = VISUAL_DOC_PREVIEWS[activePreview] ?? VISUAL_DOC_PREVIEWS[0];
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsDocumentHidden(document.hidden);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion || !isActive || isHovered || isFocused || isDocumentHidden) return;
+
+    const intervalId = window.setInterval(() => {
+      setActivePreview((current) => (current + 1) % VISUAL_DOC_PREVIEWS.length);
+    }, 4000);
+
+    return () => window.clearInterval(intervalId);
+  }, [autoplayKey, isActive, isDocumentHidden, isFocused, isHovered, reduceMotion]);
+
+  const restartAutoplay = () => {
+    setAutoplayKey((current) => current + 1);
+  };
+
   const goToPrevious = () => {
     setActivePreview((current) =>
       current === 0 ? VISUAL_DOC_PREVIEWS.length - 1 : current - 1,
     );
+    restartAutoplay();
   };
   const goToNext = () => {
     setActivePreview((current) => (current + 1) % VISUAL_DOC_PREVIEWS.length);
+    restartAutoplay();
   };
 
   return (
-    <div className="relative flex w-full max-w-[846px] flex-col items-center px-12 sm:px-16">
+    <div
+      className="relative flex w-full max-w-[846px] flex-col items-center px-12 sm:px-16"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setIsFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setIsFocused(false);
+        }
+      }}
+    >
       <button
         type="button"
         aria-label="Previous visual documentation preview"
@@ -1141,7 +1184,7 @@ function VisualDocumentationPreview() {
         <MI icon="chevron_left" size={28} style={{ color: "#5E6AD2" }} />
       </button>
 
-      <div className="aspect-[846/500] w-full overflow-hidden bg-white shadow-[0px_20px_20px_rgba(5,13,29,0.20)]">
+      <div className="aspect-[846/500] w-full overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.img
             key={preview.src}
@@ -1173,7 +1216,10 @@ function VisualDocumentationPreview() {
             type="button"
             aria-label={`Show visual documentation preview ${index + 1}`}
             aria-current={activePreview === index}
-            onClick={() => setActivePreview(index)}
+            onClick={() => {
+              setActivePreview(index);
+              restartAutoplay();
+            }}
             className="flex h-12 w-12 items-center justify-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <span
@@ -1600,7 +1646,7 @@ export default function App() {
         id="how-it-works"
         className="py-20 lg:py-28 bg-background border-t border-border"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[1680px] mx-auto px-6">
           <ScrollReveal className="mb-14 text-center">
             <span className="sr-only">
               How it works
@@ -1611,33 +1657,33 @@ export default function App() {
           </ScrollReveal>
 
           {/* Tabbed interface */}
-          <div className="flex flex-col gap-10 items-center">
+          <div className="flex flex-col gap-6 items-center">
             {/* Tab buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1116px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
               {STEPS.map((step, index) => (
                 <button
                   key={step.num}
                   onClick={() => setActiveStep(index)}
-                  className={`text-left p-0 border-b-2 pb-5 transition-all ${
+                  className={`min-h-[122px] text-left border-b-2 px-0 py-3 transition-colors ${
                     activeStep === index
                       ? 'border-accent'
-                      : 'border-border hover:border-accent/30'
+                      : 'border-transparent'
                   }`}
                 >
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="mb-2 flex items-center gap-2">
                     <span
-                      className="text-xs font-bold font-mono"
-                      style={{ color: activeStep === index ? "#5E6AD2" : "#6e6e80" }}
+                      className="font-sans text-2xl font-normal leading-none"
+                      style={{ color: activeStep === index ? "#5E6AD2" : "#49494b" }}
                     >
                       {step.num}
                     </span>
                     <h3
-                      className="text-sm font-semibold text-foreground"
+                      className="text-2xl font-semibold leading-none text-foreground"
                     >
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="max-w-[347px] pt-2 text-base leading-[22.75px] text-muted-foreground">
                     {step.desc}
                   </p>
                 </button>
@@ -1645,7 +1691,7 @@ export default function App() {
             </div>
 
             {/* Tab content */}
-            <div className="relative w-full min-h-[660px] sm:min-h-[620px] lg:min-h-[590px]">
+            <div className="relative w-full min-h-[620px] sm:min-h-[590px]">
               {STEPS.map((step, index) => (
                 <motion.div
                   key={step.num}
@@ -1659,7 +1705,7 @@ export default function App() {
                   transition={{ duration: reduceMotion ? 0 : 0.36, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {index === 3 ? (
-                    <VisualDocumentationPreview />
+                    <VisualDocumentationPreview isActive={activeStep === 3} />
                   ) : index === 2 ? (
                     <div className="w-full max-w-4xl drop-shadow-2xl">
                       <VariablesPanelMockup modules={variableModules} />
