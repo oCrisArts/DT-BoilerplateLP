@@ -205,34 +205,16 @@ const STEPS = [
 
 const VISUAL_DOC_PREVIEWS = [
   {
-    label: "Overview",
-    src: "/images/visual-docs/visual-foundations-overview.png",
-    alt: "Overview of the DT Boilerplate visual foundations documentation in Figma",
+    src: "/images/how-it-works/visual-doc-1.webp",
+    alt: "Visual documentation carousel preview 1",
   },
   {
-    label: "Colors",
-    src: "/images/visual-docs/color-palette.png",
-    alt: "Color Palette board from the DT Boilerplate visual foundations documentation",
+    src: "/images/how-it-works/visual-doc-2.webp",
+    alt: "Visual documentation carousel preview 2",
   },
   {
-    label: "Semantic",
-    src: "/images/visual-docs/semantic-colors.png",
-    alt: "Semantic Colors board from the DT Boilerplate visual foundations documentation",
-  },
-  {
-    label: "Tokens",
-    src: "/images/visual-docs/color-tokens.png",
-    alt: "Color Tokens board from the DT Boilerplate visual foundations documentation",
-  },
-  {
-    label: "Type",
-    src: "/images/visual-docs/typography.png",
-    alt: "Typography board from the DT Boilerplate visual foundations documentation",
-  },
-  {
-    label: "Layout",
-    src: "/images/visual-docs/layout.png",
-    alt: "Layout board from the DT Boilerplate visual foundations documentation",
+    src: "/images/how-it-works/visual-doc-3.webp",
+    alt: "Visual documentation carousel preview 3",
   },
 ];
 
@@ -981,7 +963,7 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
           (filter.kind === "submodule" && filter.submodule === nextFilter.submodule))));
 
   return (
-    <div className="w-full max-w-4xl overflow-hidden rounded-xl border border-border bg-white shadow-[0px_28px_72px_-18px_rgba(0,0,0,0.22)]">
+    <div className="flex h-[min(68vh,620px)] min-h-[460px] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-border bg-white shadow-[0px_28px_72px_-18px_rgba(0,0,0,0.22)]">
       <div className="flex h-11 items-center justify-between border-b border-border bg-white px-4">
         <div className="flex items-center gap-2 text-[12px] font-semibold text-foreground">
           <MI icon="database" size={14} style={{ color: "#111111" }} />
@@ -992,7 +974,7 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
         </div>
       </div>
 
-      <div className="grid max-h-[min(68vh,620px)] min-h-[440px] grid-cols-1 md:grid-cols-[248px_minmax(0,1fr)]">
+      <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-[180px_minmax(0,1fr)] md:grid-cols-[248px_minmax(0,1fr)] md:grid-rows-1">
         <aside className="min-h-0 overflow-y-auto border-b border-border bg-[#f6f6f7] px-3 py-3 md:border-b-0 md:border-r">
           <div className="mb-3">
             <div className="mb-2 flex items-center justify-between px-1 text-[11px] font-medium text-muted-foreground">
@@ -1139,52 +1121,68 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
 function VisualDocumentationPreview() {
   const [activePreview, setActivePreview] = useState(0);
   const preview = VISUAL_DOC_PREVIEWS[activePreview] ?? VISUAL_DOC_PREVIEWS[0];
+  const goToPrevious = () => {
+    setActivePreview((current) =>
+      current === 0 ? VISUAL_DOC_PREVIEWS.length - 1 : current - 1,
+    );
+  };
+  const goToNext = () => {
+    setActivePreview((current) => (current + 1) % VISUAL_DOC_PREVIEWS.length);
+  };
 
   return (
-    <div className="w-full max-w-5xl rounded-xl border border-border bg-white p-3 shadow-[0px_28px_72px_-18px_rgba(0,0,0,0.22)] sm:p-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-3">
-        <div className="flex min-w-0 items-center gap-2">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/10">
-            <MI icon="docs" size={17} style={{ color: "#5E6AD2" }} />
-          </span>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-foreground">Visual Foundations</p>
-            <p className="text-xs text-muted-foreground">Generated inside Figma</p>
-          </div>
-        </div>
+    <div className="relative flex w-full max-w-[846px] flex-col items-center px-12 sm:px-16">
+      <button
+        type="button"
+        aria-label="Previous visual documentation preview"
+        onClick={goToPrevious}
+        className="absolute left-0 top-[calc(50%-32px)] z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-lg text-accent transition-colors hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <MI icon="chevron_left" size={28} style={{ color: "#5E6AD2" }} />
+      </button>
 
-        <div className="flex max-w-full gap-2 overflow-x-auto pb-1 sm:pb-0">
-          {VISUAL_DOC_PREVIEWS.map((item, index) => (
-            <button
-              key={item.src}
-              type="button"
-              onClick={() => setActivePreview(index)}
-              className={`shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                activePreview === index
-                  ? "border-accent bg-accent/10 text-accent"
-                  : "border-border text-muted-foreground hover:border-accent/30"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-3 overflow-hidden rounded-lg border border-border bg-[#111111]">
+      <div className="aspect-[846/500] w-full overflow-hidden bg-white shadow-[0px_20px_20px_rgba(5,13,29,0.20)]">
         <AnimatePresence mode="wait" initial={false}>
           <motion.img
             key={preview.src}
             src={preview.src}
             alt={preview.alt}
-            className="block h-auto max-h-[min(62vh,560px)] w-full object-contain"
+            className="block h-full w-full object-cover object-top"
             loading="lazy"
-            initial={{ opacity: 0, scale: 0.985 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.985 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -18 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           />
         </AnimatePresence>
+      </div>
+
+      <button
+        type="button"
+        aria-label="Next visual documentation preview"
+        onClick={goToNext}
+        className="absolute right-0 top-[calc(50%-32px)] z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-lg text-accent transition-colors hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <MI icon="chevron_right" size={28} style={{ color: "#5E6AD2" }} />
+      </button>
+
+      <div className="mt-3 flex h-12 items-center justify-center">
+        {VISUAL_DOC_PREVIEWS.map((item, index) => (
+          <button
+            key={item.src}
+            type="button"
+            aria-label={`Show visual documentation preview ${index + 1}`}
+            aria-current={activePreview === index}
+            onClick={() => setActivePreview(index)}
+            className="flex h-12 w-12 items-center justify-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            <span
+              className={`block h-3 w-3 rounded-full border border-accent transition-colors ${
+                activePreview === index ? "bg-accent" : "bg-transparent"
+              }`}
+            />
+          </button>
+        ))}
       </div>
     </div>
   );
