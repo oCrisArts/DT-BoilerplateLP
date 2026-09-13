@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "module": "colors",
+  "label": "Colors",
+  "tabIcon": "palette",
+  "submodules": [
+    {
+      "id": "palette",
+      "label": "Palette",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.palette.white",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "white",
+          "figmaName": "Colors/Palette/white",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        },
+        {
+          "id": "colors.palette.gray-100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-100",
+          "figmaName": "Colors/Palette/gray-100",
+          "type": "COLOR",
+          "value": "#f8f9fa",
+          "displayValue": "#f8f9fa",
+          "preview": "#f8f9fa"
+        },
+        {
+          "id": "colors.palette.gray-200",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-200",
+          "figmaName": "Colors/Palette/gray-200",
+          "type": "COLOR",
+          "value": "#e9ecef",
+          "displayValue": "#e9ecef",
+          "preview": "#e9ecef"
+        },
+        {
+          "id": "colors.palette.gray-300",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-300",
+          "figmaName": "Colors/Palette/gray-300",
+          "type": "COLOR",
+          "value": "#dee2e6",
+          "displayValue": "#dee2e6",
+          "preview": "#dee2e6"
+        },
+        {
+          "id": "colors.palette.gray-400",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-400",
+          "figmaName": "Colors/Palette/gray-400",
+          "type": "COLOR",
+          "value": "#ced4da",
+          "displayValue": "#ced4da",
+          "preview": "#ced4da"
+        },
+        {
+          "id": "colors.palette.gray-500",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-500",
+          "figmaName": "Colors/Palette/gray-500",
+          "type": "COLOR",
+          "value": "#adb5bd",
+          "displayValue": "#adb5bd",
+          "preview": "#adb5bd"
+        },
+        {
+          "id": "colors.palette.gray-600",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-600",
+          "figmaName": "Colors/Palette/gray-600",
+          "type": "COLOR",
+          "value": "#6c757d",
+          "displayValue": "#6c757d",
+          "preview": "#6c757d"
+        },
+        {
+          "id": "colors.palette.gray-700",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-700",
+          "figmaName": "Colors/Palette/gray-700",
+          "type": "COLOR",
+          "value": "#495057",
+          "displayValue": "#495057",
+          "preview": "#495057"
+        },
+        {
+          "id": "colors.palette.gray-800",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-800",
+          "figmaName": "Colors/Palette/gray-800",
+          "type": "COLOR",
+          "value": "#343a40",
+          "displayValue": "#343a40",
+          "preview": "#343a40"
+        },
+        {
+          "id": "colors.palette.gray-900",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "gray-900",
+          "figmaName": "Colors/Palette/gray-900",
+          "type": "COLOR",
+          "value": "#212529",
+          "displayValue": "#212529",
+          "preview": "#212529"
+        },
+        {
+          "id": "colors.palette.black",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "black",
+          "figmaName": "Colors/Palette/black",
+          "type": "COLOR",
+          "value": "#000",
+          "displayValue": "#000",
+          "preview": "#000"
+        },
+        {
+          "id": "colors.palette.blue",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "blue",
+          "figmaName": "Colors/Palette/blue",
+          "type": "COLOR",
+          "value": "#0d6efd",
+          "displayValue": "#0d6efd",
+          "preview": "#0d6efd"
+        },
+        {
+          "id": "colors.palette.indigo",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "indigo",
+          "figmaName": "Colors/Palette/indigo",
+          "type": "COLOR",
+          "value": "#6610f2",
+          "displayValue": "#6610f2",
+          "preview": "#6610f2"
+        },
+        {
+          "id": "colors.palette.purple",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "purple",
+          "figmaName": "Colors/Palette/purple",
+          "type": "COLOR",
+          "value": "#6f42c1",
+          "displayValue": "#6f42c1",
+          "preview": "#6f42c1"
+        },
+        {
+          "id": "colors.palette.pink",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "pink",
+          "figmaName": "Colors/Palette/pink",
+          "type": "COLOR",
+          "value": "#d63384",
+          "displayValue": "#d63384",
+          "preview": "#d63384"
+        },
+        {
+          "id": "colors.palette.red",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "red",
+          "figmaName": "Colors/Palette/red",
+          "type": "COLOR",
+          "value": "#dc3545",
+          "displayValue": "#dc3545",
+          "preview": "#dc3545"
+        },
+        {
+          "id": "colors.palette.orange",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "orange",
+          "figmaName": "Colors/Palette/orange",
+          "type": "COLOR",
+          "value": "#fd7e14",
+          "displayValue": "#fd7e14",
+          "preview": "#fd7e14"
+        },
+        {
+          "id": "colors.palette.yellow",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "yellow",
+          "figmaName": "Colors/Palette/yellow",
+          "type": "COLOR",
+          "value": "#ffc107",
+          "displayValue": "#ffc107",
+          "preview": "#ffc107"
+        },
+        {
+          "id": "colors.palette.green",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "green",
+          "figmaName": "Colors/Palette/green",
+          "type": "COLOR",
+          "value": "#198754",
+          "displayValue": "#198754",
+          "preview": "#198754"
+        },
+        {
+          "id": "colors.palette.teal",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "teal",
+          "figmaName": "Colors/Palette/teal",
+          "type": "COLOR",
+          "value": "#20c997",
+          "displayValue": "#20c997",
+          "preview": "#20c997"
+        },
+        {
+          "id": "colors.palette.cyan",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "cyan",
+          "figmaName": "Colors/Palette/cyan",
+          "type": "COLOR",
+          "value": "#0dcaf0",
+          "displayValue": "#0dcaf0",
+          "preview": "#0dcaf0"
+        }
+      ]
+    },
+    {
+      "id": "theme",
+      "label": "Theme",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.theme.primary",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "primary",
+          "figmaName": "Colors/Theme/primary",
+          "type": "COLOR",
+          "value": "#0d6efd",
+          "displayValue": "#0d6efd",
+          "preview": "#0d6efd"
+        },
+        {
+          "id": "colors.theme.secondary",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "secondary",
+          "figmaName": "Colors/Theme/secondary",
+          "type": "COLOR",
+          "value": "#6c757d",
+          "displayValue": "#6c757d",
+          "preview": "#6c757d"
+        },
+        {
+          "id": "colors.theme.success",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "success",
+          "figmaName": "Colors/Theme/success",
+          "type": "COLOR",
+          "value": "#198754",
+          "displayValue": "#198754",
+          "preview": "#198754"
+        },
+        {
+          "id": "colors.theme.info",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "info",
+          "figmaName": "Colors/Theme/info",
+          "type": "COLOR",
+          "value": "#0dcaf0",
+          "displayValue": "#0dcaf0",
+          "preview": "#0dcaf0"
+        },
+        {
+          "id": "colors.theme.warning",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "warning",
+          "figmaName": "Colors/Theme/warning",
+          "type": "COLOR",
+          "value": "#ffc107",
+          "displayValue": "#ffc107",
+          "preview": "#ffc107"
+        },
+        {
+          "id": "colors.theme.danger",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "danger",
+          "figmaName": "Colors/Theme/danger",
+          "type": "COLOR",
+          "value": "#dc3545",
+          "displayValue": "#dc3545",
+          "preview": "#dc3545"
+        },
+        {
+          "id": "colors.theme.light",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "light",
+          "figmaName": "Colors/Theme/light",
+          "type": "COLOR",
+          "value": "#f8f9fa",
+          "displayValue": "#f8f9fa",
+          "preview": "#f8f9fa"
+        },
+        {
+          "id": "colors.theme.dark",
+          "module": "colors",
+          "submodule": "theme",
+          "name": "dark",
+          "figmaName": "Colors/Theme/dark",
+          "type": "COLOR",
+          "value": "#212529",
+          "displayValue": "#212529",
+          "preview": "#212529"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "structure": "grouped",
+    "colorFormats": [
+      "hex"
+    ]
+  }
+}

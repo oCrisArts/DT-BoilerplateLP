@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 1,
+  "module": "typography",
+  "label": "Typography",
+  "tabIcon": "font_download",
+  "submodules": [
+    {
+      "id": "family",
+      "label": "Family",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.family.--font-sans",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--font-sans",
+          "figmaName": "Typography/Family/--font-sans",
+          "type": "STRING",
+          "value": "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+          "displayValue": "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        },
+        {
+          "id": "typography.family.--font-serif",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--font-serif",
+          "figmaName": "Typography/Family/--font-serif",
+          "type": "STRING",
+          "value": "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+          "displayValue": "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif"
+        },
+        {
+          "id": "typography.family.--font-mono",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--font-mono",
+          "figmaName": "Typography/Family/--font-mono",
+          "type": "STRING",
+          "value": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+          "displayValue": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+        }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Sizes",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.sizes.--text-xs",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-xs",
+          "figmaName": "Typography/Sizes/--text-xs",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        },
+        {
+          "id": "typography.sizes.--text-sm",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-sm",
+          "figmaName": "Typography/Sizes/--text-sm",
+          "type": "FLOAT",
+          "value": 0.875,
+          "unit": "rem",
+          "displayValue": "0.875rem"
+        },
+        {
+          "id": "typography.sizes.--text-base",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-base",
+          "figmaName": "Typography/Sizes/--text-base",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.sizes.--text-lg",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-lg",
+          "figmaName": "Typography/Sizes/--text-lg",
+          "type": "FLOAT",
+          "value": 1.125,
+          "unit": "rem",
+          "displayValue": "1.125rem"
+        },
+        {
+          "id": "typography.sizes.--text-xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-xl",
+          "figmaName": "Typography/Sizes/--text-xl",
+          "type": "FLOAT",
+          "value": 1.25,
+          "unit": "rem",
+          "displayValue": "1.25rem"
+        },
+        {
+          "id": "typography.sizes.--text-2xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-2xl",
+          "figmaName": "Typography/Sizes/--text-2xl",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "typography.sizes.--text-3xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-3xl",
+          "figmaName": "Typography/Sizes/--text-3xl",
+          "type": "FLOAT",
+          "value": 1.875,
+          "unit": "rem",
+          "displayValue": "1.875rem"
+        },
+        {
+          "id": "typography.sizes.--text-4xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-4xl",
+          "figmaName": "Typography/Sizes/--text-4xl",
+          "type": "FLOAT",
+          "value": 2.25,
+          "unit": "rem",
+          "displayValue": "2.25rem"
+        },
+        {
+          "id": "typography.sizes.--text-5xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-5xl",
+          "figmaName": "Typography/Sizes/--text-5xl",
+          "type": "FLOAT",
+          "value": 3,
+          "unit": "rem",
+          "displayValue": "3rem"
+        },
+        {
+          "id": "typography.sizes.--text-6xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-6xl",
+          "figmaName": "Typography/Sizes/--text-6xl",
+          "type": "FLOAT",
+          "value": 3.75,
+          "unit": "rem",
+          "displayValue": "3.75rem"
+        },
+        {
+          "id": "typography.sizes.--text-7xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-7xl",
+          "figmaName": "Typography/Sizes/--text-7xl",
+          "type": "FLOAT",
+          "value": 4.5,
+          "unit": "rem",
+          "displayValue": "4.5rem"
+        },
+        {
+          "id": "typography.sizes.--text-8xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-8xl",
+          "figmaName": "Typography/Sizes/--text-8xl",
+          "type": "FLOAT",
+          "value": 6,
+          "unit": "rem",
+          "displayValue": "6rem"
+        },
+        {
+          "id": "typography.sizes.--text-9xl",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "--text-9xl",
+          "figmaName": "Typography/Sizes/--text-9xl",
+          "type": "FLOAT",
+          "value": 8,
+          "unit": "rem",
+          "displayValue": "8rem"
+        }
+      ]
+    },
+    {
+      "id": "lineheight",
+      "label": "Lineheight",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.lineheight.--leading-tight",
+          "module": "typography",
+          "submodule": "lineheight",
+          "name": "--leading-tight",
+          "figmaName": "Typography/Lineheight/--leading-tight",
+          "type": "FLOAT",
+          "value": 1.25,
+          "displayValue": "1.25"
+        },
+        {
+          "id": "typography.lineheight.--leading-snug",
+          "module": "typography",
+          "submodule": "lineheight",
+          "name": "--leading-snug",
+          "figmaName": "Typography/Lineheight/--leading-snug",
+          "type": "FLOAT",
+          "value": 1.375,
+          "displayValue": "1.375"
+        },
+        {
+          "id": "typography.lineheight.--leading-normal",
+          "module": "typography",
+          "submodule": "lineheight",
+          "name": "--leading-normal",
+          "figmaName": "Typography/Lineheight/--leading-normal",
+          "type": "FLOAT",
+          "value": 1.5,
+          "displayValue": "1.5"
+        },
+        {
+          "id": "typography.lineheight.--leading-relaxed",
+          "module": "typography",
+          "submodule": "lineheight",
+          "name": "--leading-relaxed",
+          "figmaName": "Typography/Lineheight/--leading-relaxed",
+          "type": "FLOAT",
+          "value": 1.625,
+          "displayValue": "1.625"
+        },
+        {
+          "id": "typography.lineheight.--leading-loose",
+          "module": "typography",
+          "submodule": "lineheight",
+          "name": "--leading-loose",
+          "figmaName": "Typography/Lineheight/--leading-loose",
+          "type": "FLOAT",
+          "value": 2,
+          "displayValue": "2"
+        }
+      ]
+    },
+    {
+      "id": "weight",
+      "label": "Weight",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.weight.--font-weight-thin",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-thin",
+          "figmaName": "Typography/Weight/--font-weight-thin",
+          "type": "FLOAT",
+          "value": 100,
+          "displayValue": "100"
+        },
+        {
+          "id": "typography.weight.--font-weight-extralight",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-extralight",
+          "figmaName": "Typography/Weight/--font-weight-extralight",
+          "type": "FLOAT",
+          "value": 200,
+          "displayValue": "200"
+        },
+        {
+          "id": "typography.weight.--font-weight-light",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-light",
+          "figmaName": "Typography/Weight/--font-weight-light",
+          "type": "FLOAT",
+          "value": 300,
+          "displayValue": "300"
+        },
+        {
+          "id": "typography.weight.--font-weight-normal",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-normal",
+          "figmaName": "Typography/Weight/--font-weight-normal",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400"
+        },
+        {
+          "id": "typography.weight.--font-weight-medium",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-medium",
+          "figmaName": "Typography/Weight/--font-weight-medium",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500"
+        },
+        {
+          "id": "typography.weight.--font-weight-semibold",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-semibold",
+          "figmaName": "Typography/Weight/--font-weight-semibold",
+          "type": "FLOAT",
+          "value": 600,
+          "displayValue": "600"
+        },
+        {
+          "id": "typography.weight.--font-weight-bold",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-bold",
+          "figmaName": "Typography/Weight/--font-weight-bold",
+          "type": "FLOAT",
+          "value": 700,
+          "displayValue": "700"
+        },
+        {
+          "id": "typography.weight.--font-weight-extrabold",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-extrabold",
+          "figmaName": "Typography/Weight/--font-weight-extrabold",
+          "type": "FLOAT",
+          "value": 800,
+          "displayValue": "800"
+        },
+        {
+          "id": "typography.weight.--font-weight-black",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "--font-weight-black",
+          "figmaName": "Typography/Weight/--font-weight-black",
+          "type": "FLOAT",
+          "value": 900,
+          "displayValue": "900"
+        }
+      ]
+    },
+    {
+      "id": "size-lineheight",
+      "label": "Size-lineheight",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.size-lineheight.--text-xs--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-xs--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-xs--line-height",
+          "type": "STRING",
+          "value": "calc(1 / 0.75)",
+          "displayValue": "calc(1 / 0.75)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-sm--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-sm--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-sm--line-height",
+          "type": "STRING",
+          "value": "calc(1.25 / 0.875)",
+          "displayValue": "calc(1.25 / 0.875)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-base--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-base--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-base--line-height",
+          "type": "STRING",
+          "value": "calc(1.5 / 1)",
+          "displayValue": "calc(1.5 / 1)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-lg--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-lg--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-lg--line-height",
+          "type": "STRING",
+          "value": "calc(1.75 / 1.125)",
+          "displayValue": "calc(1.75 / 1.125)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-xl--line-height",
+          "type": "STRING",
+          "value": "calc(1.75 / 1.25)",
+          "displayValue": "calc(1.75 / 1.25)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-2xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-2xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-2xl--line-height",
+          "type": "STRING",
+          "value": "calc(2 / 1.5)",
+          "displayValue": "calc(2 / 1.5)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-3xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-3xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-3xl--line-height",
+          "type": "STRING",
+          "value": "calc(2.25 / 1.875)",
+          "displayValue": "calc(2.25 / 1.875)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-4xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-4xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-4xl--line-height",
+          "type": "STRING",
+          "value": "calc(2.5 / 2.25)",
+          "displayValue": "calc(2.5 / 2.25)"
+        },
+        {
+          "id": "typography.size-lineheight.--text-5xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-5xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-5xl--line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1"
+        },
+        {
+          "id": "typography.size-lineheight.--text-6xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-6xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-6xl--line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1"
+        },
+        {
+          "id": "typography.size-lineheight.--text-7xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-7xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-7xl--line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1"
+        },
+        {
+          "id": "typography.size-lineheight.--text-8xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-8xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-8xl--line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1"
+        },
+        {
+          "id": "typography.size-lineheight.--text-9xl--line-height",
+          "module": "typography",
+          "submodule": "size-lineheight",
+          "name": "--text-9xl--line-height",
+          "figmaName": "Typography/Size-lineheight/--text-9xl--line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "fontFamily": {
+      "default": "typography.family.--font-sans",
+      "options": [
+        "typography.family.--font-sans",
+        "typography.family.--font-serif",
+        "typography.family.--font-mono"
+      ],
+      "customizable": true
+    },
+    "baseSize": {
+      "default": "typography.sizes.--text-base",
+      "customizable": true
+    },
+    "typeScale": {
+      "kind": "explicit",
+      "steps": [
+        "typography.sizes.--text-xs",
+        "typography.sizes.--text-sm",
+        "typography.sizes.--text-base",
+        "typography.sizes.--text-lg",
+        "typography.sizes.--text-xl",
+        "typography.sizes.--text-2xl",
+        "typography.sizes.--text-3xl",
+        "typography.sizes.--text-4xl",
+        "typography.sizes.--text-5xl",
+        "typography.sizes.--text-6xl",
+        "typography.sizes.--text-7xl",
+        "typography.sizes.--text-8xl",
+        "typography.sizes.--text-9xl"
+      ],
+      "customizable": true
+    },
+    "lineHeight": {
+      "default": "typography.lineheight.--leading-normal",
+      "options": [
+        "typography.lineheight.--leading-tight",
+        "typography.lineheight.--leading-snug",
+        "typography.lineheight.--leading-normal",
+        "typography.lineheight.--leading-relaxed",
+        "typography.lineheight.--leading-loose"
+      ],
+      "customizable": true
+    }
+  }
+}

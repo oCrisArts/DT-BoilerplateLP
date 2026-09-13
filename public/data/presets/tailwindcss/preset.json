@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "tailwindcss",
+  "metadata": {
+    "name": "Tailwind CSS",
+    "version": "4.1.12",
+    "description": "Selected official framework defaults; native units and color notation are preserved.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss/v4.1.12/packages/tailwindcss/theme.css",
+        "version": "4.1.12"
+      }
+    ]
+  },
+  "capabilities": {
+    "colors": {
+      "groups": [
+        "red",
+        "orange",
+        "amber",
+        "yellow",
+        "lime",
+        "green",
+        "emerald",
+        "teal",
+        "cyan",
+        "sky",
+        "blue",
+        "indigo",
+        "violet",
+        "purple",
+        "fuchsia",
+        "pink",
+        "rose",
+        "slate",
+        "gray",
+        "zinc",
+        "neutral",
+        "stone",
+        "black",
+        "white"
+      ]
+    },
+    "typography": {
+      "fontFamily": true,
+      "baseSize": true,
+      "typeScale": true,
+      "lineHeight": true
+    },
+    "layout": {
+      "grid": false,
+      "breakpoints": true,
+      "spacing": true,
+      "radius": true,
+      "tokens": false
+    }
+  },
+  "modules": [
+    {
+      "id": "colors",
+      "path": "colors.json"
+    },
+    {
+      "id": "typography",
+      "path": "typography.json"
+    },
+    {
+      "id": "layout",
+      "path": "layout.json"
+    }
+  ]
+}

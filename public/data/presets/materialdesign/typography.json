@@ -1,0 +1,838 @@
+{
+  "schemaVersion": 1,
+  "module": "typography",
+  "label": "Typography",
+  "tabIcon": "font_download",
+  "submodules": [
+    {
+      "id": "family",
+      "label": "Typeface",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.family.--md-ref-typeface-brand",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--md-ref-typeface-brand",
+          "figmaName": "Typography/Typeface/--md-ref-typeface-brand",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto"
+        },
+        {
+          "id": "typography.family.--md-ref-typeface-plain",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--md-ref-typeface-plain",
+          "figmaName": "Typography/Typeface/--md-ref-typeface-plain",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto"
+        },
+        {
+          "id": "typography.family.--md-ref-typeface-weight-bold",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--md-ref-typeface-weight-bold",
+          "figmaName": "Typography/Typeface/--md-ref-typeface-weight-bold",
+          "type": "FLOAT",
+          "value": 700,
+          "displayValue": "700"
+        },
+        {
+          "id": "typography.family.--md-ref-typeface-weight-medium",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--md-ref-typeface-weight-medium",
+          "figmaName": "Typography/Typeface/--md-ref-typeface-weight-medium",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500"
+        },
+        {
+          "id": "typography.family.--md-ref-typeface-weight-regular",
+          "module": "typography",
+          "submodule": "family",
+          "name": "--md-ref-typeface-weight-regular",
+          "figmaName": "Typography/Typeface/--md-ref-typeface-weight-regular",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400"
+        }
+      ]
+    },
+    {
+      "id": "display",
+      "label": "Display",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.display.--md-sys-typescale-display-large-font",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-large-font",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-large-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-large-line-height",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-large-line-height",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-large-line-height",
+          "type": "FLOAT",
+          "value": 4,
+          "unit": "rem",
+          "displayValue": "4rem"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-large-size",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-large-size",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-large-size",
+          "type": "FLOAT",
+          "value": 3.5625,
+          "unit": "rem",
+          "displayValue": "3.5625rem"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-large-weight",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-large-weight",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-large-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-medium-font",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-medium-font",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-medium-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-medium-line-height",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-medium-line-height",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-medium-line-height",
+          "type": "FLOAT",
+          "value": 3.25,
+          "unit": "rem",
+          "displayValue": "3.25rem"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-medium-size",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-medium-size",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-medium-size",
+          "type": "FLOAT",
+          "value": 2.8125,
+          "unit": "rem",
+          "displayValue": "2.8125rem"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-medium-weight",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-medium-weight",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-medium-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-small-font",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-small-font",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-small-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-small-line-height",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-small-line-height",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-small-line-height",
+          "type": "FLOAT",
+          "value": 2.75,
+          "unit": "rem",
+          "displayValue": "2.75rem"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-small-size",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-small-size",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-small-size",
+          "type": "FLOAT",
+          "value": 2.25,
+          "unit": "rem",
+          "displayValue": "2.25rem"
+        },
+        {
+          "id": "typography.display.--md-sys-typescale-display-small-weight",
+          "module": "typography",
+          "submodule": "display",
+          "name": "--md-sys-typescale-display-small-weight",
+          "figmaName": "Typography/Display/--md-sys-typescale-display-small-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        }
+      ]
+    },
+    {
+      "id": "headline",
+      "label": "Headline",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-large-font",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-large-font",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-large-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-large-line-height",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-large-line-height",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-large-line-height",
+          "type": "FLOAT",
+          "value": 2.5,
+          "unit": "rem",
+          "displayValue": "2.5rem"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-large-size",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-large-size",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-large-size",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "rem",
+          "displayValue": "2rem"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-large-weight",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-large-weight",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-large-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-medium-font",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-medium-font",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-medium-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-medium-line-height",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-medium-line-height",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-medium-line-height",
+          "type": "FLOAT",
+          "value": 2.25,
+          "unit": "rem",
+          "displayValue": "2.25rem"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-medium-size",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-medium-size",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-medium-size",
+          "type": "FLOAT",
+          "value": 1.75,
+          "unit": "rem",
+          "displayValue": "1.75rem"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-medium-weight",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-medium-weight",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-medium-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-small-font",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-small-font",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-small-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-small-line-height",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-small-line-height",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-small-line-height",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "rem",
+          "displayValue": "2rem"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-small-size",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-small-size",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-small-size",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "typography.headline.--md-sys-typescale-headline-small-weight",
+          "module": "typography",
+          "submodule": "headline",
+          "name": "--md-sys-typescale-headline-small-weight",
+          "figmaName": "Typography/Headline/--md-sys-typescale-headline-small-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        }
+      ]
+    },
+    {
+      "id": "title",
+      "label": "Title",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.title.--md-sys-typescale-title-large-font",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-large-font",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-large-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-brand"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-large-line-height",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-large-line-height",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-large-line-height",
+          "type": "FLOAT",
+          "value": 1.75,
+          "unit": "rem",
+          "displayValue": "1.75rem"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-large-size",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-large-size",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-large-size",
+          "type": "FLOAT",
+          "value": 1.375,
+          "unit": "rem",
+          "displayValue": "1.375rem"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-large-weight",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-large-weight",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-large-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-medium-font",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-medium-font",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-medium-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-medium-line-height",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-medium-line-height",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-medium-line-height",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-medium-size",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-medium-size",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-medium-size",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-medium-weight",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-medium-weight",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-medium-weight",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500",
+          "reference": "typography.family.--md-ref-typeface-weight-medium"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-small-font",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-small-font",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-small-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-small-line-height",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-small-line-height",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-small-line-height",
+          "type": "FLOAT",
+          "value": 1.25,
+          "unit": "rem",
+          "displayValue": "1.25rem"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-small-size",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-small-size",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-small-size",
+          "type": "FLOAT",
+          "value": 0.875,
+          "unit": "rem",
+          "displayValue": "0.875rem"
+        },
+        {
+          "id": "typography.title.--md-sys-typescale-title-small-weight",
+          "module": "typography",
+          "submodule": "title",
+          "name": "--md-sys-typescale-title-small-weight",
+          "figmaName": "Typography/Title/--md-sys-typescale-title-small-weight",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500",
+          "reference": "typography.family.--md-ref-typeface-weight-medium"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "label": "Body",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.body.--md-sys-typescale-body-large-font",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-large-font",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-large-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-large-line-height",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-large-line-height",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-large-line-height",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-large-size",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-large-size",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-large-size",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-large-weight",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-large-weight",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-large-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-medium-font",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-medium-font",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-medium-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-medium-line-height",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-medium-line-height",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-medium-line-height",
+          "type": "FLOAT",
+          "value": 1.25,
+          "unit": "rem",
+          "displayValue": "1.25rem"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-medium-size",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-medium-size",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-medium-size",
+          "type": "FLOAT",
+          "value": 0.875,
+          "unit": "rem",
+          "displayValue": "0.875rem"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-medium-weight",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-medium-weight",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-medium-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-small-font",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-small-font",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-small-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-small-line-height",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-small-line-height",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-small-line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-small-size",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-small-size",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-small-size",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        },
+        {
+          "id": "typography.body.--md-sys-typescale-body-small-weight",
+          "module": "typography",
+          "submodule": "body",
+          "name": "--md-sys-typescale-body-small-weight",
+          "figmaName": "Typography/Body/--md-sys-typescale-body-small-weight",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400",
+          "reference": "typography.family.--md-ref-typeface-weight-regular"
+        }
+      ]
+    },
+    {
+      "id": "label",
+      "label": "Label",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.label.--md-sys-typescale-label-large-font",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-large-font",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-large-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-large-line-height",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-large-line-height",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-large-line-height",
+          "type": "FLOAT",
+          "value": 1.25,
+          "unit": "rem",
+          "displayValue": "1.25rem"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-large-size",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-large-size",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-large-size",
+          "type": "FLOAT",
+          "value": 0.875,
+          "unit": "rem",
+          "displayValue": "0.875rem"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-large-weight",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-large-weight",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-large-weight",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500",
+          "reference": "typography.family.--md-ref-typeface-weight-medium"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-large-weight-prominent",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-large-weight-prominent",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-large-weight-prominent",
+          "type": "FLOAT",
+          "value": 700,
+          "displayValue": "700",
+          "reference": "typography.family.--md-ref-typeface-weight-bold"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-medium-font",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-medium-font",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-medium-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-medium-line-height",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-medium-line-height",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-medium-line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-medium-size",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-medium-size",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-medium-size",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-medium-weight",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-medium-weight",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-medium-weight",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500",
+          "reference": "typography.family.--md-ref-typeface-weight-medium"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-medium-weight-prominent",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-medium-weight-prominent",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-medium-weight-prominent",
+          "type": "FLOAT",
+          "value": 700,
+          "displayValue": "700",
+          "reference": "typography.family.--md-ref-typeface-weight-bold"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-small-font",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-small-font",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-small-font",
+          "type": "STRING",
+          "value": "Roboto",
+          "displayValue": "Roboto",
+          "reference": "typography.family.--md-ref-typeface-plain"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-small-line-height",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-small-line-height",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-small-line-height",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-small-size",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-small-size",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-small-size",
+          "type": "FLOAT",
+          "value": 0.6875,
+          "unit": "rem",
+          "displayValue": "0.6875rem"
+        },
+        {
+          "id": "typography.label.--md-sys-typescale-label-small-weight",
+          "module": "typography",
+          "submodule": "label",
+          "name": "--md-sys-typescale-label-small-weight",
+          "figmaName": "Typography/Label/--md-sys-typescale-label-small-weight",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500",
+          "reference": "typography.family.--md-ref-typeface-weight-medium"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "fontFamily": {
+      "default": "typography.family.--md-ref-typeface-brand",
+      "options": [
+        "typography.family.--md-ref-typeface-brand",
+        "typography.family.--md-ref-typeface-plain"
+      ],
+      "customizable": true
+    },
+    "baseSize": {
+      "default": "typography.body.--md-sys-typescale-body-large-size",
+      "customizable": true
+    },
+    "typeScale": {
+      "kind": "explicit",
+      "steps": [
+        "typography.display.--md-sys-typescale-display-large-size",
+        "typography.display.--md-sys-typescale-display-medium-size",
+        "typography.display.--md-sys-typescale-display-small-size",
+        "typography.headline.--md-sys-typescale-headline-large-size",
+        "typography.headline.--md-sys-typescale-headline-medium-size",
+        "typography.headline.--md-sys-typescale-headline-small-size",
+        "typography.title.--md-sys-typescale-title-large-size",
+        "typography.title.--md-sys-typescale-title-medium-size",
+        "typography.title.--md-sys-typescale-title-small-size",
+        "typography.body.--md-sys-typescale-body-large-size",
+        "typography.body.--md-sys-typescale-body-medium-size",
+        "typography.body.--md-sys-typescale-body-small-size",
+        "typography.label.--md-sys-typescale-label-large-size",
+        "typography.label.--md-sys-typescale-label-medium-size",
+        "typography.label.--md-sys-typescale-label-small-size"
+      ],
+      "customizable": true
+    },
+    "lineHeight": {
+      "default": "typography.body.--md-sys-typescale-body-large-line-height",
+      "options": [
+        "typography.display.--md-sys-typescale-display-large-line-height",
+        "typography.display.--md-sys-typescale-display-medium-line-height",
+        "typography.display.--md-sys-typescale-display-small-line-height",
+        "typography.headline.--md-sys-typescale-headline-large-line-height",
+        "typography.headline.--md-sys-typescale-headline-medium-line-height",
+        "typography.headline.--md-sys-typescale-headline-small-line-height",
+        "typography.title.--md-sys-typescale-title-large-line-height",
+        "typography.title.--md-sys-typescale-title-medium-line-height",
+        "typography.title.--md-sys-typescale-title-small-line-height",
+        "typography.body.--md-sys-typescale-body-large-line-height",
+        "typography.body.--md-sys-typescale-body-medium-line-height",
+        "typography.body.--md-sys-typescale-body-small-line-height",
+        "typography.label.--md-sys-typescale-label-large-line-height",
+        "typography.label.--md-sys-typescale-label-medium-line-height",
+        "typography.label.--md-sys-typescale-label-small-line-height"
+      ],
+      "customizable": true
+    }
+  }
+}

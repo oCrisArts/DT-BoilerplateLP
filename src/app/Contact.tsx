@@ -75,7 +75,7 @@ export default function Contact() {
                   Figma Community
                 </h2>
                 <p className="text-base text-muted-foreground leading-relaxed mb-6">
-                  Join our Figma Community to connect with other users, share your design systems, 
+                  Join our Figma Community to connect with other users, share your design token foundations, 
                   and get tips and tricks.
                 </p>
                 
@@ -97,7 +97,7 @@ export default function Contact() {
                 </h2>
                 <p className="text-base text-muted-foreground leading-relaxed">
                   Found a bug or have a feature idea? Let us know! We're constantly improving 
-                  DT Boilerplate based on user feedback.
+                  StartTokens based on user feedback.
                 </p>
               </section>
 

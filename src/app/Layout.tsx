@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { trackInstallPlugin } from "../utils/analytics";
 
 function MI({
@@ -41,6 +41,7 @@ const NAV_LINKS = [
 
 export default function Layout() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <div
@@ -65,7 +66,7 @@ export default function Layout() {
             <span
               className="text-sm font-semibold"
             >
-              DT Boilerplate
+              StartTokens
             </span>
           </Link>
 
@@ -73,6 +74,7 @@ export default function Layout() {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
+                aria-current={location.pathname + location.hash === link.href ? 'location' : undefined}
                 to={link.href}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -94,7 +96,10 @@ export default function Layout() {
           </div>
 
           <button
-            className="md:hidden p-1 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+            className="md:hidden min-h-11 min-w-11 p-1 text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <MI
@@ -105,7 +110,7 @@ export default function Layout() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden border-t border-border bg-background px-6 py-4 space-y-3">
+          <div id="mobile-navigation" className="md:hidden border-t border-border bg-background px-6 py-4 space-y-3">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -130,7 +135,7 @@ export default function Layout() {
       </header>
 
       {/* ── Page Content ── */}
-      <Outlet />
+      <main><Outlet /></main>
 
       {/* ── Footer ── */}
       <footer className="border-t border-border py-10 bg-background">
@@ -146,7 +151,7 @@ export default function Layout() {
             <span
               className="text-sm font-semibold"
             >
-              DT Boilerplate
+              StartTokens
             </span>
           </div>
           <div className="flex items-center gap-6 text-xs text-muted-foreground flex-wrap justify-center">
@@ -186,9 +191,9 @@ export default function Layout() {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground">            
-              © 2025 DT Boilerplate by 
+              © 2025 StartTokens by 
             </span>
-            <a href="https://ocris.art.br/" target="_blank" rel="noopener noreferrer">
+            <a href="https://ocris.art.br/" target="_blank" rel="noopener noreferrer" aria-label="Visit oCris Arts">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M27.9279 32.8879L28.2959 30.8719L24.0159 18.2079C24.1999 17.7919 24.3359 17.3279 24.3359 16.8399C24.3359 15.1519 23.0959 13.7199 21.4239 13.4879V9.46387H20.4639V13.4879C18.8239 13.7119 17.5199 15.1199 17.5199 16.8399C17.5199 17.5039 17.7119 18.1519 18.0799 18.7039L13.7759 30.9199L14.2399 33.0559L13.4399 37.3599L15.4879 33.5759L17.1039 32.0559L21.1199 20.2559L25.3519 32.1599L26.6719 33.3999L29.0399 37.3439L27.9279 32.8879ZM22.8319 16.8479C22.8319 17.9519 22.0959 18.9199 21.0319 19.2079C19.7279 18.8559 18.9599 17.5119 19.3119 16.2079C19.5359 15.3679 20.1919 14.7119 21.0319 14.4879C22.0879 14.7759 22.8319 15.7439 22.8319 16.8479Z" fill="#BB294A"/>
               <path d="M20.5518 16.8478C20.5518 17.2158 20.7038 17.5758 20.9678 17.8318C21.5118 17.2958 21.5198 16.4238 20.9838 15.8798C20.9758 15.8718 20.9678 15.8638 20.9678 15.8638C20.6958 16.1198 20.5518 16.4798 20.5518 16.8478Z" fill="#BB294A"/>

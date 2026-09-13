@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "module": "layout",
+  "label": "Layout",
+  "tabIcon": "rounded_corner",
+  "submodules": [
+    {
+      "id": "radius",
+      "label": "Shape",
+      "icon": "rounded_corner",
+      "variables": [
+        {
+          "id": "layout.radius.--md-sys-shape-corner-none",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-none",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-none",
+          "type": "FLOAT",
+          "value": 0,
+          "unit": "px",
+          "displayValue": "0px"
+        },
+        {
+          "id": "layout.radius.--md-sys-shape-corner-extra-small",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-extra-small",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-extra-small",
+          "type": "FLOAT",
+          "value": 4,
+          "unit": "px",
+          "displayValue": "4px"
+        },
+        {
+          "id": "layout.radius.--md-sys-shape-corner-small",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-small",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-small",
+          "type": "FLOAT",
+          "value": 8,
+          "unit": "px",
+          "displayValue": "8px"
+        },
+        {
+          "id": "layout.radius.--md-sys-shape-corner-medium",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-medium",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-medium",
+          "type": "FLOAT",
+          "value": 12,
+          "unit": "px",
+          "displayValue": "12px"
+        },
+        {
+          "id": "layout.radius.--md-sys-shape-corner-large",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-large",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-large",
+          "type": "FLOAT",
+          "value": 16,
+          "unit": "px",
+          "displayValue": "16px"
+        },
+        {
+          "id": "layout.radius.--md-sys-shape-corner-extra-large",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-extra-large",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-extra-large",
+          "type": "FLOAT",
+          "value": 28,
+          "unit": "px",
+          "displayValue": "28px"
+        },
+        {
+          "id": "layout.radius.--md-sys-shape-corner-full",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--md-sys-shape-corner-full",
+          "figmaName": "Layout/Shape/--md-sys-shape-corner-full",
+          "type": "FLOAT",
+          "value": 9999,
+          "unit": "px",
+          "displayValue": "9999px"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "grid": {
+      "kind": "none"
+    },
+    "spacing": {
+      "kind": "scale"
+    }
+  }
+}

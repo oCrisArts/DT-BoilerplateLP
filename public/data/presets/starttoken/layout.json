@@ -1,4 +1,5 @@
 {
+  "schemaVersion": 1,
   "module": "layout",
   "label": "Layout",
   "tabIcon": "grid_4x4",
@@ -597,5 +598,13 @@
         }
       ]
     }
-  ]
+  ],
+  "configuration": {
+    "grid": {
+      "kind": "responsive-columns"
+    },
+    "spacing": {
+      "kind": "scale"
+    }
+  }
 }

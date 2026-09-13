@@ -1,0 +1,2867 @@
+{
+  "schemaVersion": 1,
+  "module": "colors",
+  "label": "Colors",
+  "tabIcon": "palette",
+  "submodules": [
+    {
+      "id": "red",
+      "label": "Red",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.red.--color-red-50",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-50",
+          "figmaName": "Colors/Red/--color-red-50",
+          "type": "COLOR",
+          "value": "oklch(97.1% 0.013 17.38)",
+          "displayValue": "oklch(97.1% 0.013 17.38)",
+          "preview": "oklch(97.1% 0.013 17.38)"
+        },
+        {
+          "id": "colors.red.--color-red-100",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-100",
+          "figmaName": "Colors/Red/--color-red-100",
+          "type": "COLOR",
+          "value": "oklch(93.6% 0.032 17.717)",
+          "displayValue": "oklch(93.6% 0.032 17.717)",
+          "preview": "oklch(93.6% 0.032 17.717)"
+        },
+        {
+          "id": "colors.red.--color-red-200",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-200",
+          "figmaName": "Colors/Red/--color-red-200",
+          "type": "COLOR",
+          "value": "oklch(88.5% 0.062 18.334)",
+          "displayValue": "oklch(88.5% 0.062 18.334)",
+          "preview": "oklch(88.5% 0.062 18.334)"
+        },
+        {
+          "id": "colors.red.--color-red-300",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-300",
+          "figmaName": "Colors/Red/--color-red-300",
+          "type": "COLOR",
+          "value": "oklch(80.8% 0.114 19.571)",
+          "displayValue": "oklch(80.8% 0.114 19.571)",
+          "preview": "oklch(80.8% 0.114 19.571)"
+        },
+        {
+          "id": "colors.red.--color-red-400",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-400",
+          "figmaName": "Colors/Red/--color-red-400",
+          "type": "COLOR",
+          "value": "oklch(70.4% 0.191 22.216)",
+          "displayValue": "oklch(70.4% 0.191 22.216)",
+          "preview": "oklch(70.4% 0.191 22.216)"
+        },
+        {
+          "id": "colors.red.--color-red-500",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-500",
+          "figmaName": "Colors/Red/--color-red-500",
+          "type": "COLOR",
+          "value": "oklch(63.7% 0.237 25.331)",
+          "displayValue": "oklch(63.7% 0.237 25.331)",
+          "preview": "oklch(63.7% 0.237 25.331)"
+        },
+        {
+          "id": "colors.red.--color-red-600",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-600",
+          "figmaName": "Colors/Red/--color-red-600",
+          "type": "COLOR",
+          "value": "oklch(57.7% 0.245 27.325)",
+          "displayValue": "oklch(57.7% 0.245 27.325)",
+          "preview": "oklch(57.7% 0.245 27.325)"
+        },
+        {
+          "id": "colors.red.--color-red-700",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-700",
+          "figmaName": "Colors/Red/--color-red-700",
+          "type": "COLOR",
+          "value": "oklch(50.5% 0.213 27.518)",
+          "displayValue": "oklch(50.5% 0.213 27.518)",
+          "preview": "oklch(50.5% 0.213 27.518)"
+        },
+        {
+          "id": "colors.red.--color-red-800",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-800",
+          "figmaName": "Colors/Red/--color-red-800",
+          "type": "COLOR",
+          "value": "oklch(44.4% 0.177 26.899)",
+          "displayValue": "oklch(44.4% 0.177 26.899)",
+          "preview": "oklch(44.4% 0.177 26.899)"
+        },
+        {
+          "id": "colors.red.--color-red-900",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-900",
+          "figmaName": "Colors/Red/--color-red-900",
+          "type": "COLOR",
+          "value": "oklch(39.6% 0.141 25.723)",
+          "displayValue": "oklch(39.6% 0.141 25.723)",
+          "preview": "oklch(39.6% 0.141 25.723)"
+        },
+        {
+          "id": "colors.red.--color-red-950",
+          "module": "colors",
+          "submodule": "red",
+          "name": "--color-red-950",
+          "figmaName": "Colors/Red/--color-red-950",
+          "type": "COLOR",
+          "value": "oklch(25.8% 0.092 26.042)",
+          "displayValue": "oklch(25.8% 0.092 26.042)",
+          "preview": "oklch(25.8% 0.092 26.042)"
+        }
+      ]
+    },
+    {
+      "id": "orange",
+      "label": "Orange",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.orange.--color-orange-50",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-50",
+          "figmaName": "Colors/Orange/--color-orange-50",
+          "type": "COLOR",
+          "value": "oklch(98% 0.016 73.684)",
+          "displayValue": "oklch(98% 0.016 73.684)",
+          "preview": "oklch(98% 0.016 73.684)"
+        },
+        {
+          "id": "colors.orange.--color-orange-100",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-100",
+          "figmaName": "Colors/Orange/--color-orange-100",
+          "type": "COLOR",
+          "value": "oklch(95.4% 0.038 75.164)",
+          "displayValue": "oklch(95.4% 0.038 75.164)",
+          "preview": "oklch(95.4% 0.038 75.164)"
+        },
+        {
+          "id": "colors.orange.--color-orange-200",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-200",
+          "figmaName": "Colors/Orange/--color-orange-200",
+          "type": "COLOR",
+          "value": "oklch(90.1% 0.076 70.697)",
+          "displayValue": "oklch(90.1% 0.076 70.697)",
+          "preview": "oklch(90.1% 0.076 70.697)"
+        },
+        {
+          "id": "colors.orange.--color-orange-300",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-300",
+          "figmaName": "Colors/Orange/--color-orange-300",
+          "type": "COLOR",
+          "value": "oklch(83.7% 0.128 66.29)",
+          "displayValue": "oklch(83.7% 0.128 66.29)",
+          "preview": "oklch(83.7% 0.128 66.29)"
+        },
+        {
+          "id": "colors.orange.--color-orange-400",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-400",
+          "figmaName": "Colors/Orange/--color-orange-400",
+          "type": "COLOR",
+          "value": "oklch(75% 0.183 55.934)",
+          "displayValue": "oklch(75% 0.183 55.934)",
+          "preview": "oklch(75% 0.183 55.934)"
+        },
+        {
+          "id": "colors.orange.--color-orange-500",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-500",
+          "figmaName": "Colors/Orange/--color-orange-500",
+          "type": "COLOR",
+          "value": "oklch(70.5% 0.213 47.604)",
+          "displayValue": "oklch(70.5% 0.213 47.604)",
+          "preview": "oklch(70.5% 0.213 47.604)"
+        },
+        {
+          "id": "colors.orange.--color-orange-600",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-600",
+          "figmaName": "Colors/Orange/--color-orange-600",
+          "type": "COLOR",
+          "value": "oklch(64.6% 0.222 41.116)",
+          "displayValue": "oklch(64.6% 0.222 41.116)",
+          "preview": "oklch(64.6% 0.222 41.116)"
+        },
+        {
+          "id": "colors.orange.--color-orange-700",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-700",
+          "figmaName": "Colors/Orange/--color-orange-700",
+          "type": "COLOR",
+          "value": "oklch(55.3% 0.195 38.402)",
+          "displayValue": "oklch(55.3% 0.195 38.402)",
+          "preview": "oklch(55.3% 0.195 38.402)"
+        },
+        {
+          "id": "colors.orange.--color-orange-800",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-800",
+          "figmaName": "Colors/Orange/--color-orange-800",
+          "type": "COLOR",
+          "value": "oklch(47% 0.157 37.304)",
+          "displayValue": "oklch(47% 0.157 37.304)",
+          "preview": "oklch(47% 0.157 37.304)"
+        },
+        {
+          "id": "colors.orange.--color-orange-900",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-900",
+          "figmaName": "Colors/Orange/--color-orange-900",
+          "type": "COLOR",
+          "value": "oklch(40.8% 0.123 38.172)",
+          "displayValue": "oklch(40.8% 0.123 38.172)",
+          "preview": "oklch(40.8% 0.123 38.172)"
+        },
+        {
+          "id": "colors.orange.--color-orange-950",
+          "module": "colors",
+          "submodule": "orange",
+          "name": "--color-orange-950",
+          "figmaName": "Colors/Orange/--color-orange-950",
+          "type": "COLOR",
+          "value": "oklch(26.6% 0.079 36.259)",
+          "displayValue": "oklch(26.6% 0.079 36.259)",
+          "preview": "oklch(26.6% 0.079 36.259)"
+        }
+      ]
+    },
+    {
+      "id": "amber",
+      "label": "Amber",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.amber.--color-amber-50",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-50",
+          "figmaName": "Colors/Amber/--color-amber-50",
+          "type": "COLOR",
+          "value": "oklch(98.7% 0.022 95.277)",
+          "displayValue": "oklch(98.7% 0.022 95.277)",
+          "preview": "oklch(98.7% 0.022 95.277)"
+        },
+        {
+          "id": "colors.amber.--color-amber-100",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-100",
+          "figmaName": "Colors/Amber/--color-amber-100",
+          "type": "COLOR",
+          "value": "oklch(96.2% 0.059 95.617)",
+          "displayValue": "oklch(96.2% 0.059 95.617)",
+          "preview": "oklch(96.2% 0.059 95.617)"
+        },
+        {
+          "id": "colors.amber.--color-amber-200",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-200",
+          "figmaName": "Colors/Amber/--color-amber-200",
+          "type": "COLOR",
+          "value": "oklch(92.4% 0.12 95.746)",
+          "displayValue": "oklch(92.4% 0.12 95.746)",
+          "preview": "oklch(92.4% 0.12 95.746)"
+        },
+        {
+          "id": "colors.amber.--color-amber-300",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-300",
+          "figmaName": "Colors/Amber/--color-amber-300",
+          "type": "COLOR",
+          "value": "oklch(87.9% 0.169 91.605)",
+          "displayValue": "oklch(87.9% 0.169 91.605)",
+          "preview": "oklch(87.9% 0.169 91.605)"
+        },
+        {
+          "id": "colors.amber.--color-amber-400",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-400",
+          "figmaName": "Colors/Amber/--color-amber-400",
+          "type": "COLOR",
+          "value": "oklch(82.8% 0.189 84.429)",
+          "displayValue": "oklch(82.8% 0.189 84.429)",
+          "preview": "oklch(82.8% 0.189 84.429)"
+        },
+        {
+          "id": "colors.amber.--color-amber-500",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-500",
+          "figmaName": "Colors/Amber/--color-amber-500",
+          "type": "COLOR",
+          "value": "oklch(76.9% 0.188 70.08)",
+          "displayValue": "oklch(76.9% 0.188 70.08)",
+          "preview": "oklch(76.9% 0.188 70.08)"
+        },
+        {
+          "id": "colors.amber.--color-amber-600",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-600",
+          "figmaName": "Colors/Amber/--color-amber-600",
+          "type": "COLOR",
+          "value": "oklch(66.6% 0.179 58.318)",
+          "displayValue": "oklch(66.6% 0.179 58.318)",
+          "preview": "oklch(66.6% 0.179 58.318)"
+        },
+        {
+          "id": "colors.amber.--color-amber-700",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-700",
+          "figmaName": "Colors/Amber/--color-amber-700",
+          "type": "COLOR",
+          "value": "oklch(55.5% 0.163 48.998)",
+          "displayValue": "oklch(55.5% 0.163 48.998)",
+          "preview": "oklch(55.5% 0.163 48.998)"
+        },
+        {
+          "id": "colors.amber.--color-amber-800",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-800",
+          "figmaName": "Colors/Amber/--color-amber-800",
+          "type": "COLOR",
+          "value": "oklch(47.3% 0.137 46.201)",
+          "displayValue": "oklch(47.3% 0.137 46.201)",
+          "preview": "oklch(47.3% 0.137 46.201)"
+        },
+        {
+          "id": "colors.amber.--color-amber-900",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-900",
+          "figmaName": "Colors/Amber/--color-amber-900",
+          "type": "COLOR",
+          "value": "oklch(41.4% 0.112 45.904)",
+          "displayValue": "oklch(41.4% 0.112 45.904)",
+          "preview": "oklch(41.4% 0.112 45.904)"
+        },
+        {
+          "id": "colors.amber.--color-amber-950",
+          "module": "colors",
+          "submodule": "amber",
+          "name": "--color-amber-950",
+          "figmaName": "Colors/Amber/--color-amber-950",
+          "type": "COLOR",
+          "value": "oklch(27.9% 0.077 45.635)",
+          "displayValue": "oklch(27.9% 0.077 45.635)",
+          "preview": "oklch(27.9% 0.077 45.635)"
+        }
+      ]
+    },
+    {
+      "id": "yellow",
+      "label": "Yellow",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.yellow.--color-yellow-50",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-50",
+          "figmaName": "Colors/Yellow/--color-yellow-50",
+          "type": "COLOR",
+          "value": "oklch(98.7% 0.026 102.212)",
+          "displayValue": "oklch(98.7% 0.026 102.212)",
+          "preview": "oklch(98.7% 0.026 102.212)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-100",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-100",
+          "figmaName": "Colors/Yellow/--color-yellow-100",
+          "type": "COLOR",
+          "value": "oklch(97.3% 0.071 103.193)",
+          "displayValue": "oklch(97.3% 0.071 103.193)",
+          "preview": "oklch(97.3% 0.071 103.193)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-200",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-200",
+          "figmaName": "Colors/Yellow/--color-yellow-200",
+          "type": "COLOR",
+          "value": "oklch(94.5% 0.129 101.54)",
+          "displayValue": "oklch(94.5% 0.129 101.54)",
+          "preview": "oklch(94.5% 0.129 101.54)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-300",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-300",
+          "figmaName": "Colors/Yellow/--color-yellow-300",
+          "type": "COLOR",
+          "value": "oklch(90.5% 0.182 98.111)",
+          "displayValue": "oklch(90.5% 0.182 98.111)",
+          "preview": "oklch(90.5% 0.182 98.111)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-400",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-400",
+          "figmaName": "Colors/Yellow/--color-yellow-400",
+          "type": "COLOR",
+          "value": "oklch(85.2% 0.199 91.936)",
+          "displayValue": "oklch(85.2% 0.199 91.936)",
+          "preview": "oklch(85.2% 0.199 91.936)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-500",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-500",
+          "figmaName": "Colors/Yellow/--color-yellow-500",
+          "type": "COLOR",
+          "value": "oklch(79.5% 0.184 86.047)",
+          "displayValue": "oklch(79.5% 0.184 86.047)",
+          "preview": "oklch(79.5% 0.184 86.047)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-600",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-600",
+          "figmaName": "Colors/Yellow/--color-yellow-600",
+          "type": "COLOR",
+          "value": "oklch(68.1% 0.162 75.834)",
+          "displayValue": "oklch(68.1% 0.162 75.834)",
+          "preview": "oklch(68.1% 0.162 75.834)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-700",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-700",
+          "figmaName": "Colors/Yellow/--color-yellow-700",
+          "type": "COLOR",
+          "value": "oklch(55.4% 0.135 66.442)",
+          "displayValue": "oklch(55.4% 0.135 66.442)",
+          "preview": "oklch(55.4% 0.135 66.442)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-800",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-800",
+          "figmaName": "Colors/Yellow/--color-yellow-800",
+          "type": "COLOR",
+          "value": "oklch(47.6% 0.114 61.907)",
+          "displayValue": "oklch(47.6% 0.114 61.907)",
+          "preview": "oklch(47.6% 0.114 61.907)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-900",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-900",
+          "figmaName": "Colors/Yellow/--color-yellow-900",
+          "type": "COLOR",
+          "value": "oklch(42.1% 0.095 57.708)",
+          "displayValue": "oklch(42.1% 0.095 57.708)",
+          "preview": "oklch(42.1% 0.095 57.708)"
+        },
+        {
+          "id": "colors.yellow.--color-yellow-950",
+          "module": "colors",
+          "submodule": "yellow",
+          "name": "--color-yellow-950",
+          "figmaName": "Colors/Yellow/--color-yellow-950",
+          "type": "COLOR",
+          "value": "oklch(28.6% 0.066 53.813)",
+          "displayValue": "oklch(28.6% 0.066 53.813)",
+          "preview": "oklch(28.6% 0.066 53.813)"
+        }
+      ]
+    },
+    {
+      "id": "lime",
+      "label": "Lime",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.lime.--color-lime-50",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-50",
+          "figmaName": "Colors/Lime/--color-lime-50",
+          "type": "COLOR",
+          "value": "oklch(98.6% 0.031 120.757)",
+          "displayValue": "oklch(98.6% 0.031 120.757)",
+          "preview": "oklch(98.6% 0.031 120.757)"
+        },
+        {
+          "id": "colors.lime.--color-lime-100",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-100",
+          "figmaName": "Colors/Lime/--color-lime-100",
+          "type": "COLOR",
+          "value": "oklch(96.7% 0.067 122.328)",
+          "displayValue": "oklch(96.7% 0.067 122.328)",
+          "preview": "oklch(96.7% 0.067 122.328)"
+        },
+        {
+          "id": "colors.lime.--color-lime-200",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-200",
+          "figmaName": "Colors/Lime/--color-lime-200",
+          "type": "COLOR",
+          "value": "oklch(93.8% 0.127 124.321)",
+          "displayValue": "oklch(93.8% 0.127 124.321)",
+          "preview": "oklch(93.8% 0.127 124.321)"
+        },
+        {
+          "id": "colors.lime.--color-lime-300",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-300",
+          "figmaName": "Colors/Lime/--color-lime-300",
+          "type": "COLOR",
+          "value": "oklch(89.7% 0.196 126.665)",
+          "displayValue": "oklch(89.7% 0.196 126.665)",
+          "preview": "oklch(89.7% 0.196 126.665)"
+        },
+        {
+          "id": "colors.lime.--color-lime-400",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-400",
+          "figmaName": "Colors/Lime/--color-lime-400",
+          "type": "COLOR",
+          "value": "oklch(84.1% 0.238 128.85)",
+          "displayValue": "oklch(84.1% 0.238 128.85)",
+          "preview": "oklch(84.1% 0.238 128.85)"
+        },
+        {
+          "id": "colors.lime.--color-lime-500",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-500",
+          "figmaName": "Colors/Lime/--color-lime-500",
+          "type": "COLOR",
+          "value": "oklch(76.8% 0.233 130.85)",
+          "displayValue": "oklch(76.8% 0.233 130.85)",
+          "preview": "oklch(76.8% 0.233 130.85)"
+        },
+        {
+          "id": "colors.lime.--color-lime-600",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-600",
+          "figmaName": "Colors/Lime/--color-lime-600",
+          "type": "COLOR",
+          "value": "oklch(64.8% 0.2 131.684)",
+          "displayValue": "oklch(64.8% 0.2 131.684)",
+          "preview": "oklch(64.8% 0.2 131.684)"
+        },
+        {
+          "id": "colors.lime.--color-lime-700",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-700",
+          "figmaName": "Colors/Lime/--color-lime-700",
+          "type": "COLOR",
+          "value": "oklch(53.2% 0.157 131.589)",
+          "displayValue": "oklch(53.2% 0.157 131.589)",
+          "preview": "oklch(53.2% 0.157 131.589)"
+        },
+        {
+          "id": "colors.lime.--color-lime-800",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-800",
+          "figmaName": "Colors/Lime/--color-lime-800",
+          "type": "COLOR",
+          "value": "oklch(45.3% 0.124 130.933)",
+          "displayValue": "oklch(45.3% 0.124 130.933)",
+          "preview": "oklch(45.3% 0.124 130.933)"
+        },
+        {
+          "id": "colors.lime.--color-lime-900",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-900",
+          "figmaName": "Colors/Lime/--color-lime-900",
+          "type": "COLOR",
+          "value": "oklch(40.5% 0.101 131.063)",
+          "displayValue": "oklch(40.5% 0.101 131.063)",
+          "preview": "oklch(40.5% 0.101 131.063)"
+        },
+        {
+          "id": "colors.lime.--color-lime-950",
+          "module": "colors",
+          "submodule": "lime",
+          "name": "--color-lime-950",
+          "figmaName": "Colors/Lime/--color-lime-950",
+          "type": "COLOR",
+          "value": "oklch(27.4% 0.072 132.109)",
+          "displayValue": "oklch(27.4% 0.072 132.109)",
+          "preview": "oklch(27.4% 0.072 132.109)"
+        }
+      ]
+    },
+    {
+      "id": "green",
+      "label": "Green",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.green.--color-green-50",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-50",
+          "figmaName": "Colors/Green/--color-green-50",
+          "type": "COLOR",
+          "value": "oklch(98.2% 0.018 155.826)",
+          "displayValue": "oklch(98.2% 0.018 155.826)",
+          "preview": "oklch(98.2% 0.018 155.826)"
+        },
+        {
+          "id": "colors.green.--color-green-100",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-100",
+          "figmaName": "Colors/Green/--color-green-100",
+          "type": "COLOR",
+          "value": "oklch(96.2% 0.044 156.743)",
+          "displayValue": "oklch(96.2% 0.044 156.743)",
+          "preview": "oklch(96.2% 0.044 156.743)"
+        },
+        {
+          "id": "colors.green.--color-green-200",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-200",
+          "figmaName": "Colors/Green/--color-green-200",
+          "type": "COLOR",
+          "value": "oklch(92.5% 0.084 155.995)",
+          "displayValue": "oklch(92.5% 0.084 155.995)",
+          "preview": "oklch(92.5% 0.084 155.995)"
+        },
+        {
+          "id": "colors.green.--color-green-300",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-300",
+          "figmaName": "Colors/Green/--color-green-300",
+          "type": "COLOR",
+          "value": "oklch(87.1% 0.15 154.449)",
+          "displayValue": "oklch(87.1% 0.15 154.449)",
+          "preview": "oklch(87.1% 0.15 154.449)"
+        },
+        {
+          "id": "colors.green.--color-green-400",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-400",
+          "figmaName": "Colors/Green/--color-green-400",
+          "type": "COLOR",
+          "value": "oklch(79.2% 0.209 151.711)",
+          "displayValue": "oklch(79.2% 0.209 151.711)",
+          "preview": "oklch(79.2% 0.209 151.711)"
+        },
+        {
+          "id": "colors.green.--color-green-500",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-500",
+          "figmaName": "Colors/Green/--color-green-500",
+          "type": "COLOR",
+          "value": "oklch(72.3% 0.219 149.579)",
+          "displayValue": "oklch(72.3% 0.219 149.579)",
+          "preview": "oklch(72.3% 0.219 149.579)"
+        },
+        {
+          "id": "colors.green.--color-green-600",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-600",
+          "figmaName": "Colors/Green/--color-green-600",
+          "type": "COLOR",
+          "value": "oklch(62.7% 0.194 149.214)",
+          "displayValue": "oklch(62.7% 0.194 149.214)",
+          "preview": "oklch(62.7% 0.194 149.214)"
+        },
+        {
+          "id": "colors.green.--color-green-700",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-700",
+          "figmaName": "Colors/Green/--color-green-700",
+          "type": "COLOR",
+          "value": "oklch(52.7% 0.154 150.069)",
+          "displayValue": "oklch(52.7% 0.154 150.069)",
+          "preview": "oklch(52.7% 0.154 150.069)"
+        },
+        {
+          "id": "colors.green.--color-green-800",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-800",
+          "figmaName": "Colors/Green/--color-green-800",
+          "type": "COLOR",
+          "value": "oklch(44.8% 0.119 151.328)",
+          "displayValue": "oklch(44.8% 0.119 151.328)",
+          "preview": "oklch(44.8% 0.119 151.328)"
+        },
+        {
+          "id": "colors.green.--color-green-900",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-900",
+          "figmaName": "Colors/Green/--color-green-900",
+          "type": "COLOR",
+          "value": "oklch(39.3% 0.095 152.535)",
+          "displayValue": "oklch(39.3% 0.095 152.535)",
+          "preview": "oklch(39.3% 0.095 152.535)"
+        },
+        {
+          "id": "colors.green.--color-green-950",
+          "module": "colors",
+          "submodule": "green",
+          "name": "--color-green-950",
+          "figmaName": "Colors/Green/--color-green-950",
+          "type": "COLOR",
+          "value": "oklch(26.6% 0.065 152.934)",
+          "displayValue": "oklch(26.6% 0.065 152.934)",
+          "preview": "oklch(26.6% 0.065 152.934)"
+        }
+      ]
+    },
+    {
+      "id": "emerald",
+      "label": "Emerald",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.emerald.--color-emerald-50",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-50",
+          "figmaName": "Colors/Emerald/--color-emerald-50",
+          "type": "COLOR",
+          "value": "oklch(97.9% 0.021 166.113)",
+          "displayValue": "oklch(97.9% 0.021 166.113)",
+          "preview": "oklch(97.9% 0.021 166.113)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-100",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-100",
+          "figmaName": "Colors/Emerald/--color-emerald-100",
+          "type": "COLOR",
+          "value": "oklch(95% 0.052 163.051)",
+          "displayValue": "oklch(95% 0.052 163.051)",
+          "preview": "oklch(95% 0.052 163.051)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-200",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-200",
+          "figmaName": "Colors/Emerald/--color-emerald-200",
+          "type": "COLOR",
+          "value": "oklch(90.5% 0.093 164.15)",
+          "displayValue": "oklch(90.5% 0.093 164.15)",
+          "preview": "oklch(90.5% 0.093 164.15)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-300",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-300",
+          "figmaName": "Colors/Emerald/--color-emerald-300",
+          "type": "COLOR",
+          "value": "oklch(84.5% 0.143 164.978)",
+          "displayValue": "oklch(84.5% 0.143 164.978)",
+          "preview": "oklch(84.5% 0.143 164.978)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-400",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-400",
+          "figmaName": "Colors/Emerald/--color-emerald-400",
+          "type": "COLOR",
+          "value": "oklch(76.5% 0.177 163.223)",
+          "displayValue": "oklch(76.5% 0.177 163.223)",
+          "preview": "oklch(76.5% 0.177 163.223)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-500",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-500",
+          "figmaName": "Colors/Emerald/--color-emerald-500",
+          "type": "COLOR",
+          "value": "oklch(69.6% 0.17 162.48)",
+          "displayValue": "oklch(69.6% 0.17 162.48)",
+          "preview": "oklch(69.6% 0.17 162.48)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-600",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-600",
+          "figmaName": "Colors/Emerald/--color-emerald-600",
+          "type": "COLOR",
+          "value": "oklch(59.6% 0.145 163.225)",
+          "displayValue": "oklch(59.6% 0.145 163.225)",
+          "preview": "oklch(59.6% 0.145 163.225)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-700",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-700",
+          "figmaName": "Colors/Emerald/--color-emerald-700",
+          "type": "COLOR",
+          "value": "oklch(50.8% 0.118 165.612)",
+          "displayValue": "oklch(50.8% 0.118 165.612)",
+          "preview": "oklch(50.8% 0.118 165.612)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-800",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-800",
+          "figmaName": "Colors/Emerald/--color-emerald-800",
+          "type": "COLOR",
+          "value": "oklch(43.2% 0.095 166.913)",
+          "displayValue": "oklch(43.2% 0.095 166.913)",
+          "preview": "oklch(43.2% 0.095 166.913)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-900",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-900",
+          "figmaName": "Colors/Emerald/--color-emerald-900",
+          "type": "COLOR",
+          "value": "oklch(37.8% 0.077 168.94)",
+          "displayValue": "oklch(37.8% 0.077 168.94)",
+          "preview": "oklch(37.8% 0.077 168.94)"
+        },
+        {
+          "id": "colors.emerald.--color-emerald-950",
+          "module": "colors",
+          "submodule": "emerald",
+          "name": "--color-emerald-950",
+          "figmaName": "Colors/Emerald/--color-emerald-950",
+          "type": "COLOR",
+          "value": "oklch(26.2% 0.051 172.552)",
+          "displayValue": "oklch(26.2% 0.051 172.552)",
+          "preview": "oklch(26.2% 0.051 172.552)"
+        }
+      ]
+    },
+    {
+      "id": "teal",
+      "label": "Teal",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.teal.--color-teal-50",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-50",
+          "figmaName": "Colors/Teal/--color-teal-50",
+          "type": "COLOR",
+          "value": "oklch(98.4% 0.014 180.72)",
+          "displayValue": "oklch(98.4% 0.014 180.72)",
+          "preview": "oklch(98.4% 0.014 180.72)"
+        },
+        {
+          "id": "colors.teal.--color-teal-100",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-100",
+          "figmaName": "Colors/Teal/--color-teal-100",
+          "type": "COLOR",
+          "value": "oklch(95.3% 0.051 180.801)",
+          "displayValue": "oklch(95.3% 0.051 180.801)",
+          "preview": "oklch(95.3% 0.051 180.801)"
+        },
+        {
+          "id": "colors.teal.--color-teal-200",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-200",
+          "figmaName": "Colors/Teal/--color-teal-200",
+          "type": "COLOR",
+          "value": "oklch(91% 0.096 180.426)",
+          "displayValue": "oklch(91% 0.096 180.426)",
+          "preview": "oklch(91% 0.096 180.426)"
+        },
+        {
+          "id": "colors.teal.--color-teal-300",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-300",
+          "figmaName": "Colors/Teal/--color-teal-300",
+          "type": "COLOR",
+          "value": "oklch(85.5% 0.138 181.071)",
+          "displayValue": "oklch(85.5% 0.138 181.071)",
+          "preview": "oklch(85.5% 0.138 181.071)"
+        },
+        {
+          "id": "colors.teal.--color-teal-400",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-400",
+          "figmaName": "Colors/Teal/--color-teal-400",
+          "type": "COLOR",
+          "value": "oklch(77.7% 0.152 181.912)",
+          "displayValue": "oklch(77.7% 0.152 181.912)",
+          "preview": "oklch(77.7% 0.152 181.912)"
+        },
+        {
+          "id": "colors.teal.--color-teal-500",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-500",
+          "figmaName": "Colors/Teal/--color-teal-500",
+          "type": "COLOR",
+          "value": "oklch(70.4% 0.14 182.503)",
+          "displayValue": "oklch(70.4% 0.14 182.503)",
+          "preview": "oklch(70.4% 0.14 182.503)"
+        },
+        {
+          "id": "colors.teal.--color-teal-600",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-600",
+          "figmaName": "Colors/Teal/--color-teal-600",
+          "type": "COLOR",
+          "value": "oklch(60% 0.118 184.704)",
+          "displayValue": "oklch(60% 0.118 184.704)",
+          "preview": "oklch(60% 0.118 184.704)"
+        },
+        {
+          "id": "colors.teal.--color-teal-700",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-700",
+          "figmaName": "Colors/Teal/--color-teal-700",
+          "type": "COLOR",
+          "value": "oklch(51.1% 0.096 186.391)",
+          "displayValue": "oklch(51.1% 0.096 186.391)",
+          "preview": "oklch(51.1% 0.096 186.391)"
+        },
+        {
+          "id": "colors.teal.--color-teal-800",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-800",
+          "figmaName": "Colors/Teal/--color-teal-800",
+          "type": "COLOR",
+          "value": "oklch(43.7% 0.078 188.216)",
+          "displayValue": "oklch(43.7% 0.078 188.216)",
+          "preview": "oklch(43.7% 0.078 188.216)"
+        },
+        {
+          "id": "colors.teal.--color-teal-900",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-900",
+          "figmaName": "Colors/Teal/--color-teal-900",
+          "type": "COLOR",
+          "value": "oklch(38.6% 0.063 188.416)",
+          "displayValue": "oklch(38.6% 0.063 188.416)",
+          "preview": "oklch(38.6% 0.063 188.416)"
+        },
+        {
+          "id": "colors.teal.--color-teal-950",
+          "module": "colors",
+          "submodule": "teal",
+          "name": "--color-teal-950",
+          "figmaName": "Colors/Teal/--color-teal-950",
+          "type": "COLOR",
+          "value": "oklch(27.7% 0.046 192.524)",
+          "displayValue": "oklch(27.7% 0.046 192.524)",
+          "preview": "oklch(27.7% 0.046 192.524)"
+        }
+      ]
+    },
+    {
+      "id": "cyan",
+      "label": "Cyan",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.cyan.--color-cyan-50",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-50",
+          "figmaName": "Colors/Cyan/--color-cyan-50",
+          "type": "COLOR",
+          "value": "oklch(98.4% 0.019 200.873)",
+          "displayValue": "oklch(98.4% 0.019 200.873)",
+          "preview": "oklch(98.4% 0.019 200.873)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-100",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-100",
+          "figmaName": "Colors/Cyan/--color-cyan-100",
+          "type": "COLOR",
+          "value": "oklch(95.6% 0.045 203.388)",
+          "displayValue": "oklch(95.6% 0.045 203.388)",
+          "preview": "oklch(95.6% 0.045 203.388)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-200",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-200",
+          "figmaName": "Colors/Cyan/--color-cyan-200",
+          "type": "COLOR",
+          "value": "oklch(91.7% 0.08 205.041)",
+          "displayValue": "oklch(91.7% 0.08 205.041)",
+          "preview": "oklch(91.7% 0.08 205.041)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-300",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-300",
+          "figmaName": "Colors/Cyan/--color-cyan-300",
+          "type": "COLOR",
+          "value": "oklch(86.5% 0.127 207.078)",
+          "displayValue": "oklch(86.5% 0.127 207.078)",
+          "preview": "oklch(86.5% 0.127 207.078)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-400",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-400",
+          "figmaName": "Colors/Cyan/--color-cyan-400",
+          "type": "COLOR",
+          "value": "oklch(78.9% 0.154 211.53)",
+          "displayValue": "oklch(78.9% 0.154 211.53)",
+          "preview": "oklch(78.9% 0.154 211.53)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-500",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-500",
+          "figmaName": "Colors/Cyan/--color-cyan-500",
+          "type": "COLOR",
+          "value": "oklch(71.5% 0.143 215.221)",
+          "displayValue": "oklch(71.5% 0.143 215.221)",
+          "preview": "oklch(71.5% 0.143 215.221)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-600",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-600",
+          "figmaName": "Colors/Cyan/--color-cyan-600",
+          "type": "COLOR",
+          "value": "oklch(60.9% 0.126 221.723)",
+          "displayValue": "oklch(60.9% 0.126 221.723)",
+          "preview": "oklch(60.9% 0.126 221.723)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-700",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-700",
+          "figmaName": "Colors/Cyan/--color-cyan-700",
+          "type": "COLOR",
+          "value": "oklch(52% 0.105 223.128)",
+          "displayValue": "oklch(52% 0.105 223.128)",
+          "preview": "oklch(52% 0.105 223.128)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-800",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-800",
+          "figmaName": "Colors/Cyan/--color-cyan-800",
+          "type": "COLOR",
+          "value": "oklch(45% 0.085 224.283)",
+          "displayValue": "oklch(45% 0.085 224.283)",
+          "preview": "oklch(45% 0.085 224.283)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-900",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-900",
+          "figmaName": "Colors/Cyan/--color-cyan-900",
+          "type": "COLOR",
+          "value": "oklch(39.8% 0.07 227.392)",
+          "displayValue": "oklch(39.8% 0.07 227.392)",
+          "preview": "oklch(39.8% 0.07 227.392)"
+        },
+        {
+          "id": "colors.cyan.--color-cyan-950",
+          "module": "colors",
+          "submodule": "cyan",
+          "name": "--color-cyan-950",
+          "figmaName": "Colors/Cyan/--color-cyan-950",
+          "type": "COLOR",
+          "value": "oklch(30.2% 0.056 229.695)",
+          "displayValue": "oklch(30.2% 0.056 229.695)",
+          "preview": "oklch(30.2% 0.056 229.695)"
+        }
+      ]
+    },
+    {
+      "id": "sky",
+      "label": "Sky",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.sky.--color-sky-50",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-50",
+          "figmaName": "Colors/Sky/--color-sky-50",
+          "type": "COLOR",
+          "value": "oklch(97.7% 0.013 236.62)",
+          "displayValue": "oklch(97.7% 0.013 236.62)",
+          "preview": "oklch(97.7% 0.013 236.62)"
+        },
+        {
+          "id": "colors.sky.--color-sky-100",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-100",
+          "figmaName": "Colors/Sky/--color-sky-100",
+          "type": "COLOR",
+          "value": "oklch(95.1% 0.026 236.824)",
+          "displayValue": "oklch(95.1% 0.026 236.824)",
+          "preview": "oklch(95.1% 0.026 236.824)"
+        },
+        {
+          "id": "colors.sky.--color-sky-200",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-200",
+          "figmaName": "Colors/Sky/--color-sky-200",
+          "type": "COLOR",
+          "value": "oklch(90.1% 0.058 230.902)",
+          "displayValue": "oklch(90.1% 0.058 230.902)",
+          "preview": "oklch(90.1% 0.058 230.902)"
+        },
+        {
+          "id": "colors.sky.--color-sky-300",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-300",
+          "figmaName": "Colors/Sky/--color-sky-300",
+          "type": "COLOR",
+          "value": "oklch(82.8% 0.111 230.318)",
+          "displayValue": "oklch(82.8% 0.111 230.318)",
+          "preview": "oklch(82.8% 0.111 230.318)"
+        },
+        {
+          "id": "colors.sky.--color-sky-400",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-400",
+          "figmaName": "Colors/Sky/--color-sky-400",
+          "type": "COLOR",
+          "value": "oklch(74.6% 0.16 232.661)",
+          "displayValue": "oklch(74.6% 0.16 232.661)",
+          "preview": "oklch(74.6% 0.16 232.661)"
+        },
+        {
+          "id": "colors.sky.--color-sky-500",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-500",
+          "figmaName": "Colors/Sky/--color-sky-500",
+          "type": "COLOR",
+          "value": "oklch(68.5% 0.169 237.323)",
+          "displayValue": "oklch(68.5% 0.169 237.323)",
+          "preview": "oklch(68.5% 0.169 237.323)"
+        },
+        {
+          "id": "colors.sky.--color-sky-600",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-600",
+          "figmaName": "Colors/Sky/--color-sky-600",
+          "type": "COLOR",
+          "value": "oklch(58.8% 0.158 241.966)",
+          "displayValue": "oklch(58.8% 0.158 241.966)",
+          "preview": "oklch(58.8% 0.158 241.966)"
+        },
+        {
+          "id": "colors.sky.--color-sky-700",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-700",
+          "figmaName": "Colors/Sky/--color-sky-700",
+          "type": "COLOR",
+          "value": "oklch(50% 0.134 242.749)",
+          "displayValue": "oklch(50% 0.134 242.749)",
+          "preview": "oklch(50% 0.134 242.749)"
+        },
+        {
+          "id": "colors.sky.--color-sky-800",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-800",
+          "figmaName": "Colors/Sky/--color-sky-800",
+          "type": "COLOR",
+          "value": "oklch(44.3% 0.11 240.79)",
+          "displayValue": "oklch(44.3% 0.11 240.79)",
+          "preview": "oklch(44.3% 0.11 240.79)"
+        },
+        {
+          "id": "colors.sky.--color-sky-900",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-900",
+          "figmaName": "Colors/Sky/--color-sky-900",
+          "type": "COLOR",
+          "value": "oklch(39.1% 0.09 240.876)",
+          "displayValue": "oklch(39.1% 0.09 240.876)",
+          "preview": "oklch(39.1% 0.09 240.876)"
+        },
+        {
+          "id": "colors.sky.--color-sky-950",
+          "module": "colors",
+          "submodule": "sky",
+          "name": "--color-sky-950",
+          "figmaName": "Colors/Sky/--color-sky-950",
+          "type": "COLOR",
+          "value": "oklch(29.3% 0.066 243.157)",
+          "displayValue": "oklch(29.3% 0.066 243.157)",
+          "preview": "oklch(29.3% 0.066 243.157)"
+        }
+      ]
+    },
+    {
+      "id": "blue",
+      "label": "Blue",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.blue.--color-blue-50",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-50",
+          "figmaName": "Colors/Blue/--color-blue-50",
+          "type": "COLOR",
+          "value": "oklch(97% 0.014 254.604)",
+          "displayValue": "oklch(97% 0.014 254.604)",
+          "preview": "oklch(97% 0.014 254.604)"
+        },
+        {
+          "id": "colors.blue.--color-blue-100",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-100",
+          "figmaName": "Colors/Blue/--color-blue-100",
+          "type": "COLOR",
+          "value": "oklch(93.2% 0.032 255.585)",
+          "displayValue": "oklch(93.2% 0.032 255.585)",
+          "preview": "oklch(93.2% 0.032 255.585)"
+        },
+        {
+          "id": "colors.blue.--color-blue-200",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-200",
+          "figmaName": "Colors/Blue/--color-blue-200",
+          "type": "COLOR",
+          "value": "oklch(88.2% 0.059 254.128)",
+          "displayValue": "oklch(88.2% 0.059 254.128)",
+          "preview": "oklch(88.2% 0.059 254.128)"
+        },
+        {
+          "id": "colors.blue.--color-blue-300",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-300",
+          "figmaName": "Colors/Blue/--color-blue-300",
+          "type": "COLOR",
+          "value": "oklch(80.9% 0.105 251.813)",
+          "displayValue": "oklch(80.9% 0.105 251.813)",
+          "preview": "oklch(80.9% 0.105 251.813)"
+        },
+        {
+          "id": "colors.blue.--color-blue-400",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-400",
+          "figmaName": "Colors/Blue/--color-blue-400",
+          "type": "COLOR",
+          "value": "oklch(70.7% 0.165 254.624)",
+          "displayValue": "oklch(70.7% 0.165 254.624)",
+          "preview": "oklch(70.7% 0.165 254.624)"
+        },
+        {
+          "id": "colors.blue.--color-blue-500",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-500",
+          "figmaName": "Colors/Blue/--color-blue-500",
+          "type": "COLOR",
+          "value": "oklch(62.3% 0.214 259.815)",
+          "displayValue": "oklch(62.3% 0.214 259.815)",
+          "preview": "oklch(62.3% 0.214 259.815)"
+        },
+        {
+          "id": "colors.blue.--color-blue-600",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-600",
+          "figmaName": "Colors/Blue/--color-blue-600",
+          "type": "COLOR",
+          "value": "oklch(54.6% 0.245 262.881)",
+          "displayValue": "oklch(54.6% 0.245 262.881)",
+          "preview": "oklch(54.6% 0.245 262.881)"
+        },
+        {
+          "id": "colors.blue.--color-blue-700",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-700",
+          "figmaName": "Colors/Blue/--color-blue-700",
+          "type": "COLOR",
+          "value": "oklch(48.8% 0.243 264.376)",
+          "displayValue": "oklch(48.8% 0.243 264.376)",
+          "preview": "oklch(48.8% 0.243 264.376)"
+        },
+        {
+          "id": "colors.blue.--color-blue-800",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-800",
+          "figmaName": "Colors/Blue/--color-blue-800",
+          "type": "COLOR",
+          "value": "oklch(42.4% 0.199 265.638)",
+          "displayValue": "oklch(42.4% 0.199 265.638)",
+          "preview": "oklch(42.4% 0.199 265.638)"
+        },
+        {
+          "id": "colors.blue.--color-blue-900",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-900",
+          "figmaName": "Colors/Blue/--color-blue-900",
+          "type": "COLOR",
+          "value": "oklch(37.9% 0.146 265.522)",
+          "displayValue": "oklch(37.9% 0.146 265.522)",
+          "preview": "oklch(37.9% 0.146 265.522)"
+        },
+        {
+          "id": "colors.blue.--color-blue-950",
+          "module": "colors",
+          "submodule": "blue",
+          "name": "--color-blue-950",
+          "figmaName": "Colors/Blue/--color-blue-950",
+          "type": "COLOR",
+          "value": "oklch(28.2% 0.091 267.935)",
+          "displayValue": "oklch(28.2% 0.091 267.935)",
+          "preview": "oklch(28.2% 0.091 267.935)"
+        }
+      ]
+    },
+    {
+      "id": "indigo",
+      "label": "Indigo",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.indigo.--color-indigo-50",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-50",
+          "figmaName": "Colors/Indigo/--color-indigo-50",
+          "type": "COLOR",
+          "value": "oklch(96.2% 0.018 272.314)",
+          "displayValue": "oklch(96.2% 0.018 272.314)",
+          "preview": "oklch(96.2% 0.018 272.314)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-100",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-100",
+          "figmaName": "Colors/Indigo/--color-indigo-100",
+          "type": "COLOR",
+          "value": "oklch(93% 0.034 272.788)",
+          "displayValue": "oklch(93% 0.034 272.788)",
+          "preview": "oklch(93% 0.034 272.788)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-200",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-200",
+          "figmaName": "Colors/Indigo/--color-indigo-200",
+          "type": "COLOR",
+          "value": "oklch(87% 0.065 274.039)",
+          "displayValue": "oklch(87% 0.065 274.039)",
+          "preview": "oklch(87% 0.065 274.039)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-300",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-300",
+          "figmaName": "Colors/Indigo/--color-indigo-300",
+          "type": "COLOR",
+          "value": "oklch(78.5% 0.115 274.713)",
+          "displayValue": "oklch(78.5% 0.115 274.713)",
+          "preview": "oklch(78.5% 0.115 274.713)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-400",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-400",
+          "figmaName": "Colors/Indigo/--color-indigo-400",
+          "type": "COLOR",
+          "value": "oklch(67.3% 0.182 276.935)",
+          "displayValue": "oklch(67.3% 0.182 276.935)",
+          "preview": "oklch(67.3% 0.182 276.935)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-500",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-500",
+          "figmaName": "Colors/Indigo/--color-indigo-500",
+          "type": "COLOR",
+          "value": "oklch(58.5% 0.233 277.117)",
+          "displayValue": "oklch(58.5% 0.233 277.117)",
+          "preview": "oklch(58.5% 0.233 277.117)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-600",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-600",
+          "figmaName": "Colors/Indigo/--color-indigo-600",
+          "type": "COLOR",
+          "value": "oklch(51.1% 0.262 276.966)",
+          "displayValue": "oklch(51.1% 0.262 276.966)",
+          "preview": "oklch(51.1% 0.262 276.966)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-700",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-700",
+          "figmaName": "Colors/Indigo/--color-indigo-700",
+          "type": "COLOR",
+          "value": "oklch(45.7% 0.24 277.023)",
+          "displayValue": "oklch(45.7% 0.24 277.023)",
+          "preview": "oklch(45.7% 0.24 277.023)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-800",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-800",
+          "figmaName": "Colors/Indigo/--color-indigo-800",
+          "type": "COLOR",
+          "value": "oklch(39.8% 0.195 277.366)",
+          "displayValue": "oklch(39.8% 0.195 277.366)",
+          "preview": "oklch(39.8% 0.195 277.366)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-900",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-900",
+          "figmaName": "Colors/Indigo/--color-indigo-900",
+          "type": "COLOR",
+          "value": "oklch(35.9% 0.144 278.697)",
+          "displayValue": "oklch(35.9% 0.144 278.697)",
+          "preview": "oklch(35.9% 0.144 278.697)"
+        },
+        {
+          "id": "colors.indigo.--color-indigo-950",
+          "module": "colors",
+          "submodule": "indigo",
+          "name": "--color-indigo-950",
+          "figmaName": "Colors/Indigo/--color-indigo-950",
+          "type": "COLOR",
+          "value": "oklch(25.7% 0.09 281.288)",
+          "displayValue": "oklch(25.7% 0.09 281.288)",
+          "preview": "oklch(25.7% 0.09 281.288)"
+        }
+      ]
+    },
+    {
+      "id": "violet",
+      "label": "Violet",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.violet.--color-violet-50",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-50",
+          "figmaName": "Colors/Violet/--color-violet-50",
+          "type": "COLOR",
+          "value": "oklch(96.9% 0.016 293.756)",
+          "displayValue": "oklch(96.9% 0.016 293.756)",
+          "preview": "oklch(96.9% 0.016 293.756)"
+        },
+        {
+          "id": "colors.violet.--color-violet-100",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-100",
+          "figmaName": "Colors/Violet/--color-violet-100",
+          "type": "COLOR",
+          "value": "oklch(94.3% 0.029 294.588)",
+          "displayValue": "oklch(94.3% 0.029 294.588)",
+          "preview": "oklch(94.3% 0.029 294.588)"
+        },
+        {
+          "id": "colors.violet.--color-violet-200",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-200",
+          "figmaName": "Colors/Violet/--color-violet-200",
+          "type": "COLOR",
+          "value": "oklch(89.4% 0.057 293.283)",
+          "displayValue": "oklch(89.4% 0.057 293.283)",
+          "preview": "oklch(89.4% 0.057 293.283)"
+        },
+        {
+          "id": "colors.violet.--color-violet-300",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-300",
+          "figmaName": "Colors/Violet/--color-violet-300",
+          "type": "COLOR",
+          "value": "oklch(81.1% 0.111 293.571)",
+          "displayValue": "oklch(81.1% 0.111 293.571)",
+          "preview": "oklch(81.1% 0.111 293.571)"
+        },
+        {
+          "id": "colors.violet.--color-violet-400",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-400",
+          "figmaName": "Colors/Violet/--color-violet-400",
+          "type": "COLOR",
+          "value": "oklch(70.2% 0.183 293.541)",
+          "displayValue": "oklch(70.2% 0.183 293.541)",
+          "preview": "oklch(70.2% 0.183 293.541)"
+        },
+        {
+          "id": "colors.violet.--color-violet-500",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-500",
+          "figmaName": "Colors/Violet/--color-violet-500",
+          "type": "COLOR",
+          "value": "oklch(60.6% 0.25 292.717)",
+          "displayValue": "oklch(60.6% 0.25 292.717)",
+          "preview": "oklch(60.6% 0.25 292.717)"
+        },
+        {
+          "id": "colors.violet.--color-violet-600",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-600",
+          "figmaName": "Colors/Violet/--color-violet-600",
+          "type": "COLOR",
+          "value": "oklch(54.1% 0.281 293.009)",
+          "displayValue": "oklch(54.1% 0.281 293.009)",
+          "preview": "oklch(54.1% 0.281 293.009)"
+        },
+        {
+          "id": "colors.violet.--color-violet-700",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-700",
+          "figmaName": "Colors/Violet/--color-violet-700",
+          "type": "COLOR",
+          "value": "oklch(49.1% 0.27 292.581)",
+          "displayValue": "oklch(49.1% 0.27 292.581)",
+          "preview": "oklch(49.1% 0.27 292.581)"
+        },
+        {
+          "id": "colors.violet.--color-violet-800",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-800",
+          "figmaName": "Colors/Violet/--color-violet-800",
+          "type": "COLOR",
+          "value": "oklch(43.2% 0.232 292.759)",
+          "displayValue": "oklch(43.2% 0.232 292.759)",
+          "preview": "oklch(43.2% 0.232 292.759)"
+        },
+        {
+          "id": "colors.violet.--color-violet-900",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-900",
+          "figmaName": "Colors/Violet/--color-violet-900",
+          "type": "COLOR",
+          "value": "oklch(38% 0.189 293.745)",
+          "displayValue": "oklch(38% 0.189 293.745)",
+          "preview": "oklch(38% 0.189 293.745)"
+        },
+        {
+          "id": "colors.violet.--color-violet-950",
+          "module": "colors",
+          "submodule": "violet",
+          "name": "--color-violet-950",
+          "figmaName": "Colors/Violet/--color-violet-950",
+          "type": "COLOR",
+          "value": "oklch(28.3% 0.141 291.089)",
+          "displayValue": "oklch(28.3% 0.141 291.089)",
+          "preview": "oklch(28.3% 0.141 291.089)"
+        }
+      ]
+    },
+    {
+      "id": "purple",
+      "label": "Purple",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.purple.--color-purple-50",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-50",
+          "figmaName": "Colors/Purple/--color-purple-50",
+          "type": "COLOR",
+          "value": "oklch(97.7% 0.014 308.299)",
+          "displayValue": "oklch(97.7% 0.014 308.299)",
+          "preview": "oklch(97.7% 0.014 308.299)"
+        },
+        {
+          "id": "colors.purple.--color-purple-100",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-100",
+          "figmaName": "Colors/Purple/--color-purple-100",
+          "type": "COLOR",
+          "value": "oklch(94.6% 0.033 307.174)",
+          "displayValue": "oklch(94.6% 0.033 307.174)",
+          "preview": "oklch(94.6% 0.033 307.174)"
+        },
+        {
+          "id": "colors.purple.--color-purple-200",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-200",
+          "figmaName": "Colors/Purple/--color-purple-200",
+          "type": "COLOR",
+          "value": "oklch(90.2% 0.063 306.703)",
+          "displayValue": "oklch(90.2% 0.063 306.703)",
+          "preview": "oklch(90.2% 0.063 306.703)"
+        },
+        {
+          "id": "colors.purple.--color-purple-300",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-300",
+          "figmaName": "Colors/Purple/--color-purple-300",
+          "type": "COLOR",
+          "value": "oklch(82.7% 0.119 306.383)",
+          "displayValue": "oklch(82.7% 0.119 306.383)",
+          "preview": "oklch(82.7% 0.119 306.383)"
+        },
+        {
+          "id": "colors.purple.--color-purple-400",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-400",
+          "figmaName": "Colors/Purple/--color-purple-400",
+          "type": "COLOR",
+          "value": "oklch(71.4% 0.203 305.504)",
+          "displayValue": "oklch(71.4% 0.203 305.504)",
+          "preview": "oklch(71.4% 0.203 305.504)"
+        },
+        {
+          "id": "colors.purple.--color-purple-500",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-500",
+          "figmaName": "Colors/Purple/--color-purple-500",
+          "type": "COLOR",
+          "value": "oklch(62.7% 0.265 303.9)",
+          "displayValue": "oklch(62.7% 0.265 303.9)",
+          "preview": "oklch(62.7% 0.265 303.9)"
+        },
+        {
+          "id": "colors.purple.--color-purple-600",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-600",
+          "figmaName": "Colors/Purple/--color-purple-600",
+          "type": "COLOR",
+          "value": "oklch(55.8% 0.288 302.321)",
+          "displayValue": "oklch(55.8% 0.288 302.321)",
+          "preview": "oklch(55.8% 0.288 302.321)"
+        },
+        {
+          "id": "colors.purple.--color-purple-700",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-700",
+          "figmaName": "Colors/Purple/--color-purple-700",
+          "type": "COLOR",
+          "value": "oklch(49.6% 0.265 301.924)",
+          "displayValue": "oklch(49.6% 0.265 301.924)",
+          "preview": "oklch(49.6% 0.265 301.924)"
+        },
+        {
+          "id": "colors.purple.--color-purple-800",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-800",
+          "figmaName": "Colors/Purple/--color-purple-800",
+          "type": "COLOR",
+          "value": "oklch(43.8% 0.218 303.724)",
+          "displayValue": "oklch(43.8% 0.218 303.724)",
+          "preview": "oklch(43.8% 0.218 303.724)"
+        },
+        {
+          "id": "colors.purple.--color-purple-900",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-900",
+          "figmaName": "Colors/Purple/--color-purple-900",
+          "type": "COLOR",
+          "value": "oklch(38.1% 0.176 304.987)",
+          "displayValue": "oklch(38.1% 0.176 304.987)",
+          "preview": "oklch(38.1% 0.176 304.987)"
+        },
+        {
+          "id": "colors.purple.--color-purple-950",
+          "module": "colors",
+          "submodule": "purple",
+          "name": "--color-purple-950",
+          "figmaName": "Colors/Purple/--color-purple-950",
+          "type": "COLOR",
+          "value": "oklch(29.1% 0.149 302.717)",
+          "displayValue": "oklch(29.1% 0.149 302.717)",
+          "preview": "oklch(29.1% 0.149 302.717)"
+        }
+      ]
+    },
+    {
+      "id": "fuchsia",
+      "label": "Fuchsia",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.fuchsia.--color-fuchsia-50",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-50",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-50",
+          "type": "COLOR",
+          "value": "oklch(97.7% 0.017 320.058)",
+          "displayValue": "oklch(97.7% 0.017 320.058)",
+          "preview": "oklch(97.7% 0.017 320.058)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-100",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-100",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-100",
+          "type": "COLOR",
+          "value": "oklch(95.2% 0.037 318.852)",
+          "displayValue": "oklch(95.2% 0.037 318.852)",
+          "preview": "oklch(95.2% 0.037 318.852)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-200",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-200",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-200",
+          "type": "COLOR",
+          "value": "oklch(90.3% 0.076 319.62)",
+          "displayValue": "oklch(90.3% 0.076 319.62)",
+          "preview": "oklch(90.3% 0.076 319.62)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-300",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-300",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-300",
+          "type": "COLOR",
+          "value": "oklch(83.3% 0.145 321.434)",
+          "displayValue": "oklch(83.3% 0.145 321.434)",
+          "preview": "oklch(83.3% 0.145 321.434)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-400",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-400",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-400",
+          "type": "COLOR",
+          "value": "oklch(74% 0.238 322.16)",
+          "displayValue": "oklch(74% 0.238 322.16)",
+          "preview": "oklch(74% 0.238 322.16)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-500",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-500",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-500",
+          "type": "COLOR",
+          "value": "oklch(66.7% 0.295 322.15)",
+          "displayValue": "oklch(66.7% 0.295 322.15)",
+          "preview": "oklch(66.7% 0.295 322.15)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-600",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-600",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-600",
+          "type": "COLOR",
+          "value": "oklch(59.1% 0.293 322.896)",
+          "displayValue": "oklch(59.1% 0.293 322.896)",
+          "preview": "oklch(59.1% 0.293 322.896)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-700",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-700",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-700",
+          "type": "COLOR",
+          "value": "oklch(51.8% 0.253 323.949)",
+          "displayValue": "oklch(51.8% 0.253 323.949)",
+          "preview": "oklch(51.8% 0.253 323.949)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-800",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-800",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-800",
+          "type": "COLOR",
+          "value": "oklch(45.2% 0.211 324.591)",
+          "displayValue": "oklch(45.2% 0.211 324.591)",
+          "preview": "oklch(45.2% 0.211 324.591)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-900",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-900",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-900",
+          "type": "COLOR",
+          "value": "oklch(40.1% 0.17 325.612)",
+          "displayValue": "oklch(40.1% 0.17 325.612)",
+          "preview": "oklch(40.1% 0.17 325.612)"
+        },
+        {
+          "id": "colors.fuchsia.--color-fuchsia-950",
+          "module": "colors",
+          "submodule": "fuchsia",
+          "name": "--color-fuchsia-950",
+          "figmaName": "Colors/Fuchsia/--color-fuchsia-950",
+          "type": "COLOR",
+          "value": "oklch(29.3% 0.136 325.661)",
+          "displayValue": "oklch(29.3% 0.136 325.661)",
+          "preview": "oklch(29.3% 0.136 325.661)"
+        }
+      ]
+    },
+    {
+      "id": "pink",
+      "label": "Pink",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.pink.--color-pink-50",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-50",
+          "figmaName": "Colors/Pink/--color-pink-50",
+          "type": "COLOR",
+          "value": "oklch(97.1% 0.014 343.198)",
+          "displayValue": "oklch(97.1% 0.014 343.198)",
+          "preview": "oklch(97.1% 0.014 343.198)"
+        },
+        {
+          "id": "colors.pink.--color-pink-100",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-100",
+          "figmaName": "Colors/Pink/--color-pink-100",
+          "type": "COLOR",
+          "value": "oklch(94.8% 0.028 342.258)",
+          "displayValue": "oklch(94.8% 0.028 342.258)",
+          "preview": "oklch(94.8% 0.028 342.258)"
+        },
+        {
+          "id": "colors.pink.--color-pink-200",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-200",
+          "figmaName": "Colors/Pink/--color-pink-200",
+          "type": "COLOR",
+          "value": "oklch(89.9% 0.061 343.231)",
+          "displayValue": "oklch(89.9% 0.061 343.231)",
+          "preview": "oklch(89.9% 0.061 343.231)"
+        },
+        {
+          "id": "colors.pink.--color-pink-300",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-300",
+          "figmaName": "Colors/Pink/--color-pink-300",
+          "type": "COLOR",
+          "value": "oklch(82.3% 0.12 346.018)",
+          "displayValue": "oklch(82.3% 0.12 346.018)",
+          "preview": "oklch(82.3% 0.12 346.018)"
+        },
+        {
+          "id": "colors.pink.--color-pink-400",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-400",
+          "figmaName": "Colors/Pink/--color-pink-400",
+          "type": "COLOR",
+          "value": "oklch(71.8% 0.202 349.761)",
+          "displayValue": "oklch(71.8% 0.202 349.761)",
+          "preview": "oklch(71.8% 0.202 349.761)"
+        },
+        {
+          "id": "colors.pink.--color-pink-500",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-500",
+          "figmaName": "Colors/Pink/--color-pink-500",
+          "type": "COLOR",
+          "value": "oklch(65.6% 0.241 354.308)",
+          "displayValue": "oklch(65.6% 0.241 354.308)",
+          "preview": "oklch(65.6% 0.241 354.308)"
+        },
+        {
+          "id": "colors.pink.--color-pink-600",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-600",
+          "figmaName": "Colors/Pink/--color-pink-600",
+          "type": "COLOR",
+          "value": "oklch(59.2% 0.249 0.584)",
+          "displayValue": "oklch(59.2% 0.249 0.584)",
+          "preview": "oklch(59.2% 0.249 0.584)"
+        },
+        {
+          "id": "colors.pink.--color-pink-700",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-700",
+          "figmaName": "Colors/Pink/--color-pink-700",
+          "type": "COLOR",
+          "value": "oklch(52.5% 0.223 3.958)",
+          "displayValue": "oklch(52.5% 0.223 3.958)",
+          "preview": "oklch(52.5% 0.223 3.958)"
+        },
+        {
+          "id": "colors.pink.--color-pink-800",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-800",
+          "figmaName": "Colors/Pink/--color-pink-800",
+          "type": "COLOR",
+          "value": "oklch(45.9% 0.187 3.815)",
+          "displayValue": "oklch(45.9% 0.187 3.815)",
+          "preview": "oklch(45.9% 0.187 3.815)"
+        },
+        {
+          "id": "colors.pink.--color-pink-900",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-900",
+          "figmaName": "Colors/Pink/--color-pink-900",
+          "type": "COLOR",
+          "value": "oklch(40.8% 0.153 2.432)",
+          "displayValue": "oklch(40.8% 0.153 2.432)",
+          "preview": "oklch(40.8% 0.153 2.432)"
+        },
+        {
+          "id": "colors.pink.--color-pink-950",
+          "module": "colors",
+          "submodule": "pink",
+          "name": "--color-pink-950",
+          "figmaName": "Colors/Pink/--color-pink-950",
+          "type": "COLOR",
+          "value": "oklch(28.4% 0.109 3.907)",
+          "displayValue": "oklch(28.4% 0.109 3.907)",
+          "preview": "oklch(28.4% 0.109 3.907)"
+        }
+      ]
+    },
+    {
+      "id": "rose",
+      "label": "Rose",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.rose.--color-rose-50",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-50",
+          "figmaName": "Colors/Rose/--color-rose-50",
+          "type": "COLOR",
+          "value": "oklch(96.9% 0.015 12.422)",
+          "displayValue": "oklch(96.9% 0.015 12.422)",
+          "preview": "oklch(96.9% 0.015 12.422)"
+        },
+        {
+          "id": "colors.rose.--color-rose-100",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-100",
+          "figmaName": "Colors/Rose/--color-rose-100",
+          "type": "COLOR",
+          "value": "oklch(94.1% 0.03 12.58)",
+          "displayValue": "oklch(94.1% 0.03 12.58)",
+          "preview": "oklch(94.1% 0.03 12.58)"
+        },
+        {
+          "id": "colors.rose.--color-rose-200",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-200",
+          "figmaName": "Colors/Rose/--color-rose-200",
+          "type": "COLOR",
+          "value": "oklch(89.2% 0.058 10.001)",
+          "displayValue": "oklch(89.2% 0.058 10.001)",
+          "preview": "oklch(89.2% 0.058 10.001)"
+        },
+        {
+          "id": "colors.rose.--color-rose-300",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-300",
+          "figmaName": "Colors/Rose/--color-rose-300",
+          "type": "COLOR",
+          "value": "oklch(81% 0.117 11.638)",
+          "displayValue": "oklch(81% 0.117 11.638)",
+          "preview": "oklch(81% 0.117 11.638)"
+        },
+        {
+          "id": "colors.rose.--color-rose-400",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-400",
+          "figmaName": "Colors/Rose/--color-rose-400",
+          "type": "COLOR",
+          "value": "oklch(71.2% 0.194 13.428)",
+          "displayValue": "oklch(71.2% 0.194 13.428)",
+          "preview": "oklch(71.2% 0.194 13.428)"
+        },
+        {
+          "id": "colors.rose.--color-rose-500",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-500",
+          "figmaName": "Colors/Rose/--color-rose-500",
+          "type": "COLOR",
+          "value": "oklch(64.5% 0.246 16.439)",
+          "displayValue": "oklch(64.5% 0.246 16.439)",
+          "preview": "oklch(64.5% 0.246 16.439)"
+        },
+        {
+          "id": "colors.rose.--color-rose-600",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-600",
+          "figmaName": "Colors/Rose/--color-rose-600",
+          "type": "COLOR",
+          "value": "oklch(58.6% 0.253 17.585)",
+          "displayValue": "oklch(58.6% 0.253 17.585)",
+          "preview": "oklch(58.6% 0.253 17.585)"
+        },
+        {
+          "id": "colors.rose.--color-rose-700",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-700",
+          "figmaName": "Colors/Rose/--color-rose-700",
+          "type": "COLOR",
+          "value": "oklch(51.4% 0.222 16.935)",
+          "displayValue": "oklch(51.4% 0.222 16.935)",
+          "preview": "oklch(51.4% 0.222 16.935)"
+        },
+        {
+          "id": "colors.rose.--color-rose-800",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-800",
+          "figmaName": "Colors/Rose/--color-rose-800",
+          "type": "COLOR",
+          "value": "oklch(45.5% 0.188 13.697)",
+          "displayValue": "oklch(45.5% 0.188 13.697)",
+          "preview": "oklch(45.5% 0.188 13.697)"
+        },
+        {
+          "id": "colors.rose.--color-rose-900",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-900",
+          "figmaName": "Colors/Rose/--color-rose-900",
+          "type": "COLOR",
+          "value": "oklch(41% 0.159 10.272)",
+          "displayValue": "oklch(41% 0.159 10.272)",
+          "preview": "oklch(41% 0.159 10.272)"
+        },
+        {
+          "id": "colors.rose.--color-rose-950",
+          "module": "colors",
+          "submodule": "rose",
+          "name": "--color-rose-950",
+          "figmaName": "Colors/Rose/--color-rose-950",
+          "type": "COLOR",
+          "value": "oklch(27.1% 0.105 12.094)",
+          "displayValue": "oklch(27.1% 0.105 12.094)",
+          "preview": "oklch(27.1% 0.105 12.094)"
+        }
+      ]
+    },
+    {
+      "id": "slate",
+      "label": "Slate",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.slate.--color-slate-50",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-50",
+          "figmaName": "Colors/Slate/--color-slate-50",
+          "type": "COLOR",
+          "value": "oklch(98.4% 0.003 247.858)",
+          "displayValue": "oklch(98.4% 0.003 247.858)",
+          "preview": "oklch(98.4% 0.003 247.858)"
+        },
+        {
+          "id": "colors.slate.--color-slate-100",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-100",
+          "figmaName": "Colors/Slate/--color-slate-100",
+          "type": "COLOR",
+          "value": "oklch(96.8% 0.007 247.896)",
+          "displayValue": "oklch(96.8% 0.007 247.896)",
+          "preview": "oklch(96.8% 0.007 247.896)"
+        },
+        {
+          "id": "colors.slate.--color-slate-200",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-200",
+          "figmaName": "Colors/Slate/--color-slate-200",
+          "type": "COLOR",
+          "value": "oklch(92.9% 0.013 255.508)",
+          "displayValue": "oklch(92.9% 0.013 255.508)",
+          "preview": "oklch(92.9% 0.013 255.508)"
+        },
+        {
+          "id": "colors.slate.--color-slate-300",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-300",
+          "figmaName": "Colors/Slate/--color-slate-300",
+          "type": "COLOR",
+          "value": "oklch(86.9% 0.022 252.894)",
+          "displayValue": "oklch(86.9% 0.022 252.894)",
+          "preview": "oklch(86.9% 0.022 252.894)"
+        },
+        {
+          "id": "colors.slate.--color-slate-400",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-400",
+          "figmaName": "Colors/Slate/--color-slate-400",
+          "type": "COLOR",
+          "value": "oklch(70.4% 0.04 256.788)",
+          "displayValue": "oklch(70.4% 0.04 256.788)",
+          "preview": "oklch(70.4% 0.04 256.788)"
+        },
+        {
+          "id": "colors.slate.--color-slate-500",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-500",
+          "figmaName": "Colors/Slate/--color-slate-500",
+          "type": "COLOR",
+          "value": "oklch(55.4% 0.046 257.417)",
+          "displayValue": "oklch(55.4% 0.046 257.417)",
+          "preview": "oklch(55.4% 0.046 257.417)"
+        },
+        {
+          "id": "colors.slate.--color-slate-600",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-600",
+          "figmaName": "Colors/Slate/--color-slate-600",
+          "type": "COLOR",
+          "value": "oklch(44.6% 0.043 257.281)",
+          "displayValue": "oklch(44.6% 0.043 257.281)",
+          "preview": "oklch(44.6% 0.043 257.281)"
+        },
+        {
+          "id": "colors.slate.--color-slate-700",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-700",
+          "figmaName": "Colors/Slate/--color-slate-700",
+          "type": "COLOR",
+          "value": "oklch(37.2% 0.044 257.287)",
+          "displayValue": "oklch(37.2% 0.044 257.287)",
+          "preview": "oklch(37.2% 0.044 257.287)"
+        },
+        {
+          "id": "colors.slate.--color-slate-800",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-800",
+          "figmaName": "Colors/Slate/--color-slate-800",
+          "type": "COLOR",
+          "value": "oklch(27.9% 0.041 260.031)",
+          "displayValue": "oklch(27.9% 0.041 260.031)",
+          "preview": "oklch(27.9% 0.041 260.031)"
+        },
+        {
+          "id": "colors.slate.--color-slate-900",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-900",
+          "figmaName": "Colors/Slate/--color-slate-900",
+          "type": "COLOR",
+          "value": "oklch(20.8% 0.042 265.755)",
+          "displayValue": "oklch(20.8% 0.042 265.755)",
+          "preview": "oklch(20.8% 0.042 265.755)"
+        },
+        {
+          "id": "colors.slate.--color-slate-950",
+          "module": "colors",
+          "submodule": "slate",
+          "name": "--color-slate-950",
+          "figmaName": "Colors/Slate/--color-slate-950",
+          "type": "COLOR",
+          "value": "oklch(12.9% 0.042 264.695)",
+          "displayValue": "oklch(12.9% 0.042 264.695)",
+          "preview": "oklch(12.9% 0.042 264.695)"
+        }
+      ]
+    },
+    {
+      "id": "gray",
+      "label": "Gray",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.gray.--color-gray-50",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-50",
+          "figmaName": "Colors/Gray/--color-gray-50",
+          "type": "COLOR",
+          "value": "oklch(98.5% 0.002 247.839)",
+          "displayValue": "oklch(98.5% 0.002 247.839)",
+          "preview": "oklch(98.5% 0.002 247.839)"
+        },
+        {
+          "id": "colors.gray.--color-gray-100",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-100",
+          "figmaName": "Colors/Gray/--color-gray-100",
+          "type": "COLOR",
+          "value": "oklch(96.7% 0.003 264.542)",
+          "displayValue": "oklch(96.7% 0.003 264.542)",
+          "preview": "oklch(96.7% 0.003 264.542)"
+        },
+        {
+          "id": "colors.gray.--color-gray-200",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-200",
+          "figmaName": "Colors/Gray/--color-gray-200",
+          "type": "COLOR",
+          "value": "oklch(92.8% 0.006 264.531)",
+          "displayValue": "oklch(92.8% 0.006 264.531)",
+          "preview": "oklch(92.8% 0.006 264.531)"
+        },
+        {
+          "id": "colors.gray.--color-gray-300",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-300",
+          "figmaName": "Colors/Gray/--color-gray-300",
+          "type": "COLOR",
+          "value": "oklch(87.2% 0.01 258.338)",
+          "displayValue": "oklch(87.2% 0.01 258.338)",
+          "preview": "oklch(87.2% 0.01 258.338)"
+        },
+        {
+          "id": "colors.gray.--color-gray-400",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-400",
+          "figmaName": "Colors/Gray/--color-gray-400",
+          "type": "COLOR",
+          "value": "oklch(70.7% 0.022 261.325)",
+          "displayValue": "oklch(70.7% 0.022 261.325)",
+          "preview": "oklch(70.7% 0.022 261.325)"
+        },
+        {
+          "id": "colors.gray.--color-gray-500",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-500",
+          "figmaName": "Colors/Gray/--color-gray-500",
+          "type": "COLOR",
+          "value": "oklch(55.1% 0.027 264.364)",
+          "displayValue": "oklch(55.1% 0.027 264.364)",
+          "preview": "oklch(55.1% 0.027 264.364)"
+        },
+        {
+          "id": "colors.gray.--color-gray-600",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-600",
+          "figmaName": "Colors/Gray/--color-gray-600",
+          "type": "COLOR",
+          "value": "oklch(44.6% 0.03 256.802)",
+          "displayValue": "oklch(44.6% 0.03 256.802)",
+          "preview": "oklch(44.6% 0.03 256.802)"
+        },
+        {
+          "id": "colors.gray.--color-gray-700",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-700",
+          "figmaName": "Colors/Gray/--color-gray-700",
+          "type": "COLOR",
+          "value": "oklch(37.3% 0.034 259.733)",
+          "displayValue": "oklch(37.3% 0.034 259.733)",
+          "preview": "oklch(37.3% 0.034 259.733)"
+        },
+        {
+          "id": "colors.gray.--color-gray-800",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-800",
+          "figmaName": "Colors/Gray/--color-gray-800",
+          "type": "COLOR",
+          "value": "oklch(27.8% 0.033 256.848)",
+          "displayValue": "oklch(27.8% 0.033 256.848)",
+          "preview": "oklch(27.8% 0.033 256.848)"
+        },
+        {
+          "id": "colors.gray.--color-gray-900",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-900",
+          "figmaName": "Colors/Gray/--color-gray-900",
+          "type": "COLOR",
+          "value": "oklch(21% 0.034 264.665)",
+          "displayValue": "oklch(21% 0.034 264.665)",
+          "preview": "oklch(21% 0.034 264.665)"
+        },
+        {
+          "id": "colors.gray.--color-gray-950",
+          "module": "colors",
+          "submodule": "gray",
+          "name": "--color-gray-950",
+          "figmaName": "Colors/Gray/--color-gray-950",
+          "type": "COLOR",
+          "value": "oklch(13% 0.028 261.692)",
+          "displayValue": "oklch(13% 0.028 261.692)",
+          "preview": "oklch(13% 0.028 261.692)"
+        }
+      ]
+    },
+    {
+      "id": "zinc",
+      "label": "Zinc",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.zinc.--color-zinc-50",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-50",
+          "figmaName": "Colors/Zinc/--color-zinc-50",
+          "type": "COLOR",
+          "value": "oklch(98.5% 0 0)",
+          "displayValue": "oklch(98.5% 0 0)",
+          "preview": "oklch(98.5% 0 0)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-100",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-100",
+          "figmaName": "Colors/Zinc/--color-zinc-100",
+          "type": "COLOR",
+          "value": "oklch(96.7% 0.001 286.375)",
+          "displayValue": "oklch(96.7% 0.001 286.375)",
+          "preview": "oklch(96.7% 0.001 286.375)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-200",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-200",
+          "figmaName": "Colors/Zinc/--color-zinc-200",
+          "type": "COLOR",
+          "value": "oklch(92% 0.004 286.32)",
+          "displayValue": "oklch(92% 0.004 286.32)",
+          "preview": "oklch(92% 0.004 286.32)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-300",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-300",
+          "figmaName": "Colors/Zinc/--color-zinc-300",
+          "type": "COLOR",
+          "value": "oklch(87.1% 0.006 286.286)",
+          "displayValue": "oklch(87.1% 0.006 286.286)",
+          "preview": "oklch(87.1% 0.006 286.286)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-400",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-400",
+          "figmaName": "Colors/Zinc/--color-zinc-400",
+          "type": "COLOR",
+          "value": "oklch(70.5% 0.015 286.067)",
+          "displayValue": "oklch(70.5% 0.015 286.067)",
+          "preview": "oklch(70.5% 0.015 286.067)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-500",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-500",
+          "figmaName": "Colors/Zinc/--color-zinc-500",
+          "type": "COLOR",
+          "value": "oklch(55.2% 0.016 285.938)",
+          "displayValue": "oklch(55.2% 0.016 285.938)",
+          "preview": "oklch(55.2% 0.016 285.938)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-600",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-600",
+          "figmaName": "Colors/Zinc/--color-zinc-600",
+          "type": "COLOR",
+          "value": "oklch(44.2% 0.017 285.786)",
+          "displayValue": "oklch(44.2% 0.017 285.786)",
+          "preview": "oklch(44.2% 0.017 285.786)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-700",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-700",
+          "figmaName": "Colors/Zinc/--color-zinc-700",
+          "type": "COLOR",
+          "value": "oklch(37% 0.013 285.805)",
+          "displayValue": "oklch(37% 0.013 285.805)",
+          "preview": "oklch(37% 0.013 285.805)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-800",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-800",
+          "figmaName": "Colors/Zinc/--color-zinc-800",
+          "type": "COLOR",
+          "value": "oklch(27.4% 0.006 286.033)",
+          "displayValue": "oklch(27.4% 0.006 286.033)",
+          "preview": "oklch(27.4% 0.006 286.033)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-900",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-900",
+          "figmaName": "Colors/Zinc/--color-zinc-900",
+          "type": "COLOR",
+          "value": "oklch(21% 0.006 285.885)",
+          "displayValue": "oklch(21% 0.006 285.885)",
+          "preview": "oklch(21% 0.006 285.885)"
+        },
+        {
+          "id": "colors.zinc.--color-zinc-950",
+          "module": "colors",
+          "submodule": "zinc",
+          "name": "--color-zinc-950",
+          "figmaName": "Colors/Zinc/--color-zinc-950",
+          "type": "COLOR",
+          "value": "oklch(14.1% 0.005 285.823)",
+          "displayValue": "oklch(14.1% 0.005 285.823)",
+          "preview": "oklch(14.1% 0.005 285.823)"
+        }
+      ]
+    },
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.neutral.--color-neutral-50",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-50",
+          "figmaName": "Colors/Neutral/--color-neutral-50",
+          "type": "COLOR",
+          "value": "oklch(98.5% 0 0)",
+          "displayValue": "oklch(98.5% 0 0)",
+          "preview": "oklch(98.5% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-100",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-100",
+          "figmaName": "Colors/Neutral/--color-neutral-100",
+          "type": "COLOR",
+          "value": "oklch(97% 0 0)",
+          "displayValue": "oklch(97% 0 0)",
+          "preview": "oklch(97% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-200",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-200",
+          "figmaName": "Colors/Neutral/--color-neutral-200",
+          "type": "COLOR",
+          "value": "oklch(92.2% 0 0)",
+          "displayValue": "oklch(92.2% 0 0)",
+          "preview": "oklch(92.2% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-300",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-300",
+          "figmaName": "Colors/Neutral/--color-neutral-300",
+          "type": "COLOR",
+          "value": "oklch(87% 0 0)",
+          "displayValue": "oklch(87% 0 0)",
+          "preview": "oklch(87% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-400",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-400",
+          "figmaName": "Colors/Neutral/--color-neutral-400",
+          "type": "COLOR",
+          "value": "oklch(70.8% 0 0)",
+          "displayValue": "oklch(70.8% 0 0)",
+          "preview": "oklch(70.8% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-500",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-500",
+          "figmaName": "Colors/Neutral/--color-neutral-500",
+          "type": "COLOR",
+          "value": "oklch(55.6% 0 0)",
+          "displayValue": "oklch(55.6% 0 0)",
+          "preview": "oklch(55.6% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-600",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-600",
+          "figmaName": "Colors/Neutral/--color-neutral-600",
+          "type": "COLOR",
+          "value": "oklch(43.9% 0 0)",
+          "displayValue": "oklch(43.9% 0 0)",
+          "preview": "oklch(43.9% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-700",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-700",
+          "figmaName": "Colors/Neutral/--color-neutral-700",
+          "type": "COLOR",
+          "value": "oklch(37.1% 0 0)",
+          "displayValue": "oklch(37.1% 0 0)",
+          "preview": "oklch(37.1% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-800",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-800",
+          "figmaName": "Colors/Neutral/--color-neutral-800",
+          "type": "COLOR",
+          "value": "oklch(26.9% 0 0)",
+          "displayValue": "oklch(26.9% 0 0)",
+          "preview": "oklch(26.9% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-900",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-900",
+          "figmaName": "Colors/Neutral/--color-neutral-900",
+          "type": "COLOR",
+          "value": "oklch(20.5% 0 0)",
+          "displayValue": "oklch(20.5% 0 0)",
+          "preview": "oklch(20.5% 0 0)"
+        },
+        {
+          "id": "colors.neutral.--color-neutral-950",
+          "module": "colors",
+          "submodule": "neutral",
+          "name": "--color-neutral-950",
+          "figmaName": "Colors/Neutral/--color-neutral-950",
+          "type": "COLOR",
+          "value": "oklch(14.5% 0 0)",
+          "displayValue": "oklch(14.5% 0 0)",
+          "preview": "oklch(14.5% 0 0)"
+        }
+      ]
+    },
+    {
+      "id": "stone",
+      "label": "Stone",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.stone.--color-stone-50",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-50",
+          "figmaName": "Colors/Stone/--color-stone-50",
+          "type": "COLOR",
+          "value": "oklch(98.5% 0.001 106.423)",
+          "displayValue": "oklch(98.5% 0.001 106.423)",
+          "preview": "oklch(98.5% 0.001 106.423)"
+        },
+        {
+          "id": "colors.stone.--color-stone-100",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-100",
+          "figmaName": "Colors/Stone/--color-stone-100",
+          "type": "COLOR",
+          "value": "oklch(97% 0.001 106.424)",
+          "displayValue": "oklch(97% 0.001 106.424)",
+          "preview": "oklch(97% 0.001 106.424)"
+        },
+        {
+          "id": "colors.stone.--color-stone-200",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-200",
+          "figmaName": "Colors/Stone/--color-stone-200",
+          "type": "COLOR",
+          "value": "oklch(92.3% 0.003 48.717)",
+          "displayValue": "oklch(92.3% 0.003 48.717)",
+          "preview": "oklch(92.3% 0.003 48.717)"
+        },
+        {
+          "id": "colors.stone.--color-stone-300",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-300",
+          "figmaName": "Colors/Stone/--color-stone-300",
+          "type": "COLOR",
+          "value": "oklch(86.9% 0.005 56.366)",
+          "displayValue": "oklch(86.9% 0.005 56.366)",
+          "preview": "oklch(86.9% 0.005 56.366)"
+        },
+        {
+          "id": "colors.stone.--color-stone-400",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-400",
+          "figmaName": "Colors/Stone/--color-stone-400",
+          "type": "COLOR",
+          "value": "oklch(70.9% 0.01 56.259)",
+          "displayValue": "oklch(70.9% 0.01 56.259)",
+          "preview": "oklch(70.9% 0.01 56.259)"
+        },
+        {
+          "id": "colors.stone.--color-stone-500",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-500",
+          "figmaName": "Colors/Stone/--color-stone-500",
+          "type": "COLOR",
+          "value": "oklch(55.3% 0.013 58.071)",
+          "displayValue": "oklch(55.3% 0.013 58.071)",
+          "preview": "oklch(55.3% 0.013 58.071)"
+        },
+        {
+          "id": "colors.stone.--color-stone-600",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-600",
+          "figmaName": "Colors/Stone/--color-stone-600",
+          "type": "COLOR",
+          "value": "oklch(44.4% 0.011 73.639)",
+          "displayValue": "oklch(44.4% 0.011 73.639)",
+          "preview": "oklch(44.4% 0.011 73.639)"
+        },
+        {
+          "id": "colors.stone.--color-stone-700",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-700",
+          "figmaName": "Colors/Stone/--color-stone-700",
+          "type": "COLOR",
+          "value": "oklch(37.4% 0.01 67.558)",
+          "displayValue": "oklch(37.4% 0.01 67.558)",
+          "preview": "oklch(37.4% 0.01 67.558)"
+        },
+        {
+          "id": "colors.stone.--color-stone-800",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-800",
+          "figmaName": "Colors/Stone/--color-stone-800",
+          "type": "COLOR",
+          "value": "oklch(26.8% 0.007 34.298)",
+          "displayValue": "oklch(26.8% 0.007 34.298)",
+          "preview": "oklch(26.8% 0.007 34.298)"
+        },
+        {
+          "id": "colors.stone.--color-stone-900",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-900",
+          "figmaName": "Colors/Stone/--color-stone-900",
+          "type": "COLOR",
+          "value": "oklch(21.6% 0.006 56.043)",
+          "displayValue": "oklch(21.6% 0.006 56.043)",
+          "preview": "oklch(21.6% 0.006 56.043)"
+        },
+        {
+          "id": "colors.stone.--color-stone-950",
+          "module": "colors",
+          "submodule": "stone",
+          "name": "--color-stone-950",
+          "figmaName": "Colors/Stone/--color-stone-950",
+          "type": "COLOR",
+          "value": "oklch(14.7% 0.004 49.25)",
+          "displayValue": "oklch(14.7% 0.004 49.25)",
+          "preview": "oklch(14.7% 0.004 49.25)"
+        }
+      ]
+    },
+    {
+      "id": "black",
+      "label": "Black",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.black.--color-black",
+          "module": "colors",
+          "submodule": "black",
+          "name": "--color-black",
+          "figmaName": "Colors/Black/--color-black",
+          "type": "COLOR",
+          "value": "#000",
+          "displayValue": "#000",
+          "preview": "#000"
+        }
+      ]
+    },
+    {
+      "id": "white",
+      "label": "White",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.white.--color-white",
+          "module": "colors",
+          "submodule": "white",
+          "name": "--color-white",
+          "figmaName": "Colors/White/--color-white",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "structure": "scales",
+    "colorFormats": [
+      "oklch",
+      "hex"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "bulma",
+  "metadata": {
+    "name": "Bulma",
+    "version": "1.0.2",
+    "description": "Selected official framework defaults; native units and color notation are preserved.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/jgthms/bulma/1.0.2/sass/utilities/initial-variables.scss",
+        "version": "1.0.2"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/jgthms/bulma/1.0.2/sass/utilities/derived-variables.scss",
+        "version": "1.0.2"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/jgthms/bulma/1.0.2/sass/base/generic.scss",
+        "version": "1.0.2"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/jgthms/bulma/1.0.2/sass/helpers/spacing.scss",
+        "version": "1.0.2"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/jgthms/bulma/1.0.2/sass/grid/columns.scss",
+        "version": "1.0.2"
+      }
+    ]
+  },
+  "capabilities": {
+    "colors": {
+      "groups": [
+        "palette",
+        "roles"
+      ]
+    },
+    "typography": {
+      "fontFamily": true,
+      "baseSize": true,
+      "typeScale": true,
+      "lineHeight": true
+    },
+    "layout": {
+      "grid": true,
+      "breakpoints": true,
+      "spacing": true,
+      "radius": true,
+      "tokens": false
+    }
+  },
+  "modules": [
+    {
+      "id": "colors",
+      "path": "colors.json"
+    },
+    {
+      "id": "typography",
+      "path": "typography.json"
+    },
+    {
+      "id": "layout",
+      "path": "layout.json"
+    }
+  ]
+}

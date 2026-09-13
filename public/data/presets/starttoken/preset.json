@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "starttoken",
+  "metadata": {
+    "name": "StartToken",
+    "version": "1.0.0",
+    "description": "Original StartToken dataset.",
+    "sources": []
+  },
+  "capabilities": {
+    "colors": {
+      "groups": [
+        "palette",
+        "semantic",
+        "tokens"
+      ]
+    },
+    "typography": {
+      "fontFamily": true,
+      "baseSize": true,
+      "typeScale": true,
+      "lineHeight": true
+    },
+    "layout": {
+      "grid": true,
+      "breakpoints": false,
+      "spacing": true,
+      "radius": true,
+      "tokens": true
+    }
+  },
+  "modules": [
+    {
+      "id": "colors",
+      "path": "colors.json"
+    },
+    {
+      "id": "typography",
+      "path": "typography.json"
+    },
+    {
+      "id": "layout",
+      "path": "layout.json"
+    }
+  ]
+}

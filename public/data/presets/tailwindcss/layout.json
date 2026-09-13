@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "module": "layout",
+  "label": "Layout",
+  "tabIcon": "grid_4x4",
+  "submodules": [
+    {
+      "id": "breakpoints",
+      "label": "Breakpoints",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.breakpoints.--breakpoint-sm",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "--breakpoint-sm",
+          "figmaName": "Layout/Breakpoints/--breakpoint-sm",
+          "type": "FLOAT",
+          "value": 40,
+          "unit": "rem",
+          "displayValue": "40rem"
+        },
+        {
+          "id": "layout.breakpoints.--breakpoint-md",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "--breakpoint-md",
+          "figmaName": "Layout/Breakpoints/--breakpoint-md",
+          "type": "FLOAT",
+          "value": 48,
+          "unit": "rem",
+          "displayValue": "48rem"
+        },
+        {
+          "id": "layout.breakpoints.--breakpoint-lg",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "--breakpoint-lg",
+          "figmaName": "Layout/Breakpoints/--breakpoint-lg",
+          "type": "FLOAT",
+          "value": 64,
+          "unit": "rem",
+          "displayValue": "64rem"
+        },
+        {
+          "id": "layout.breakpoints.--breakpoint-xl",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "--breakpoint-xl",
+          "figmaName": "Layout/Breakpoints/--breakpoint-xl",
+          "type": "FLOAT",
+          "value": 80,
+          "unit": "rem",
+          "displayValue": "80rem"
+        },
+        {
+          "id": "layout.breakpoints.--breakpoint-2xl",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "--breakpoint-2xl",
+          "figmaName": "Layout/Breakpoints/--breakpoint-2xl",
+          "type": "FLOAT",
+          "value": 96,
+          "unit": "rem",
+          "displayValue": "96rem"
+        }
+      ]
+    },
+    {
+      "id": "spacing",
+      "label": "Spacing",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.spacing.--spacing",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "--spacing",
+          "figmaName": "Layout/Spacing/--spacing",
+          "type": "FLOAT",
+          "value": 0.25,
+          "unit": "rem",
+          "displayValue": "0.25rem"
+        }
+      ]
+    },
+    {
+      "id": "radius",
+      "label": "Radius",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.radius.--radius-xs",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-xs",
+          "figmaName": "Layout/Radius/--radius-xs",
+          "type": "FLOAT",
+          "value": 0.125,
+          "unit": "rem",
+          "displayValue": "0.125rem"
+        },
+        {
+          "id": "layout.radius.--radius-sm",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-sm",
+          "figmaName": "Layout/Radius/--radius-sm",
+          "type": "FLOAT",
+          "value": 0.25,
+          "unit": "rem",
+          "displayValue": "0.25rem"
+        },
+        {
+          "id": "layout.radius.--radius-md",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-md",
+          "figmaName": "Layout/Radius/--radius-md",
+          "type": "FLOAT",
+          "value": 0.375,
+          "unit": "rem",
+          "displayValue": "0.375rem"
+        },
+        {
+          "id": "layout.radius.--radius-lg",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-lg",
+          "figmaName": "Layout/Radius/--radius-lg",
+          "type": "FLOAT",
+          "value": 0.5,
+          "unit": "rem",
+          "displayValue": "0.5rem"
+        },
+        {
+          "id": "layout.radius.--radius-xl",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-xl",
+          "figmaName": "Layout/Radius/--radius-xl",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        },
+        {
+          "id": "layout.radius.--radius-2xl",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-2xl",
+          "figmaName": "Layout/Radius/--radius-2xl",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "layout.radius.--radius-3xl",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-3xl",
+          "figmaName": "Layout/Radius/--radius-3xl",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "layout.radius.--radius-4xl",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "--radius-4xl",
+          "figmaName": "Layout/Radius/--radius-4xl",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "rem",
+          "displayValue": "2rem"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "grid": {
+      "kind": "none"
+    },
+    "spacing": {
+      "kind": "multiplier"
+    }
+  }
+}

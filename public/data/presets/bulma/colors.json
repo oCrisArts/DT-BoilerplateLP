@@ -1,0 +1,490 @@
+{
+  "schemaVersion": 1,
+  "module": "colors",
+  "label": "Colors",
+  "tabIcon": "palette",
+  "submodules": [
+    {
+      "id": "palette",
+      "label": "Palette",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.palette.black",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "black",
+          "figmaName": "Colors/Palette/black",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 4%)",
+          "displayValue": "hsl(221, 14%, 4%)",
+          "preview": "hsl(221, 14%, 4%)"
+        },
+        {
+          "id": "colors.palette.black-bis",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "black-bis",
+          "figmaName": "Colors/Palette/black-bis",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 9%)",
+          "displayValue": "hsl(221, 14%, 9%)",
+          "preview": "hsl(221, 14%, 9%)"
+        },
+        {
+          "id": "colors.palette.black-ter",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "black-ter",
+          "figmaName": "Colors/Palette/black-ter",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 14%)",
+          "displayValue": "hsl(221, 14%, 14%)",
+          "preview": "hsl(221, 14%, 14%)"
+        },
+        {
+          "id": "colors.palette.grey-darker",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "grey-darker",
+          "figmaName": "Colors/Palette/grey-darker",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 21%)",
+          "displayValue": "hsl(221, 14%, 21%)",
+          "preview": "hsl(221, 14%, 21%)"
+        },
+        {
+          "id": "colors.palette.grey-dark",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "grey-dark",
+          "figmaName": "Colors/Palette/grey-dark",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 29%)",
+          "displayValue": "hsl(221, 14%, 29%)",
+          "preview": "hsl(221, 14%, 29%)"
+        },
+        {
+          "id": "colors.palette.grey",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "grey",
+          "figmaName": "Colors/Palette/grey",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 48%)",
+          "displayValue": "hsl(221, 14%, 48%)",
+          "preview": "hsl(221, 14%, 48%)"
+        },
+        {
+          "id": "colors.palette.grey-light",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "grey-light",
+          "figmaName": "Colors/Palette/grey-light",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 71%)",
+          "displayValue": "hsl(221, 14%, 71%)",
+          "preview": "hsl(221, 14%, 71%)"
+        },
+        {
+          "id": "colors.palette.grey-lighter",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "grey-lighter",
+          "figmaName": "Colors/Palette/grey-lighter",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 86%)",
+          "displayValue": "hsl(221, 14%, 86%)",
+          "preview": "hsl(221, 14%, 86%)"
+        },
+        {
+          "id": "colors.palette.grey-lightest",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "grey-lightest",
+          "figmaName": "Colors/Palette/grey-lightest",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 93%)",
+          "displayValue": "hsl(221, 14%, 93%)",
+          "preview": "hsl(221, 14%, 93%)"
+        },
+        {
+          "id": "colors.palette.white-ter",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "white-ter",
+          "figmaName": "Colors/Palette/white-ter",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 96%)",
+          "displayValue": "hsl(221, 14%, 96%)",
+          "preview": "hsl(221, 14%, 96%)"
+        },
+        {
+          "id": "colors.palette.white-bis",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "white-bis",
+          "figmaName": "Colors/Palette/white-bis",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 98%)",
+          "displayValue": "hsl(221, 14%, 98%)",
+          "preview": "hsl(221, 14%, 98%)"
+        },
+        {
+          "id": "colors.palette.white",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "white",
+          "figmaName": "Colors/Palette/white",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 100%)",
+          "displayValue": "hsl(221, 14%, 100%)",
+          "preview": "hsl(221, 14%, 100%)"
+        },
+        {
+          "id": "colors.palette.orange",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "orange",
+          "figmaName": "Colors/Palette/orange",
+          "type": "COLOR",
+          "value": "hsl(14, 100%, 53%)",
+          "displayValue": "hsl(14, 100%, 53%)",
+          "preview": "hsl(14, 100%, 53%)"
+        },
+        {
+          "id": "colors.palette.yellow",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "yellow",
+          "figmaName": "Colors/Palette/yellow",
+          "type": "COLOR",
+          "value": "hsl(42, 100%, 53%)",
+          "displayValue": "hsl(42, 100%, 53%)",
+          "preview": "hsl(42, 100%, 53%)"
+        },
+        {
+          "id": "colors.palette.green",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "green",
+          "figmaName": "Colors/Palette/green",
+          "type": "COLOR",
+          "value": "hsl(153, 53%, 53%)",
+          "displayValue": "hsl(153, 53%, 53%)",
+          "preview": "hsl(153, 53%, 53%)"
+        },
+        {
+          "id": "colors.palette.turquoise",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "turquoise",
+          "figmaName": "Colors/Palette/turquoise",
+          "type": "COLOR",
+          "value": "hsl(171, 100%, 41%)",
+          "displayValue": "hsl(171, 100%, 41%)",
+          "preview": "hsl(171, 100%, 41%)"
+        },
+        {
+          "id": "colors.palette.cyan",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "cyan",
+          "figmaName": "Colors/Palette/cyan",
+          "type": "COLOR",
+          "value": "hsl(198, 100%, 70%)",
+          "displayValue": "hsl(198, 100%, 70%)",
+          "preview": "hsl(198, 100%, 70%)"
+        },
+        {
+          "id": "colors.palette.blue",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "blue",
+          "figmaName": "Colors/Palette/blue",
+          "type": "COLOR",
+          "value": "hsl(233, 100%, 63%)",
+          "displayValue": "hsl(233, 100%, 63%)",
+          "preview": "hsl(233, 100%, 63%)"
+        },
+        {
+          "id": "colors.palette.purple",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "purple",
+          "figmaName": "Colors/Palette/purple",
+          "type": "COLOR",
+          "value": "hsl(271, 100%, 71%)",
+          "displayValue": "hsl(271, 100%, 71%)",
+          "preview": "hsl(271, 100%, 71%)"
+        },
+        {
+          "id": "colors.palette.red",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "red",
+          "figmaName": "Colors/Palette/red",
+          "type": "COLOR",
+          "value": "hsl(348, 100%, 70%)",
+          "displayValue": "hsl(348, 100%, 70%)",
+          "preview": "hsl(348, 100%, 70%)"
+        }
+      ]
+    },
+    {
+      "id": "roles",
+      "label": "Roles",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.roles.scheme-main",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "scheme-main",
+          "figmaName": "Colors/Roles/scheme-main",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 100%)",
+          "displayValue": "hsl(221, 14%, 100%)",
+          "preview": "hsl(221, 14%, 100%)"
+        },
+        {
+          "id": "colors.roles.scheme-main-bis",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "scheme-main-bis",
+          "figmaName": "Colors/Roles/scheme-main-bis",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 98%)",
+          "displayValue": "hsl(221, 14%, 98%)",
+          "preview": "hsl(221, 14%, 98%)"
+        },
+        {
+          "id": "colors.roles.scheme-main-ter",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "scheme-main-ter",
+          "figmaName": "Colors/Roles/scheme-main-ter",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 96%)",
+          "displayValue": "hsl(221, 14%, 96%)",
+          "preview": "hsl(221, 14%, 96%)"
+        },
+        {
+          "id": "colors.roles.scheme-invert",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "scheme-invert",
+          "figmaName": "Colors/Roles/scheme-invert",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 4%)",
+          "displayValue": "hsl(221, 14%, 4%)",
+          "preview": "hsl(221, 14%, 4%)"
+        },
+        {
+          "id": "colors.roles.scheme-invert-bis",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "scheme-invert-bis",
+          "figmaName": "Colors/Roles/scheme-invert-bis",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 9%)",
+          "displayValue": "hsl(221, 14%, 9%)",
+          "preview": "hsl(221, 14%, 9%)"
+        },
+        {
+          "id": "colors.roles.scheme-invert-ter",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "scheme-invert-ter",
+          "figmaName": "Colors/Roles/scheme-invert-ter",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 14%)",
+          "displayValue": "hsl(221, 14%, 14%)",
+          "preview": "hsl(221, 14%, 14%)"
+        },
+        {
+          "id": "colors.roles.text",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "text",
+          "figmaName": "Colors/Roles/text",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 29%)",
+          "displayValue": "hsl(221, 14%, 29%)",
+          "preview": "hsl(221, 14%, 29%)"
+        },
+        {
+          "id": "colors.roles.text-weak",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "text-weak",
+          "figmaName": "Colors/Roles/text-weak",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 48%)",
+          "displayValue": "hsl(221, 14%, 48%)",
+          "preview": "hsl(221, 14%, 48%)"
+        },
+        {
+          "id": "colors.roles.text-strong",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "text-strong",
+          "figmaName": "Colors/Roles/text-strong",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 21%)",
+          "displayValue": "hsl(221, 14%, 21%)",
+          "preview": "hsl(221, 14%, 21%)"
+        },
+        {
+          "id": "colors.roles.primary",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "primary",
+          "figmaName": "Colors/Roles/primary",
+          "type": "COLOR",
+          "value": "hsl(171, 100%, 41%)",
+          "displayValue": "hsl(171, 100%, 41%)",
+          "preview": "hsl(171, 100%, 41%)"
+        },
+        {
+          "id": "colors.roles.info",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "info",
+          "figmaName": "Colors/Roles/info",
+          "type": "COLOR",
+          "value": "hsl(198, 100%, 70%)",
+          "displayValue": "hsl(198, 100%, 70%)",
+          "preview": "hsl(198, 100%, 70%)"
+        },
+        {
+          "id": "colors.roles.success",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "success",
+          "figmaName": "Colors/Roles/success",
+          "type": "COLOR",
+          "value": "hsl(153, 53%, 53%)",
+          "displayValue": "hsl(153, 53%, 53%)",
+          "preview": "hsl(153, 53%, 53%)"
+        },
+        {
+          "id": "colors.roles.warning",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "warning",
+          "figmaName": "Colors/Roles/warning",
+          "type": "COLOR",
+          "value": "hsl(42, 100%, 53%)",
+          "displayValue": "hsl(42, 100%, 53%)",
+          "preview": "hsl(42, 100%, 53%)"
+        },
+        {
+          "id": "colors.roles.danger",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "danger",
+          "figmaName": "Colors/Roles/danger",
+          "type": "COLOR",
+          "value": "hsl(348, 100%, 70%)",
+          "displayValue": "hsl(348, 100%, 70%)",
+          "preview": "hsl(348, 100%, 70%)"
+        },
+        {
+          "id": "colors.roles.light",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "light",
+          "figmaName": "Colors/Roles/light",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 96%)",
+          "displayValue": "hsl(221, 14%, 96%)",
+          "preview": "hsl(221, 14%, 96%)"
+        },
+        {
+          "id": "colors.roles.dark",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "dark",
+          "figmaName": "Colors/Roles/dark",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 21%)",
+          "displayValue": "hsl(221, 14%, 21%)",
+          "preview": "hsl(221, 14%, 21%)"
+        },
+        {
+          "id": "colors.roles.link",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "link",
+          "figmaName": "Colors/Roles/link",
+          "type": "COLOR",
+          "value": "hsl(233, 100%, 63%)",
+          "displayValue": "hsl(233, 100%, 63%)",
+          "preview": "hsl(233, 100%, 63%)"
+        },
+        {
+          "id": "colors.roles.background",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "background",
+          "figmaName": "Colors/Roles/background",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 96%)",
+          "displayValue": "hsl(221, 14%, 96%)",
+          "preview": "hsl(221, 14%, 96%)"
+        },
+        {
+          "id": "colors.roles.border",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "border",
+          "figmaName": "Colors/Roles/border",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 86%)",
+          "displayValue": "hsl(221, 14%, 86%)",
+          "preview": "hsl(221, 14%, 86%)"
+        },
+        {
+          "id": "colors.roles.border-weak",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "border-weak",
+          "figmaName": "Colors/Roles/border-weak",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 93%)",
+          "displayValue": "hsl(221, 14%, 93%)",
+          "preview": "hsl(221, 14%, 93%)"
+        },
+        {
+          "id": "colors.roles.code",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "code",
+          "figmaName": "Colors/Roles/code",
+          "type": "COLOR",
+          "value": "hsl(348, 100%, 70%)",
+          "displayValue": "hsl(348, 100%, 70%)",
+          "preview": "hsl(348, 100%, 70%)"
+        },
+        {
+          "id": "colors.roles.shadow-color",
+          "module": "colors",
+          "submodule": "roles",
+          "name": "shadow-color",
+          "figmaName": "Colors/Roles/shadow-color",
+          "type": "COLOR",
+          "value": "hsl(221, 14%, 4%)",
+          "displayValue": "hsl(221, 14%, 4%)",
+          "preview": "hsl(221, 14%, 4%)"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "structure": "grouped",
+    "colorFormats": [
+      "hsl"
+    ]
+  }
+}

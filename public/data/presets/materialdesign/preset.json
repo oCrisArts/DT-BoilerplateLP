@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "materialdesign",
+  "metadata": {
+    "name": "Material Design",
+    "version": "2.5.0",
+    "description": "Material Design 3, official Material Web v2.5.0 tokens (Google Material 3 v0.192). Default light color scheme; native rem typography and px shapes.",
+    "sources": [
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/_md-sys-color.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/versions/v0_192/_md-sys-color.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/_md-sys-typescale.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/versions/v0_192/_md-sys-typescale.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/_md-ref-typeface.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/versions/v0_192/_md-ref-typeface.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/_md-sys-shape.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/versions/v0_192/_md-sys-shape.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/_md-ref-palette.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      },
+      {
+        "url": "https://github.com/material-components/material-web/blob/b4de401eb665ec63474f39319a4ba8f2145974cc/tokens/versions/v0_192/_md-ref-palette.scss",
+        "version": "@material/web 2.5.0; Google Material 3 v0.192; commit b4de401eb665ec63474f39319a4ba8f2145974cc"
+      }
+    ]
+  },
+  "capabilities": {
+    "colors": {
+      "groups": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "error",
+        "surface",
+        "inverse",
+        "outline",
+        "utility"
+      ]
+    },
+    "typography": {
+      "fontFamily": true,
+      "baseSize": true,
+      "typeScale": true,
+      "lineHeight": true
+    },
+    "layout": {
+      "grid": false,
+      "breakpoints": false,
+      "spacing": false,
+      "radius": true,
+      "tokens": false
+    }
+  },
+  "modules": [
+    {
+      "id": "colors",
+      "path": "colors.json"
+    },
+    {
+      "id": "typography",
+      "path": "typography.json"
+    },
+    {
+      "id": "layout",
+      "path": "layout.json"
+    }
+  ]
+}

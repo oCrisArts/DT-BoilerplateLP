@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "bootstrap",
+  "metadata": {
+    "name": "Bootstrap",
+    "version": "5.3.3",
+    "description": "Selected official framework defaults; native units and color notation are preserved.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/twbs/bootstrap/v5.3.3/scss/_variables.scss",
+        "version": "5.3.3"
+      }
+    ]
+  },
+  "capabilities": {
+    "colors": {
+      "groups": [
+        "palette",
+        "theme"
+      ]
+    },
+    "typography": {
+      "fontFamily": true,
+      "baseSize": true,
+      "typeScale": true,
+      "lineHeight": true
+    },
+    "layout": {
+      "grid": true,
+      "breakpoints": true,
+      "spacing": true,
+      "radius": true,
+      "tokens": false
+    }
+  },
+  "modules": [
+    {
+      "id": "colors",
+      "path": "colors.json"
+    },
+    {
+      "id": "typography",
+      "path": "typography.json"
+    },
+    {
+      "id": "layout",
+      "path": "layout.json"
+    }
+  ]
+}

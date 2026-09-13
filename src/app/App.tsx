@@ -1,4 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import PluginMockup from "./components/PluginMockup";
+import { useRef, useState, useEffect, useId } from "react";
+import { catalog, presetNames, loadPreset } from "@/data/presets";
+import type { Module as VariableModule, Submodule as VariableSubmodule, Variable as VariableItem } from '@/data/preset-contract/types';
 import { useLocation } from "react-router-dom";
 import {
   AnimatePresence,
@@ -166,141 +169,59 @@ const FEATURES = [
   {
     icon: "palette",
     title: "Colors",
-    desc: "Generate color variables organized into Palette, Semantic and Tokens groups — ready to use immediately.",
+    desc: "Customize framework colors, edit individual tokens and preview their native scales without changing the original token names.",
   },
   {
     icon: "font_download",
     title: "Typography",
-    desc: "Create font families, sizes, weights, line heights and typography tokens instantly.",
+    desc: "Choose your font, base size, type scale and line height, then regenerate typography values while preserving the framework structure.",
   },
   {
     icon: "grid_4x4",
     title: "Layout",
-    desc: "Generate spacing, grid, radius and layout tokens structured and ready for production.",
+    desc: "Adjust grid, breakpoints, spacing, radius and other layout foundations available in each preset.",
   },
 ];
 
 const STEPS = [
-  {
-    num: "01",
-    title: "Choose a Module",
-    desc: "Select Colors, Typography, Layout — or generate everything at once with a Full System.",
-  },
-  {
-    num: "02",
-    title: "Configure Your System",
-    desc: "Customize colors, typography scales and layout settings to fit your project.",
-  },
-  {
-    num: "03",
-    title: "Generate Variables",
-    desc: "Hit Generate. A complete Design System foundation is created inside Figma in seconds.",
-  },
-  {
-    num: "04",
-    title: "Visual Documentation",
-    desc: "DT Boilerplate also creates an organized visual foundations page inside Figma.",
-  },
+  { num: "01", title: "Choose a Preset", desc: `Start with ${presetNames} foundations.` },
+  { num: "02", title: "Customize Colors", desc: "Change color values and preview their scales while keeping the original framework token names." },
+  { num: "03", title: "Configure Typography", desc: "Choose your font, base size, type scale and line height, then regenerate the framework typography scale." },
+  { num: "04", title: "Adjust Layout", desc: "Customize the grid, breakpoints, spacing, radius and other foundations provided by the selected preset." },
+  { num: "05", title: "Generate Tokens", desc: "Create the complete customized package as native Figma Variables." },
+  { num: "06", title: "Visual Documentation", desc: "StartTokens automatically creates an organized Visual Foundations page using the same generated variables." },
 ];
 
 const VISUAL_DOC_PREVIEWS = [
   {
     src: "/images/how-it-works/visual-doc-1.webp",
-    alt: "Visual documentation carousel preview 1",
+    alt: "StartTokens Visual Foundations — customized StartToken color scales and variable paths",
   },
   {
     src: "/images/how-it-works/visual-doc-2.webp",
-    alt: "Visual documentation carousel preview 2",
+    alt: "StartTokens Visual Foundations — typography values and framework token names",
   },
   {
     src: "/images/how-it-works/visual-doc-3.webp",
-    alt: "Visual documentation carousel preview 3",
+    alt: "StartTokens Visual Foundations — layout values and framework token groups",
   },
 ];
 
 const MONTHLY_FEATURES = [
-  "Unlimited Generations",
-  "Colors",
-  "Typography",
-  "Layout",
-  "Variable Collections",
-  "Visual Foundations Documentation",
-  "Future Updates",
-  "Priority Support",
+  "Unlimited Generations", `${catalog.presets.length} Ready-to-use Presets`, "Colors", "Typography", "Layout",
+  "Custom Color Scales", "Typography Scale Generation", "Native Figma Variable Collections",
+  "Visual Foundations Documentation", "Future Updates", "Priority Support",
 ];
-
-const LIFETIME_FEATURES = [
-  "Unlimited Generations",
-  "Colors",
-  "Typography",
-  "Layout",
-  "Variable Collections",
-  "Visual Foundations Documentation",
-  "Future Updates",
-  "Priority Support",
-  "One-time Payment",
-];
+const LIFETIME_FEATURES = [...MONTHLY_FEATURES, "One-time Payment"];
 
 const FAQS = [
-  {
-    q: "What does DT Boilerplate generate?",
-    a: "Colors, Typography and Layout variables organized into structured collections and groups inside Figma Variables. Everything is ready to use immediately after generation.",
-  },
-  {
-    q: "Does it use native Figma Variables?",
-    a: "Yes. Everything is generated using the official Figma Variables system — no workarounds, no third-party dependencies.",
-  },
-  {
-    q: "Can I edit generated variables?",
-    a: "Yes. All generated variables remain fully editable native Figma Variables. You can rename, reorganize or extend them at any time.",
-  },
-  {
-    q: "Do I need Design System experience?",
-    a: "No. DT Boilerplate is designed to help any designer create a solid, production-ready foundation in seconds — no prior Design System expertise required.",
-  },
+  { q: "What does StartTokens generate?", a: "StartTokens generates native Figma Variables for Colors, Typography and Layout from customizable framework presets, plus an organized Visual Foundations documentation page." },
+  { q: "Which presets are available?", a: `${presetNames}.` },
+  { q: "Does StartTokens change framework token names?", a: "No. StartTokens preserves the original token structure and naming. You customize the values while keeping the framework conventions intact." },
+  { q: "Does it use native Figma Variables?", a: "Yes. Generated tokens use Figma’s native Variables system." },
+  { q: "Can I customize the generated values?", a: "Yes. Colors, typography and supported layout values can be customized before generation." },
+  { q: "Does it generate documentation?", a: "Yes. A Visual Foundations page is automatically created from the same variables generated by the plugin." },
 ];
-
-// ── Plugin mockup SVG paths (from Figma import svg-fdvtc7n2dr.ts) ─────────────
-const pluginSvgPaths = {
-  p3542e280:
-    "M4.81125 0.8175C4.71354 0.772931 4.6074 0.749866 4.5 0.749866C4.3926 0.749866 4.28646 0.772931 4.18875 0.8175L0.975 2.28C0.908456 2.30934 0.85188 2.3574 0.812161 2.41832C0.772442 2.47924 0.751295 2.5504 0.751295 2.62312C0.751295 2.69585 0.772442 2.76701 0.812161 2.82793C0.85188 2.88885 0.908456 2.93691 0.975 2.96625L4.1925 4.4325C4.29021 4.47707 4.39635 4.50013 4.50375 4.50013C4.61115 4.50013 4.71729 4.47707 4.815 4.4325L8.0325 2.97C8.09904 2.94066 8.15562 2.8926 8.19534 2.83168C8.23506 2.77076 8.2562 2.6996 8.2562 2.62688C8.2562 2.55415 8.23506 2.48299 8.19534 2.42207C8.15562 2.36115 8.09904 2.31309 8.0325 2.28375L4.81125 0.8175Z",
-  p15348c00:
-    "M0.75 4.5C0.749822 4.57173 0.770218 4.642 0.808769 4.70248C0.84732 4.76297 0.902407 4.81113 0.9675 4.84125L4.1925 6.3075C4.2897 6.35151 4.39517 6.37428 4.50187 6.37428C4.60858 6.37428 4.71405 6.35151 4.81125 6.3075L8.02875 4.845C8.09513 4.81516 8.15139 4.76666 8.19068 4.7054C8.22996 4.64414 8.25058 4.57277 8.25 4.5",
-  p3defb690:
-    "M0.75 6.375C0.749822 6.44673 0.770218 6.517 0.808769 6.57748C0.84732 6.63797 0.902407 6.68613 0.9675 6.71625L4.1925 8.1825C4.2897 8.22651 4.39517 8.24928 4.50187 8.24928C4.60858 8.24928 4.71405 8.22651 4.81125 8.1825L8.02875 6.72C8.09513 6.69016 8.15139 6.64166 8.19068 6.5804C8.22996 6.51914 8.25058 6.44777 8.25 6.375",
-  p1e4f3d00:
-    "M4.0625 7.1875C5.78839 7.1875 7.1875 5.78839 7.1875 4.0625C7.1875 2.33661 5.78839 0.9375 4.0625 0.9375C2.33661 0.9375 0.9375 2.33661 0.9375 4.0625C0.9375 5.78839 2.33661 7.1875 4.0625 7.1875Z",
-  p1a7a3080:
-    "M1.83333 6.41667C1.7466 6.41696 1.66156 6.39264 1.5881 6.34653C1.51464 6.30042 1.45577 6.23441 1.41834 6.15618C1.3809 6.07794 1.36643 5.99069 1.3766 5.90455C1.38678 5.81842 1.42119 5.73694 1.47583 5.66958L6.01333 0.994583C6.04737 0.955296 6.09375 0.928747 6.14487 0.919294C6.19598 0.909842 6.24879 0.918047 6.29463 0.942564C6.34046 0.967081 6.3766 1.00645 6.39711 1.05422C6.41762 1.10198 6.42129 1.1553 6.4075 1.20542L5.5275 3.96458C5.50155 4.03403 5.49284 4.10874 5.5021 4.18229C5.51137 4.25585 5.53834 4.32606 5.58071 4.3869C5.62307 4.44775 5.67956 4.4974 5.74533 4.53162C5.81111 4.56583 5.8842 4.58357 5.95833 4.58333H9.16667C9.2534 4.58304 9.33844 4.60736 9.4119 4.65347C9.48536 4.69958 9.54423 4.76559 9.58167 4.84382C9.6191 4.92206 9.63357 5.00931 9.6234 5.09545C9.61322 5.18158 9.57881 5.26306 9.52417 5.33042L4.98667 10.0054C4.95263 10.0447 4.90625 10.0713 4.85513 10.0807C4.80402 10.0902 4.75121 10.082 4.70537 10.0574C4.65954 10.0329 4.6234 9.99355 4.60289 9.94578C4.58238 9.89802 4.57871 9.8447 4.5925 9.79458L5.4725 7.03542C5.49845 6.96597 5.50716 6.89126 5.4979 6.81771C5.48863 6.74415 5.46166 6.67394 5.41929 6.6131C5.37693 6.55225 5.32044 6.5026 5.25467 6.46838C5.18889 6.43417 5.1158 6.41643 5.04167 6.41667H1.83333Z",
-};
-
-type VariableItem = {
-  id: string;
-  module: string;
-  submodule: string;
-  name: string;
-  figmaName: string;
-  type: "COLOR" | "FLOAT" | "STRING";
-  value: string | number | { r: number; g: number; b: number; a: number };
-  unit?: string;
-  displayValue: string;
-  icon?: string;
-  preview?: string;
-};
-
-type VariableSubmodule = {
-  id: string;
-  label: string;
-  icon: string;
-  variables: VariableItem[];
-};
-
-type VariableModule = {
-  module: string;
-  label: string;
-  tabIcon: string;
-  submodules: VariableSubmodule[];
-};
 
 const EMPTY_MODULES: VariableModule[] = [];
 
@@ -323,507 +244,14 @@ const WHAT_YOU_GET_DESCRIPTIONS: Record<string, string> = {
 
 
 // ── Components ────────────────────────────────────────────────────────────────
-function PluginMockup({ modules = EMPTY_MODULES, initialModule = "colors" }: { modules?: VariableModule[]; initialModule?: string }) {
-  const fallbackModule = modules[0];
-  const initialModuleId = modules.some((module) => module.module === initialModule) ? initialModule : fallbackModule?.module ?? "";
-  const [activeModule, setActiveModule] =
-    useState<string>(initialModuleId);
-  const [openSection, setOpenSection] =
-    useState<string>(fallbackModule?.submodules[0]?.id ?? "");
-  const [search, setSearch] = useState("");
-  const [hoveredToken, setHoveredToken] = useState<
-    string | null
-  >(null);
-  const [editingToken, setEditingToken] = useState<
-    string | null
-  >(null);
-  const [tokenValues, setTokenValues] = useState<
-    Record<string, string>
-  >({});
-
-  const currentModule = modules.find((module) => module.module === activeModule) ?? fallbackModule;
-
-  useEffect(() => {
-    const nextModule = modules.find((module) => module.module === initialModule) ?? fallbackModule;
-    setActiveModule(nextModule?.module ?? "");
-    setOpenSection(nextModule?.submodules[0]?.id ?? "");
-    setSearch("");
-    setEditingToken(null);
-  }, [initialModule, modules, fallbackModule]);
-
-  const handleTabClick = (mod: string) => {
-    setActiveModule(mod);
-    setOpenSection(modules.find((module) => module.module === mod)?.submodules[0]?.id ?? "");
-    setSearch("");
-    setEditingToken(null);
-  };
-
-  // Filter tokens in every section by the search query
-  const filteredSections = (currentModule?.submodules ?? []).map(
-    (section) => ({
-      ...section,
-      variables: search.trim()
-        ? section.variables.filter((t) =>
-            t.name.toLowerCase().includes(search.toLowerCase()),
-          )
-        : section.variables,
-    }),
-  );
-
-  // If search has text, auto-expand sections that have matches
-  const effectiveOpen = search.trim()
-    ? (filteredSections.find((s) => s.variables.length > 0)?.id ??
-      openSection)
-    : openSection;
-
-  const getDisplayValue = (token: VariableItem): string => {
-    if (tokenValues[token.id]) return tokenValues[token.id];
-    return token.displayValue;
-  };
-
-  const commitEdit = (id: string, value: string) => {
-    setTokenValues((prev) => ({ ...prev, [id]: value }));
-    setEditingToken(null);
-  };
-
-  return (
-    <div
-      className="bg-white relative rounded-[16px] select-none flex flex-col"
-      style={{
-        width: "300px",
-        boxShadow:
-          "0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)",
-        border: "1px solid rgba(0,0,0,0.08)",
-      }}
-    >
-      {/* ── Window chrome ── */}
-      <div
-        className="bg-[#f7f7f8] rounded-tl-[16px] rounded-tr-[16px] shrink-0"
-        style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
-      >
-        <div className="flex gap-[8px] items-center pb-[13px] pt-[12px] px-[16px]">
-          <div className="flex gap-[6px] items-center shrink-0">
-            <div className="bg-[#ff5f57] rounded-full w-[12px] h-[12px]" />
-            <div className="bg-[#ffbd2e] rounded-full w-[12px] h-[12px]" />
-            <div className="bg-[#28c840] rounded-full w-[12px] h-[12px]" />
-          </div>
-          <div className="flex-1 flex gap-[6px] items-center justify-center">
-            <div className="bg-[#0c0c0d] rounded-[4px] w-[14px] h-[14px] flex items-center justify-center shrink-0">
-              <svg
-                width="9"
-                height="9"
-                viewBox="0 0 9 9"
-                fill="none"
-              >
-                <path
-                  d={pluginSvgPaths.p3542e280}
-                  stroke="#FAFAFA"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="0.75"
-                />
-                <path
-                  d={pluginSvgPaths.p15348c00}
-                  stroke="#FAFAFA"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="0.75"
-                />
-                <path
-                  d={pluginSvgPaths.p3defb690}
-                  stroke="#FAFAFA"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="0.75"
-                />
-              </svg>
-            </div>
-            <span
-              className="text-[11px] font-semibold whitespace-nowrap"
-              style={{
-                color: "rgba(12,12,13,0.7)",
-                fontFamily: "'Source Sans 3', sans-serif",
-              }}
-            >
-              DT Boilerplate
-            </span>
-          </div>
-          <span
-            className="text-[9px] shrink-0"
-            style={{
-              color: "#6e6e80",
-              fontFamily: "'Source Sans 3', sans-serif",
-            }}
-          >
-            v0.1
-          </span>
-        </div>
-      </div>
-
-      {/* ── Module tabs (51px, icon + label) ── */}
-      <div
-        className="relative flex items-start shrink-0"
-        style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
-      >
-        {modules.map((mod) => {
-          const isActive = mod.module === activeModule;
-          return (
-            <button
-              key={mod.module}
-              onClick={() => handleTabClick(mod.module)}
-              className="flex-1 relative flex flex-col items-center justify-center pb-[12px] pt-[8px] cursor-pointer"
-              style={{
-                height: "51px",
-                borderBottom: `2px solid ${isActive ? "#5e6ad2" : "transparent"}`,
-              }}
-            >
-              <MI
-                icon={mod.tabIcon}
-                size={14}
-                style={{
-                  color: isActive ? "#5e6ad2" : "#6e6e80",
-                  marginBottom: 2,
-                }}
-              />
-              <span
-                className="text-[10px] font-medium leading-[15px] whitespace-nowrap"
-                style={{
-                  color: isActive ? "#5e6ad2" : "#6e6e80",
-                  fontFamily: "'Source Sans 3', sans-serif",
-                }}
-              >
-                {mod.label}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* ── Content ── */}
-      <div className="bg-white flex flex-col">
-        {/* Search — always at top, functional */}
-        <div className="p-[12px] shrink-0">
-          <div
-            className="flex gap-[8px] items-center px-[10px] rounded-[6px]"
-            style={{ background: "#f2f2f4", height: "40px" }}
-          >
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 10 10"
-              fill="none"
-              className="shrink-0"
-            >
-              <path
-                d={pluginSvgPaths.p1e4f3d00}
-                stroke="#6E6E80"
-                strokeWidth="0.9375"
-              />
-              <path
-                d="M6.5625 6.5625L8.75 8.75"
-                stroke="#6E6E80"
-                strokeLinecap="round"
-                strokeWidth="0.9375"
-              />
-            </svg>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search tokens…"
-              className="flex-1 bg-transparent outline-none text-[10px] leading-[15px] min-w-0"
-              style={{
-                color: "#6e6e80",
-                fontFamily: "'Source Sans 3', sans-serif",
-              }}
-            />
-            {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="shrink-0 flex items-center"
-                tabIndex={-1}
-              >
-                <MI
-                  icon="close"
-                  size={12}
-                  style={{ color: "#6e6e80" }}
-                />
-              </button>
-            )}
-          </div>
-        </div>
-
-        {/* Accordion sections */}
-        {filteredSections.map((section) => {
-          const isOpen = effectiveOpen === section.id;
-          const hasTokens = section.variables.length > 0;
-
-          return (
-            <div
-              key={section.id}
-              style={{ background: "#fafafa" }}
-            >
-              {/* Section header */}
-              <button
-                onClick={() => {
-                  setOpenSection(isOpen ? "" : section.id);
-                  setEditingToken(null);
-                }}
-                className="h-[48px] w-full flex items-center gap-[8px] px-[12px] pb-[10px] pt-[9px] cursor-pointer"
-                style={{ borderTop: "1px solid #eee6e6" }}
-              >
-                <MI
-                  icon={section.icon}
-                  size={13}
-                  style={{
-                    color: isOpen ? "#5e6ad2" : "#6e6e80",
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  className="flex-1 text-[10px] font-medium leading-[15px] text-left whitespace-nowrap"
-                  style={{
-                    color: isOpen ? "#5e6ad2" : "#6e6e80",
-                    fontFamily: "'Source Sans 3', sans-serif",
-                  }}
-                >
-                  {section.label}
-                </span>
-                <MI
-                  icon={isOpen ? "expand_less" : "expand_more"}
-                  size={14}
-                  style={{
-                    color: isOpen ? "#5e6ad2" : "#6e6e80",
-                    flexShrink: 0,
-                  }}
-                />
-              </button>
-
-              {/* Token list */}
-              {isOpen && hasTokens && (
-                <div
-                  className="pb-[8px] px-[12px]"
-                  style={{
-                    maxHeight: "168px",
-                    overflowY: "auto",
-                  }}
-                >
-                  {section.variables.map((token) => {
-                    const displayValue = getDisplayValue(token);
-                    const isEditing =
-                      editingToken === token.id;
-                    const isHovered =
-                      hoveredToken === token.id;
-
-                    return (
-                      <div
-                        key={token.id}
-                        className="relative flex gap-[10px] items-center px-[8px] rounded-[6px] cursor-pointer"
-                        style={{
-                          minHeight: "40px",
-                          background:
-                            isHovered && !isEditing
-                              ? "rgba(94,106,210,0.04)"
-                              : undefined,
-                        }}
-                        onMouseEnter={() =>
-                          setHoveredToken(token.id)
-                        }
-                        onMouseLeave={() =>
-                          setHoveredToken(null)
-                        }
-                        onClick={() => {
-                          if (!isEditing)
-                            setEditingToken(token.id);
-                        }}
-                      >
-                        {/* Swatch / icon */}
-                        {token.type === "COLOR" ? (
-                          <div
-                            className="rounded-[4px] shrink-0"
-                            style={{
-                              width: 24,
-                              height: 24,
-                              background:
-                                tokenValues[token.id] ||
-                                token.preview ||
-                                token.displayValue,
-                              border:
-                                "1px solid rgba(0,0,0,0.05)",
-                            }}
-                          />
-                        ) : (
-                          <div
-                            className="rounded-[4px] shrink-0 flex items-center justify-center"
-                            style={{
-                              width: 24,
-                              height: 24,
-                              border:
-                                "1px solid rgba(0,0,0,0.05)",
-                            }}
-                          >
-                            <MI
-                              icon={token.icon ?? "token"}
-                              size={10}
-                              style={{ color: "#0c0c0d" }}
-                            />
-                          </div>
-                        )}
-
-                        {/* Name or edit input */}
-                        {isEditing ? (
-                          <input
-                            autoFocus
-                            className="flex-1 text-[10px] leading-[15px] outline-none border-b min-w-0"
-                            style={{
-                              borderColor: "#5e6ad2",
-                              fontFamily: "'Source Sans 3', sans-serif",
-                              color: "#0c0c0d",
-                              background: "transparent",
-                            }}
-                            defaultValue={displayValue}
-                            onClick={(e) => e.stopPropagation()}
-                            onBlur={(e) =>
-                              commitEdit(
-                                token.id,
-                                e.target.value,
-                              )
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                commitEdit(
-                                  token.id,
-                                  e.currentTarget.value,
-                                );
-                              }
-                              if (e.key === "Escape") {
-                                setEditingToken(null);
-                              }
-                            }}
-                          />
-                        ) : (
-                          <span
-                            className="text-[10px] leading-[15px] truncate flex-1"
-                            style={{
-                              color: "#0c0c0d",
-                              fontFamily: "'Source Sans 3', sans-serif",
-                            }}
-                          >
-                            {token.name}
-                          </span>
-                        )}
-
-                        {/* Hover value badge */}
-                        {isHovered && !isEditing && (
-                          <span
-                            className="shrink-0 text-[9px] px-[6px] py-[2px] rounded-[4px] whitespace-nowrap"
-                            style={{
-                              background: "#0c0c0d",
-                              color: "#fafafa",
-                              fontFamily: "'Source Sans 3', sans-serif",
-                              pointerEvents: "none",
-                            }}
-                          >
-                            {displayValue}
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* Empty search state */}
-              {isOpen && !hasTokens && search && (
-                <div className="px-[12px] pb-[12px]">
-                  <p
-                    className="text-[10px] text-center py-3"
-                    style={{
-                      color: "#6e6e80",
-                      fontFamily: "'Source Sans 3', sans-serif",
-                    }}
-                  >
-                    No tokens match "{search}"
-                  </p>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* ── Footer ── */}
-      <div
-        className="shrink-0"
-        style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
-      >
-        <div className="flex flex-col pb-[12px] pt-[5px] px-[12px]">
-          <div className="flex items-center justify-between w-full">
-            <span
-              className="text-[10px] leading-[15px]"
-              style={{
-                color: "#6e6e80",
-                fontFamily: "'Source Sans 3', sans-serif",
-              }}
-            >
-              {moduleCount(currentModule ?? modules[0] ?? { module: "", label: "", tabIcon: "", submodules: [] })} variables
-            </span>
-            <span
-              className="text-[10px] font-medium leading-[15px] cursor-pointer"
-              style={{
-                color: "#5e6ad2",
-                fontFamily: "'Source Sans 3', sans-serif",
-              }}
-            >
-              View all
-            </span>
-          </div>
-          <div className="pt-[10px]">
-            <a
-              href="#pricing"
-              onClick={() => trackPricingClick()}
-              className="flex gap-[6px] items-center justify-center w-full rounded-[8px] hover:opacity-90 transition-opacity"
-              style={{
-                background: "#0c0c0d",
-                height: "32.5px",
-              }}
-            >
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-              >
-                <path
-                  d={pluginSvgPaths.p1a7a3080}
-                  stroke="#FAFAFA"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="0.916667"
-                />
-              </svg>
-              <span
-                className="text-[11px] font-semibold leading-[16.5px]"
-                style={{
-                  color: "#fafafa",
-                  fontFamily: "'Source Sans 3', sans-serif",
-                }}
-              >
-                Generate Variables
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
+  const answerId = useId();
   return (
     <div className="border-b border-border last:border-0">
       <button
+        aria-expanded={open}
+        aria-controls={answerId}
         className="w-full flex items-center justify-between py-5 text-left gap-4 group"
         onClick={() => {
           setOpen(!open);
@@ -840,6 +268,8 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         />
       </button>
       <div
+        id={answerId}
+        aria-hidden={!open}
         className={`overflow-hidden transition-all duration-200 ${open ? "max-h-48 pb-5" : "max-h-0"}`}
       >
         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -876,7 +306,7 @@ function ResultMockup({ modules }: { modules: VariableModule[] }) {
           <span className="h-3 w-3 rounded-full bg-[#28c840]" />
         </div>
         <div className="flex-1 text-center text-[11px] font-semibold text-foreground/70">
-          Example Design System
+          Example token foundations
         </div>
         <span className="text-[10px] text-muted-foreground">{total}</span>
       </div>
@@ -982,7 +412,7 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
               <MI icon="add_circle" size={13} style={{ color: "#6e6e80" }} />
             </div>
             <div className="flex items-center justify-between rounded-md px-2 py-1.5 text-[11px] font-semibold text-foreground">
-              <span>DT Boilerplate</span>
+              <span>StartTokens</span>
               <span className="font-normal text-muted-foreground">{total}</span>
             </div>
           </div>
@@ -1192,9 +622,9 @@ function VisualDocumentationPreview({ isActive }: { isActive: boolean }) {
             alt={preview.alt}
             className="block h-full w-full object-cover object-top"
             loading="lazy"
-            initial={{ opacity: 0, x: 18 }}
+            initial={{ opacity: 0, x: reduceMotion ? 0 : 18 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -18 }}
+            exit={{ opacity: 0, x: reduceMotion ? 0 : -18 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           />
         </AnimatePresence>
@@ -1377,7 +807,7 @@ export default function App() {
       if (element) {
         // Pequeno atraso para garantir a renderização do DOM
         setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
+          element.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
         }, 100);
       }
     } else {
@@ -1395,7 +825,7 @@ export default function App() {
       setUserId(userIdParam);
       // Rolar automaticamente para a secção de preços
       setTimeout(() => {
-        document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('pricing')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
       }, 100);
     }
     if (emailParam) setEmail(emailParam);
@@ -1413,12 +843,10 @@ export default function App() {
   useEffect(() => {
     let mounted = true;
 
-    Promise.all([
-      fetch("/data/colors.json").then((response) => response.json()),
-      fetch("/data/typography.json").then((response) => response.json()),
-      fetch("/data/layout.json").then((response) => response.json()),
-    ]).then((modules) => {
-      if (mounted) setVariableModules(modules as VariableModule[]);
+    loadPreset().then(({ modules }) => {
+      if (mounted) setVariableModules(modules);
+    }).catch((error) => {
+      if (mounted) console.error('Unable to load the preset catalog.', error);
     });
 
     return () => {
@@ -1526,13 +954,13 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-14 lg:gap-24">
             <ScrollReveal className="max-w-3xl text-center lg:text-left">
               <div className="mb-7 flex justify-start">
-                <SectionTag>· The fastest way to start a Design Tokens in Figma ·</SectionTag>
+                <SectionTag>· Design Tokens for Figma ·</SectionTag>
               </div>
               <h1 className="text-[46px] sm:text-[56px] lg:text-[72px] font-extrabold text-foreground leading-[0.98] mb-5">
-                Stop Building Figma Variables From Scratch.
+                Start your design tokens from the framework you already use.
               </h1>
               <p className="text-[17px] text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                Generate a Complete Design Tokens Starter in 30 Seconds.
+                Choose a preset, customize its foundations and generate native Figma Variables with visual documentation in seconds.
               </p>
               <div className="flex items-center gap-3 flex-wrap justify-center lg:justify-start">
                 <a
@@ -1554,19 +982,20 @@ export default function App() {
                 </a>
               </div>
               <div className="mt-7 flex items-center gap-5 text-xs text-muted-foreground justify-center lg:justify-start flex-wrap">
-                {["No credit card required", "Native Figma Variables", "No external dependencies"].map((t) => (
+                {["Framework Presets", "Native Figma Variables", "Visual Documentation"].map((t) => (
                   <span key={t} className="flex items-center gap-1.5">
                     <MI icon="check" size={13} style={{ color: "#5E6AD2" }} />
                     {t}
                   </span>
                 ))}
               </div>
+              <p className="mt-5 text-xs text-muted-foreground">{catalog.presets.map(p => p.name).join(" · ")}</p>
             </ScrollReveal>
 
             <div className="shrink-0 w-full flex justify-center lg:justify-end">
               <Parallax distance={40}>
                 <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                  <PluginMockup modules={variableModules} />
+                  <PluginMockup />
                 </div>
               </Parallax>
             </div>
@@ -1591,10 +1020,10 @@ export default function App() {
               <h2
                 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight"
                             >
-                Everything in one generation
+                Customize the values. Keep the framework structure.
               </h2>
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-                DT Boilerplate creates the complete variable structure your Design System needs — Colors, Typography and Layout — organized and ready to build on.
+                StartTokens is a Figma plugin for customizing Design System Foundations. Choose framework presets, adjust Colors, Typography and Layout, and generate native Figma Variables with Visual Documentation.
               </p>
             </ScrollReveal>
 
@@ -1659,10 +1088,11 @@ export default function App() {
           {/* Tabbed interface */}
           <div className="flex flex-col gap-6 items-center">
             {/* Tab buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
               {STEPS.map((step, index) => (
                 <button
                   key={step.num}
+                  aria-pressed={activeStep === index}
                   onClick={() => setActiveStep(index)}
                   className={`min-h-[122px] text-left border-b-2 px-0 py-3 transition-colors ${
                     activeStep === index
@@ -1695,6 +1125,8 @@ export default function App() {
               {STEPS.map((step, index) => (
                 <motion.div
                   key={step.num}
+                  aria-hidden={activeStep !== index}
+                  inert={activeStep !== index ? "" : undefined}
                   className="absolute inset-x-0 top-0 flex justify-center"
                   animate={{
                     opacity: activeStep === index ? 1 : 0,
@@ -1704,15 +1136,15 @@ export default function App() {
                   }}
                   transition={{ duration: reduceMotion ? 0 : 0.36, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {index === 3 ? (
-                    <VisualDocumentationPreview isActive={activeStep === 3} />
-                  ) : index === 2 ? (
+                  {index === 5 ? (
+                    <div className="w-full flex flex-col items-center"><h3 className="text-2xl font-bold text-center">Variables you can see, not just generate.</h3><p className="mt-3 mb-5 max-w-2xl text-sm text-center text-muted-foreground">StartTokens automatically creates a Visual Foundations page from the same tokens generated as Figma Variables — organized by preset, module and token group. Colors, Typography and Layout reflect your customized values.</p><VisualDocumentationPreview isActive={activeStep === 5} /></div>
+                  ) : index === 4 ? (
                     <div className="w-full max-w-4xl drop-shadow-2xl">
                       <VariablesPanelMockup modules={variableModules} />
                     </div>
                   ) : (
                     <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                      <PluginMockup modules={variableModules} initialModule={index === 0 ? "colors" : "typography"} />
+                      <PluginMockup initialModule={index === 0 ? undefined : index === 1 ? "colors" : index === 2 ? "typography" : "layout"} />
                     </div>
                   )}
                 </motion.div>
@@ -1731,7 +1163,7 @@ export default function App() {
               Choose your plan
             </h2>
             <p className="mt-3 text-base text-muted-foreground">
-              Unlock unlimited Design System generations with flexible pricing options.
+              Unlock unlimited token generations with flexible pricing options.
             </p>
           </ScrollReveal>
 
@@ -1813,10 +1245,10 @@ export default function App() {
             <ScrollReveal direction="left" className="flex-1 max-w-xl">
               <SectionTag>· What you get ·</SectionTag>
               <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
-                {totalVariables} variables and visual documentation.
+                Native Figma Variables and visual documentation.
               </h2>
               <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-                Generate structured variables and an organized visual foundations page, ready inside Figma.
+                Customize values without rebuilding or renaming the framework token structure. Get custom color scales, typography scale generation, layout foundations and Visual Documentation from your chosen preset.
               </p>
             </ScrollReveal>
 
@@ -1869,12 +1301,12 @@ export default function App() {
             <SectionTag>· 1 free generation · No account required ·</SectionTag>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-[-0.03em] mb-5">
-            The fastest way to start a
+            Your framework. Your values.
             <br />
-            <span style={{ color: "#5E6AD2" }}>Design System in Figma.</span>
+            <span style={{ color: "#5E6AD2" }}>Your foundations in Figma.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-md mx-auto mb-9">
-            Stop creating variables manually. Generate a complete, organized foundation in seconds and start building immediately.
+            Choose a preset, customize its token values and generate native Figma Variables with Visual Foundations documentation.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <a href="#pricing" onClick={() => trackPricingClick('monthly')} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity">

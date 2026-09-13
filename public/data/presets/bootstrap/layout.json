@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "module": "layout",
+  "label": "Layout",
+  "tabIcon": "grid_4x4",
+  "submodules": [
+    {
+      "id": "grid",
+      "label": "Grid",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.grid.grid-columns",
+          "module": "layout",
+          "submodule": "grid",
+          "name": "grid-columns",
+          "figmaName": "Layout/Grid/grid-columns",
+          "type": "FLOAT",
+          "value": 12,
+          "displayValue": "12"
+        },
+        {
+          "id": "layout.grid.grid-gutter-width",
+          "module": "layout",
+          "submodule": "grid",
+          "name": "grid-gutter-width",
+          "figmaName": "Layout/Grid/grid-gutter-width",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        }
+      ]
+    },
+    {
+      "id": "breakpoints",
+      "label": "Breakpoints",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.breakpoints.xs",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "xs",
+          "figmaName": "Layout/Breakpoints/xs",
+          "type": "FLOAT",
+          "value": 0,
+          "unit": "px",
+          "displayValue": "0px"
+        },
+        {
+          "id": "layout.breakpoints.sm",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "sm",
+          "figmaName": "Layout/Breakpoints/sm",
+          "type": "FLOAT",
+          "value": 576,
+          "unit": "px",
+          "displayValue": "576px"
+        },
+        {
+          "id": "layout.breakpoints.md",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "md",
+          "figmaName": "Layout/Breakpoints/md",
+          "type": "FLOAT",
+          "value": 768,
+          "unit": "px",
+          "displayValue": "768px"
+        },
+        {
+          "id": "layout.breakpoints.lg",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "lg",
+          "figmaName": "Layout/Breakpoints/lg",
+          "type": "FLOAT",
+          "value": 992,
+          "unit": "px",
+          "displayValue": "992px"
+        },
+        {
+          "id": "layout.breakpoints.xl",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "xl",
+          "figmaName": "Layout/Breakpoints/xl",
+          "type": "FLOAT",
+          "value": 1200,
+          "unit": "px",
+          "displayValue": "1200px"
+        },
+        {
+          "id": "layout.breakpoints.xxl",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "xxl",
+          "figmaName": "Layout/Breakpoints/xxl",
+          "type": "FLOAT",
+          "value": 1400,
+          "unit": "px",
+          "displayValue": "1400px"
+        }
+      ]
+    },
+    {
+      "id": "spacing",
+      "label": "Spacing",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.spacing.0",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "0",
+          "figmaName": "Layout/Spacing/0",
+          "type": "FLOAT",
+          "value": 0,
+          "displayValue": "0"
+        },
+        {
+          "id": "layout.spacing.1",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "1",
+          "figmaName": "Layout/Spacing/1",
+          "type": "FLOAT",
+          "value": 0.25,
+          "unit": "rem",
+          "displayValue": ".25rem"
+        },
+        {
+          "id": "layout.spacing.2",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "2",
+          "figmaName": "Layout/Spacing/2",
+          "type": "FLOAT",
+          "value": 0.5,
+          "unit": "rem",
+          "displayValue": ".5rem"
+        },
+        {
+          "id": "layout.spacing.3",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "3",
+          "figmaName": "Layout/Spacing/3",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "layout.spacing.4",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "4",
+          "figmaName": "Layout/Spacing/4",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "layout.spacing.5",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "5",
+          "figmaName": "Layout/Spacing/5",
+          "type": "FLOAT",
+          "value": 3,
+          "unit": "rem",
+          "displayValue": "3rem"
+        }
+      ]
+    },
+    {
+      "id": "radius",
+      "label": "Radius",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.radius.border-radius",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "border-radius",
+          "figmaName": "Layout/Radius/border-radius",
+          "type": "FLOAT",
+          "value": 0.375,
+          "unit": "rem",
+          "displayValue": ".375rem"
+        },
+        {
+          "id": "layout.radius.border-radius-sm",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "border-radius-sm",
+          "figmaName": "Layout/Radius/border-radius-sm",
+          "type": "FLOAT",
+          "value": 0.25,
+          "unit": "rem",
+          "displayValue": ".25rem"
+        },
+        {
+          "id": "layout.radius.border-radius-lg",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "border-radius-lg",
+          "figmaName": "Layout/Radius/border-radius-lg",
+          "type": "FLOAT",
+          "value": 0.5,
+          "unit": "rem",
+          "displayValue": ".5rem"
+        },
+        {
+          "id": "layout.radius.border-radius-xl",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "border-radius-xl",
+          "figmaName": "Layout/Radius/border-radius-xl",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "layout.radius.border-radius-xxl",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "border-radius-xxl",
+          "figmaName": "Layout/Radius/border-radius-xxl",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "rem",
+          "displayValue": "2rem"
+        },
+        {
+          "id": "layout.radius.border-radius-pill",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "border-radius-pill",
+          "figmaName": "Layout/Radius/border-radius-pill",
+          "type": "FLOAT",
+          "value": 50,
+          "unit": "rem",
+          "displayValue": "50rem"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "grid": {
+      "kind": "columns"
+    },
+    "spacing": {
+      "kind": "scale"
+    }
+  }
+}

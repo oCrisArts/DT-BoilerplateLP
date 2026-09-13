@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "module": "typography",
+  "label": "Typography",
+  "tabIcon": "font_download",
+  "submodules": [
+    {
+      "id": "family",
+      "label": "Family",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.family.family-sans-serif",
+          "module": "typography",
+          "submodule": "family",
+          "name": "family-sans-serif",
+          "figmaName": "Typography/Family/family-sans-serif",
+          "type": "STRING",
+          "value": "\"Inter\", \"SF Pro\", \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif",
+          "displayValue": "\"Inter\", \"SF Pro\", \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
+        },
+        {
+          "id": "typography.family.family-monospace",
+          "module": "typography",
+          "submodule": "family",
+          "name": "family-monospace",
+          "figmaName": "Typography/Family/family-monospace",
+          "type": "STRING",
+          "value": "\"Inconsolata\", \"Hack\", \"SF Mono\", \"Roboto Mono\", \"Source Code Pro\", \"Ubuntu Mono\", monospace",
+          "displayValue": "\"Inconsolata\", \"Hack\", \"SF Mono\", \"Roboto Mono\", \"Source Code Pro\", \"Ubuntu Mono\", monospace"
+        }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Sizes",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.sizes.size-1",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-1",
+          "figmaName": "Typography/Sizes/size-1",
+          "type": "FLOAT",
+          "value": 3,
+          "unit": "rem",
+          "displayValue": "3rem"
+        },
+        {
+          "id": "typography.sizes.size-2",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-2",
+          "figmaName": "Typography/Sizes/size-2",
+          "type": "FLOAT",
+          "value": 2.5,
+          "unit": "rem",
+          "displayValue": "2.5rem"
+        },
+        {
+          "id": "typography.sizes.size-3",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-3",
+          "figmaName": "Typography/Sizes/size-3",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "rem",
+          "displayValue": "2rem"
+        },
+        {
+          "id": "typography.sizes.size-4",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-4",
+          "figmaName": "Typography/Sizes/size-4",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "typography.sizes.size-5",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-5",
+          "figmaName": "Typography/Sizes/size-5",
+          "type": "FLOAT",
+          "value": 1.25,
+          "unit": "rem",
+          "displayValue": "1.25rem"
+        },
+        {
+          "id": "typography.sizes.size-6",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-6",
+          "figmaName": "Typography/Sizes/size-6",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "typography.sizes.size-7",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "size-7",
+          "figmaName": "Typography/Sizes/size-7",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        },
+        {
+          "id": "typography.sizes.body-size",
+          "module": "typography",
+          "submodule": "sizes",
+          "name": "body-size",
+          "figmaName": "Typography/Sizes/body-size",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "em",
+          "displayValue": "1em"
+        }
+      ]
+    },
+    {
+      "id": "lineheight",
+      "label": "Lineheight",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.lineheight.body-line-height",
+          "module": "typography",
+          "submodule": "lineheight",
+          "name": "body-line-height",
+          "figmaName": "Typography/Lineheight/body-line-height",
+          "type": "FLOAT",
+          "value": 1.5,
+          "displayValue": "1.5"
+        }
+      ]
+    },
+    {
+      "id": "weight",
+      "label": "Weight",
+      "icon": "font_download",
+      "variables": [
+        {
+          "id": "typography.weight.weight-light",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "weight-light",
+          "figmaName": "Typography/Weight/weight-light",
+          "type": "FLOAT",
+          "value": 300,
+          "displayValue": "300"
+        },
+        {
+          "id": "typography.weight.weight-normal",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "weight-normal",
+          "figmaName": "Typography/Weight/weight-normal",
+          "type": "FLOAT",
+          "value": 400,
+          "displayValue": "400"
+        },
+        {
+          "id": "typography.weight.weight-medium",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "weight-medium",
+          "figmaName": "Typography/Weight/weight-medium",
+          "type": "FLOAT",
+          "value": 500,
+          "displayValue": "500"
+        },
+        {
+          "id": "typography.weight.weight-semibold",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "weight-semibold",
+          "figmaName": "Typography/Weight/weight-semibold",
+          "type": "FLOAT",
+          "value": 600,
+          "displayValue": "600"
+        },
+        {
+          "id": "typography.weight.weight-bold",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "weight-bold",
+          "figmaName": "Typography/Weight/weight-bold",
+          "type": "FLOAT",
+          "value": 700,
+          "displayValue": "700"
+        },
+        {
+          "id": "typography.weight.weight-extrabold",
+          "module": "typography",
+          "submodule": "weight",
+          "name": "weight-extrabold",
+          "figmaName": "Typography/Weight/weight-extrabold",
+          "type": "FLOAT",
+          "value": 800,
+          "displayValue": "800"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "fontFamily": {
+      "default": "typography.family.family-sans-serif",
+      "options": [
+        "typography.family.family-sans-serif",
+        "typography.family.family-monospace"
+      ],
+      "customizable": true
+    },
+    "baseSize": {
+      "default": "typography.sizes.body-size",
+      "customizable": true
+    },
+    "typeScale": {
+      "kind": "explicit",
+      "steps": [
+        "typography.sizes.size-1",
+        "typography.sizes.size-2",
+        "typography.sizes.size-3",
+        "typography.sizes.size-4",
+        "typography.sizes.size-5",
+        "typography.sizes.size-6",
+        "typography.sizes.size-7",
+        "typography.sizes.body-size"
+      ],
+      "customizable": true
+    },
+    "lineHeight": {
+      "default": "typography.lineheight.body-line-height",
+      "options": [
+        "typography.lineheight.body-line-height"
+      ],
+      "customizable": true
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "module": "layout",
+  "label": "Layout",
+  "tabIcon": "grid_4x4",
+  "submodules": [
+    {
+      "id": "grid",
+      "label": "Grid",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.grid.column-gap",
+          "module": "layout",
+          "submodule": "grid",
+          "name": "column-gap",
+          "figmaName": "Layout/Grid/column-gap",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        }
+      ]
+    },
+    {
+      "id": "breakpoints",
+      "label": "Breakpoints",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.breakpoints.tablet",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "tablet",
+          "figmaName": "Layout/Breakpoints/tablet",
+          "type": "FLOAT",
+          "value": 769,
+          "unit": "px",
+          "displayValue": "769px"
+        },
+        {
+          "id": "layout.breakpoints.desktop",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "desktop",
+          "figmaName": "Layout/Breakpoints/desktop",
+          "type": "FLOAT",
+          "value": 1024,
+          "unit": "px",
+          "displayValue": "1024px"
+        },
+        {
+          "id": "layout.breakpoints.widescreen",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "widescreen",
+          "figmaName": "Layout/Breakpoints/widescreen",
+          "type": "FLOAT",
+          "value": 1216,
+          "unit": "px",
+          "displayValue": "1216px"
+        },
+        {
+          "id": "layout.breakpoints.fullhd",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "fullhd",
+          "figmaName": "Layout/Breakpoints/fullhd",
+          "type": "FLOAT",
+          "value": 1408,
+          "unit": "px",
+          "displayValue": "1408px"
+        }
+      ]
+    },
+    {
+      "id": "spacing",
+      "label": "Spacing",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.spacing.0",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "0",
+          "figmaName": "Layout/Spacing/0",
+          "type": "FLOAT",
+          "value": 0,
+          "displayValue": "0"
+        },
+        {
+          "id": "layout.spacing.1",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "1",
+          "figmaName": "Layout/Spacing/1",
+          "type": "FLOAT",
+          "value": 0.25,
+          "unit": "rem",
+          "displayValue": ".25rem"
+        },
+        {
+          "id": "layout.spacing.2",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "2",
+          "figmaName": "Layout/Spacing/2",
+          "type": "FLOAT",
+          "value": 0.5,
+          "unit": "rem",
+          "displayValue": ".5rem"
+        },
+        {
+          "id": "layout.spacing.3",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "3",
+          "figmaName": "Layout/Spacing/3",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": ".75rem"
+        },
+        {
+          "id": "layout.spacing.4",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "4",
+          "figmaName": "Layout/Spacing/4",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "rem",
+          "displayValue": "1rem"
+        },
+        {
+          "id": "layout.spacing.5",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "5",
+          "figmaName": "Layout/Spacing/5",
+          "type": "FLOAT",
+          "value": 1.5,
+          "unit": "rem",
+          "displayValue": "1.5rem"
+        },
+        {
+          "id": "layout.spacing.6",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "6",
+          "figmaName": "Layout/Spacing/6",
+          "type": "FLOAT",
+          "value": 3,
+          "unit": "rem",
+          "displayValue": "3rem"
+        },
+        {
+          "id": "layout.spacing.auto",
+          "module": "layout",
+          "submodule": "spacing",
+          "name": "auto",
+          "figmaName": "Layout/Spacing/auto",
+          "type": "STRING",
+          "value": "auto",
+          "displayValue": "auto"
+        }
+      ]
+    },
+    {
+      "id": "radius",
+      "label": "Radius",
+      "icon": "grid_4x4",
+      "variables": [
+        {
+          "id": "layout.radius.radius-small",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "radius-small",
+          "figmaName": "Layout/Radius/radius-small",
+          "type": "FLOAT",
+          "value": 0.25,
+          "unit": "rem",
+          "displayValue": "0.25rem"
+        },
+        {
+          "id": "layout.radius.radius",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "radius",
+          "figmaName": "Layout/Radius/radius",
+          "type": "FLOAT",
+          "value": 0.375,
+          "unit": "rem",
+          "displayValue": "0.375rem"
+        },
+        {
+          "id": "layout.radius.radius-medium",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "radius-medium",
+          "figmaName": "Layout/Radius/radius-medium",
+          "type": "FLOAT",
+          "value": 0.5,
+          "unit": "em",
+          "displayValue": "0.5em"
+        },
+        {
+          "id": "layout.radius.radius-large",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "radius-large",
+          "figmaName": "Layout/Radius/radius-large",
+          "type": "FLOAT",
+          "value": 0.75,
+          "unit": "rem",
+          "displayValue": "0.75rem"
+        },
+        {
+          "id": "layout.radius.radius-rounded",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "radius-rounded",
+          "figmaName": "Layout/Radius/radius-rounded",
+          "type": "FLOAT",
+          "value": 9999,
+          "unit": "px",
+          "displayValue": "9999px"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "grid": {
+      "kind": "columns"
+    },
+    "spacing": {
+      "kind": "scale"
+    }
+  }
+}

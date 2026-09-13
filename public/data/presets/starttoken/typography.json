@@ -1,4 +1,5 @@
 {
+  "schemaVersion": 1,
   "module": "typography",
   "label": "Typography",
   "tabIcon": "font_download",
@@ -569,5 +570,58 @@
         }
       ]
     }
-  ]
+  ],
+  "configuration": {
+    "fontFamily": {
+      "default": "typography.family.font-family-sans",
+      "options": [
+        "typography.family.font-family-sans",
+        "typography.family.font-family-icon"
+      ],
+      "customizable": true
+    },
+    "baseSize": {
+      "default": "typography.sizes.p",
+      "customizable": true
+    },
+    "typeScale": {
+      "kind": "explicit",
+      "steps": [
+        "typography.sizes.caption",
+        "typography.sizes.small",
+        "typography.sizes.helper",
+        "typography.sizes.label",
+        "typography.sizes.code",
+        "typography.sizes.p",
+        "typography.sizes.button",
+        "typography.sizes.input",
+        "typography.sizes.table",
+        "typography.sizes.legend",
+        "typography.sizes.h6",
+        "typography.sizes.h5",
+        "typography.sizes.h4",
+        "typography.sizes.h3",
+        "typography.sizes.h2",
+        "typography.sizes.h1",
+        "typography.sizes.display-4",
+        "typography.sizes.display-3",
+        "typography.sizes.display-2",
+        "typography.sizes.display-1"
+      ],
+      "customizable": true
+    },
+    "lineHeight": {
+      "default": "typography.lineheight.lineheight-md",
+      "options": [
+        "typography.lineheight.lineheight-none",
+        "typography.lineheight.lineheight-xs",
+        "typography.lineheight.lineheight-sm",
+        "typography.lineheight.lineheight-md",
+        "typography.lineheight.lineheight-lg",
+        "typography.lineheight.lineheight-xl",
+        "typography.lineheight.lineheight-2xl"
+      ],
+      "customizable": true
+    }
+  }
 }

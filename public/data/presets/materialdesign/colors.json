@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "module": "colors",
+  "label": "Colors",
+  "tabIcon": "palette",
+  "submodules": [
+    {
+      "id": "primary",
+      "label": "Primary",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.primary.--md-sys-color-on-primary",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-on-primary",
+          "figmaName": "Colors/Primary/--md-sys-color-on-primary",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-on-primary-container",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-on-primary-container",
+          "figmaName": "Colors/Primary/--md-sys-color-on-primary-container",
+          "type": "COLOR",
+          "value": "#21005d",
+          "displayValue": "#21005d",
+          "preview": "#21005d"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-on-primary-fixed",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-on-primary-fixed",
+          "figmaName": "Colors/Primary/--md-sys-color-on-primary-fixed",
+          "type": "COLOR",
+          "value": "#21005d",
+          "displayValue": "#21005d",
+          "preview": "#21005d"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-on-primary-fixed-variant",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-on-primary-fixed-variant",
+          "figmaName": "Colors/Primary/--md-sys-color-on-primary-fixed-variant",
+          "type": "COLOR",
+          "value": "#4f378b",
+          "displayValue": "#4f378b",
+          "preview": "#4f378b"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-primary",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-primary",
+          "figmaName": "Colors/Primary/--md-sys-color-primary",
+          "type": "COLOR",
+          "value": "#6750a4",
+          "displayValue": "#6750a4",
+          "preview": "#6750a4"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-primary-container",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-primary-container",
+          "figmaName": "Colors/Primary/--md-sys-color-primary-container",
+          "type": "COLOR",
+          "value": "#eaddff",
+          "displayValue": "#eaddff",
+          "preview": "#eaddff"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-primary-fixed",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-primary-fixed",
+          "figmaName": "Colors/Primary/--md-sys-color-primary-fixed",
+          "type": "COLOR",
+          "value": "#eaddff",
+          "displayValue": "#eaddff",
+          "preview": "#eaddff"
+        },
+        {
+          "id": "colors.primary.--md-sys-color-primary-fixed-dim",
+          "module": "colors",
+          "submodule": "primary",
+          "name": "--md-sys-color-primary-fixed-dim",
+          "figmaName": "Colors/Primary/--md-sys-color-primary-fixed-dim",
+          "type": "COLOR",
+          "value": "#d0bcff",
+          "displayValue": "#d0bcff",
+          "preview": "#d0bcff"
+        }
+      ]
+    },
+    {
+      "id": "secondary",
+      "label": "Secondary",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.secondary.--md-sys-color-on-secondary",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-on-secondary",
+          "figmaName": "Colors/Secondary/--md-sys-color-on-secondary",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-on-secondary-container",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-on-secondary-container",
+          "figmaName": "Colors/Secondary/--md-sys-color-on-secondary-container",
+          "type": "COLOR",
+          "value": "#1d192b",
+          "displayValue": "#1d192b",
+          "preview": "#1d192b"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-on-secondary-fixed",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-on-secondary-fixed",
+          "figmaName": "Colors/Secondary/--md-sys-color-on-secondary-fixed",
+          "type": "COLOR",
+          "value": "#1d192b",
+          "displayValue": "#1d192b",
+          "preview": "#1d192b"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-on-secondary-fixed-variant",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-on-secondary-fixed-variant",
+          "figmaName": "Colors/Secondary/--md-sys-color-on-secondary-fixed-variant",
+          "type": "COLOR",
+          "value": "#4a4458",
+          "displayValue": "#4a4458",
+          "preview": "#4a4458"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-secondary",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-secondary",
+          "figmaName": "Colors/Secondary/--md-sys-color-secondary",
+          "type": "COLOR",
+          "value": "#625b71",
+          "displayValue": "#625b71",
+          "preview": "#625b71"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-secondary-container",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-secondary-container",
+          "figmaName": "Colors/Secondary/--md-sys-color-secondary-container",
+          "type": "COLOR",
+          "value": "#e8def8",
+          "displayValue": "#e8def8",
+          "preview": "#e8def8"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-secondary-fixed",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-secondary-fixed",
+          "figmaName": "Colors/Secondary/--md-sys-color-secondary-fixed",
+          "type": "COLOR",
+          "value": "#e8def8",
+          "displayValue": "#e8def8",
+          "preview": "#e8def8"
+        },
+        {
+          "id": "colors.secondary.--md-sys-color-secondary-fixed-dim",
+          "module": "colors",
+          "submodule": "secondary",
+          "name": "--md-sys-color-secondary-fixed-dim",
+          "figmaName": "Colors/Secondary/--md-sys-color-secondary-fixed-dim",
+          "type": "COLOR",
+          "value": "#ccc2dc",
+          "displayValue": "#ccc2dc",
+          "preview": "#ccc2dc"
+        }
+      ]
+    },
+    {
+      "id": "tertiary",
+      "label": "Tertiary",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.tertiary.--md-sys-color-on-tertiary",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-on-tertiary",
+          "figmaName": "Colors/Tertiary/--md-sys-color-on-tertiary",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-on-tertiary-container",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-on-tertiary-container",
+          "figmaName": "Colors/Tertiary/--md-sys-color-on-tertiary-container",
+          "type": "COLOR",
+          "value": "#31111d",
+          "displayValue": "#31111d",
+          "preview": "#31111d"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-on-tertiary-fixed",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-on-tertiary-fixed",
+          "figmaName": "Colors/Tertiary/--md-sys-color-on-tertiary-fixed",
+          "type": "COLOR",
+          "value": "#31111d",
+          "displayValue": "#31111d",
+          "preview": "#31111d"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-on-tertiary-fixed-variant",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-on-tertiary-fixed-variant",
+          "figmaName": "Colors/Tertiary/--md-sys-color-on-tertiary-fixed-variant",
+          "type": "COLOR",
+          "value": "#633b48",
+          "displayValue": "#633b48",
+          "preview": "#633b48"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-tertiary",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-tertiary",
+          "figmaName": "Colors/Tertiary/--md-sys-color-tertiary",
+          "type": "COLOR",
+          "value": "#7d5260",
+          "displayValue": "#7d5260",
+          "preview": "#7d5260"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-tertiary-container",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-tertiary-container",
+          "figmaName": "Colors/Tertiary/--md-sys-color-tertiary-container",
+          "type": "COLOR",
+          "value": "#ffd8e4",
+          "displayValue": "#ffd8e4",
+          "preview": "#ffd8e4"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-tertiary-fixed",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-tertiary-fixed",
+          "figmaName": "Colors/Tertiary/--md-sys-color-tertiary-fixed",
+          "type": "COLOR",
+          "value": "#ffd8e4",
+          "displayValue": "#ffd8e4",
+          "preview": "#ffd8e4"
+        },
+        {
+          "id": "colors.tertiary.--md-sys-color-tertiary-fixed-dim",
+          "module": "colors",
+          "submodule": "tertiary",
+          "name": "--md-sys-color-tertiary-fixed-dim",
+          "figmaName": "Colors/Tertiary/--md-sys-color-tertiary-fixed-dim",
+          "type": "COLOR",
+          "value": "#efb8c8",
+          "displayValue": "#efb8c8",
+          "preview": "#efb8c8"
+        }
+      ]
+    },
+    {
+      "id": "error",
+      "label": "Error",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.error.--md-sys-color-error",
+          "module": "colors",
+          "submodule": "error",
+          "name": "--md-sys-color-error",
+          "figmaName": "Colors/Error/--md-sys-color-error",
+          "type": "COLOR",
+          "value": "#b3261e",
+          "displayValue": "#b3261e",
+          "preview": "#b3261e"
+        },
+        {
+          "id": "colors.error.--md-sys-color-error-container",
+          "module": "colors",
+          "submodule": "error",
+          "name": "--md-sys-color-error-container",
+          "figmaName": "Colors/Error/--md-sys-color-error-container",
+          "type": "COLOR",
+          "value": "#f9dedc",
+          "displayValue": "#f9dedc",
+          "preview": "#f9dedc"
+        },
+        {
+          "id": "colors.error.--md-sys-color-on-error",
+          "module": "colors",
+          "submodule": "error",
+          "name": "--md-sys-color-on-error",
+          "figmaName": "Colors/Error/--md-sys-color-on-error",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        },
+        {
+          "id": "colors.error.--md-sys-color-on-error-container",
+          "module": "colors",
+          "submodule": "error",
+          "name": "--md-sys-color-on-error-container",
+          "figmaName": "Colors/Error/--md-sys-color-on-error-container",
+          "type": "COLOR",
+          "value": "#410e0b",
+          "displayValue": "#410e0b",
+          "preview": "#410e0b"
+        }
+      ]
+    },
+    {
+      "id": "surface",
+      "label": "Surface",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.surface.--md-sys-color-on-surface",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-on-surface",
+          "figmaName": "Colors/Surface/--md-sys-color-on-surface",
+          "type": "COLOR",
+          "value": "#1d1b20",
+          "displayValue": "#1d1b20",
+          "preview": "#1d1b20"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-on-surface-variant",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-on-surface-variant",
+          "figmaName": "Colors/Surface/--md-sys-color-on-surface-variant",
+          "type": "COLOR",
+          "value": "#49454f",
+          "displayValue": "#49454f",
+          "preview": "#49454f"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface",
+          "figmaName": "Colors/Surface/--md-sys-color-surface",
+          "type": "COLOR",
+          "value": "#fef7ff",
+          "displayValue": "#fef7ff",
+          "preview": "#fef7ff"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-bright",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-bright",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-bright",
+          "type": "COLOR",
+          "value": "#fef7ff",
+          "displayValue": "#fef7ff",
+          "preview": "#fef7ff"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-container",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-container",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-container",
+          "type": "COLOR",
+          "value": "#f3edf7",
+          "displayValue": "#f3edf7",
+          "preview": "#f3edf7"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-container-high",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-container-high",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-container-high",
+          "type": "COLOR",
+          "value": "#ece6f0",
+          "displayValue": "#ece6f0",
+          "preview": "#ece6f0"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-container-highest",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-container-highest",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-container-highest",
+          "type": "COLOR",
+          "value": "#e6e0e9",
+          "displayValue": "#e6e0e9",
+          "preview": "#e6e0e9"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-container-low",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-container-low",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-container-low",
+          "type": "COLOR",
+          "value": "#f7f2fa",
+          "displayValue": "#f7f2fa",
+          "preview": "#f7f2fa"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-container-lowest",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-container-lowest",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-container-lowest",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "preview": "#fff"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-dim",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-dim",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-dim",
+          "type": "COLOR",
+          "value": "#ded8e1",
+          "displayValue": "#ded8e1",
+          "preview": "#ded8e1"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-tint",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-tint",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-tint",
+          "type": "COLOR",
+          "value": "#6750a4",
+          "displayValue": "#6750a4",
+          "preview": "#6750a4"
+        },
+        {
+          "id": "colors.surface.--md-sys-color-surface-variant",
+          "module": "colors",
+          "submodule": "surface",
+          "name": "--md-sys-color-surface-variant",
+          "figmaName": "Colors/Surface/--md-sys-color-surface-variant",
+          "type": "COLOR",
+          "value": "#e7e0ec",
+          "displayValue": "#e7e0ec",
+          "preview": "#e7e0ec"
+        }
+      ]
+    },
+    {
+      "id": "inverse",
+      "label": "Inverse",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.inverse.--md-sys-color-inverse-on-surface",
+          "module": "colors",
+          "submodule": "inverse",
+          "name": "--md-sys-color-inverse-on-surface",
+          "figmaName": "Colors/Inverse/--md-sys-color-inverse-on-surface",
+          "type": "COLOR",
+          "value": "#f5eff7",
+          "displayValue": "#f5eff7",
+          "preview": "#f5eff7"
+        },
+        {
+          "id": "colors.inverse.--md-sys-color-inverse-primary",
+          "module": "colors",
+          "submodule": "inverse",
+          "name": "--md-sys-color-inverse-primary",
+          "figmaName": "Colors/Inverse/--md-sys-color-inverse-primary",
+          "type": "COLOR",
+          "value": "#d0bcff",
+          "displayValue": "#d0bcff",
+          "preview": "#d0bcff"
+        },
+        {
+          "id": "colors.inverse.--md-sys-color-inverse-surface",
+          "module": "colors",
+          "submodule": "inverse",
+          "name": "--md-sys-color-inverse-surface",
+          "figmaName": "Colors/Inverse/--md-sys-color-inverse-surface",
+          "type": "COLOR",
+          "value": "#322f35",
+          "displayValue": "#322f35",
+          "preview": "#322f35"
+        }
+      ]
+    },
+    {
+      "id": "outline",
+      "label": "Outline",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.outline.--md-sys-color-outline",
+          "module": "colors",
+          "submodule": "outline",
+          "name": "--md-sys-color-outline",
+          "figmaName": "Colors/Outline/--md-sys-color-outline",
+          "type": "COLOR",
+          "value": "#79747e",
+          "displayValue": "#79747e",
+          "preview": "#79747e"
+        },
+        {
+          "id": "colors.outline.--md-sys-color-outline-variant",
+          "module": "colors",
+          "submodule": "outline",
+          "name": "--md-sys-color-outline-variant",
+          "figmaName": "Colors/Outline/--md-sys-color-outline-variant",
+          "type": "COLOR",
+          "value": "#cac4d0",
+          "displayValue": "#cac4d0",
+          "preview": "#cac4d0"
+        }
+      ]
+    },
+    {
+      "id": "utility",
+      "label": "Utility",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.utility.--md-sys-color-background",
+          "module": "colors",
+          "submodule": "utility",
+          "name": "--md-sys-color-background",
+          "figmaName": "Colors/Utility/--md-sys-color-background",
+          "type": "COLOR",
+          "value": "#fef7ff",
+          "displayValue": "#fef7ff",
+          "preview": "#fef7ff"
+        },
+        {
+          "id": "colors.utility.--md-sys-color-on-background",
+          "module": "colors",
+          "submodule": "utility",
+          "name": "--md-sys-color-on-background",
+          "figmaName": "Colors/Utility/--md-sys-color-on-background",
+          "type": "COLOR",
+          "value": "#1d1b20",
+          "displayValue": "#1d1b20",
+          "preview": "#1d1b20"
+        },
+        {
+          "id": "colors.utility.--md-sys-color-scrim",
+          "module": "colors",
+          "submodule": "utility",
+          "name": "--md-sys-color-scrim",
+          "figmaName": "Colors/Utility/--md-sys-color-scrim",
+          "type": "COLOR",
+          "value": "#000",
+          "displayValue": "#000",
+          "preview": "#000"
+        },
+        {
+          "id": "colors.utility.--md-sys-color-shadow",
+          "module": "colors",
+          "submodule": "utility",
+          "name": "--md-sys-color-shadow",
+          "figmaName": "Colors/Utility/--md-sys-color-shadow",
+          "type": "COLOR",
+          "value": "#000",
+          "displayValue": "#000",
+          "preview": "#000"
+        }
+      ]
+    }
+  ],
+  "configuration": {
+    "structure": "grouped",
+    "colorFormats": [
+      "hex"
+    ]
+  }
+}

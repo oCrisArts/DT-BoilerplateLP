@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build": "node scripts/validate-presets.mjs && vite build",
+    "test:presets": "node --test scripts/presets.test.mjs",
     "dev": "vite"
   },
   "dependencies": {
