@@ -14,8 +14,8 @@ const env = {
   STRIPE_PRICE_LIFETIME_NEW: 'price_1UIAocGjwjNbQit11jG4GtK1',
 };
 const matrix = [
-  ['A','monthly',legacyMonthly], ['A','lifetime',legacyLifetime],
-  ['B','monthly',env.STRIPE_PRICE_MONTHLY_NEW], ['B','annual',env.STRIPE_PRICE_ANNUAL_NEW], ['B','lifetime',env.STRIPE_PRICE_LIFETIME_NEW],
+  ['legacy','monthly',legacyMonthly], ['legacy','lifetime',legacyLifetime],
+  ['new','monthly',env.STRIPE_PRICE_MONTHLY_NEW], ['new','annual',env.STRIPE_PRICE_ANNUAL_NEW], ['new','lifetime',env.STRIPE_PRICE_LIFETIME_NEW],
 ];
 function harness(name, options = {}) {
   const calls = { sessions: [], writes: [] };
@@ -48,15 +48,15 @@ function harness(name, options = {}) {
   return calls;
 }
 const request = body => new Request('https://example.invalid',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-for(const [variant,plan,price] of matrix) {
-  test(`checkout ${variant}/${plan}: price, mode, metadata and preserved redirects`,async () => {
+for(const [pricingVersion,plan,price] of matrix) {
+  test(`checkout ${pricingVersion}/${plan}: price, mode, metadata and preserved redirects`,async () => {
     const h=harness('create-checkout-session');
-    const res=await h.handler(request({variant,plan,email:'qa@example.com',userId:'qa-user'}));
+    const res=await h.handler(request({pricingVersion,plan,email:'qa@example.com',userId:'qa-user'}));
     assert.equal(res.status,200);
     const params=h.sessions[0];
     assert.equal(params.line_items[0].price,price);
     assert.equal(params.mode,plan==='lifetime'?'payment':'subscription');
-    assert.equal(params.metadata.pricing_variant,variant);
+    assert.equal(params.metadata.pricing_version,pricingVersion);
     assert.equal(params.metadata.plan,plan);
     assert.equal(params.metadata.user_id,'qa-user');
     assert.equal(params.customer_email,'qa@example.com');
@@ -65,7 +65,7 @@ for(const [variant,plan,price] of matrix) {
     assert.equal(params.cancel_url,'https://starttokens.test/cancel');
     assert.equal(res.headers.get('Access-Control-Allow-Origin'),'*');
   });
-  test(`webhook ${variant}/${plan}: recognizes price, existing schema and lifetime`,async () => {
+  test(`webhook ${pricingVersion}/${plan}: recognizes price, existing schema and lifetime`,async () => {
     for(const existing of [null,{id:'existing',lifetime:false}]) {
       const h=harness('stripe-webhook',{price,existing,lifetime:plan==='lifetime'});
       const res=await h.handler(new Request('https://example.invalid',{method:'POST',headers:{'Stripe-Signature':'test'},body:'{}'}));
@@ -78,7 +78,7 @@ for(const [variant,plan,price] of matrix) {
     }
   });
 }
-test('legacy callers without variant remain on A; env overrides and missing new price fail safely',async () => {
+test('legacy clients keep original pricing; env overrides and verified new defaults work',async () => {
   const h=harness('create-checkout-session');
   assert.equal((await h.handler(request({plan:'monthly'}))).status,200);
   assert.equal(h.sessions[0].line_items[0].price,legacyMonthly);
@@ -86,12 +86,12 @@ test('legacy callers without variant remain on A; env overrides and missing new 
   await configured.handler(request({plan:'monthly'}));
   assert.equal(configured.sessions[0].line_items[0].price,'price_configured');
   const missing=harness('create-checkout-session',{env:{STRIPE_PRICE_ANNUAL_NEW:undefined}});
-  assert.equal((await missing.handler(request({plan:'annual',variant:'B'}))).status,503);
-  assert.equal(missing.sessions.length,0);
+  assert.equal((await missing.handler(request({plan:'annual',pricingVersion:'new'}))).status,200);
+  assert.equal(missing.sessions[0].line_items[0].price,env.STRIPE_PRICE_ANNUAL_NEW);
 });
 test('invalid combinations return 400 without contacting Stripe; CORS preserved',async () => {
   const h=harness('create-checkout-session');
-  for(const body of [{variant:'A',plan:'annual'},{variant:'C',plan:'monthly'},{variant:'B',plan:'free'},{plan:'bogus'},{plan:'annual'}]) assert.equal((await h.handler(request(body))).status,400);
+  for(const body of [{pricingVersion:'legacy',plan:'annual'},{pricingVersion:'invalid',plan:'monthly'},{variant:'A',plan:'annual'},{variant:'C',plan:'monthly'},{variant:'B',plan:'free'},{plan:'bogus'},{plan:'annual'}]) assert.equal((await h.handler(request(body))).status,400);
   assert.equal(h.sessions.length,0);
   assert.equal((await h.handler(new Request('https://example.invalid',{method:'OPTIONS'}))).status,200);
 });
@@ -106,16 +106,23 @@ test('webhook rejects unknown prices/signatures and never downgrades a lifetime 
   assert.equal(h.writes[0].lifetime,true);
 });
 
-test('assignment is balanced, persisted, QA-only override does not replace storage', () => {
-  const values=new Map(); let random=0.1;
-  const source=readFileSync('src/utils/pricing-experiment.ts','utf8').replace(/export /g,'');
-  const context=vm.createContext({URLSearchParams,window:{location:{search:''}},localStorage:{getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v)},Math:{random:()=>random}});
-  vm.runInContext(transformSync(source,{loader:'ts'}).code,context);
-  assert.equal(context.getPricingVariant(),'A'); random=0.9;
-  assert.equal(context.getPricingVariant(),'A');
-  context.window.location.search='?pricing_variant=B'; assert.equal(context.getPricingVariant(),'B');
-  context.window.location.search='?pricing_variant=invalid'; assert.equal(context.getPricingVariant(),'A');
-  values.clear(); context.window.location.search=''; assert.equal(context.getPricingVariant(),'B');
-  context.window.location.search='?plan=monthly&user_id=legacy'; assert.equal(context.getPricingVariant(),'A');
-  context.window.location.search=''; assert.equal(context.getPricingVariant(),'B');
+test('pricing uses a single static configuration, default new', () => {
+  const source=readFileSync('src/utils/pricing.ts','utf8');
+  assert.match(source,/ACTIVE_PRICING_VERSION: PricingVersion = 'new'/);
+  assert.doesNotMatch(source,/Math.random|localStorage/);
+});
+for(const [pricingVersion,plan,price] of matrix) test(`verify-license accepts ${pricingVersion}/${plan} webhook state`, async()=>{
+ const hook=harness('stripe-webhook',{price,lifetime:plan==='lifetime'});
+ await hook.handler(new Request('https://example.invalid',{method:'POST',headers:{'Stripe-Signature':'test'},body:'{}'}));
+ const license=harness('verify-license',{existing:hook.writes[0]});
+ const response=await license.handler(request({email:'qa@example.com'}));
+ assert.equal((await response.json()).premium,true);
+});
+
+test('already-published A/B API clients remain compatible',async()=>{
+ for(const [variant,plan,price] of [['A','monthly',legacyMonthly],['A','lifetime',legacyLifetime],['B','annual',env.STRIPE_PRICE_ANNUAL_NEW]]){
+  const h=harness('create-checkout-session');
+  assert.equal((await h.handler(request({variant,plan}))).status,200);
+  assert.equal(h.sessions[0].line_items[0].price,price);
+ }
 });

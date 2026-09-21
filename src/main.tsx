@@ -8,7 +8,6 @@ import Privacy from "./app/Privacy.tsx";
 import Terms from "./app/Terms.tsx";
 import Contact from "./app/Contact.tsx";
 import "./styles/index.css";
-import "./styles/vegas.css";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>

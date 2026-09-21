@@ -5,6 +5,15 @@ const require = createRequire(process.env.WORKSPACE_NODE_PACKAGES ? process.env.
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless:true, channel:process.env.BROWSER_CHANNEL || 'msedge' });
 const base = process.env.LP_URL || 'http://127.0.0.1:5174';
+// Test-only compile override: the deployed application has no runtime override.
+const { createServer } = await import('vite');
+const legacyServer = await createServer({server:{port:0,host:'127.0.0.1'},plugins:[{
+ name:'test-legacy-pricing',enforce:'pre',transform(code,id){
+  if(id.replaceAll('\\','/').endsWith('/src/utils/pricing.ts')) return code.replace("PricingVersion = 'new'", "PricingVersion = 'legacy'");
+ }
+}]});
+await legacyServer.listen();
+const versionUrl = version => version === 'legacy' ? `http://127.0.0.1:${legacyServer.httpServer.address().port}` : base;
 mkdirSync('validation-output', { recursive:true });
 const report = [];
 const page = await browser.newPage({ viewport:{width:1440,height:1000} });
@@ -49,6 +58,14 @@ for (const preset of catalog.presets) {
     await demo.getByRole('searchbox').fill('');
   }
   await demo.getByRole('tab',{name:'Colors',exact:true}).click();
+  const family = demo.locator('.demo-color-family').filter({has:page.locator('.demo-scale')}).first();
+  if(await family.count()) {
+    const before = await family.locator('.demo-scale input').evaluateAll(inputs=>inputs.map(i=>i.value));
+    await family.locator(':scope > .demo-token input[type=color]').fill('#e34f73');
+    const after = await family.locator('.demo-scale input').evaluateAll(inputs=>inputs.map(i=>i.value));
+    assert.equal(after.length,before.length);
+    assert.ok(after.filter((value,i)=>value!==before[i]).length > 1, preset.name+' recolors full family');
+  }
   const color = demo.locator('input[type=color]').first();
   await color.fill('#e34f73');
   assert.equal(await color.inputValue(),'#e34f73');
@@ -59,18 +76,18 @@ for (const preset of catalog.presets) {
   await demo.getByRole('button',{name:'Back to presets'}).click();
   report.push(`${preset.name}: real groups, three tabs, color edit, type scale, search, keyboard navigation passed`);
 }
-for (const variant of ['A', 'B']) for (const width of [1920,1440,1024,768,390,320]) {
+for (const variant of ['legacy', 'new']) for (const width of [1920,1440,1024,768,390,320]) {
   await page.setViewportSize({width,height:900});
-  await navigate(base + '/?pricing_variant=' + variant); await page.waitForSelector('.demo-presets');
+  await navigate(versionUrl(variant)); await page.waitForSelector('.demo-presets');
   const pricing = page.locator('#pricing');
-  assert.equal(await pricing.getAttribute('data-pricing-variant'), variant);
+  assert.equal(await pricing.getAttribute('data-pricing-version'), variant);
   const prices = await pricing.innerText();
-  for (const price of variant === 'A' ? ['$5.99', '$49.90'] : ['Free', '$0', '$7.99', '$59.99', '$99.90']) assert.ok(prices.includes(price));
-  assert.equal(await pricing.getByRole('button').count(), variant === 'A' ? 2 : 3);
+  for (const price of variant === 'legacy' ? ['$5.99', '$49.90'] : ['Free', '$0', '$7.99', '$59.99', '$99.90']) assert.ok(prices.includes(price));
+  assert.equal(await pricing.getByRole('button').count(), variant === 'legacy' ? 2 : 3);
   // Scroll all sections into view so reveal/parallax states are covered.
   for (const section of await page.locator('main > section').all()) { await section.scrollIntoViewIfNeeded(); await page.waitForTimeout(100); }
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),`overflow at ${width}px`);
-  for (const step of await page.locator('#how-it-works > div > div button[aria-pressed]').all()) {
+  for (const step of await page.locator('#how-it-works [role=tab]').all()) {
     await step.click(); await page.waitForTimeout(80);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),`step overflow at ${width}px`);
   }
@@ -96,47 +113,35 @@ const requests = [];
 const funnels = [];
 await page.route('**/functions/v1/create-checkout-session',async r=>{
   requests.push(r.request().postDataJSON());
-  funnels.push(await page.evaluate(() => (window.dataLayer || []).map(event => Array.from(event)).filter(event => ['pricing_experiment_view','pricing_click','checkout_started'].includes(event[1]))));
+  funnels.push(await page.evaluate(() => (window.dataLayer || []).map(event => Array.from(event)).filter(event => ['pricing_view','pricing_click','checkout_started'].includes(event[1]))));
   await r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({url:base+'/cancel?qa=checkout'})});
 });
-for (const [variant, plan, label] of [['A','monthly','Get Started'], ['A','lifetime','Get Lifetime Access'], ['B','monthly','Start Monthly'], ['B','annual','Get Annual'], ['B','lifetime','Get Lifetime']]) {
-  await navigate(base + '/?pricing_variant=' + variant);
+for (const [variant, plan, label] of [['legacy','monthly','Get Started'], ['legacy','lifetime','Get Lifetime Access'], ['new','monthly','Start Monthly'], ['new','annual','Get Annual'], ['new','lifetime','Get Lifetime']]) {
+  await navigate(versionUrl(variant));
   await page.locator('#pricing').getByRole('button',{name:label,exact:true}).click();
   await page.waitForURL('**/cancel?qa=checkout');
-  assert.deepEqual(requests.at(-1), {plan, variant, email:null, userId:null});
+  assert.deepEqual(requests.at(-1), {plan, pricingVersion:variant, email:null, userId:null});
   const events = funnels.at(-1);
-  assert.deepEqual(events.map(event=>event[1]), ['pricing_experiment_view','pricing_click','checkout_started']);
-  for (const event of events) assert.equal(event[2].variant,variant);
+  assert.deepEqual(events.map(event=>event[1]), ['pricing_view','pricing_click','checkout_started']);
+  for (const event of events) assert.equal(event[2].pricing_version,variant);
   assert.equal(events[1][2].plan,plan); assert.equal(events[2][2].plan,plan);
 }
-await navigate(base+'/?pricing_variant=A&user_id=qa-user&email=qa%40example.com&plan=monthly');
+await navigate(base+'/?email=qa%2Btest%40example.com&user_id=qa-user#pricing');
+await page.locator('#pricing').getByRole('button',{name:'Get Annual',exact:true}).click();
 await page.waitForURL('**/cancel?qa=checkout');
-assert.deepEqual(requests.at(-1),{plan:'monthly',variant:'A',email:'qa@example.com',userId:'qa-user'});
-await navigate(base+'/?pricing_variant=A&user_id=qa-user&email=qa%40example.com&plan=lifetime');
-await page.waitForURL('**/cancel?qa=checkout');
-assert.equal(requests.at(-1).plan,'lifetime');
-await navigate(base+'/?pricing_variant=B&user_id=qa-user&email=qa%40example.com&plan=annual');
-await page.waitForURL('**/cancel?qa=checkout');
-assert.deepEqual(requests.at(-1),{plan:'annual',variant:'B',email:'qa@example.com',userId:'qa-user'});
-report.push('All five paid checkouts: endpoint, variant, identity payload and redirects verified with intercepted responses');
-await navigate(base+'/?user_id=qa-legacy&plan=monthly');
-await page.waitForURL('**/cancel?qa=checkout');
-assert.equal(requests.at(-1).variant,'A');
-report.push('Existing plugin deep links keep legacy prices; GA funnel carries matching plan and variant');
-
+assert.deepEqual(requests.at(-1),{plan:'annual',pricingVersion:'new',email:'qa+test@example.com',userId:'qa-user'});
+report.push('All five checkouts and plugin email handoff use active configuration');
 await navigate(base);
-const assigned = await page.evaluate(() => localStorage.getItem('starttokens_pricing_variant'));
-assert.ok(['A','B'].includes(assigned));
+await page.evaluate(()=>localStorage.setItem('starttokens_pricing_variant','A'));
+for(const query of ['', '?pricing_variant=A','?pricing_variant=B','?plan=monthly']) {
+ await navigate(base+'/'+query);
+ assert.equal(await page.locator('#pricing').getAttribute('data-pricing-version'),'new');
+ assert.equal(await page.evaluate(()=>localStorage.getItem('starttokens_pricing_variant')),'A');
+}
 await page.reload();
-assert.equal(await page.locator('#pricing').getAttribute('data-pricing-variant'), assigned);
-await navigate(base+'/?pricing_variant='+(assigned === 'A' ? 'B' : 'A'));
-assert.notEqual(await page.locator('#pricing').getAttribute('data-pricing-variant'), assigned);
-assert.equal(await page.evaluate(() => localStorage.getItem('starttokens_pricing_variant')), assigned);
-await navigate(base+'/?pricing_variant=invalid');
-assert.equal(await page.locator('#pricing').getAttribute('data-pricing-variant'), assigned);
-report.push('Assignment survives reload; QA override is validated and does not replace the persisted assignment');
-
-await navigate(base+'/?pricing_variant=B');
+assert.equal(await page.locator('#pricing').getAttribute('data-pricing-version'),'new');
+report.push('Old query overrides and storage are ignored; reload preserves static new pricing');
+await navigate(base);
 const free = page.locator('#pricing').getByRole('link',{name:'Generate for free'});
 assert.equal(await free.getAttribute('href'),'https://www.figma.com/community/plugin/1651310914400769393');
 for (const label of ['Fastest Way','Problem Solved','Presets','Features','Visual Docs','Pricing','FAQ']) {
@@ -157,36 +162,19 @@ const problemSolvedActive = await page.locator('header nav').getByRole('link', {
 assert.equal(problemSolvedActive, 'location');
 report.push('Scroll spy: navigation highlights active section on scroll');
 
-// Test Features carousel
-await page.locator('#features').scrollIntoViewIfNeeded();
-await page.waitForTimeout(300);
-const featuresCarousel = page.locator('#features [role="region"][aria-roledescription="carousel"]');
-assert.ok(await featuresCarousel.count() > 0, 'Features carousel is present');
-const nextButton = featuresCarousel.getByRole('button', {name: 'Next slide'});
-const prevButton = featuresCarousel.getByRole('button', {name: 'Previous slide'});
-assert.ok(await nextButton.count() > 0, 'Features carousel has next button');
-assert.ok(await prevButton.count() > 0, 'Features carousel has previous button');
-await nextButton.click();
-await page.waitForTimeout(400);
-const slideCounter = await page.locator('#features').locator('text=/\\d{2} \\/ \\d{2}/').count();
-assert.ok(slideCounter > 0, 'Features carousel has slide counter');
-report.push('Features carousel: next/previous buttons and slide counter verified');
-
-// Test keyboard navigation in carousel
-await featuresCarousel.focus();
-await page.keyboard.press('ArrowRight');
-await page.waitForTimeout(400);
-await page.keyboard.press('ArrowLeft');
-await page.waitForTimeout(400);
-report.push('Features carousel: keyboard navigation (ArrowRight/ArrowLeft) works');
+assert.deepEqual(await page.locator('#features h3').allTextContents(),['Colors','Typography','Layout']);
+assert.equal(await page.locator('#features .plugin-demo').count(),3);
+assert.equal(await page.locator('#how-it-works').count(),1);
+assert.equal(await page.locator('#how-it-works [role=tab]').count(),3);
+report.push('Features uses existing mockups; How it works is one section with three tabs');
 
 // Test scroll progress bar
 const progressBar = await page.locator('header .bg-accent').first().isVisible();
 assert.ok(progressBar, 'Scroll progress bar is visible in header');
 report.push('Scroll progress bar: visible in header');
 const sharedSections = [];
-for (const variant of ['A','B']) {
-  await navigate(base+'/?pricing_variant='+variant);
+for (const variant of ['legacy','new']) {
+  await navigate(versionUrl(variant));
   await page.locator('#features .demo-tabs').first().waitFor();
   sharedSections.push(await page.locator('main > section:not(#pricing)').allTextContents());
 }
@@ -209,3 +197,4 @@ writeFileSync('validation-output/report.json',JSON.stringify({report,errors},nul
 console.log(report.join('\n'));
 await page.close();
 await browser.close();
+await legacyServer.close();

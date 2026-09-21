@@ -1,19 +1,18 @@
-import { getPricingVariant, type PaidPlan } from "../utils/pricing-experiment";
+import { ACTIVE_PRICING_VERSION, type PaidPlan } from "../utils/pricing";
 import PluginMockup from "./components/PluginMockup";
 import { useRef, useState, useEffect, useId } from "react";
 import { catalog, presetNames, loadPreset } from "@/data/presets";
-import type { Module as VariableModule, Submodule as VariableSubmodule, Variable as VariableItem } from '@/data/preset-contract/types';
+import type { Module as VariableModule, Submodule as VariableSubmodule, Variable as VariableItem } from "@/data/preset-contract/types";
 import { useLocation } from "react-router-dom";
 import {
   AnimatePresence,
   motion,
-  useReducedMotion,
   useScroll,
+  useReducedMotion,
   useSpring,
   useTransform,
 } from "motion/react";
-import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick, trackPricingExperimentView } from "../utils/analytics";
-import $ from 'jquery';
+import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick, trackPricingView } from "../utils/analytics";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -76,26 +75,23 @@ function ScrollReveal({
   delay?: number;
   stagger?: boolean;
 }) {
-  const reduceMotion = useReducedMotion();
-  const offset = reduceMotion
-    ? { x: 0, y: 0 }
-    : direction === "left"
-      ? { x: -40, y: 0 }
-      : direction === "right"
-        ? { x: 40, y: 0 }
-        : { x: 0, y: 40 };
+  const offset = direction === "left"
+    ? { x: -40, y: 0 }
+    : direction === "right"
+      ? { x: 40, y: 0 }
+      : { x: 0, y: 40 };
 
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, ...offset }}
+      initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ 
-        duration: reduceMotion ? 0 : 0.7, 
+        duration: 0.6, 
         ease: [0.22, 1, 0.36, 1], 
-        delay: reduceMotion ? 0 : delay,
-        staggerChildren: stagger ? 0.1 : 0
+        delay,
+        staggerChildren: stagger ? 0.15 : 0
       }}
     >
       {children}
@@ -112,18 +108,16 @@ function StaggeredReveal({
   className?: string;
   delay?: number;
 }) {
-  const reduceMotion = useReducedMotion();
-  
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ 
-        duration: reduceMotion ? 0 : 0.7, 
+        duration: 0.6, 
         ease: [0.22, 1, 0.36, 1], 
-        delay: reduceMotion ? 0 : delay,
+        delay,
         staggerChildren: 0.15
       }}
     >
@@ -142,7 +136,6 @@ function Parallax({
   distance?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -157,7 +150,7 @@ function Parallax({
     <motion.div
       ref={ref}
       className={`max-md:!transform-none ${className}`}
-      style={{ y: reduceMotion ? 0 : y }}
+      style={{ y }}
     >
       {children}
     </motion.div>
@@ -173,22 +166,17 @@ function TiltCard({
   className?: string;
   depth?: number;
 }) {
-  const reduceMotion = useReducedMotion();
   const safeDepth = Math.min(Math.abs(depth), 6);
 
   return (
     <motion.div
       className={`max-md:!transform-none ${className}`}
       style={{ transformStyle: "preserve-3d" }}
-      whileHover={
-        reduceMotion
-          ? undefined
-          : {
-              rotateX: -safeDepth,
-              rotateY: safeDepth,
-              scale: 1.015,
-            }
-      }
+      whileHover={{
+        rotateX: -safeDepth,
+        rotateY: safeDepth,
+        scale: 1.015,
+      }}
       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -278,11 +266,11 @@ const FAQS = [
 const EMPTY_MODULES: VariableModule[] = [];
 
 function moduleCount(module: VariableModule) {
-  return module.submodules.reduce((total, submodule) => total + submodule.variables.length, 0);
+  return module.submodules.reduce((total: number, submodule: VariableSubmodule) => total + submodule.variables.length, 0);
 }
 
 function allVariables(modules: VariableModule[]) {
-  return modules.flatMap((module) => module.submodules.flatMap((submodule) => submodule.variables));
+  return modules.flatMap((module: VariableModule) => module.submodules.flatMap((submodule: VariableSubmodule) => submodule.variables));
 }
 
 const WHAT_YOU_GET_DESCRIPTIONS: Record<string, string> = {
@@ -297,17 +285,29 @@ const WHAT_YOU_GET_DESCRIPTIONS: Record<string, string> = {
 
 // ── Components ────────────────────────────────────────────────────────────────
 function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[] }) {
+  const tabsId = useId();
   const [activeStep, setActiveStep] = useState(0);
-  const reduceMotion = useReducedMotion();
 
   return (
     <div className="mt-10">
       {/* Step headers as clickable tabs */}
-      <div className="grid gap-6 md:grid-cols-3 mb-10">
+      <div role="tablist" aria-label="How it works" className="grid gap-6 md:grid-cols-3 mb-10">
         {STEPS.map((step, index) => (
           <ScrollReveal key={step.num} delay={index * 0.08}>
             <div className="relative">
               <button
+                role="tab"
+                id={`${tabsId}-tab-${index}`}
+                aria-selected={activeStep === index}
+                aria-controls={`${tabsId}-panel`}
+                tabIndex={activeStep === index ? 0 : -1}
+                onKeyDown={event => {
+                  if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+                  event.preventDefault();
+                  const next = event.key === 'Home' ? 0 : event.key === 'End' ? 2 : (index + (event.key === 'ArrowRight' ? 1 : 2)) % 3;
+                  setActiveStep(next);
+                  document.getElementById(`${tabsId}-tab-${next}`)?.focus();
+                }}
                 onClick={() => setActiveStep(index)}
                 className={`block h-full border-b-2 pb-4 text-left transition-all w-full ${
                   activeStep === index ? 'border-accent' : 'border-transparent hover:border-accent/50'
@@ -333,10 +333,13 @@ function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[]
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={activeStep}
-          initial={{ opacity: 0, x: reduceMotion ? 0 : 40 }}
+          role="tabpanel"
+          id={`${tabsId}-panel`}
+          aria-labelledby={`${tabsId}-tab-${activeStep}`}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: reduceMotion ? 0 : -40 }}
-          transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex min-w-0 justify-center"
         >
           <Parallax distance={12} className={activeStep === 2 ? 'w-full max-w-4xl' : ''}>
@@ -679,59 +682,94 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
 }
 
 function VisualDocumentationPreview({ isActive }: { isActive: boolean }) {
-  const vegasRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (reduceMotion || !vegasRef.current) return;
+    if (isPaused || reducedMotion || !isActive) return;
 
-    // Initialize Vegas.js
-    const $vegasElement = $(vegasRef.current);
-    
-    // Clean up any existing Vegas instance
-    if ($vegasElement.hasClass('vegas-container')) {
-      $vegasElement.vegas('destroy');
-    }
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % VISUAL_DOC_PREVIEWS.length);
+    }, 4000);
 
-    // Initialize Vegas with the 3 images
-    $vegasElement.vegas({
-      slides: VISUAL_DOC_PREVIEWS.map(preview => ({
-        src: preview.src,
-        alt: preview.alt
-      })),
-      transition: 'fade',
-      transitionDuration: 800,
-      delay: 4000,
-      animation: 'kenburns',
-      animationDuration: 20000,
-      align: 'center',
-      valign: 'center',
-      shuffle: false,
-      cover: true,
-      color: '#05061a',
-      overlay: true,
-      overlayColor: 'rgba(5, 6, 26, 0.3)'
-    });
+    return () => clearInterval(interval);
+  }, [isPaused, reducedMotion, isActive]);
 
-    return () => {
-      $vegasElement.vegas('destroy');
-    };
-  }, [reduceMotion]);
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? VISUAL_DOC_PREVIEWS.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % VISUAL_DOC_PREVIEWS.length);
+  };
 
   return (
-    <div className="relative flex w-full max-w-[1680px] flex-col items-center px-8 sm:px-12">
-      <div 
-        ref={vegasRef}
-        className="aspect-[846/500] w-full overflow-hidden lg:aspect-[1692/500] rounded-lg"
-        style={{ minHeight: '400px' }}
-      />
+    <div 
+      className="relative flex w-full max-w-[1680px] flex-col items-center px-8 sm:px-12"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <button
+        type="button"
+        aria-label="Previous slide"
+        onClick={goToPrevious}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-lg text-accent transition-all duration-500 ease-out hover:bg-accent/5"
+      >
+        <MI icon="chevron_left" size={28} style={{ color: "#5E6AD2" }} />
+      </button>
+
+      <div className="aspect-[1920/1080] w-full overflow-hidden lg:aspect-[1920/1080] rounded-lg">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.img
+            key={currentIndex}
+            src={VISUAL_DOC_PREVIEWS[currentIndex].src}
+            alt={VISUAL_DOC_PREVIEWS[currentIndex].alt}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="h-full w-full object-cover object-top"
+            loading="lazy"
+          />
+        </AnimatePresence>
+      </div>
+
+      <button
+        type="button"
+        aria-label="Next slide"
+        onClick={goToNext}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-lg text-accent transition-all duration-500 ease-out hover:bg-accent/5"
+      >
+        <MI icon="chevron_right" size={28} style={{ color: "#5E6AD2" }} />
+      </button>
+
+      <div className="mt-3 flex h-12 items-center justify-center gap-2">
+        {VISUAL_DOC_PREVIEWS.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={currentIndex === index}
+            onClick={() => setCurrentIndex(index)}
+            className={`flex h-12 w-12 items-center justify-center rounded-lg transition-all duration-500 ease-out ${
+              currentIndex === index ? "bg-accent/10" : "hover:bg-accent/5"
+            }`}
+          >
+            <span
+              className={`block h-3 w-3 rounded-full border border-accent transition-all duration-500 ease-out ${
+                currentIndex === index ? "bg-accent scale-125" : "bg-transparent"
+              }`}
+            />
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
 
 function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
   const [activeModuleId, setActiveModuleId] = useState("colors");
-  const reduceMotion = useReducedMotion();
   const activeModule =
     modules.find((module) => module.module === activeModuleId) ?? modules[0];
   const total = modules.reduce((sum, module) => sum + moduleCount(module), 0);
@@ -751,11 +789,11 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
               key={module.module}
               type="button"
               onClick={() => setActiveModuleId(module.module)}
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: reduceMotion ? 0 : 0.42, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className={`group min-h-[150px] rounded-lg border p-5 text-left transition-all duration-200 ${
+              transition={{ duration: 0.42, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className={`group min-h-[150px] rounded-lg border p-5 text-left transition-all duration-500 ${
                 isActive
                   ? "border-accent bg-white shadow-[0px_12px_28px_-18px_rgba(0,0,0,0.35)]"
                   : "border-border bg-white hover:border-accent/30 hover:bg-muted/20"
@@ -783,10 +821,10 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeModule?.module ?? "empty"}
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
-            transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="max-w-xl">
@@ -811,9 +849,9 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
               {activeModule?.submodules.map((submodule, index) => (
                 <motion.div
                   key={submodule.id}
-                  initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.28, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.28, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
                   className="flex items-center justify-between rounded-lg border border-border bg-background/60 px-3 py-2.5"
                 >
                   <span className="flex min-w-0 items-center gap-2">
@@ -846,14 +884,14 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
 
 export default function App() {
   const location = useLocation();
-  const [variant] = useState(getPricingVariant);
-  const experimentTracked = useRef(false);
+  const pricingVersion = ACTIVE_PRICING_VERSION;
+  const pricingTracked = useRef(false);
   useEffect(() => {
-    if (!experimentTracked.current) {
-      trackPricingExperimentView(variant);
-      experimentTracked.current = true;
+    if (!pricingTracked.current) {
+      trackPricingView(pricingVersion);
+      pricingTracked.current = true;
     }
-  }, [variant]);
+  }, [pricingVersion]);
   
   // Capture URL parameters from plugin (user_id or email)
   const [userId, setUserId] = useState<string | null>(null);
@@ -862,7 +900,6 @@ export default function App() {
   const [activeStep, setActiveStep] = useState(0);
   const [variableModules, setVariableModules] = useState<VariableModule[]>(EMPTY_MODULES);
   const heroRef = useRef<HTMLElement>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -879,7 +916,7 @@ export default function App() {
       if (element) {
         // Pequeno atraso para garantir a renderização do DOM
         setTimeout(() => {
-          element.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+          element.scrollIntoView({ behavior: "smooth" });
         }, 100);
       }
     } else {
@@ -891,25 +928,16 @@ export default function App() {
     const params = new URLSearchParams(window.location.search);
     const userIdParam = params.get('user_id');
     const emailParam = params.get('email');
-    const planParam = params.get('plan');
 
     if (userIdParam) {
       setUserId(userIdParam);
       // Rolar automaticamente para a secção de preços
       setTimeout(() => {
-        document.getElementById('pricing')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+        document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
     if (emailParam) setEmail(emailParam);
 
-    // Se o parâmetro plan existir e for válido, aciona o redirecionamento automático
-    if (planParam === 'monthly' || planParam === 'lifetime' || (planParam === 'annual' && variant === 'B')) {
-      setIsRedirecting(true);
-      // Pequeno timeout para garantir que o estado do React foi atualizado antes do fetch
-      setTimeout(() => {
-        handlePayment(planParam, emailParam, userIdParam);
-      }, 500);
-    }
   }, []); // Dependências vazias para rodar apenas na montagem
 
   useEffect(() => {
@@ -931,7 +959,7 @@ export default function App() {
   const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
   const handlePayment = async (plan: PaidPlan, passedEmail?: string | null, passedUserId?: string | null) => {
-    trackCheckoutStarted(plan, variant);
+    trackCheckoutStarted(plan, pricingVersion);
     try {
       const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
         method: 'POST',
@@ -941,7 +969,7 @@ export default function App() {
         },
         body: JSON.stringify({
           plan,
-          variant,
+          pricingVersion,
           email: passedEmail || email || null,
           userId: passedUserId || userId || null
         })
@@ -1037,7 +1065,7 @@ export default function App() {
               { title: 'Rebuilding', icon: 'palette', desc: 'Stop starting every project from an empty Variables collection.', icons: ['palette', 'gradient', 'diamond', 'format_line_spacing'] },
               { title: 'Renaming', icon: 'font_download', desc: 'Keep the framework conventions your development team already knows.', icons: ['font_download', 'format_size', 'format_bold', 'format_line_spacing'] },
               { title: 'Documenting', icon: 'grid_4x4', desc: 'Generate Visual Foundations from the same variables you create.', icons: ['grid_4x4', 'rounded_corner', 'space_bar', 'format_line_spacing'] },
-            ].map((card, i) => <motion.div key={card.title} whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}><TiltCard className="h-full rounded-lg bg-card px-5 py-9 shadow-sm hover:shadow-lg hover:border-accent/50 transition-all duration-300"><div className="mb-6 inline-flex rounded-lg border border-border bg-accent/10 p-4 text-accent"><MI icon={card.icon} size={30} /></div><h3 className="text-2xl font-bold">{card.title}</h3><p className="mt-3 min-h-24 text-base leading-relaxed">{card.desc}</p><div className="mt-6 grid grid-cols-4 gap-2">{card.icons.map(icon => <span key={icon} className="flex aspect-square items-center justify-center rounded-lg border border-accent/30 text-accent"><MI icon={icon} size={21} /></span>)}</div></TiltCard></motion.div>)}
+            ].map((card, i) => <motion.div key={card.title} whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}><TiltCard className="h-full rounded-lg bg-card px-5 py-9 shadow-sm hover:shadow-lg hover:border-accent/50 transition-all duration-500 ease-out"><div className="mb-6 inline-flex rounded-lg border border-border bg-accent/10 p-4 text-accent"><MI icon={card.icon} size={30} /></div><h3 className="text-2xl font-bold">{card.title}</h3><p className="mt-3 min-h-24 text-base leading-relaxed">{card.desc}</p><div className="mt-6 grid grid-cols-4 gap-2">{card.icons.map(icon => <span key={icon} className="flex aspect-square items-center justify-center rounded-lg border border-accent/30 text-accent"><MI icon={icon} size={21} /></span>)}</div></TiltCard></motion.div>)}
           </StaggeredReveal><ScrollReveal><p className="mt-6 text-right text-xl font-light">Start from an existing system. Make it yours.</p></ScrollReveal></div>
         </div>
       </section>
@@ -1045,13 +1073,13 @@ export default function App() {
       <section id="presets" className="py-20 lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
         <div className="mx-auto w-full max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
           <ScrollReveal><SectionTag>· Presets ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Start from the stack your team already uses.</h2><p className="mt-6 text-lg text-muted-foreground xl:text-2xl">Choose a curated preset and customize its foundations without changing its original token structure.</p></ScrollReveal>
-          <StaggeredReveal className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{catalog.presets.map((preset) => <motion.div key={preset.id} whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="flex h-full flex-col items-center rounded-lg border border-accent/25 bg-accent/10 p-6 text-center hover:shadow-lg hover:border-accent/50 transition-all duration-300"><img src={`/images/presets/${preset.id === 'starttoken' ? 'starttokens' : preset.id}.svg`} alt="" width="40" height="40" className="size-10 object-contain" /><h3 className="mt-4 text-xl font-medium">{preset.name}</h3><p className="mt-3 text-base">{PRESET_DESCRIPTIONS[preset.id]}</p></motion.div>)}</StaggeredReveal>
+          <StaggeredReveal className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{catalog.presets.map((preset) => <motion.div key={preset.id} whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="flex h-full flex-col items-center rounded-lg border border-accent/25 bg-accent/10 p-6 text-center hover:shadow-lg hover:border-accent/50 transition-all duration-500 ease-out"><img src={`/images/presets/${preset.id === 'starttoken' ? 'starttokens' : preset.id}.svg`} alt="" width="40" height="40" className="size-10 object-contain" /><h3 className="mt-4 text-xl font-medium">{preset.name}</h3><p className="mt-3 text-base">{PRESET_DESCRIPTIONS[preset.id]}</p></motion.div>)}</StaggeredReveal>
           <ScrollReveal><p className="mt-6 text-center text-xl font-light">Choose a preset → Customize values → Generate</p></ScrollReveal>
         </div>
       </section>
 
-      {variant === 'A' ? (
-      <section id="pricing" data-pricing-variant="A" className="py-20 lg:py-28 border-t border-border">
+      {pricingVersion === 'legacy' ? (
+      <section id="pricing" data-pricing-version="legacy" className="py-20 lg:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
             <SectionTag>· Simple pricing ·</SectionTag>
@@ -1068,8 +1096,8 @@ export default function App() {
             <ScrollReveal>
             <motion.div 
               whileHover={{ y: -6, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full rounded-xl border border-border bg-white p-7 lg:p-8 hover:shadow-lg hover:border-accent/50 transition-all duration-300"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full rounded-xl border border-border bg-white p-7 lg:p-8 hover:shadow-lg hover:border-accent/50 transition-all duration-500 ease-out"
             >
               <div className="mb-7">
                 <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Monthly</span>
@@ -1080,7 +1108,7 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">Pay monthly, cancel anytime.</p>
               </div>
               <button 
-                onClick={() => { trackPricingClick('monthly', variant); handlePayment('monthly'); }}
+                onClick={() => { trackPricingClick('monthly', pricingVersion); handlePayment('monthly'); }}
                 className="block w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-center text-foreground hover:bg-muted transition-colors mb-7"
               >
                 Get Started
@@ -1122,7 +1150,7 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">Pay once, own forever.</p>
               </div>
               <button 
-                onClick={() => { trackPricingClick('lifetime', variant); handlePayment('lifetime'); }}
+                onClick={() => { trackPricingClick('lifetime', pricingVersion); handlePayment('lifetime'); }}
                 className="block w-full py-2.5 rounded-lg text-sm font-semibold text-center text-white hover:opacity-90 transition-opacity mb-7" 
                 style={{ background: "#5E6AD2" }}
               >
@@ -1144,7 +1172,7 @@ export default function App() {
         </div>
       </section>
       ) : (
-      <section id="pricing" data-pricing-variant="B" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
+      <section id="pricing" data-pricing-version="new" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
         <div className="mx-auto grid w-full max-w-[1800px] gap-8 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.32fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Pricing ·</SectionTag><h2 className="mt-6 text-5xl font-bold xl:text-[66px]">Start free</h2><p className="mt-6 text-2xl font-light leading-relaxed xl:text-3xl">Generate once for free. Upgrade when StartTokens earns a place in your workflow.</p></ScrollReveal>
           <div className="grid min-w-0 gap-6 md:grid-cols-2 xl:grid-cols-4">{NEW_PLANS.map((item, i) => <ScrollReveal key={item.plan} delay={i * 0.08}><motion.article 
@@ -1155,7 +1183,7 @@ export default function App() {
             <span className="self-start rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">{item.title}</span><h3 className="mt-3 text-2xl font-bold">{item.title}</h3><p className="mt-1 min-h-12 text-base">{item.desc}</p>
             <p className="my-4 flex flex-wrap items-baseline gap-1"><strong className="text-[40px] leading-none">{item.price}</strong><span className="text-sm">{item.period}</span></p>
             <ul className="mb-6 space-y-3 text-base">{[item.plan === 'free' ? '1 complete generation' : 'Unlimited generation', 'All available presets', 'Colors, Typography and Layout', 'Native Figma Variables', 'Visual Documentation', 'No account required'].map(feature => <li key={feature} className="flex items-start gap-2"><span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-white"><MI icon="check" size={14} /></span>{feature}</li>)}</ul>
-            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackPricingClick('free', variant); trackInstallPlugin(); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, variant); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
+            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackPricingClick('free', pricingVersion); trackInstallPlugin(); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, pricingVersion); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
           </motion.article></ScrollReveal>)}</div>
         </div>
       </section>)}
@@ -1171,7 +1199,7 @@ export default function App() {
       <section id="features" className="py-20 lg:py-36">
         <div className="mx-auto grid max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Features ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Customize the foundation<strong className="mt-4 block text-4xl font-bold xl:text-[66px] leading-tight">without breaking the framework.</strong></h2></ScrollReveal>
-          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-3">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={feature.title.toLowerCase() as 'colors' | 'typography' | 'layout'} /></motion.div>)}</StaggeredReveal>
+          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-3">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={feature.title.toLowerCase() as 'colors' | 'typography' | 'layout'} /></motion.div>)}</StaggeredReveal>
         </div>
       </section>
 

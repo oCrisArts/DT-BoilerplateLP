@@ -15,9 +15,11 @@ serve(async (req) => {
   }
 
   try {
-    const { plan, variant = 'A', email, userId } = await req.json()
+    const { plan, pricingVersion: requestedVersion, variant, email, userId } = await req.json()
+    // Backward compatibility for already-published clients, not an experiment.
+    const pricingVersion = requestedVersion ?? (variant === undefined || variant === 'A' ? 'legacy' : variant === 'B' ? 'new' : null);
 
-    if (!['A', 'B'].includes(variant) || !['monthly', 'annual', 'lifetime'].includes(plan) || (variant === 'A' && plan === 'annual')) {
+    if (!['legacy', 'new'].includes(pricingVersion) || !['monthly', 'annual', 'lifetime'].includes(plan) || (pricingVersion === 'legacy' && plan === 'annual')) {
       return new Response(JSON.stringify({ error: 'Invalid plan' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -43,9 +45,9 @@ serve(async (req) => {
 
     // Select price based on plan
     const prices = getPrices(name => Deno.env.get(name));
-    const priceId = variant === 'A'
-      ? prices.A[plan as keyof typeof prices.A]
-      : prices.B[plan as keyof typeof prices.B];
+    const priceId = pricingVersion === 'legacy'
+      ? prices.legacy[plan as keyof typeof prices.legacy]
+      : prices.new[plan as keyof typeof prices.new];
     if (!priceId) {
       return new Response(JSON.stringify({ error: 'Pricing is not configured for this plan' }), {
         status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -68,7 +70,8 @@ serve(async (req) => {
       customer_email: email || undefined,
       metadata: {
         plan: plan,
-        pricing_variant: variant,
+        pricing_version: pricingVersion,
+        pricing_variant: pricingVersion === 'legacy' ? 'A' : 'B',
         user_id: userId || ''
       }
     }
@@ -77,7 +80,7 @@ serve(async (req) => {
 
     console.log(`Created checkout session for ${plan} plan: ${session.id}`)
 
-    return new Response(JSON.stringify({ url: session.url }), {
+    return new Response(JSON.stringify({ url: session.url, pricingVersion, plan }), {
       status: 200,
       headers: {  
         ...corsHeaders,

@@ -34,10 +34,10 @@ function trackEvent(eventName: string, parameters?: Record<string, any>) {
   trackGAEvent(eventName, parameters);
   trackClarityEvent(eventName, parameters);
   trackHotjarEvent(eventName);
-  if (parameters?.variant) {
-    window.clarity?.('set', 'pricing_variant', parameters.variant);
+  if (parameters?.pricing_version) {
+    window.clarity?.('set', 'pricing_version', parameters.pricing_version);
     // Clarity/Hotjar events do not support arbitrary payloads.
-    const segment = `${eventName}_${parameters.variant}${parameters.plan ? `_${parameters.plan}` : ''}`;
+    const segment = `${eventName}_${parameters.pricing_version}${parameters.plan ? `_${parameters.plan}` : ''}`;
     trackClarityEvent(segment);
     trackHotjarEvent(segment);
   }
@@ -48,12 +48,12 @@ export function trackHeroCTA() {
   trackEvent('hero_cta_click');
 }
 
-export function trackPricingClick(plan?: string, variant?: string) {
-  trackEvent('pricing_click', { plan, variant });
+export function trackPricingClick(plan?: string, pricingVersion?: string) {
+  trackEvent('pricing_click', { plan, pricing_version: pricingVersion });
 }
 
-export function trackPricingExperimentView(variant: string) {
-  trackEvent('pricing_experiment_view', { variant });
+export function trackPricingView(pricingVersion: string) {
+  trackEvent('pricing_view', { pricing_version: pricingVersion });
 }
 
 export function trackInstallPlugin() {
@@ -64,8 +64,8 @@ export function trackFAQExpand(question: string) {
   trackEvent('faq_expand', { question });
 }
 
-export function trackCheckoutStarted(plan: string, variant?: string) {
-  trackEvent('checkout_started', { plan, variant });
+export function trackCheckoutStarted(plan: string, pricingVersion?: string) {
+  trackEvent('checkout_started', { plan, pricing_version: pricingVersion });
 }
 
 export function trackPurchase(value: number, currency: string) {
