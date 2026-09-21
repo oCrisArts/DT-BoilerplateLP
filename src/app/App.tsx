@@ -259,6 +259,55 @@ const WHAT_YOU_GET_DESCRIPTIONS: Record<string, string> = {
 
 
 // ── Components ────────────────────────────────────────────────────────────────
+function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[] }) {
+  const [activeStep, setActiveStep] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div className="mt-10">
+      {/* Step headers as clickable tabs */}
+      <div className="grid gap-6 md:grid-cols-3 mb-10">
+        {STEPS.map((step, index) => (
+          <ScrollReveal key={step.num} delay={index * 0.08}>
+            <button
+              onClick={() => setActiveStep(index)}
+              className={`block h-full border-b-2 pb-4 text-left transition-all ${
+                activeStep === index ? 'border-accent' : 'border-transparent hover:border-accent/50'
+              }`}
+            >
+              <h3 className="text-xl font-semibold">{step.num} {step.title}</h3>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{step.desc}</p>
+            </button>
+          </ScrollReveal>
+        ))}
+      </div>
+
+      {/* Content */}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={activeStep}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: reduceMotion ? 0 : -20 }}
+          transition={{ duration: reduceMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="flex min-w-0 justify-center"
+        >
+          <Parallax distance={12} className={activeStep === 2 ? 'w-full max-w-4xl' : ''}>
+            {activeStep === 2 ? (
+              <VariablesPanelMockup modules={variableModules} />
+            ) : (
+              <PluginMockup 
+                className="sm:!w-[420px] sm:!h-[611px]" 
+                initialModule={activeStep === 1 ? 'colors' : undefined} 
+              />
+            )}
+          </Parallax>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   const answerId = useId();
@@ -1080,8 +1129,8 @@ export default function App() {
       <section id="how-it-works" className="bg-accent/10 py-16 lg:py-20">
         <div className="mx-auto max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
           <ScrollReveal className="text-center"><SectionTag>· How it works ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">From framework to<strong className="block text-4xl font-bold xl:text-[66px]">Figma foundation in 3 steps.</strong></h2></ScrollReveal>
-          <div className="my-10 grid gap-6 md:grid-cols-3">{STEPS.map((entry, i) => <ScrollReveal key={entry.num} delay={i * 0.08}><div className="block h-full border-b-2 pb-4 border-accent"><h3 className="text-xl font-semibold">{entry.num} {entry.title}</h3><p className="mt-4 text-base leading-relaxed text-muted-foreground">{entry.desc}</p></div></ScrollReveal>)}</div>
-          <ScrollReveal className="flex min-w-0 justify-center"><Parallax distance={12} className="w-full max-w-4xl"><VariablesPanelMockup modules={variableModules} /></Parallax></ScrollReveal>
+          
+          <HowItWorksTabs variableModules={variableModules} />
         </div>
       </section>
 
