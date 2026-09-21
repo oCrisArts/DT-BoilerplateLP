@@ -1,9 +1,5 @@
 import type { Catalog, LoadedPreset, Module, Preset } from './preset-contract/types';
 import { validateCatalog, validatePreset, validateModules } from './preset-contract/validate.mjs';
-import catalogData from '../../public/data/presets/catalog.json';
-
-export const catalog: Catalog = validateCatalog(catalogData);
-export const presetNames = catalog.presets.map(p => p.name).join(', ').replace(/, ([^,]+)$/, ' and $1');
 
 const base = `${import.meta.env.BASE_URL}data/presets/`;
 async function read<T>(path: string): Promise<T> {
@@ -11,9 +7,29 @@ async function read<T>(path: string): Promise<T> {
   if (!response.ok) throw new Error(`Unable to load preset data: ${path} (${response.status})`);
   return response.json();
 }
+
+let cachedCatalog: Catalog | null = null;
 export async function loadCatalog(): Promise<Catalog> {
-  return catalog;
+  if (cachedCatalog) return cachedCatalog;
+  const catalogData = await read<Catalog>('catalog.json');
+  cachedCatalog = validateCatalog(catalogData);
+  return cachedCatalog;
 }
+
+// Default catalog for initial render
+export const catalog: Catalog = {
+  schemaVersion: 1,
+  defaultPreset: 'starttoken',
+  presets: [
+    { id: 'bootstrap', name: 'Bootstrap', path: 'bootstrap.json' },
+    { id: 'tailwindcss', name: 'Tailwind CSS', path: 'tailwindcss.json' },
+    { id: 'materialdesign', name: 'Material Design', path: 'materialdesign.json' },
+    { id: 'bulma', name: 'Bulma', path: 'bulma.json' },
+    { id: 'starttoken', name: 'StartToken', path: 'starttoken.json' }
+  ]
+};
+
+export const presetNames = "Bootstrap, Tailwind CSS, Material Design, Bulma and StartToken";
 const pending = new Map<string, Promise<LoadedPreset>>();
 export async function loadPreset(id?: string): Promise<LoadedPreset> {
   const key = id ?? catalog.defaultPreset;

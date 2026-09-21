@@ -13,6 +13,7 @@ import {
   useTransform,
 } from "motion/react";
 import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick, trackPricingExperimentView } from "../utils/analytics";
+import $ from 'jquery';
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -67,28 +68,64 @@ function ScrollReveal({
   className = "",
   direction = "up",
   delay = 0,
+  stagger = false,
 }: {
   children: React.ReactNode;
   className?: string;
   direction?: "up" | "left" | "right";
   delay?: number;
+  stagger?: boolean;
 }) {
   const reduceMotion = useReducedMotion();
   const offset = reduceMotion
     ? { x: 0, y: 0 }
     : direction === "left"
-      ? { x: -24, y: 0 }
+      ? { x: -40, y: 0 }
       : direction === "right"
-        ? { x: 24, y: 0 }
-        : { x: 0, y: 24 };
+        ? { x: 40, y: 0 }
+        : { x: 0, y: 40 };
 
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, scale: 0.99, ...offset }}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.22 }}
-      transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1], delay: reduceMotion ? 0 : delay }}
+      initial={reduceMotion ? false : { opacity: 0, ...offset }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ 
+        duration: reduceMotion ? 0 : 0.7, 
+        ease: [0.22, 1, 0.36, 1], 
+        delay: reduceMotion ? 0 : delay,
+        staggerChildren: stagger ? 0.1 : 0
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function StaggeredReveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const reduceMotion = useReducedMotion();
+  
+  return (
+    <motion.div
+      className={className}
+      initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ 
+        duration: reduceMotion ? 0 : 0.7, 
+        ease: [0.22, 1, 0.36, 1], 
+        delay: reduceMotion ? 0 : delay,
+        staggerChildren: 0.15
+      }}
     >
       {children}
     </motion.div>
@@ -210,15 +247,15 @@ const NEW_PLANS = [
 
 const VISUAL_DOC_PREVIEWS = [
   {
-    src: "/images/how-it-works/visual-doc-1.webp",
+    src: "/images/how-it-works/visual-doc-1.jpg",
     alt: "StartTokens Visual Foundations — customized StartToken color scales and variable paths",
   },
   {
-    src: "/images/how-it-works/visual-doc-2.webp",
+    src: "/images/how-it-works/visual-doc-2.jpg",
     alt: "StartTokens Visual Foundations — typography values and framework token names",
   },
   {
-    src: "/images/how-it-works/visual-doc-3.webp",
+    src: "/images/how-it-works/visual-doc-3.jpg",
     alt: "StartTokens Visual Foundations — layout values and framework token groups",
   },
 ];
@@ -269,15 +306,25 @@ function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[]
       <div className="grid gap-6 md:grid-cols-3 mb-10">
         {STEPS.map((step, index) => (
           <ScrollReveal key={step.num} delay={index * 0.08}>
-            <button
-              onClick={() => setActiveStep(index)}
-              className={`block h-full border-b-2 pb-4 text-left transition-all ${
-                activeStep === index ? 'border-accent' : 'border-transparent hover:border-accent/50'
-              }`}
-            >
-              <h3 className="text-xl font-semibold">{step.num} {step.title}</h3>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{step.desc}</p>
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setActiveStep(index)}
+                className={`block h-full border-b-2 pb-4 text-left transition-all w-full ${
+                  activeStep === index ? 'border-accent' : 'border-transparent hover:border-accent/50'
+                }`}
+              >
+                <h3 className="text-xl font-semibold">{step.num} {step.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">{step.desc}</p>
+              </button>
+              {activeStep === index && (
+                <motion.div
+                  className="absolute -bottom-2 left-0 right-0 h-[2px] bg-accent"
+                  layoutId="activeTabIndicator"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              )}
+            </div>
           </ScrollReveal>
         ))}
       </div>
@@ -286,10 +333,10 @@ function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[]
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={activeStep}
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: reduceMotion ? 0 : -20 }}
-          transition={{ duration: reduceMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, x: reduceMotion ? 0 : 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: reduceMotion ? 0 : -40 }}
+          transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex min-w-0 justify-center"
         >
           <Parallax distance={12} className={activeStep === 2 ? 'w-full max-w-4xl' : ''}>
@@ -311,6 +358,15 @@ function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[]
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   const answerId = useId();
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(open ? contentRef.current.scrollHeight : 0);
+    }
+  }, [open]);
+
   return (
     <div className="border-b border-border last:border-0">
       <button
@@ -325,21 +381,31 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         <span className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">
           {q}
         </span>
-        <MI
-          icon="expand_more"
-          size={18}
-          className={`shrink-0 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
+        <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <MI
+            icon="expand_more"
+            size={18}
+            className="shrink-0 text-muted-foreground"
+          />
+        </motion.div>
       </button>
-      <div
+      <motion.div
         id={answerId}
         aria-hidden={!open}
-        className={`overflow-hidden transition-all duration-200 ${open ? "max-h-48 pb-5" : "max-h-0"}`}
+        initial={false}
+        animate={{ height, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="overflow-hidden"
       >
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {a}
-        </p>
-      </div>
+        <div ref={contentRef} className="pb-5">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {a}
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 }
@@ -613,117 +679,52 @@ function VariablesPanelMockup({ modules }: { modules: VariableModule[] }) {
 }
 
 function VisualDocumentationPreview({ isActive }: { isActive: boolean }) {
-  const [activePreview, setActivePreview] = useState(0);
-  const [autoplayKey, setAutoplayKey] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isDocumentHidden, setIsDocumentHidden] = useState(
-    typeof document !== "undefined" ? document.hidden : false,
-  );
+  const vegasRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-  const preview = VISUAL_DOC_PREVIEWS[activePreview] ?? VISUAL_DOC_PREVIEWS[0];
 
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      setIsDocumentHidden(document.hidden);
+    if (reduceMotion || !vegasRef.current) return;
+
+    // Initialize Vegas.js
+    const $vegasElement = $(vegasRef.current);
+    
+    // Clean up any existing Vegas instance
+    if ($vegasElement.hasClass('vegas-container')) {
+      $vegasElement.vegas('destroy');
+    }
+
+    // Initialize Vegas with the 3 images
+    $vegasElement.vegas({
+      slides: VISUAL_DOC_PREVIEWS.map(preview => ({
+        src: preview.src,
+        alt: preview.alt
+      })),
+      transition: 'fade',
+      transitionDuration: 800,
+      delay: 4000,
+      animation: 'kenburns',
+      animationDuration: 20000,
+      align: 'center',
+      valign: 'center',
+      shuffle: false,
+      cover: true,
+      color: '#05061a',
+      overlay: true,
+      overlayColor: 'rgba(5, 6, 26, 0.3)'
+    });
+
+    return () => {
+      $vegasElement.vegas('destroy');
     };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (reduceMotion || !isActive || isHovered || isFocused || isDocumentHidden) return;
-
-    const intervalId = window.setInterval(() => {
-      setActivePreview((current) => (current + 1) % VISUAL_DOC_PREVIEWS.length);
-    }, 4000);
-
-    return () => window.clearInterval(intervalId);
-  }, [autoplayKey, isActive, isDocumentHidden, isFocused, isHovered, reduceMotion]);
-
-  const restartAutoplay = () => {
-    setAutoplayKey((current) => current + 1);
-  };
-
-  const goToPrevious = () => {
-    setActivePreview((current) =>
-      current === 0 ? VISUAL_DOC_PREVIEWS.length - 1 : current - 1,
-    );
-    restartAutoplay();
-  };
-  const goToNext = () => {
-    setActivePreview((current) => (current + 1) % VISUAL_DOC_PREVIEWS.length);
-    restartAutoplay();
-  };
+  }, [reduceMotion]);
 
   return (
-    <div
-      className="relative flex w-full max-w-[1680px] flex-col items-center px-8 sm:px-12"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocusCapture={() => setIsFocused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          setIsFocused(false);
-        }
-      }}
-    >
-      <button
-        type="button"
-        aria-label="Previous visual documentation preview"
-        onClick={goToPrevious}
-        className="absolute left-0 top-[calc(50%-32px)] z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-lg text-accent transition-colors hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        <MI icon="chevron_left" size={28} style={{ color: "#5E6AD2" }} />
-      </button>
-
-      <div className="aspect-[846/500] w-full overflow-hidden lg:aspect-[1692/500]">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={preview.src}
-            className="grid h-full w-full gap-6 lg:grid-cols-2"
-            initial={{ opacity: 0, x: reduceMotion ? 0 : 18 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: reduceMotion ? 0 : -18 }}
-            transition={{ duration: reduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <img src={preview.src} alt={preview.alt} className="h-full w-full object-cover object-top" loading="lazy" />
-            <img src={VISUAL_DOC_PREVIEWS[(activePreview + 1) % VISUAL_DOC_PREVIEWS.length].src} alt={VISUAL_DOC_PREVIEWS[(activePreview + 1) % VISUAL_DOC_PREVIEWS.length].alt} className="hidden h-full w-full object-cover object-top lg:block" loading="lazy" />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <button
-        type="button"
-        aria-label="Next visual documentation preview"
-        onClick={goToNext}
-        className="absolute right-0 top-[calc(50%-32px)] z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-lg text-accent transition-colors hover:bg-accent/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        <MI icon="chevron_right" size={28} style={{ color: "#5E6AD2" }} />
-      </button>
-
-      <div className="mt-3 flex h-12 items-center justify-center">
-        {VISUAL_DOC_PREVIEWS.map((item, index) => (
-          <button
-            key={item.src}
-            type="button"
-            aria-label={`Show visual documentation preview ${index + 1}`}
-            aria-current={activePreview === index}
-            onClick={() => {
-              setActivePreview(index);
-              restartAutoplay();
-            }}
-            className="flex h-12 w-12 items-center justify-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            <span
-              className={`block h-3 w-3 rounded-full border border-accent transition-colors ${
-                activePreview === index ? "bg-accent" : "bg-transparent"
-              }`}
-            />
-          </button>
-        ))}
-      </div>
+    <div className="relative flex w-full max-w-[1680px] flex-col items-center px-8 sm:px-12">
+      <div 
+        ref={vegasRef}
+        className="aspect-[846/500] w-full overflow-hidden lg:aspect-[1692/500] rounded-lg"
+        style={{ minHeight: '400px' }}
+      />
     </div>
   );
 }
@@ -999,33 +1000,52 @@ export default function App() {
     <>
       <section ref={heroRef} id="hero" className="relative overflow-hidden bg-linear-to-br from-[#414573] via-accent/90 to-[#8b94e0] py-20 lg:flex lg:min-h-[min(56.25vw,1080px)] lg:items-center">
         <div className="mx-auto grid w-full max-w-[1800px] items-center gap-12 px-5 sm:px-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:px-[60px]">
-          <ScrollReveal>
-            <SectionTag>· The fastest way to start a Design Tokens in Figma ·</SectionTag>
-            <h1 className="mt-6 max-w-5xl text-4xl font-bold leading-[1.09] tracking-tight sm:text-5xl xl:text-[66px]">Stop rebuilding<br className="hidden lg:block" /> design tokens from scratch.</h1>
-            <p className="my-6 text-xl font-light leading-relaxed sm:text-2xl xl:text-[36px]">Generate a Complete Design Tokens Starter in 30 Seconds.</p>
-            <InstallButton />
+          <div className="space-y-6">
+            <ScrollReveal delay={0}>
+              <SectionTag>· The fastest way to start a Design Tokens in Figma ·</SectionTag>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <h1 className="max-w-5xl text-4xl font-bold leading-[1.09] tracking-tight sm:text-5xl xl:text-[66px]">Stop rebuilding<br className="hidden lg:block" /> design tokens from scratch.</h1>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <p className="text-xl font-light leading-relaxed sm:text-2xl xl:text-[36px]">Generate a Complete Design Tokens Starter in 30 Seconds.</p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <InstallButton />
+            </ScrollReveal>
+          </div>
+          <ScrollReveal delay={0.4} className="flex min-w-0 justify-center">
+            <Parallax distance={16}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <PluginMockup className="sm:!w-[420px] sm:!h-[611px]" />
+              </motion.div>
+            </Parallax>
           </ScrollReveal>
-          <ScrollReveal delay={0.08} className="flex min-w-0 justify-center"><Parallax distance={16}><PluginMockup className="sm:!w-[420px] sm:!h-[611px]" /></Parallax></ScrollReveal>
         </div>
       </section>
 
       <section id="problem-solved" className="bg-accent/10 py-20 lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
         <div className="mx-auto grid w-full max-w-[1800px] gap-10 px-5 sm:px-10 lg:px-[60px] xl:grid-cols-[minmax(0,0.64fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Problem solved ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px] leading-tight">Your framework already has a foundation.<strong className="mt-2 block text-4xl font-bold xl:text-[66px]">Why rebuild it in Figma?</strong></h2><p className="mt-6 text-lg leading-relaxed text-muted-foreground xl:text-2xl">Recreating color scales, typography, spacing, radius and breakpoints by hand takes time — and makes it easier for design and code to drift apart.</p></ScrollReveal>
-          <div className="min-w-0"><div className="grid gap-6 md:grid-cols-3">
+          <div className="min-w-0"><StaggeredReveal className="grid gap-6 md:grid-cols-3">
             {[
               { title: 'Rebuilding', icon: 'palette', desc: 'Stop starting every project from an empty Variables collection.', icons: ['palette', 'gradient', 'diamond', 'format_line_spacing'] },
               { title: 'Renaming', icon: 'font_download', desc: 'Keep the framework conventions your development team already knows.', icons: ['font_download', 'format_size', 'format_bold', 'format_line_spacing'] },
               { title: 'Documenting', icon: 'grid_4x4', desc: 'Generate Visual Foundations from the same variables you create.', icons: ['grid_4x4', 'rounded_corner', 'space_bar', 'format_line_spacing'] },
-            ].map((card, i) => <ScrollReveal key={card.title} delay={i * 0.08}><TiltCard className="h-full rounded-lg bg-card px-5 py-9 shadow-sm"><div className="mb-6 inline-flex rounded-lg border border-border bg-accent/10 p-4 text-accent"><MI icon={card.icon} size={30} /></div><h3 className="text-2xl font-bold">{card.title}</h3><p className="mt-3 min-h-24 text-base leading-relaxed">{card.desc}</p><div className="mt-6 grid grid-cols-4 gap-2">{card.icons.map(icon => <span key={icon} className="flex aspect-square items-center justify-center rounded-lg border border-accent/30 text-accent"><MI icon={icon} size={21} /></span>)}</div></TiltCard></ScrollReveal>)}
-          </div><ScrollReveal><p className="mt-6 text-right text-xl font-light">Start from an existing system. Make it yours.</p></ScrollReveal></div>
+            ].map((card, i) => <motion.div key={card.title} whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}><TiltCard className="h-full rounded-lg bg-card px-5 py-9 shadow-sm hover:shadow-lg hover:border-accent/50 transition-all duration-300"><div className="mb-6 inline-flex rounded-lg border border-border bg-accent/10 p-4 text-accent"><MI icon={card.icon} size={30} /></div><h3 className="text-2xl font-bold">{card.title}</h3><p className="mt-3 min-h-24 text-base leading-relaxed">{card.desc}</p><div className="mt-6 grid grid-cols-4 gap-2">{card.icons.map(icon => <span key={icon} className="flex aspect-square items-center justify-center rounded-lg border border-accent/30 text-accent"><MI icon={icon} size={21} /></span>)}</div></TiltCard></motion.div>)}
+          </StaggeredReveal><ScrollReveal><p className="mt-6 text-right text-xl font-light">Start from an existing system. Make it yours.</p></ScrollReveal></div>
         </div>
       </section>
 
       <section id="presets" className="py-20 lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
         <div className="mx-auto w-full max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
           <ScrollReveal><SectionTag>· Presets ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Start from the stack your team already uses.</h2><p className="mt-6 text-lg text-muted-foreground xl:text-2xl">Choose a curated preset and customize its foundations without changing its original token structure.</p></ScrollReveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{catalog.presets.map((preset, i) => <ScrollReveal key={preset.id} delay={i * 0.08}><div className="flex h-full flex-col items-center rounded-lg border border-accent/25 bg-accent/10 p-6 text-center"><img src={`/images/presets/${preset.id === 'starttoken' ? 'starttokens' : preset.id}.svg`} alt="" width="40" height="40" className="size-10 object-contain" /><h3 className="mt-4 text-xl font-medium">{preset.name}</h3><p className="mt-3 text-base">{PRESET_DESCRIPTIONS[preset.id]}</p></div></ScrollReveal>)}</div>
+          <StaggeredReveal className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{catalog.presets.map((preset) => <motion.div key={preset.id} whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="flex h-full flex-col items-center rounded-lg border border-accent/25 bg-accent/10 p-6 text-center hover:shadow-lg hover:border-accent/50 transition-all duration-300"><img src={`/images/presets/${preset.id === 'starttoken' ? 'starttokens' : preset.id}.svg`} alt="" width="40" height="40" className="size-10 object-contain" /><h3 className="mt-4 text-xl font-medium">{preset.name}</h3><p className="mt-3 text-base">{PRESET_DESCRIPTIONS[preset.id]}</p></motion.div>)}</StaggeredReveal>
           <ScrollReveal><p className="mt-6 text-center text-xl font-light">Choose a preset → Customize values → Generate</p></ScrollReveal>
         </div>
       </section>
@@ -1046,7 +1066,11 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Monthly */}
             <ScrollReveal>
-            <div className="h-full rounded-xl border border-border bg-white p-7 lg:p-8">
+            <motion.div 
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full rounded-xl border border-border bg-white p-7 lg:p-8 hover:shadow-lg hover:border-accent/50 transition-all duration-300"
+            >
               <div className="mb-7">
                 <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Monthly</span>
                 <div className="mt-2 flex items-baseline gap-1">
@@ -1069,14 +1093,19 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
             </ScrollReveal>
 
             {/* Lifetime */}
             <ScrollReveal delay={0.08}>
+            <motion.div 
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full"
+            >
             <TiltCard depth={3} className="h-full">
             <div
-              className="h-full rounded-xl p-7 lg:p-8 relative overflow-hidden"
+              className="h-full rounded-xl p-7 lg:p-8 relative overflow-hidden hover:shadow-lg transition-all duration-300"
               style={{ border: "1.5px solid rgba(94,106,210,0.35)", background: "linear-gradient(135deg,rgba(94,106,210,0.04) 0%,rgba(94,106,210,0.01) 100%)" }}
             >
               <div className="absolute top-4 right-4">
@@ -1109,6 +1138,7 @@ export default function App() {
               </ul>
             </div>
             </TiltCard>
+            </motion.div>
             </ScrollReveal>
           </div>
         </div>
@@ -1117,12 +1147,16 @@ export default function App() {
       <section id="pricing" data-pricing-variant="B" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
         <div className="mx-auto grid w-full max-w-[1800px] gap-8 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.32fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Pricing ·</SectionTag><h2 className="mt-6 text-5xl font-bold xl:text-[66px]">Start free</h2><p className="mt-6 text-2xl font-light leading-relaxed xl:text-3xl">Generate once for free. Upgrade when StartTokens earns a place in your workflow.</p></ScrollReveal>
-          <div className="grid min-w-0 gap-6 md:grid-cols-2 xl:grid-cols-4">{NEW_PLANS.map((item, i) => <ScrollReveal key={item.plan} delay={i * 0.08}><article className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 text-foreground">
+          <div className="grid min-w-0 gap-6 md:grid-cols-2 xl:grid-cols-4">{NEW_PLANS.map((item, i) => <ScrollReveal key={item.plan} delay={i * 0.08}><motion.article 
+            whileHover={{ y: -6, scale: 1.02 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 text-foreground hover:shadow-lg hover:border-accent/50 transition-all duration-300"
+          >
             <span className="self-start rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">{item.title}</span><h3 className="mt-3 text-2xl font-bold">{item.title}</h3><p className="mt-1 min-h-12 text-base">{item.desc}</p>
             <p className="my-4 flex flex-wrap items-baseline gap-1"><strong className="text-[40px] leading-none">{item.price}</strong><span className="text-sm">{item.period}</span></p>
             <ul className="mb-6 space-y-3 text-base">{[item.plan === 'free' ? '1 complete generation' : 'Unlimited generation', 'All available presets', 'Colors, Typography and Layout', 'Native Figma Variables', 'Visual Documentation', 'No account required'].map(feature => <li key={feature} className="flex items-start gap-2"><span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-white"><MI icon="check" size={14} /></span>{feature}</li>)}</ul>
             {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackPricingClick('free', variant); trackInstallPlugin(); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, variant); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
-          </article></ScrollReveal>)}</div>
+          </motion.article></ScrollReveal>)}</div>
         </div>
       </section>)}
 
@@ -1137,7 +1171,7 @@ export default function App() {
       <section id="features" className="py-20 lg:py-36">
         <div className="mx-auto grid max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Features ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Customize the foundation<strong className="mt-4 block text-4xl font-bold xl:text-[66px] leading-tight">without breaking the framework.</strong></h2></ScrollReveal>
-          <div className="grid min-w-0 gap-6 lg:grid-cols-3">{FEATURES.map((feature, i) => <ScrollReveal key={feature.title} delay={i * 0.08} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={feature.title.toLowerCase() as 'colors' | 'typography' | 'layout'} /></ScrollReveal>)}</div>
+          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-3">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={feature.title.toLowerCase() as 'colors' | 'typography' | 'layout'} /></motion.div>)}</StaggeredReveal>
         </div>
       </section>
 
@@ -1145,11 +1179,11 @@ export default function App() {
         <div className="mx-auto max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
           <ScrollReveal><SectionTag>· Visual Documentation ·</SectionTag><p className="mt-6 text-3xl font-light xl:text-[44px]">More than variables</p><h2 className="mt-6 text-4xl font-bold xl:text-[66px]">Your tokens document themselves.</h2></ScrollReveal>
           <ScrollReveal className="my-8 flex justify-center"><VisualDocumentationPreview isActive={true} /></ScrollReveal>
-          <div className="grid gap-8 md:grid-cols-3">{[
+          <StaggeredReveal className="grid gap-8 md:grid-cols-3">{[
             ['Always aligned', 'Documentation reflects the values you generated.'],
             ['Easy to inspect', 'Colors, typography and layout are organized visually.'],
             ['Ready to share', 'Give designers and developers a readable reference inside Figma.'],
-          ].map(([title, desc], i) => <ScrollReveal key={title} delay={i * 0.08}><h3 className="text-2xl font-semibold">{title}</h3><p className="mt-3 text-base">{desc}</p></ScrollReveal>)}</div>
+          ].map(([title, desc], i) => <div key={i}><h3 className="text-2xl font-semibold">{title}</h3><p className="mt-3 text-base">{desc}</p></div>)}</StaggeredReveal>
         </div>
       </section>
 

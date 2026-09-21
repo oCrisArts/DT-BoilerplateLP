@@ -66,11 +66,15 @@
     "sonner": "2.0.3",
     "tailwind-merge": "3.2.0",
     "tw-animate-css": "1.3.8",
-    "vaul": "1.1.2"
+    "vaul": "1.1.2",
+    "vegas": "^2.5.4",
+    "jquery": "^3.7.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
+    "playwright": "^1.40.0",
+    "sharp": "^0.33.0",
     "tailwindcss": "4.1.12",
     "vite": "6.3.5"
   },

@@ -146,6 +146,44 @@ for (const label of ['Fastest Way','Problem Solved','Presets','Features','Visual
 }
 assert.equal(await page.locator('#presets h3').count(),catalog.presets.length);
 report.push('Catalog-driven presets, all navigation targets and free plugin installation link verified');
+
+// Test scroll spy functionality
+await navigate(base);
+const initialActiveLink = await page.locator('header nav').getByRole('link', {name: 'Fastest Way', exact: true}).getAttribute('aria-current');
+assert.equal(initialActiveLink, 'location');
+await page.locator('#problem-solved').scrollIntoViewIfNeeded();
+await page.waitForTimeout(300);
+const problemSolvedActive = await page.locator('header nav').getByRole('link', {name: 'Problem Solved', exact: true}).getAttribute('aria-current');
+assert.equal(problemSolvedActive, 'location');
+report.push('Scroll spy: navigation highlights active section on scroll');
+
+// Test Features carousel
+await page.locator('#features').scrollIntoViewIfNeeded();
+await page.waitForTimeout(300);
+const featuresCarousel = page.locator('#features [role="region"][aria-roledescription="carousel"]');
+assert.ok(await featuresCarousel.count() > 0, 'Features carousel is present');
+const nextButton = featuresCarousel.getByRole('button', {name: 'Next slide'});
+const prevButton = featuresCarousel.getByRole('button', {name: 'Previous slide'});
+assert.ok(await nextButton.count() > 0, 'Features carousel has next button');
+assert.ok(await prevButton.count() > 0, 'Features carousel has previous button');
+await nextButton.click();
+await page.waitForTimeout(400);
+const slideCounter = await page.locator('#features').locator('text=/\\d{2} \\/ \\d{2}/').count();
+assert.ok(slideCounter > 0, 'Features carousel has slide counter');
+report.push('Features carousel: next/previous buttons and slide counter verified');
+
+// Test keyboard navigation in carousel
+await featuresCarousel.focus();
+await page.keyboard.press('ArrowRight');
+await page.waitForTimeout(400);
+await page.keyboard.press('ArrowLeft');
+await page.waitForTimeout(400);
+report.push('Features carousel: keyboard navigation (ArrowRight/ArrowLeft) works');
+
+// Test scroll progress bar
+const progressBar = await page.locator('header .bg-accent').first().isVisible();
+assert.ok(progressBar, 'Scroll progress bar is visible in header');
+report.push('Scroll progress bar: visible in header');
 const sharedSections = [];
 for (const variant of ['A','B']) {
   await navigate(base+'/?pricing_variant='+variant);

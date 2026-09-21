@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { trackInstallPlugin } from "../utils/analytics";
+import { motion, useScroll, useTransform } from "motion/react";
 
 function MI({
   icon,
@@ -33,18 +34,56 @@ function MI({
 }
 
 const NAV_LINKS = [
-  { label: "Fastest Way", href: "/#hero" },
-  { label: "Problem Solved", href: "/#problem-solved" },
-  { label: "Presets", href: "/#presets" },
-  { label: "Features", href: "/#features" },
-  { label: "Visual Docs", href: "/#visual-docs" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Fastest Way", href: "/#hero", section: "hero" },
+  { label: "Problem Solved", href: "/#problem-solved", section: "problem-solved" },
+  { label: "Presets", href: "/#presets", section: "presets" },
+  { label: "How it works", href: "/#how-it-works", section: "how-it-works" },
+  { label: "Features", href: "/#features", section: "features" },
+  { label: "Visual Docs", href: "/#visual-docs", section: "visual-docs" },
+  { label: "Pricing", href: "/#pricing", section: "pricing" },
+  { label: "FAQ", href: "/#faq", section: "faq" },
 ];
 
 export default function Layout() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const location = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  // ScrollSpy with IntersectionObserver
+  useEffect(() => {
+    const sections = NAV_LINKS.map(link => link.section);
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger when section is in middle of viewport
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Update active section based on hash
+  useEffect(() => {
+    if (location.hash) {
+      const sectionId = location.hash.substring(1);
+      setActiveSection(sectionId);
+    }
+  }, [location.hash]);
 
   return (
     <div
@@ -53,6 +92,12 @@ export default function Layout() {
     >
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
+        {/* Scroll Progress Bar */}
+        <motion.div
+          className="absolute top-0 left-0 right-0 h-[2px] bg-accent origin-left"
+          style={{ scaleX }}
+        />
+        
         <div className="max-w-[1800px] mx-auto px-5 sm:px-10 lg:px-[60px] h-[72px] flex items-center justify-between">
           <Link
             to="/"
@@ -66,15 +111,27 @@ export default function Layout() {
             </span>
           </Link>
 
-          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8">
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8 relative">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
-                aria-current={location.pathname + location.hash === link.href ? 'location' : undefined}
+                aria-current={activeSection === link.section ? 'location' : undefined}
                 to={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className={`text-sm transition-colors relative ${
+                  activeSection === link.section 
+                    ? 'text-foreground font-medium' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
               >
                 {link.label}
+                {activeSection === link.section && (
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-[2px] bg-accent"
+                    layoutId="activeNavIndicator"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </Link>
             ))}
           </nav>
@@ -111,7 +168,12 @@ export default function Layout() {
               <Link
                 key={link.label}
                 to={link.href}
-                className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                aria-current={activeSection === link.section ? 'location' : undefined}
+                className={`block text-sm transition-colors ${
+                  activeSection === link.section 
+                    ? 'text-foreground font-medium' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

@@ -33,4 +33,18 @@ export default defineConfig({
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  
+  publicDir: 'public',
+  
+  // Allow importing JSON files
+  json: {
+    namedExports: true,
+  },
+  
+  // Configuration for loading JSON from public directory
+  server: {
+    fs: {
+      strict: false
+    }
+  }
 })
