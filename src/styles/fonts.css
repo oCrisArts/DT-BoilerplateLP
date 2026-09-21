@@ -1,24 +1,12 @@
 @font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 200 900;
-  font-display: swap;
-  src: url('/fonts/SourceSans3VF-Upright.otf.woff2') format('woff2-variations');
-}
-
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: italic;
-  font-weight: 200 900;
-  font-display: swap;
-  src: url('/fonts/SourceSans3VF-Italic.otf.woff2') format('woff2-variations');
-}
-
-@font-face {
   font-family: 'Material Symbols Outlined';
   font-style: normal;
   font-weight: 100 700;
   src: url('/fonts/MaterialSymbolsOutlined.woff2') format('woff2-variations');
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 .material-symbols-outlined {

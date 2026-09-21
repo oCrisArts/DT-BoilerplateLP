@@ -5,7 +5,7 @@ import './plugin-demo.css';
 
 const logos = (id: string) => `/images/presets/${id === 'starttoken' ? 'starttokens' : id}.svg`;
 const subtitles = {
-  colors: 'Customize color values and preview each framework scale.',
+  colors: 'Pick a main color to generate the full framework color scale automatically.',
   typography: 'Set type values and regenerate the framework scale.',
   layout: 'Adjust layout values while preserving framework token names.',
 };
@@ -44,7 +44,130 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
   useEffect(() => { content.current?.scrollTo(0, 0); }, [active, selected, source]);
   const module = source?.modules.find(m => m.module === active);
   const value = (v: Variable) => edits[v.id] ?? v.displayValue;
-  const edit = (v: Variable, next: string) => { setEdits(prev => ({ ...prev, [v.id]: next })); setStatus(''); };
+  const edit = (v: Variable, next: string) => {
+    setEdits(prev => ({ ...prev, [v.id]: next }));
+    setStatus('');
+    
+    // If editing a main color (-500), generate the full color scale
+    if (v.type === 'COLOR' && /-500$/.test(v.name)) {
+      generateColorScale(v, next);
+    }
+  };
+  
+  const generateColorScale = (mainColor: Variable, newColor: string) => {
+    const families = colorFamilies(variables(module!));
+    const mainColorFamily = families.find(family => 
+      family.some(v => v.id === mainColor.id)
+    );
+    
+    if (!mainColorFamily) return;
+    
+    // Parse the new color to HSL for better color manipulation
+    const hsl = hexToHsl(newColor);
+    if (!hsl) return;
+    
+    const newEdits: Record<string, string> = {};
+    
+    // Generate scale from -50 to -950 based on the main color (-500)
+    mainColorFamily.forEach(variable => {
+      const shadeMatch = variable.name.match(/-(\d+)$/);
+      if (!shadeMatch) return;
+      
+      const shade = parseInt(shadeMatch[1], 10);
+      const mainShade = 500;
+      
+      // Calculate lightness adjustment based on shade
+      // Lighter shades (50-400) increase lightness
+      // Darker shades (600-950) decrease lightness
+      let lightnessAdjustment = 0;
+      if (shade < mainShade) {
+        // Lighter: increase lightness up to 90%
+        const factor = (mainShade - shade) / 450; // 0 to 1
+        lightnessAdjustment = factor * (90 - hsl.l);
+      } else if (shade > mainShade) {
+        // Darker: decrease lightness down to 10%
+        const factor = (shade - mainShade) / 450; // 0 to 1
+        lightnessAdjustment = -factor * (hsl.l - 10);
+      }
+      
+      const newLightness = Math.max(10, Math.min(90, hsl.l + lightnessAdjustment));
+      const newColor = hslToHex(hsl.h, hsl.s, newLightness);
+      
+      newEdits[variable.id] = newColor;
+    });
+    
+    setEdits(prev => ({ ...prev, ...newEdits }));
+    setStatus('Color scale generated based on framework conventions.');
+  };
+  
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  };
+  
+  const hexToHsl = (hex: string) => {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return null;
+    
+    const r = rgb.r / 255;
+    const g = rgb.g / 255;
+    const b = rgb.b / 255;
+    
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0, s = 0, l = (max + min) / 2;
+    
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      
+      switch (max) {
+        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+        case g: h = ((b - r) / d + 2) / 6; break;
+        case b: h = ((r - g) / d + 4) / 6; break;
+      }
+    }
+    
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+  };
+  
+  const hslToHex = (h: number, s: number, l: number) => {
+    s /= 100;
+    l /= 100;
+    
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
+    
+    let r = 0, g = 0, b = 0;
+    
+    if (0 <= h && h < 60) { r = c; g = x; b = 0; }
+    else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
+    else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
+    else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
+    else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
+    else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
+    
+    const toHex = (n: number) => {
+      const hex = Math.round((n + m) * 255).toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+    
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  };
+  
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  };
   const back = () => { setSelected(false); setActive('colors'); setQuery(''); setStatus(''); };
   const type = module?.module === 'typography' ? module : undefined;
   const config = type?.configuration;
@@ -68,10 +191,18 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
   };
   const tokenField = (v: Variable) => <label className="demo-token" key={v.id}>
     <span title={v.name}>{v.name}</span>
-    {v.type === 'COLOR' && <input aria-label={`${v.name} color picker`} type="color" value={/^#[\da-f]{6}$/i.test(value(v)) ? value(v) : rgbaHex(v)} onChange={e => edit(v, e.target.value)} style={{ background: value(v) }} />}
+    {v.type === 'COLOR' && <input aria-label={`${v.name} color picker`} type="color" value={/^#[\da-f]{6}$/i.test(value(v)) ? value(v) : rgbaHex(v)} onChange={e => {
+      edit(v, e.target.value);
+      // If this is a main color (-500), the edit function will automatically generate the scale
+    }} style={{ background: value(v) }} />}
     <input aria-label={`${v.name} value`} type={v.type === 'FLOAT' ? 'number' : 'text'} step="any" value={v.type === 'FLOAT' ? Number.parseFloat(value(v)) : value(v)} onChange={e => {
       if (v.type === 'FLOAT') { if (e.target.value !== '' && Number.isFinite(e.target.valueAsNumber)) edit(v, `${e.target.value}${v.unit ?? ''}`); }
-      else edit(v, e.target.value);
+      else if (v.type === 'COLOR' && /^#[\da-f]{6}$/i.test(e.target.value)) {
+        edit(v, e.target.value);
+        // If this is a main color (-500), the edit function will automatically generate the scale
+      } else {
+        edit(v, e.target.value);
+      }
     }} />{v.unit && <small>{v.unit}</small>}
   </label>;
   return <div className={`plugin-demo bg-white relative rounded-[16px] flex flex-col w-[300px] h-[470px] max-w-full ${className}`} aria-label="Interactive StartTokens plugin demo" style={{ boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
@@ -93,7 +224,7 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
         <input className="demo-search" type="search" aria-label="Search tokens" placeholder="Search tokens…" value={query} onChange={e => setQuery(e.target.value)} />
         {type && family && base && line ? <>
           <details open><summary>Configuration</summary><div className="demo-configuration">
-            <label>Font Family<select aria-label="Font Family" value={value(family)} disabled={!config?.fontFamily.customizable} onChange={e => edit(family,e.target.value)}>{[...new Set([family.displayValue, 'Source Sans 3', 'Arial', 'Georgia', 'Courier New'])].map(f => <option key={f}>{f}</option>)}</select></label>
+            <label>Font Family<select aria-label="Font Family" value={value(family)} disabled={!config?.fontFamily.customizable} onChange={e => edit(family,e.target.value)}>{[...new Set([family.displayValue, 'DM Sans', 'Arial', 'Georgia', 'Courier New'])].map(f => <option key={f}>{f}</option>)}</select></label>
             <label>Base Size<input aria-label="Base Size" type="number" min="1" max="96" step="any" value={pixels(base,value(base))} disabled={!config?.baseSize.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 96) edit(base, `${e.target.valueAsNumber / (base.unit === 'rem' || base.unit === 'em' ? 16 : 1)}${base.unit ?? ''}`); }} /> <small>px</small></label>
             <label>Type Scale<select aria-label="Type Scale" value={ratio} disabled={!config?.typeScale.customizable} onChange={e => setRatio(Number(e.target.value))}>{[[1.067,'Minor Second'],[1.125,'Major Second'],[1.2,'Minor Third'],[1.25,'Major Third'],[1.333,'Perfect Fourth'],[1.5,'Perfect Fifth'],[1.618,'Golden Ratio']].map(([r,n]) => <option key={r} value={r}>{n} · {r}</option>)}</select></label>
             <label>Line Height<input aria-label="Line Height" type="number" min="0.5" max="100" step="0.1" value={Number.parseFloat(value(line))} disabled={!config?.lineHeight.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 100) edit(line, `${e.target.value}${line.unit ?? ''}`); }} /></label>

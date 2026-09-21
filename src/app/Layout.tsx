@@ -49,7 +49,7 @@ export default function Layout() {
   return (
     <div
       className="min-h-screen bg-background text-foreground"
-      style={{ fontFamily: "'Source Sans 3', system-ui, sans-serif", fontSize: "var(--font-size)" }}
+      style={{ fontFamily: "'DM Sans', system-ui, sans-serif", fontSize: "var(--font-size)" }}
     >
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">

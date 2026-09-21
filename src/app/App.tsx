@@ -1077,13 +1077,13 @@ export default function App() {
         </div>
       </section>)}
 
-      {STEPS.map((step, index) => <section key={step.num} id={index === 0 ? 'how-it-works' : `how-it-works-${index + 1}`} className="bg-accent/10 py-16 lg:py-20">
+      <section id="how-it-works" className="bg-accent/10 py-16 lg:py-20">
         <div className="mx-auto max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
           <ScrollReveal className="text-center"><SectionTag>· How it works ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">From framework to<strong className="block text-4xl font-bold xl:text-[66px]">Figma foundation in 3 steps.</strong></h2></ScrollReveal>
-          <div className="my-10 grid gap-6 md:grid-cols-3">{STEPS.map((entry, i) => <ScrollReveal key={entry.num} delay={i * 0.08}><a href={i === 0 ? '#how-it-works' : `#how-it-works-${i + 1}`} className={`block h-full border-b-2 pb-4 ${index === i ? 'border-accent' : 'border-transparent'}`}><h3 className="text-xl font-semibold">{entry.num} {entry.title}</h3><p className="mt-4 text-base leading-relaxed text-muted-foreground">{entry.desc}</p></a></ScrollReveal>)}</div>
-          <ScrollReveal className="flex min-w-0 justify-center"><Parallax distance={12} className={index === 2 ? 'w-full max-w-4xl' : ''}>{index === 2 ? <VariablesPanelMockup modules={variableModules} /> : <PluginMockup className="sm:!w-[420px] sm:!h-[611px]" initialModule={index === 1 ? 'colors' : undefined} />}</Parallax></ScrollReveal>
+          <div className="my-10 grid gap-6 md:grid-cols-3">{STEPS.map((entry, i) => <ScrollReveal key={entry.num} delay={i * 0.08}><div className="block h-full border-b-2 pb-4 border-accent"><h3 className="text-xl font-semibold">{entry.num} {entry.title}</h3><p className="mt-4 text-base leading-relaxed text-muted-foreground">{entry.desc}</p></div></ScrollReveal>)}</div>
+          <ScrollReveal className="flex min-w-0 justify-center"><Parallax distance={12} className="w-full max-w-4xl"><VariablesPanelMockup modules={variableModules} /></Parallax></ScrollReveal>
         </div>
-      </section>)}
+      </section>
 
       <section id="features" className="py-20 lg:py-36">
         <div className="mx-auto grid max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)]">

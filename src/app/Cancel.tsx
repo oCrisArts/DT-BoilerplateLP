@@ -46,7 +46,7 @@ export default function Cancel() {
   return (
     <div
       className="min-h-screen bg-background text-foreground flex items-center justify-center"
-      style={{ fontFamily: "'Source Sans 3', system-ui, sans-serif" }}
+      style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
     >
       <div className="max-w-md w-full px-6 text-center">
         <div className="mb-8 flex justify-center">

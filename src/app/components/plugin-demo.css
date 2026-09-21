@@ -1,4 +1,4 @@
-.plugin-demo { color:#252529; font-family:'Source Sans 3',sans-serif; font-size:12px; overflow:hidden; text-align:left; }
+.plugin-demo { color:#252529; font-family:'DM Sans',sans-serif; font-size:12px; overflow:hidden; text-align:left; }
 .plugin-demo button,.plugin-demo input,.plugin-demo select { font:inherit; min-width:0; }
 .plugin-demo button,.plugin-demo summary { cursor:pointer; }
 .demo-header { display:flex; align-items:center; gap:8px; padding:10px 14px; background:#f7f7f8; flex-shrink:0; }

@@ -34,7 +34,7 @@ export default function Contact() {
   return (
     <div
       className="min-h-screen bg-background text-foreground"
-      style={{ fontFamily: "'Source Sans 3', system-ui, sans-serif" }}
+      style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
     >
       <section className="py-24">
         <div className="max-w-6xl mx-auto px-6">
