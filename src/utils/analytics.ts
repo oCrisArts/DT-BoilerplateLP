@@ -34,6 +34,13 @@ function trackEvent(eventName: string, parameters?: Record<string, any>) {
   trackGAEvent(eventName, parameters);
   trackClarityEvent(eventName, parameters);
   trackHotjarEvent(eventName);
+  if (parameters?.variant) {
+    window.clarity?.('set', 'pricing_variant', parameters.variant);
+    // Clarity/Hotjar events do not support arbitrary payloads.
+    const segment = `${eventName}_${parameters.variant}${parameters.plan ? `_${parameters.plan}` : ''}`;
+    trackClarityEvent(segment);
+    trackHotjarEvent(segment);
+  }
 }
 
 // Funnel tracking functions
@@ -41,8 +48,12 @@ export function trackHeroCTA() {
   trackEvent('hero_cta_click');
 }
 
-export function trackPricingClick(plan?: string) {
-  trackEvent('pricing_click', plan ? { plan } : undefined);
+export function trackPricingClick(plan?: string, variant?: string) {
+  trackEvent('pricing_click', { plan, variant });
+}
+
+export function trackPricingExperimentView(variant: string) {
+  trackEvent('pricing_experiment_view', { variant });
 }
 
 export function trackInstallPlugin() {
@@ -53,8 +64,8 @@ export function trackFAQExpand(question: string) {
   trackEvent('faq_expand', { question });
 }
 
-export function trackCheckoutStarted(plan: string) {
-  trackEvent('checkout_started', { plan });
+export function trackCheckoutStarted(plan: string, variant?: string) {
+  trackEvent('checkout_started', { plan, variant });
 }
 
 export function trackPurchase(value: number, currency: string) {

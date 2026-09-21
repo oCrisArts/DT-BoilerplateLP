@@ -33,8 +33,11 @@ function MI({
 }
 
 const NAV_LINKS = [
+  { label: "Fastest Way", href: "/#hero" },
+  { label: "Problem Solved", href: "/#problem-solved" },
+  { label: "Presets", href: "/#presets" },
   { label: "Features", href: "/#features" },
-  { label: "How it works", href: "/#how-it-works" },
+  { label: "Visual Docs", href: "/#visual-docs" },
   { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
 ];
@@ -50,27 +53,20 @@ export default function Layout() {
     >
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div className="max-w-[1800px] mx-auto px-5 sm:px-10 lg:px-[60px] h-[72px] flex items-center justify-between">
           <Link
             to="/"
             className="flex items-center gap-2 shrink-0"
           >
-            <div className="w-6 h-6 rounded-md bg-foreground flex items-center justify-center">
-              <MI
-                icon="layers"
-                size={14}
-                className="text-background"
-                style={{ color: "#fff" }}
-              />
-            </div>
+            <img src="/images/presets/starttokens.svg" alt="" width="28" height="45" className="h-11 w-7 object-contain" />
             <span
-              className="text-sm font-semibold"
+              className="text-xl font-semibold"
             >
               StartTokens
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-8">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -83,15 +79,15 @@ export default function Layout() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <a
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
               rel="noopener noreferrer"
               onClick={trackInstallPlugin}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
+              className="inline-flex min-h-14 items-center justify-center gap-2 px-8 py-3 rounded-lg bg-accent text-white text-base font-medium hover:opacity-90 transition-opacity"
             >
-              Install Plugin
+              Install on Figma
             </a>
           </div>
 
@@ -99,7 +95,7 @@ export default function Layout() {
             aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
-            className="md:hidden min-h-11 min-w-11 p-1 text-muted-foreground hover:text-foreground transition-colors"
+            className="xl:hidden min-h-11 min-w-11 p-1 text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <MI
@@ -110,7 +106,7 @@ export default function Layout() {
         </div>
 
         {mobileOpen && (
-          <div id="mobile-navigation" className="md:hidden border-t border-border bg-background px-6 py-4 space-y-3">
+          <div id="mobile-navigation" className="xl:hidden border-t border-border bg-background px-6 py-4 space-y-3">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -128,7 +124,7 @@ export default function Layout() {
               onClick={trackInstallPlugin}
               className="block w-full py-2.5 rounded-lg bg-foreground text-background text-sm font-medium text-center mt-2"
             >
-              Install Plugin
+              Install on Figma
             </a>
           </div>
         )}
@@ -138,8 +134,8 @@ export default function Layout() {
       <main><Outlet /></main>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-border py-10 bg-background">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+      <footer className="border-t border-background/20 py-10 bg-foreground text-background">
+        <div className="max-w-[1800px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded bg-foreground flex items-center justify-center">
               <MI

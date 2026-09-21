@@ -1,16 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 import Stripe from "npm:stripe"
-//teste
-/*const PRODUCT_IDS = {
-  MONTHLY: 'prod_UkdoEv0GrJSWP9',
-  LIFETIME: 'prod_UkdmgT3cV6LpRA'
-}*/
-const PRODUCT_IDS = {
-  MONTHLY: 'prod_UkaqmahkivPdmI',
-  LIFETIME: 'prod_Ukaj6CALYh322z'
-}
-
+import { identifyPrice } from "../_shared/pricing.ts"
 
 serve(async (req) => {
   const stripeSecretKey = Deno.env.get('STRIPE_SECRET_KEY');
@@ -64,18 +55,13 @@ serve(async (req) => {
         expand: ['line_items']
       });
 
-      // Get product ID from line_items
-      const productId = sessionWithLineItems.line_items?.data?.[0]?.price?.product as string;
-      
-      if (!productId) {
-        console.error('No product ID found in line_items');
-        return new Response(JSON.stringify({ error: 'No product ID found' }), { status: 400 });
+      const priceId = sessionWithLineItems.line_items?.data?.[0]?.price?.id;
+      const plan = priceId ? identifyPrice(priceId, name => Deno.env.get(name)) : undefined;
+      if (!plan) {
+        console.error('Unrecognized checkout Price ID');
+        return new Response(JSON.stringify({ error: 'Unrecognized price' }), { status: 400 });
       }
-
-      // Determine if this is a lifetime purchase
-      const isLifetime = productId === PRODUCT_IDS.LIFETIME;
-
-      console.log(`Processing checkout for email: ${customerEmail}, product: ${productId}, lifetime: ${isLifetime}`);
+      const isLifetime = plan === 'lifetime';
 
       // Check if customer already exists by email
       const { data: existingCustomer, error: fetchError } = await supabase
@@ -95,8 +81,9 @@ serve(async (req) => {
           .from('customers')
           .update({
             subscription_status: 'active',
-            lifetime: isLifetime,
+            lifetime: existingCustomer.lifetime === true || isLifetime,
             stripe_customer_id: stripeCustomerId,
+            stripe_subscription_id: session.subscription || existingCustomer.stripe_subscription_id || null,
             updated_at: new Date().toISOString()
           })
           .eq('id', existingCustomer.id);
@@ -117,6 +104,7 @@ serve(async (req) => {
             subscription_status: 'active',
             lifetime: isLifetime,
             stripe_customer_id: stripeCustomerId,
+            stripe_subscription_id: session.subscription || null,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           });

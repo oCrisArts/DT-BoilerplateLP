@@ -22,7 +22,7 @@ Framework presets are curated subsets of official defaults, not exhaustive expor
 - Tailwind CSS 4.1.12: the complete default color palette and selected typography, breakpoint, radius and spacing theme namespaces. CSS values are preserved from the installed version's official `theme.css`.
 - Bulma 1.0.2: initial/derived Sass colors and typography, body size/line height, column gap, minimum-width breakpoints, spacing helpers and radii. Breakpoint arithmetic is resolved using the official 32px gap.
 
-The active UI remains on the catalog's default, StartToken. No preset selector or framework generation conversion is introduced here. Future generation support must handle native CSS color strings, font stacks, relative units and expressions before exposing framework presets in the UI.
+The landing page's interactive demo reads this catalog and lazily fetches the selected preset. Native CSS colors, relative units, groups and token names are retained. Local demo edits never change these files. The plugin uses the same dataset as an offline build mirror; its generation logic stays in the plugin.
 
 ## Validation and synchronization
 

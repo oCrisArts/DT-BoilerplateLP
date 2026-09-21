@@ -4,3 +4,5 @@ dist
 .env.*
 STRIPE_SUPABASE_SETUP.md
 validation-output
+PRICING-EXPERIMENT.md
+VALIDATION.md

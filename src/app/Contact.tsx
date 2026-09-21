@@ -64,7 +64,7 @@ export default function Contact() {
                       href="mailto:support@dsboilerplate.com" 
                       className="text-base font-medium text-foreground hover:text-accent transition-colors"
                     >
-                      support@dsboilerplate.com
+                      Email StartTokens support
                     </a>
                   </div>
                 </div>

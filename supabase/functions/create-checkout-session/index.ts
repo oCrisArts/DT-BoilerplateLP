@@ -1,14 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import Stripe from "npm:stripe"
-/* teste
-const PRICE_IDS = {
-  MONTHLY: 'price_1Tl8XDGjwjNbQit1cNafBUxk', // Replace with actual Stripe Price ID for $5.99/month
-  LIFETIME: 'price_1Tl8UgGjwjNbQit1TtLP764N' // Replace with actual Stripe Price ID for $49 one-time
-}*/
-const PRICE_IDS = {
-  MONTHLY: 'price_1Tl5f2GjwjNbQit1yFRXBqBA',
-  LIFETIME: 'price_1Tl5YCGjwjNbQit1821CEBPI'
-}
+import { getPrices } from "../_shared/pricing.ts"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -23,9 +15,9 @@ serve(async (req) => {
   }
 
   try {
-    const { plan, email, userId } = await req.json()
+    const { plan, variant = 'A', email, userId } = await req.json()
 
-    if (!plan || (plan !== 'monthly' && plan !== 'lifetime')) {
+    if (!['A', 'B'].includes(variant) || !['monthly', 'annual', 'lifetime'].includes(plan) || (variant === 'A' && plan === 'annual')) {
       return new Response(JSON.stringify({ error: 'Invalid plan' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -50,11 +42,19 @@ serve(async (req) => {
     const baseUrl = Deno.env.get('BASE_URL') || 'http://localhost:5173'
 
     // Select price based on plan
-    const priceId = plan === 'monthly' ? PRICE_IDS.MONTHLY : PRICE_IDS.LIFETIME
+    const prices = getPrices(name => Deno.env.get(name));
+    const priceId = variant === 'A'
+      ? prices.A[plan as keyof typeof prices.A]
+      : prices.B[plan as keyof typeof prices.B];
+    if (!priceId) {
+      return new Response(JSON.stringify({ error: 'Pricing is not configured for this plan' }), {
+        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
 
     // Create checkout session
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
-      mode: plan === 'monthly' ? 'subscription' : 'payment',
+      mode: plan === 'lifetime' ? 'payment' : 'subscription',
       payment_method_types: ['card'],
       allow_promotion_codes: true, // <--- ADICIONE ESTA LINHA
       line_items: [
@@ -68,6 +68,7 @@ serve(async (req) => {
       customer_email: email || undefined,
       metadata: {
         plan: plan,
+        pricing_variant: variant,
         user_id: userId || ''
       }
     }

@@ -14,7 +14,7 @@ const pixels = (v: Variable, value = v.displayValue) => Number.parseFloat(value)
 const matches = (v: Variable, q: string) => `${v.name} ${v.figmaName}`.toLowerCase().includes(q.toLowerCase());
 
 /** A small, local-only demonstration. No Figma generation or checkout implementation. */
-export default function PluginMockup({ initialModule }: { initialModule?: ModuleId }) {
+export default function PluginMockup({ initialModule, className = '' }: { initialModule?: ModuleId; className?: string }) {
   const uid = useId();
   const [source, setSource] = useState<LoadedPreset>();
   const [selected, setSelected] = useState(Boolean(initialModule));
@@ -74,7 +74,7 @@ export default function PluginMockup({ initialModule }: { initialModule?: Module
       else edit(v, e.target.value);
     }} />{v.unit && <small>{v.unit}</small>}
   </label>;
-  return <div className="plugin-demo bg-white relative rounded-[16px] flex flex-col" aria-label="Interactive StartTokens plugin demo" style={{ width: '300px', height: '470px', maxWidth: '100%', boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
+  return <div className={`plugin-demo bg-white relative rounded-[16px] flex flex-col w-[300px] h-[470px] max-w-full ${className}`} aria-label="Interactive StartTokens plugin demo" style={{ boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
     <div className="demo-header"><img src={logos('starttoken')} alt="" width="14" height="22" /><span>StartTokens</span><small>v0.1</small></div>
     {selected && source && <>
       <div className="demo-preset"><button onClick={back} aria-label="Back to presets">←</button><img src={logos(source.preset.id)} alt="" width="25" height="25" /><span>{source.preset.metadata.name}</span></div>
@@ -93,10 +93,10 @@ export default function PluginMockup({ initialModule }: { initialModule?: Module
         <input className="demo-search" type="search" aria-label="Search tokens" placeholder="Search tokens…" value={query} onChange={e => setQuery(e.target.value)} />
         {type && family && base && line ? <>
           <details open><summary>Configuration</summary><div className="demo-configuration">
-            <label>Font Family<select value={value(family)} disabled={!config?.fontFamily.customizable} onChange={e => edit(family,e.target.value)}>{[...new Set([family.displayValue, 'Source Sans 3', 'Arial', 'Georgia', 'Courier New'])].map(f => <option key={f}>{f}</option>)}</select></label>
-            <label>Base Size<input type="number" min="1" max="96" step="any" value={pixels(base,value(base))} disabled={!config?.baseSize.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 96) edit(base, `${e.target.valueAsNumber / (base.unit === 'rem' || base.unit === 'em' ? 16 : 1)}${base.unit ?? ''}`); }} /> <small>px</small></label>
-            <label>Type Scale<select value={ratio} disabled={!config?.typeScale.customizable} onChange={e => setRatio(Number(e.target.value))}>{[[1.067,'Minor Second'],[1.125,'Major Second'],[1.2,'Minor Third'],[1.25,'Major Third'],[1.333,'Perfect Fourth'],[1.5,'Perfect Fifth'],[1.618,'Golden Ratio']].map(([r,n]) => <option key={r} value={r}>{n} · {r}</option>)}</select></label>
-            <label>Line Height<input type="number" min="0.5" max="100" step="0.1" value={Number.parseFloat(value(line))} disabled={!config?.lineHeight.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 100) edit(line, `${e.target.value}${line.unit ?? ''}`); }} /></label>
+            <label>Font Family<select aria-label="Font Family" value={value(family)} disabled={!config?.fontFamily.customizable} onChange={e => edit(family,e.target.value)}>{[...new Set([family.displayValue, 'Source Sans 3', 'Arial', 'Georgia', 'Courier New'])].map(f => <option key={f}>{f}</option>)}</select></label>
+            <label>Base Size<input aria-label="Base Size" type="number" min="1" max="96" step="any" value={pixels(base,value(base))} disabled={!config?.baseSize.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 96) edit(base, `${e.target.valueAsNumber / (base.unit === 'rem' || base.unit === 'em' ? 16 : 1)}${base.unit ?? ''}`); }} /> <small>px</small></label>
+            <label>Type Scale<select aria-label="Type Scale" value={ratio} disabled={!config?.typeScale.customizable} onChange={e => setRatio(Number(e.target.value))}>{[[1.067,'Minor Second'],[1.125,'Major Second'],[1.2,'Minor Third'],[1.25,'Major Third'],[1.333,'Perfect Fourth'],[1.5,'Perfect Fifth'],[1.618,'Golden Ratio']].map(([r,n]) => <option key={r} value={r}>{n} · {r}</option>)}</select></label>
+            <label>Line Height<input aria-label="Line Height" type="number" min="0.5" max="100" step="0.1" value={Number.parseFloat(value(line))} disabled={!config?.lineHeight.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 100) edit(line, `${e.target.value}${line.unit ?? ''}`); }} /></label>
             <button className="demo-generate-scale" onClick={generateScale}>Generate scale</button>
           </div></details>
           <details open><summary>Generated scale</summary>{steps.filter(v => matches(v,query)).map(v => <div key={v.id} className="demo-type-preview"><span style={{ fontFamily: value(family), fontSize: Math.max(10,Math.min(38,pixels(v,value(v)))) , lineHeight: line.unit ? '1.4' : Math.min(3,Number.parseFloat(value(line))) }}>Aa</span><span><small>{value(v)}</small><code>{v.name}</code></span></div>)}</details>
@@ -122,12 +122,14 @@ function colorFamilies(list: Variable[]) {
   for (const v of list) { const key = v.figmaName.replace(/-\d+$/, ''); families.set(key,[...(families.get(key) ?? []),v]); }
   return [...families.values()];
 }
+const pickerColors = new Map<string, string>();
 function rgbaHex(v: Variable) {
   if (typeof v.value === 'object') return '#' + [v.value.r,v.value.g,v.value.b].map(n => Math.round(n*255).toString(16).padStart(2,'0')).join('');
   // Native HSL/OKLCH values are displayed directly by CSS. Picker starts from the rendered color.
   if (typeof document !== 'undefined') {
+    if (pickerColors.has(v.displayValue)) return pickerColors.get(v.displayValue)!;
     const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
-    if (ctx) { ctx.fillStyle = v.displayValue; ctx.fillRect(0,0,1,1); return '#' + [...ctx.getImageData(0,0,1,1).data].slice(0,3).map(n => n.toString(16).padStart(2,'0')).join(''); }
+    if (ctx) { ctx.fillStyle = v.displayValue; ctx.fillRect(0,0,1,1); const hex = '#' + [...ctx.getImageData(0,0,1,1).data].slice(0,3).map(n => n.toString(16).padStart(2,'0')).join(''); pickerColors.set(v.displayValue,hex); return hex; }
   }
   return '#000000';
 }

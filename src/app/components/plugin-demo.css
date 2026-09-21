@@ -12,6 +12,7 @@
 .demo-content h2 { font-size:20px; font-weight:500; margin-bottom:8px; }.demo-content p { font-size:13px; line-height:1.4; }
 .demo-content .demo-helper { font-size:10px; color:#62626d; margin-top:7px; }
 .demo-presets { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+.demo-presets button:last-child:nth-child(odd) { grid-column:1 / -1; }
 .demo-presets button { min-height:82px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:1px solid #dedee3; border-radius:6px; box-shadow:0 4px 9px #00000012; }.demo-presets button:hover { background:#f1f2fc; border-color:#5e6ad2; }
 .demo-search { width:100%; background:#f5f5f7; border:1px solid #dedee3; padding:8px; border-radius:5px; margin:12px 0; min-height:36px; }
 .plugin-demo details { border-bottom:1px solid #dedee3; }.plugin-demo summary { min-height:36px; padding:9px 2px; font-weight:600; color:#414eb5; }

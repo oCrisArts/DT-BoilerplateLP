@@ -1,3 +1,4 @@
+import { getPricingVariant, type PaidPlan } from "../utils/pricing-experiment";
 import PluginMockup from "./components/PluginMockup";
 import { useRef, useState, useEffect, useId } from "react";
 import { catalog, presetNames, loadPreset } from "@/data/presets";
@@ -11,7 +12,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick } from "../utils/analytics";
+import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick, trackPricingExperimentView } from "../utils/analytics";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -54,7 +55,7 @@ function SectionTag({
 }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border border-accent/25 bg-accent/5 px-[17px] py-[9px] font-mono text-base font-normal leading-none text-accent whitespace-nowrap ${className}`}
+      className={`inline-flex items-center rounded-full border border-accent/25 bg-[#eceef9] px-[17px] py-[9px] text-base font-normal leading-none text-[#090c2e] max-w-full text-center ${className}`}
     >
       {children}
     </span>
@@ -84,10 +85,10 @@ function ScrollReveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...offset }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={reduceMotion ? false : { opacity: 0, scale: 0.99, ...offset }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.22 }}
-      transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1], delay: reduceMotion ? 0 : delay }}
     >
       {children}
     </motion.div>
@@ -184,13 +185,28 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { num: "01", title: "Choose a Preset", desc: `Start with ${presetNames} foundations.` },
-  { num: "02", title: "Customize Colors", desc: "Change color values and preview their scales while keeping the original framework token names." },
-  { num: "03", title: "Configure Typography", desc: "Choose your font, base size, type scale and line height, then regenerate the framework typography scale." },
-  { num: "04", title: "Adjust Layout", desc: "Customize the grid, breakpoints, spacing, radius and other foundations provided by the selected preset." },
-  { num: "05", title: "Generate Tokens", desc: "Create the complete customized package as native Figma Variables." },
-  { num: "06", title: "Visual Documentation", desc: "StartTokens automatically creates an organized Visual Foundations page using the same generated variables." },
+  { num: "01", title: "Choose your preset", desc: `Start with ${presetNames}.` },
+  { num: "02", title: "Make it yours", desc: "Customize colors, typography and layout while keeping the framework's token structure." },
+  { num: "03", title: "Generate Variables", desc: "Create native Figma Variables and an organized Visual Foundations page from the same values." },
 ];
+
+const INSTALL_URL = "https://www.figma.com/community/plugin/1651310914400769393";
+function InstallButton() {
+  return <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={trackInstallPlugin} className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-accent px-8 py-4 text-base font-semibold text-white transition-opacity hover:opacity-90">Install on Figma <MI icon="arrow_forward" size={18} /></a>;
+}
+const PRESET_DESCRIPTIONS: Record<string, string> = {
+  bootstrap: "Bootstrap foundations ready for Figma.",
+  tailwindcss: "Native Tailwind color families and token conventions.",
+  materialdesign: "Material Design foundations organized as Figma Variables.",
+  bulma: "Bulma defaults ready to customize.",
+  starttoken: "A framework-neutral starting point for new products.",
+};
+const NEW_PLANS = [
+  { plan: 'free', title: 'Free', price: '$0', period: '', desc: 'Try StartTokens', cta: 'Generate for free' },
+  { plan: 'monthly', title: 'Monthly', price: '$7.99', period: '/ month', desc: 'Best for occasional projects.', cta: 'Start Monthly' },
+  { plan: 'annual', title: 'Annual', price: '$59.99', period: '/ year', desc: 'Best for designers', cta: 'Get Annual' },
+  { plan: 'lifetime', title: 'Lifetime', price: '$99.90', period: 'one-time', desc: 'Pay once. Keep using', cta: 'Get Lifetime' },
+] as const;
 
 const VISUAL_DOC_PREVIEWS = [
   {
@@ -215,12 +231,11 @@ const MONTHLY_FEATURES = [
 const LIFETIME_FEATURES = [...MONTHLY_FEATURES, "One-time Payment"];
 
 const FAQS = [
-  { q: "What does StartTokens generate?", a: "StartTokens generates native Figma Variables for Colors, Typography and Layout from customizable framework presets, plus an organized Visual Foundations documentation page." },
-  { q: "Which presets are available?", a: `${presetNames}.` },
-  { q: "Does StartTokens change framework token names?", a: "No. StartTokens preserves the original token structure and naming. You customize the values while keeping the framework conventions intact." },
-  { q: "Does it use native Figma Variables?", a: "Yes. Generated tokens use Figma’s native Variables system." },
-  { q: "Can I customize the generated values?", a: "Yes. Colors, typography and supported layout values can be customized before generation." },
-  { q: "Does it generate documentation?", a: "Yes. A Visual Foundations page is automatically created from the same variables generated by the plugin." },
+  { q: "What exactly does StartTokens generate?", a: "StartTokens generates native Figma Variables for Colors, Typography and Layout, plus an organized Visual Foundations documentation page from the same values." },
+  { q: "Which presets can I use?", a: `${presetNames}.` },
+  { q: "Will StartTokens rename my framework tokens?", a: "No. StartTokens preserves the original token structure and naming. You customize the values while keeping the framework conventions intact." },
+  { q: "Can I try it before paying?", a: "Yes. Generate once for free, with no account required. Upgrade when StartTokens earns a place in your workflow." },
+  { q: "Is this a complete component library or design system?", a: "No. StartTokens creates a foundation of design tokens and visual documentation. You build your components and design system on top of it." },
 ];
 
 const EMPTY_MODULES: VariableModule[] = [];
@@ -595,7 +610,7 @@ function VisualDocumentationPreview({ isActive }: { isActive: boolean }) {
 
   return (
     <div
-      className="relative flex w-full max-w-[846px] flex-col items-center px-12 sm:px-16"
+      className="relative flex w-full max-w-[1680px] flex-col items-center px-8 sm:px-12"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocusCapture={() => setIsFocused(true)}
@@ -614,19 +629,19 @@ function VisualDocumentationPreview({ isActive }: { isActive: boolean }) {
         <MI icon="chevron_left" size={28} style={{ color: "#5E6AD2" }} />
       </button>
 
-      <div className="aspect-[846/500] w-full overflow-hidden">
+      <div className="aspect-[846/500] w-full overflow-hidden lg:aspect-[1692/500]">
         <AnimatePresence mode="wait" initial={false}>
-          <motion.img
+          <motion.div
             key={preview.src}
-            src={preview.src}
-            alt={preview.alt}
-            className="block h-full w-full object-cover object-top"
-            loading="lazy"
+            className="grid h-full w-full gap-6 lg:grid-cols-2"
             initial={{ opacity: 0, x: reduceMotion ? 0 : 18 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: reduceMotion ? 0 : -18 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          />
+            transition={{ duration: reduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img src={preview.src} alt={preview.alt} className="h-full w-full object-cover object-top" loading="lazy" />
+            <img src={VISUAL_DOC_PREVIEWS[(activePreview + 1) % VISUAL_DOC_PREVIEWS.length].src} alt={VISUAL_DOC_PREVIEWS[(activePreview + 1) % VISUAL_DOC_PREVIEWS.length].alt} className="hidden h-full w-full object-cover object-top lg:block" loading="lazy" />
+          </motion.div>
         </AnimatePresence>
       </div>
 
@@ -781,7 +796,14 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
 
 export default function App() {
   const location = useLocation();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [variant] = useState(getPricingVariant);
+  const experimentTracked = useRef(false);
+  useEffect(() => {
+    if (!experimentTracked.current) {
+      trackPricingExperimentView(variant);
+      experimentTracked.current = true;
+    }
+  }, [variant]);
   
   // Capture URL parameters from plugin (user_id or email)
   const [userId, setUserId] = useState<string | null>(null);
@@ -831,7 +853,7 @@ export default function App() {
     if (emailParam) setEmail(emailParam);
 
     // Se o parâmetro plan existir e for válido, aciona o redirecionamento automático
-    if (planParam === 'monthly' || planParam === 'lifetime') {
+    if (planParam === 'monthly' || planParam === 'lifetime' || (planParam === 'annual' && variant === 'B')) {
       setIsRedirecting(true);
       // Pequeno timeout para garantir que o estado do React foi atualizado antes do fetch
       setTimeout(() => {
@@ -858,8 +880,8 @@ export default function App() {
   const SUPABASE_URL = "https://lyexuguaeuwdtjeqwmst.supabase.co";
   const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
-  const handlePayment = async (plan: 'monthly' | 'lifetime', passedEmail?: string | null, passedUserId?: string | null) => {
-    trackCheckoutStarted(plan);
+  const handlePayment = async (plan: PaidPlan, passedEmail?: string | null, passedUserId?: string | null) => {
+    trackCheckoutStarted(plan, variant);
     try {
       const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
         method: 'POST',
@@ -869,8 +891,9 @@ export default function App() {
         },
         body: JSON.stringify({
           plan,
-          email: passedEmail || email || undefined,
-          userId: passedUserId || userId || undefined
+          variant,
+          email: passedEmail || email || null,
+          userId: passedUserId || userId || null
         })
       });
 
@@ -896,6 +919,8 @@ export default function App() {
       console.error('Error creating checkout session:', error);
       console.error('Error details:', error instanceof Error ? error.message : String(error));
       alert('Failed to create checkout session. Please try again.');
+    } finally {
+      setIsRedirecting(false);
     }
   };
 
@@ -923,239 +948,41 @@ export default function App() {
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section ref={heroRef} id="hero" className="relative overflow-hidden py-20 lg:py-32">
-        <motion.div
-          className="absolute inset-0 pointer-events-none max-md:!transform-none"
-          style={{ y: reduceMotion ? 0 : heroGridY }}
-          aria-hidden="true"
-        >
-          <div
-            className="absolute inset-[-48px]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px)",
-              backgroundSize: "56px 56px",
-            }}
-          />
-        </motion.div>
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-            opacity: 0,
-          }}
-        />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] items-center gap-14 lg:gap-24">
-            <ScrollReveal className="max-w-3xl text-center lg:text-left">
-              <div className="mb-7 flex justify-start">
-                <SectionTag>· Design Tokens for Figma ·</SectionTag>
-              </div>
-              <h1 className="text-[46px] sm:text-[56px] lg:text-[72px] font-extrabold text-foreground leading-[0.98] mb-5">
-                Start your design tokens from the framework you already use.
-              </h1>
-              <p className="text-[17px] text-muted-foreground leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                Choose a preset, customize its foundations and generate native Figma Variables with visual documentation in seconds.
-              </p>
-              <div className="flex items-center gap-3 flex-wrap justify-center lg:justify-start">
-                <a
-                  href="https://www.figma.com/community/plugin/1651310914400769393"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={trackInstallPlugin}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity"
-                >
-                  Install on Figma
-                  <MI icon="arrow_forward" size={15} style={{ color: "#fff" }} />
-                </a>
-                <a
-                  href="#how-it-works"
-                  onClick={trackHeroCTA}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors"
-                >
-                  See how it works
-                </a>
-              </div>
-              <div className="mt-7 flex items-center gap-5 text-xs text-muted-foreground justify-center lg:justify-start flex-wrap">
-                {["Framework Presets", "Native Figma Variables", "Visual Documentation"].map((t) => (
-                  <span key={t} className="flex items-center gap-1.5">
-                    <MI icon="check" size={13} style={{ color: "#5E6AD2" }} />
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-5 text-xs text-muted-foreground">{catalog.presets.map(p => p.name).join(" · ")}</p>
-            </ScrollReveal>
-
-            <div className="shrink-0 w-full flex justify-center lg:justify-end">
-              <Parallax distance={40}>
-                <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                  <PluginMockup />
-                </div>
-              </Parallax>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Features ── */}
-      <section id="features" className="relative overflow-hidden py-20 lg:py-28">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.028) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-          }}
-        />
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
-            <ScrollReveal className="max-w-xl">
-              <SectionTag>· Problem solved ·</SectionTag>
-              <h2
-                className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight"
-                            >
-                Customize the values. Keep the framework structure.
-              </h2>
-              <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-                StartTokens is a Figma plugin for customizing Design System Foundations. Choose framework presets, adjust Colors, Typography and Layout, and generate native Figma Variables with Visual Documentation.
-              </p>
-            </ScrollReveal>
-
-            <div className="flex-1 w-full">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {variableCards.map((f, index) => (
-                  <ScrollReveal key={f.title} delay={index * 0.08}>
-                    <TiltCard depth={6} className="h-full">
-                  <div
-                    className="h-full p-6 border border-border rounded-xl bg-white hover:bg-muted/20 transition-colors group"
-                  >
-                    <div className="flex flex-col items-start gap-5">
-                      <div
-                        className="w-10 h-10 rounded-lg border border-border flex items-center justify-center shrink-0 group-hover:border-accent/40 transition-colors"
-                        style={{ background: "rgba(94,106,210,0.05)" }}
-                      >
-                        <MI icon={f.icon} size={18} className="text-muted-foreground group-hover:text-accent transition-colors" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-1">{f.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                      </div>
-                      <div className="mt-2 grid grid-cols-4 gap-2 w-full">
-                        {f.previews.map((preview, index) => (
-                          <span
-                            key={preview.id}
-                            className="h-8 rounded-md border border-border bg-background flex items-center justify-center"
-                            style={preview.preview ? { background: preview.preview } : undefined}
-                          >
-                            {!preview.preview && (
-                              <MI icon={preview.icon ?? f.icon} size={13} style={{ color: index === 0 ? "#5E6AD2" : "#6e6e80" }} />
-                            )}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                    </TiltCard>
-                  </ScrollReveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── How it works ── */}
-      <section
-        id="how-it-works"
-        className="py-20 lg:py-28 bg-background border-t border-border"
-      >
-        <div className="max-w-[1680px] mx-auto px-6">
-          <ScrollReveal className="mb-14 text-center">
-            <span className="sr-only">
-              How it works
-            </span>
-            <h2 className="text-[42px] lg:text-[54px] leading-none font-extrabold text-foreground">
-              From zero to foundation in seconds
-            </h2>
+      <section ref={heroRef} id="hero" className="relative overflow-hidden bg-linear-to-br from-[#414573] via-accent/90 to-[#8b94e0] py-20 lg:flex lg:min-h-[min(56.25vw,1080px)] lg:items-center">
+        <div className="mx-auto grid w-full max-w-[1800px] items-center gap-12 px-5 sm:px-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:px-[60px]">
+          <ScrollReveal>
+            <SectionTag>· The fastest way to start a Design Tokens in Figma ·</SectionTag>
+            <h1 className="mt-6 max-w-5xl text-4xl font-bold leading-[1.09] tracking-tight sm:text-5xl xl:text-[66px]">Stop rebuilding<br className="hidden lg:block" /> design tokens from scratch.</h1>
+            <p className="my-6 text-xl font-light leading-relaxed sm:text-2xl xl:text-[36px]">Generate a Complete Design Tokens Starter in 30 Seconds.</p>
+            <InstallButton />
           </ScrollReveal>
-
-          {/* Tabbed interface */}
-          <div className="flex flex-col gap-6 items-center">
-            {/* Tab buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-              {STEPS.map((step, index) => (
-                <button
-                  key={step.num}
-                  aria-pressed={activeStep === index}
-                  onClick={() => setActiveStep(index)}
-                  className={`min-h-[122px] text-left border-b-2 px-0 py-3 transition-colors ${
-                    activeStep === index
-                      ? 'border-accent'
-                      : 'border-transparent'
-                  }`}
-                >
-                  <div className="mb-2 flex items-center gap-2">
-                    <span
-                      className="font-sans text-2xl font-normal leading-none"
-                      style={{ color: activeStep === index ? "#5E6AD2" : "#49494b" }}
-                    >
-                      {step.num}
-                    </span>
-                    <h3
-                      className="text-2xl font-semibold leading-none text-foreground"
-                    >
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="max-w-[347px] pt-2 text-base leading-[22.75px] text-muted-foreground">
-                    {step.desc}
-                  </p>
-                </button>
-              ))}
-            </div>
-
-            {/* Tab content */}
-            <div className="relative w-full min-h-[620px] sm:min-h-[590px]">
-              {STEPS.map((step, index) => (
-                <motion.div
-                  key={step.num}
-                  aria-hidden={activeStep !== index}
-                  inert={activeStep !== index ? "" : undefined}
-                  className="absolute inset-x-0 top-0 flex justify-center"
-                  animate={{
-                    opacity: activeStep === index ? 1 : 0,
-                    y: reduceMotion ? 0 : activeStep === index ? 0 : 24,
-                    scale: reduceMotion ? 1 : activeStep === index ? 1 : index === 2 ? 0.96 : 0.98,
-                    pointerEvents: activeStep === index ? "auto" : "none",
-                  }}
-                  transition={{ duration: reduceMotion ? 0 : 0.36, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {index === 5 ? (
-                    <div className="w-full flex flex-col items-center"><h3 className="text-2xl font-bold text-center">Variables you can see, not just generate.</h3><p className="mt-3 mb-5 max-w-2xl text-sm text-center text-muted-foreground">StartTokens automatically creates a Visual Foundations page from the same tokens generated as Figma Variables — organized by preset, module and token group. Colors, Typography and Layout reflect your customized values.</p><VisualDocumentationPreview isActive={activeStep === 5} /></div>
-                  ) : index === 4 ? (
-                    <div className="w-full max-w-4xl drop-shadow-2xl">
-                      <VariablesPanelMockup modules={variableModules} />
-                    </div>
-                  ) : (
-                    <div className="origin-top scale-100 sm:scale-110 lg:scale-125 drop-shadow-2xl">
-                      <PluginMockup initialModule={index === 0 ? undefined : index === 1 ? "colors" : index === 2 ? "typography" : "layout"} />
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <ScrollReveal delay={0.08} className="flex min-w-0 justify-center"><Parallax distance={16}><PluginMockup className="sm:!w-[420px] sm:!h-[611px]" /></Parallax></ScrollReveal>
         </div>
       </section>
 
-      {/* ── Pricing ── */}
-      <section id="pricing" className="py-20 lg:py-28 border-t border-border">
+      <section id="problem-solved" className="bg-accent/10 py-20 lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
+        <div className="mx-auto grid w-full max-w-[1800px] gap-10 px-5 sm:px-10 lg:px-[60px] xl:grid-cols-[minmax(0,0.64fr)_minmax(0,1fr)]">
+          <ScrollReveal><SectionTag>· Problem solved ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px] leading-tight">Your framework already has a foundation.<strong className="mt-2 block text-4xl font-bold xl:text-[66px]">Why rebuild it in Figma?</strong></h2><p className="mt-6 text-lg leading-relaxed text-muted-foreground xl:text-2xl">Recreating color scales, typography, spacing, radius and breakpoints by hand takes time — and makes it easier for design and code to drift apart.</p></ScrollReveal>
+          <div className="min-w-0"><div className="grid gap-6 md:grid-cols-3">
+            {[
+              { title: 'Rebuilding', icon: 'palette', desc: 'Stop starting every project from an empty Variables collection.', icons: ['palette', 'gradient', 'diamond', 'format_line_spacing'] },
+              { title: 'Renaming', icon: 'font_download', desc: 'Keep the framework conventions your development team already knows.', icons: ['font_download', 'format_size', 'format_bold', 'format_line_spacing'] },
+              { title: 'Documenting', icon: 'grid_4x4', desc: 'Generate Visual Foundations from the same variables you create.', icons: ['grid_4x4', 'rounded_corner', 'space_bar', 'format_line_spacing'] },
+            ].map((card, i) => <ScrollReveal key={card.title} delay={i * 0.08}><TiltCard className="h-full rounded-lg bg-card px-5 py-9 shadow-sm"><div className="mb-6 inline-flex rounded-lg border border-border bg-accent/10 p-4 text-accent"><MI icon={card.icon} size={30} /></div><h3 className="text-2xl font-bold">{card.title}</h3><p className="mt-3 min-h-24 text-base leading-relaxed">{card.desc}</p><div className="mt-6 grid grid-cols-4 gap-2">{card.icons.map(icon => <span key={icon} className="flex aspect-square items-center justify-center rounded-lg border border-accent/30 text-accent"><MI icon={icon} size={21} /></span>)}</div></TiltCard></ScrollReveal>)}
+          </div><ScrollReveal><p className="mt-6 text-right text-xl font-light">Start from an existing system. Make it yours.</p></ScrollReveal></div>
+        </div>
+      </section>
+
+      <section id="presets" className="py-20 lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
+        <div className="mx-auto w-full max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
+          <ScrollReveal><SectionTag>· Presets ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Start from the stack your team already uses.</h2><p className="mt-6 text-lg text-muted-foreground xl:text-2xl">Choose a curated preset and customize its foundations without changing its original token structure.</p></ScrollReveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{catalog.presets.map((preset, i) => <ScrollReveal key={preset.id} delay={i * 0.08}><div className="flex h-full flex-col items-center rounded-lg border border-accent/25 bg-accent/10 p-6 text-center"><img src={`/images/presets/${preset.id === 'starttoken' ? 'starttokens' : preset.id}.svg`} alt="" width="40" height="40" className="size-10 object-contain" /><h3 className="mt-4 text-xl font-medium">{preset.name}</h3><p className="mt-3 text-base">{PRESET_DESCRIPTIONS[preset.id]}</p></div></ScrollReveal>)}</div>
+          <ScrollReveal><p className="mt-6 text-center text-xl font-light">Choose a preset → Customize values → Generate</p></ScrollReveal>
+        </div>
+      </section>
+
+      {variant === 'A' ? (
+      <section id="pricing" data-pricing-variant="A" className="py-20 lg:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
             <SectionTag>· Simple pricing ·</SectionTag>
@@ -1180,7 +1007,7 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">Pay monthly, cancel anytime.</p>
               </div>
               <button 
-                onClick={() => { trackPricingClick('monthly'); handlePayment('monthly'); }}
+                onClick={() => { trackPricingClick('monthly', variant); handlePayment('monthly'); }}
                 className="block w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-center text-foreground hover:bg-muted transition-colors mb-7"
               >
                 Get Started
@@ -1217,7 +1044,7 @@ export default function App() {
                 <p className="mt-2 text-sm text-muted-foreground">Pay once, own forever.</p>
               </div>
               <button 
-                onClick={() => { trackPricingClick('lifetime'); handlePayment('lifetime'); }}
+                onClick={() => { trackPricingClick('lifetime', variant); handlePayment('lifetime'); }}
                 className="block w-full py-2.5 rounded-lg text-sm font-semibold text-center text-white hover:opacity-90 transition-opacity mb-7" 
                 style={{ background: "#5E6AD2" }}
               >
@@ -1237,90 +1064,54 @@ export default function App() {
           </div>
         </div>
       </section>
+      ) : (
+      <section id="pricing" data-pricing-variant="B" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
+        <div className="mx-auto grid w-full max-w-[1800px] gap-8 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.32fr)_minmax(0,1fr)]">
+          <ScrollReveal><SectionTag>· Pricing ·</SectionTag><h2 className="mt-6 text-5xl font-bold xl:text-[66px]">Start free</h2><p className="mt-6 text-2xl font-light leading-relaxed xl:text-3xl">Generate once for free. Upgrade when StartTokens earns a place in your workflow.</p></ScrollReveal>
+          <div className="grid min-w-0 gap-6 md:grid-cols-2 xl:grid-cols-4">{NEW_PLANS.map((item, i) => <ScrollReveal key={item.plan} delay={i * 0.08}><article className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 text-foreground">
+            <span className="self-start rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">{item.title}</span><h3 className="mt-3 text-2xl font-bold">{item.title}</h3><p className="mt-1 min-h-12 text-base">{item.desc}</p>
+            <p className="my-4 flex flex-wrap items-baseline gap-1"><strong className="text-[40px] leading-none">{item.price}</strong><span className="text-sm">{item.period}</span></p>
+            <ul className="mb-6 space-y-3 text-base">{[item.plan === 'free' ? '1 complete generation' : 'Unlimited generation', 'All available presets', 'Colors, Typography and Layout', 'Native Figma Variables', 'Visual Documentation', 'No account required'].map(feature => <li key={feature} className="flex items-start gap-2"><span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-white"><MI icon="check" size={14} /></span>{feature}</li>)}</ul>
+            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackPricingClick('free', variant); trackInstallPlugin(); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, variant); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
+          </article></ScrollReveal>)}</div>
+        </div>
+      </section>)}
 
-      {/* ── Results ── */}
-      <section id="what-you-get" className="py-20 lg:py-28 border-t border-border" style={{ background: "#F7F7F8" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.8fr)_minmax(320px,1fr)] gap-14 lg:gap-20 items-center">
-            <ScrollReveal direction="left" className="flex-1 max-w-xl">
-              <SectionTag>· What you get ·</SectionTag>
-              <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
-                Native Figma Variables and visual documentation.
-              </h2>
-              <p className="mt-3 text-base text-muted-foreground leading-relaxed">
-                Customize values without rebuilding or renaming the framework token structure. Get custom color scales, typography scale generation, layout foundations and Visual Documentation from your chosen preset.
-              </p>
-            </ScrollReveal>
+      {STEPS.map((step, index) => <section key={step.num} id={index === 0 ? 'how-it-works' : `how-it-works-${index + 1}`} className="bg-accent/10 py-16 lg:py-20">
+        <div className="mx-auto max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
+          <ScrollReveal className="text-center"><SectionTag>· How it works ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">From framework to<strong className="block text-4xl font-bold xl:text-[66px]">Figma foundation in 3 steps.</strong></h2></ScrollReveal>
+          <div className="my-10 grid gap-6 md:grid-cols-3">{STEPS.map((entry, i) => <ScrollReveal key={entry.num} delay={i * 0.08}><a href={i === 0 ? '#how-it-works' : `#how-it-works-${i + 1}`} className={`block h-full border-b-2 pb-4 ${index === i ? 'border-accent' : 'border-transparent'}`}><h3 className="text-xl font-semibold">{entry.num} {entry.title}</h3><p className="mt-4 text-base leading-relaxed text-muted-foreground">{entry.desc}</p></a></ScrollReveal>)}</div>
+          <ScrollReveal className="flex min-w-0 justify-center"><Parallax distance={12} className={index === 2 ? 'w-full max-w-4xl' : ''}>{index === 2 ? <VariablesPanelMockup modules={variableModules} /> : <PluginMockup className="sm:!w-[420px] sm:!h-[611px]" initialModule={index === 1 ? 'colors' : undefined} />}</Parallax></ScrollReveal>
+        </div>
+      </section>)}
 
-            <div className="w-full flex justify-center lg:justify-end">
-              <ScrollReveal direction="right" className="w-full max-w-xl">
-                <TiltCard depth={3}>
-                  <WhatYouGetPanel modules={variableModules} />
-                </TiltCard>
-              </ScrollReveal>
-            </div>
-          </div>
+      <section id="features" className="py-20 lg:py-36">
+        <div className="mx-auto grid max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)]">
+          <ScrollReveal><SectionTag>· Features ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Customize the foundation<strong className="mt-4 block text-4xl font-bold xl:text-[66px] leading-tight">without breaking the framework.</strong></h2></ScrollReveal>
+          <div className="grid min-w-0 gap-6 lg:grid-cols-3">{FEATURES.map((feature, i) => <ScrollReveal key={feature.title} delay={i * 0.08} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={feature.title.toLowerCase() as 'colors' | 'typography' | 'layout'} /></ScrollReveal>)}</div>
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section
-        id="faq"
-        className="py-24 border-t border-border"
-        style={{ background: "#F7F7F8" }}
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <ScrollReveal className="mb-12">
-            <SectionTag>· FAQ ·</SectionTag>
-            <h2
-              className="mt-2 text-3xl font-bold text-foreground tracking-[-0.02em]"
-            >
-              Common questions
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal className="bg-white rounded-xl border border-border px-6">
-            {FAQS.map((item) => (
-              <FAQItem key={item.q} q={item.q} a={item.a} />
-            ))}
-          </ScrollReveal>
+      <section id="visual-docs" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-24">
+        <div className="mx-auto max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">
+          <ScrollReveal><SectionTag>· Visual Documentation ·</SectionTag><p className="mt-6 text-3xl font-light xl:text-[44px]">More than variables</p><h2 className="mt-6 text-4xl font-bold xl:text-[66px]">Your tokens document themselves.</h2></ScrollReveal>
+          <ScrollReveal className="my-8 flex justify-center"><VisualDocumentationPreview isActive={true} /></ScrollReveal>
+          <div className="grid gap-8 md:grid-cols-3">{[
+            ['Always aligned', 'Documentation reflects the values you generated.'],
+            ['Easy to inspect', 'Colors, typography and layout are organized visually.'],
+            ['Ready to share', 'Give designers and developers a readable reference inside Figma.'],
+          ].map(([title, desc], i) => <ScrollReveal key={title} delay={i * 0.08}><h3 className="text-2xl font-semibold">{title}</h3><p className="mt-3 text-base">{desc}</p></ScrollReveal>)}</div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section id="get-started" className="py-28 border-t border-border relative overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(94,106,210,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(94,106,210,0.04) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-          }}
-        />
-        <ScrollReveal className="relative max-w-6xl mx-auto px-6 text-center">
-          <div className="mb-7 flex justify-center">
-            <SectionTag>· 1 free generation · No account required ·</SectionTag>
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-[-0.03em] mb-5">
-            Your framework. Your values.
-            <br />
-            <span style={{ color: "#5E6AD2" }}>Your foundations in Figma.</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-md mx-auto mb-9">
-            Choose a preset, customize its token values and generate native Figma Variables with Visual Foundations documentation.
-          </p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <a href="#pricing" onClick={() => trackPricingClick('monthly')} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity">
-              Get Started — $5.99/mo
-              <MI icon="arrow_forward" size={15} style={{ color: "#fff" }} />
-            </a>
-            <a href="#pricing" onClick={() => trackPricingClick('lifetime')} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors">
-              Lifetime — $49.90
-            </a>
-          </div>
-          <p className="mt-5 text-xs text-muted-foreground">
-            Monthly or Lifetime · Cancel anytime · Future updates included
-          </p>
-        </ScrollReveal>
+      <section id="faq" className="bg-accent/10 py-20 lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
+        <div className="mx-auto grid w-full max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:grid-cols-[minmax(0,0.64fr)_minmax(0,1fr)] lg:px-[60px]">
+          <ScrollReveal><SectionTag>· FAQ ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Common questions</h2></ScrollReveal>
+          <ScrollReveal className="min-w-0 rounded-xl border border-border bg-card px-6">{FAQS.map(item => <FAQItem key={item.q} {...item} />)}</ScrollReveal>
+        </div>
+      </section>
+      <section id="get-started" className="bg-foreground py-28 text-background lg:py-44">
+        <ScrollReveal className="mx-auto max-w-6xl px-5 text-center"><h2 className="text-3xl font-light xl:text-[44px]">Your framework already gives you the foundation.<strong className="mt-6 block text-4xl font-bold xl:text-[66px]">Start designing from it.</strong></h2><div className="mt-8"><InstallButton /></div></ScrollReveal>
       </section>
     </>
   );
