@@ -7,6 +7,8 @@
     "build": "node scripts/validate-presets.mjs && vite build",
     "test:presets": "node --test scripts/presets.test.mjs",
     "test:pricing": "node --test scripts/pricing.test.mjs",
+    "test:analytics": "node --test scripts/analytics.test.mjs",
+    "test:analytics:ui": "node scripts/validate-analytics.mjs",
     "test:ui": "node scripts/validate-ui.mjs",
     "dev": "vite"
   },

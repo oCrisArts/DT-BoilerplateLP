@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { trackInstallPlugin } from "../utils/analytics";
+import { trackFigmaInstallClick, trackSectionView, SECTIONS, type SectionId } from "../utils/analytics";
 import { motion, useScroll, useTransform } from "motion/react";
 
 function MI({
@@ -52,30 +52,31 @@ export default function Layout() {
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  // ScrollSpy with IntersectionObserver
+  // Reuse ScrollSpy for navigation, section analytics, and non-navigating hash updates.
   useEffect(() => {
-    const sections = NAV_LINKS.map(link => link.section);
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -60% 0px', // Trigger when section is in middle of viewport
-      threshold: 0
+    if (location.pathname !== '/') { setActiveSection(''); return; }
+    let lastY = window.scrollY;
+    let direction: 'up' | 'down' | 'none' = 'none';
+    const onScroll = () => {
+      if (window.scrollY !== lastY) direction = window.scrollY > lastY ? 'down' : 'up';
+      lastY = window.scrollY;
     };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach(sectionId => {
-      const element = document.getElementById(sectionId);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver(entries => {
+      onScroll();
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.add(entry.target); else visible.delete(entry.target);
+      }
+      const target = [...visible].sort((a,b) => Math.abs(a.getBoundingClientRect().top - innerHeight * .2) - Math.abs(b.getBoundingClientRect().top - innerHeight * .2))[0];
+      if (target) {
+        setActiveSection(target.id);
+        trackSectionView(target.id as SectionId, direction);
+      }
+    }, { root: null, rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+    SECTIONS.forEach(id => { const element=document.getElementById(id); if(element)observer.observe(element); });
+    window.addEventListener('scroll',onScroll,{passive:true});
+    return () => { observer.disconnect(); window.removeEventListener('scroll',onScroll); };
+  }, [location.pathname]);
 
   // Update active section based on hash
   useEffect(() => {
@@ -141,7 +142,7 @@ export default function Layout() {
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackInstallPlugin}
+              onClick={trackFigmaInstallClick}
               className="inline-flex min-h-14 items-center justify-center gap-2 px-8 py-3 rounded-lg bg-accent text-white text-base font-medium hover:opacity-90 transition-opacity"
             >
               Install on Figma
@@ -183,7 +184,7 @@ export default function Layout() {
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackInstallPlugin}
+              onClick={trackFigmaInstallClick}
               className="block w-full py-2.5 rounded-lg bg-foreground text-background text-sm font-medium text-center mt-2"
             >
               Install on Figma
@@ -235,7 +236,7 @@ export default function Layout() {
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackInstallPlugin}
+              onClick={trackFigmaInstallClick}
               className="hover:text-foreground transition-colors"
             >
               Figma Community

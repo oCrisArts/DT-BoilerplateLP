@@ -1,4 +1,4 @@
-import { trackInstallPlugin } from "../utils/analytics";
+import { trackFigmaInstallClick } from "../utils/analytics";
 
 function MI({
   icon,
@@ -83,7 +83,7 @@ export default function Contact() {
                   href="https://www.figma.com/community/plugin/1651310914400769393"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={trackInstallPlugin}
+                  onClick={trackFigmaInstallClick}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-foreground text-background text-sm font-semibold hover:opacity-90 transition-opacity"
                 >
                   <MI icon="groups" size={16} style={{ color: "#fff" }} />

@@ -12,7 +12,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { trackHeroCTA, trackInstallPlugin, trackFAQExpand, trackCheckoutStarted, trackPricingClick, trackPricingView } from "../utils/analytics";
+import { trackFigmaInstallClick, trackFAQExpand, trackCheckoutStarted, trackPricingClick } from "../utils/analytics";
 
 // ── Material Symbol helper ────────────────────────────────────────────────────
 function MI({
@@ -217,7 +217,7 @@ const STEPS = [
 
 const INSTALL_URL = "https://www.figma.com/community/plugin/1651310914400769393";
 function InstallButton() {
-  return <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={trackInstallPlugin} className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-accent px-8 py-4 text-base font-semibold text-white transition-opacity hover:opacity-90">Install on Figma <MI icon="arrow_forward" size={18} /></a>;
+  return <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={trackFigmaInstallClick} className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-accent px-8 py-4 text-base font-semibold text-white transition-opacity hover:opacity-90">Install on Figma <MI icon="arrow_forward" size={18} /></a>;
 }
 const PRESET_DESCRIPTIONS: Record<string, string> = {
   bootstrap: "Bootstrap foundations ready for Figma.",
@@ -885,14 +885,6 @@ function WhatYouGetPanel({ modules }: { modules: VariableModule[] }) {
 export default function App() {
   const location = useLocation();
   const pricingVersion = ACTIVE_PRICING_VERSION;
-  const pricingTracked = useRef(false);
-  useEffect(() => {
-    if (!pricingTracked.current) {
-      trackPricingView(pricingVersion);
-      pricingTracked.current = true;
-    }
-  }, [pricingVersion]);
-  
   // Capture URL parameters from plugin (user_id or email)
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
@@ -959,7 +951,6 @@ export default function App() {
   const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
   const handlePayment = async (plan: PaidPlan, passedEmail?: string | null, passedUserId?: string | null) => {
-    trackCheckoutStarted(plan, pricingVersion);
     try {
       const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
         method: 'POST',
@@ -986,6 +977,7 @@ export default function App() {
       const data = await response.json();
 
       if (data.url) {
+        trackCheckoutStarted(plan, pricingVersion);
         window.location.href = data.url;
       } else {
         console.error('Failed to create checkout session:', data.error);
@@ -1183,7 +1175,7 @@ export default function App() {
             <span className="self-start rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">{item.title}</span><h3 className="mt-3 text-2xl font-bold">{item.title}</h3><p className="mt-1 min-h-12 text-base">{item.desc}</p>
             <p className="my-4 flex flex-wrap items-baseline gap-1"><strong className="text-[40px] leading-none">{item.price}</strong><span className="text-sm">{item.period}</span></p>
             <ul className="mb-6 space-y-3 text-base">{[item.plan === 'free' ? '1 complete generation' : 'Unlimited generation', 'All available presets', 'Colors, Typography and Layout', 'Native Figma Variables', 'Visual Documentation', 'No account required'].map(feature => <li key={feature} className="flex items-start gap-2"><span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-white"><MI icon="check" size={14} /></span>{feature}</li>)}</ul>
-            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackPricingClick('free', pricingVersion); trackInstallPlugin(); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, pricingVersion); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
+            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={(event) => { trackPricingClick('free', pricingVersion); trackFigmaInstallClick(event, 'free'); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, pricingVersion); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
           </motion.article></ScrollReveal>)}</div>
         </div>
       </section>)}
