@@ -87,7 +87,7 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
       }
     }} />{v.unit && <small>{v.unit}</small>}
   </label>;
-  return <div className={`plugin-demo bg-white relative rounded-[16px] flex flex-col w-[300px] h-[470px] max-w-full ${className}`} aria-label="Interactive StartTokens plugin demo" style={{ boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
+  return <div className={`plugin-demo bg-white relative rounded-[16px] flex flex-col w-full min-w-0 max-w-[420px] aspect-[420/611] ${className}`} aria-label="Interactive StartTokens plugin demo" style={{ boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
     <div className="demo-header"><img src={logos('starttoken')} alt="" width="14" height="22" /><span>StartTokens</span><small>v0.1</small></div>
     {selected && source && <>
       <div className="demo-preset"><button onClick={back} aria-label="Back to presets">←</button><img src={logos(source.preset.id)} alt="" width="25" height="25" /><span>{source.preset.metadata.name}</span></div>

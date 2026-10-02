@@ -19,7 +19,7 @@ test('SVG validator rejects executable content and external assets',()=>{
   for(const svg of ['<svg><script>alert(1)</script></svg>','<svg onload="x()"></svg>','<svg><use href="https://example.com/a.svg"/></svg>'])assert.throws(()=>validateIconLibrary({...source,icons:[{name:'unsafe',svg,tags:[]}]}),/unsafe/);
 });
 test('font roles reference native tokens and supported controls only; icon sizes preserve framework differences',()=>{
-  const roles={starttoken:['primary'],bootstrap:['primary','monospace'],tailwindcss:['primary','secondary','monospace'],materialdesign:['primary','secondary'],bulma:['primary','monospace']};
+  const roles={starttoken:['primary','secondary'],bootstrap:['primary','monospace'],tailwindcss:['primary','secondary','monospace'],materialdesign:['primary','secondary'],bulma:['primary','monospace']};
   for(const [id,expected] of Object.entries(roles)){
     const preset=read(`presets/${id}/preset.json`),modules=preset.modules.map(m=>read(`presets/${id}/${m.path}`));validateModules(preset,modules);
     const type=modules.find(m=>m.module==='typography');assert.deepEqual(Object.keys(type.configuration.fontRoles),expected);

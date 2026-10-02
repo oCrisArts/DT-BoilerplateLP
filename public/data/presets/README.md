@@ -14,7 +14,7 @@ Each module carries `schemaVersion`, `module`, `label`, `tabIcon`, ordered `subm
 
 Numbers retain their native unit (`px`, `rem`, `em`, or unitless). CSS expressions remain strings. A rem is not assumed to be a fixed pixel count. StartToken Grayscale is renamed Black (including aliases), with a mirrored White palette using the same native scale profile and editing mechanism.
 
-`typography.configuration.fontRoles` maps supported semantic controls directly to native token IDs. StartToken supports Primary (sans); Bootstrap and Bulma support Primary (sans) and Monospace; Tailwind also maps Secondary to serif; Material maps Primary to brand and Secondary to plain. No semantic font token duplicates are created. Native aliases resolve after edits; brand and plain remain independent. Each preset records its reference ratio so regenerating at the original ratio preserves its native explicit proportions and units.
+`typography.configuration.fontRoles` maps supported semantic controls directly to native token IDs. StartToken supports Primary (DM Sans) and Secondary (Sora) only; Bootstrap and Bulma support Primary (sans) and Monospace; Tailwind also maps Secondary to serif; Material maps Primary to brand and Secondary to plain. No semantic font token duplicates are created. Native aliases resolve after edits; brand and plain remain independent. Each preset records its reference ratio so regenerating at the original ratio preserves its native explicit proportions and units.
 
 `iconography.configuration` references configuration Variables and each preset's project size steps. Library-specific style and property Variables are materialized only for the selected library. The separately versioned `../icons` catalog contains the artwork and upstream provenance; the sync validates catalog hashes before updating either offline dataset.
 
@@ -27,6 +27,8 @@ Framework presets are curated subsets of official defaults, not exhaustive expor
 - Bulma 1.0.2: initial/derived Sass colors and typography, body size/line height, column gap, minimum-width breakpoints, spacing helpers and radii. Breakpoint arithmetic is resolved using the official 32px gap.
 
 The landing page's interactive demo reads this catalog and lazily fetches the selected preset. Native CSS colors, relative units, groups and token names are retained. Local demo edits never change these files. The plugin uses the same dataset as an offline build mirror; its generation logic stays in the plugin.
+
+StartToken maps Primary to `Typography/Family/font-family-primary` and Secondary to `Typography/Family/font-family-secondary`. Both are STRING Variables using the selected families; documentation loads both fonts when rendering specimens. There is one shared size scale and no Monospace or icon font in Typography. Generation renames legacy `Typography/Family/font-family-sans` in place when possible and removes that legacy duplicate if Primary already exists.
 
 ## Validation and synchronization
 

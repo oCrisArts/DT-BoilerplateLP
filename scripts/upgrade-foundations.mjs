@@ -4,11 +4,19 @@ const read = path => JSON.parse(readFileSync(new URL(path, root), 'utf8'));
 const write = (path, data) => writeFileSync(new URL(path, root), JSON.stringify(data, null, 2) + '\n');
 export function upgradeFoundations(preset, modules) {
   const typography = modules.find(m => m.module === 'typography');
+  if (preset.id === 'starttoken') {
+    const group=typography.submodules.find(s=>s.id==='family');
+    const primary=group.variables.find(v=>v.name==='font-family-primary') || group.variables.find(v=>v.name==='font-family-sans');
+    const secondary=group.variables.find(v=>v.name==='font-family-secondary');
+    const make=(role,value,original=primary)=>({...original,id:'typography.family.font-family-'+role,name:'font-family-'+role,figmaName:'Typography/Family/font-family-'+role,value,displayValue:value});
+    group.variables=[make('primary',primary.value),make('secondary',secondary?.value||'Sora',secondary||primary)];
+    typography.configuration.fontFamily={...typography.configuration.fontFamily,default:group.variables[0].id,options:group.variables.map(v=>v.id)};
+  }
   const family = typography.configuration.fontFamily;
   const ids = family.options || [family.default];
   const role = (label, token) => ({ label, token, customizable: true });
   typography.configuration.fontRoles = { primary: role('Primary Font', family.default) };
-  if (preset.id === 'materialdesign') typography.configuration.fontRoles.secondary = role('Secondary Font', ids[1]);
+  if (['starttoken','materialdesign'].includes(preset.id)) typography.configuration.fontRoles.secondary = role('Secondary Font', ids[1]);
   if (preset.id === 'tailwindcss') typography.configuration.fontRoles.secondary = role('Secondary Font', ids[1]);
   if (['bootstrap','tailwindcss','bulma'].includes(preset.id)) typography.configuration.fontRoles.monospace = role('Monospace Font', ids.at(-1));
   typography.configuration.typeScale.referenceRatio = preset.id === 'materialdesign' ? 1.2 : 1.25;

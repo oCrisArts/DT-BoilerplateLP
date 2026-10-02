@@ -10,26 +10,26 @@
       "icon": "font_download",
       "variables": [
         {
-          "id": "typography.family.font-family-sans",
+          "id": "typography.family.font-family-primary",
           "module": "typography",
           "submodule": "family",
-          "name": "font-family-sans",
-          "figmaName": "Typography/Family/font-family-sans",
+          "name": "font-family-primary",
+          "figmaName": "Typography/Family/font-family-primary",
           "type": "STRING",
           "value": "DM Sans",
           "displayValue": "DM Sans",
           "icon": "format_shapes"
         },
         {
-          "id": "typography.family.font-family-icon",
+          "id": "typography.family.font-family-secondary",
           "module": "typography",
           "submodule": "family",
-          "name": "font-family-icon",
-          "figmaName": "Typography/Family/font-family-icon",
+          "name": "font-family-secondary",
+          "figmaName": "Typography/Family/font-family-secondary",
           "type": "STRING",
-          "value": "Material Symbols Outlined",
-          "displayValue": "Material Symbols Outlined",
-          "icon": "shapes"
+          "value": "Sora",
+          "displayValue": "Sora",
+          "icon": "format_shapes"
         }
       ]
     },
@@ -573,10 +573,10 @@
   ],
   "configuration": {
     "fontFamily": {
-      "default": "typography.family.font-family-sans",
+      "default": "typography.family.font-family-primary",
       "options": [
-        "typography.family.font-family-sans",
-        "typography.family.font-family-icon"
+        "typography.family.font-family-primary",
+        "typography.family.font-family-secondary"
       ],
       "customizable": true
     },
@@ -627,7 +627,12 @@
     "fontRoles": {
       "primary": {
         "label": "Primary Font",
-        "token": "typography.family.font-family-sans",
+        "token": "typography.family.font-family-primary",
+        "customizable": true
+      },
+      "secondary": {
+        "label": "Secondary Font",
+        "token": "typography.family.font-family-secondary",
         "customizable": true
       }
     }

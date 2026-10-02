@@ -10,8 +10,7 @@ await page.addInitScript(()=>{
   window.addEventListener('message',e=>{
     const m=e.data?.pluginMessage;if(!m)return;
     window.__pluginRequests.push(m);
-    if(m.type==='list-fonts')window.postMessage({pluginMessage:{type:'available-fonts',fonts:[{family:'Inter',style:'Regular'},{family:'Team Custom Font',style:'Regular'},{family:'Roboto',style:'Regular'}]}},'*');
-    if(m.type==='validate-font')window.postMessage({pluginMessage:{type:'font-validation-result',requestId:m.requestId,ok:m.font.family!=='Team Custom Font',error:'Font load failed'}},'*');
+    if(m.type==='list-fonts')window.postMessage({pluginMessage:{type:'available-fonts',fonts:[{family:'Inter',style:'Regular'},{family:'Inter',style:'Bold'},{family:'Team Custom Font',style:'Regular'},{family:'Roboto',style:'Regular'}]}},'*');
   });
 });
 await page.route(/fonts.googleapis.com|fonts.gstatic.com/,r=>r.abort());
@@ -23,8 +22,11 @@ assert.equal(await page.getByRole('button',{name:'Secondary Font',exact:true}).c
 await page.getByRole('button',{name:'Primary Font',exact:true}).click();
 await page.getByRole('textbox',{name:'Search Primary Font'}).fill('Team');
 await page.getByRole('button',{name:/Team Custom Font/}).click();
-await page.getByRole('alert').filter({hasText:'Font load failed'}).waitFor();
+await page.getByRole('button',{name:'Primary Font',exact:true}).filter({hasText:'Team Custom Font'}).waitFor();
+assert.equal(await page.evaluate(()=>window.__pluginRequests.some(m=>m.type==='validate-font')),false);
+await page.getByRole('button',{name:'Primary Font',exact:true}).click();
 await page.getByRole('textbox',{name:'Search Primary Font'}).fill('Inter');
+assert.equal(await page.getByRole('button',{name:/Inter.*quick brown/}).count(),1);
 await page.getByRole('button',{name:/Inter.*quick brown/}).click();
 await page.getByRole('button',{name:'Primary Font',exact:true}).filter({hasText:'Inter'}).waitFor();
 await page.locator('[data-slot=popover-content]').waitFor({state:'hidden'});

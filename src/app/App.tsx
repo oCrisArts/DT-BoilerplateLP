@@ -349,12 +349,11 @@ function HowItWorksTabs({ variableModules }: { variableModules: VariableModule[]
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex min-w-0 justify-center"
         >
-          <Parallax distance={12} className={activeStep === 2 ? 'w-full max-w-4xl' : ''}>
+          <Parallax distance={12} className={activeStep === 2 ? 'w-full min-w-0 max-w-4xl' : 'w-full min-w-0 max-w-[420px]'}>
             {activeStep === 2 ? (
               <VariablesPanelMockup modules={variableModules} />
             ) : (
               <PluginMockup 
-                className="sm:!w-[420px] sm:!h-[611px]" 
                 initialModule={activeStep === 1 ? 'colors' : undefined} 
               />
             )}
@@ -1026,7 +1025,7 @@ export default function App() {
   return (
     <>
       <section ref={heroRef} id="hero" className="relative overflow-hidden bg-linear-to-br from-[#414573] via-accent/90 to-[#8b94e0] py-20 lg:flex lg:min-h-[min(56.25vw,1080px)] lg:items-center">
-        <div className="mx-auto grid w-full max-w-[1800px] items-center gap-12 px-5 sm:px-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:px-[60px]">
+        <div className="mx-auto grid w-full max-w-[1800px] items-center gap-12 px-5 sm:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:px-[60px]">
           <div className="space-y-6">
             <ScrollReveal delay={0}>
               <SectionTag>· The fastest way to start a Design Tokens in Figma ·</SectionTag>
@@ -1042,14 +1041,14 @@ export default function App() {
             </ScrollReveal>
           </div>
           <ScrollReveal delay={0.4} className="flex min-w-0 justify-center">
-            <Parallax distance={16}>
+            <Parallax distance={16} className="w-full min-w-0 max-w-[420px]">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, x: 20 }}
-                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               >
-                <PluginMockup className="sm:!w-[420px] sm:!h-[611px]" />
+                <PluginMockup />
               </motion.div>
             </Parallax>
           </ScrollReveal>
@@ -1198,7 +1197,7 @@ export default function App() {
       <section id="features" className="py-20 lg:py-36">
         <div className="mx-auto grid max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Features ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Customize the foundation<strong className="mt-4 block text-4xl font-bold xl:text-[66px] leading-tight">without breaking the framework.</strong></h2></ScrollReveal>
-          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-2 xl:grid-cols-4">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={(feature.title==='Icons'?'iconography':feature.title.toLowerCase()) as 'colors' | 'typography' | 'iconography' | 'layout'} /></motion.div>)}</StaggeredReveal>
+          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-2 xl:grid-cols-4">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={(feature.title==='Icons'?'iconography':feature.title.toLowerCase()) as 'colors' | 'typography' | 'iconography' | 'layout'} /></motion.div>)}</StaggeredReveal>
         </div>
       </section>
 

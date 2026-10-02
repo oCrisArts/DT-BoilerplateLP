@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { upgradeFoundations } from './upgrade-foundations.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -28,6 +29,12 @@ test('StartToken migration preserves every original field and token', () => {
   };
   for (const module of load('starttoken').modules.filter(m=>m.module!=='iconography')) {
     const { schemaVersion, configuration, ...original } = structuredClone(module);
+    if(module.module==='typography'){
+      // Reverse only the requested Family migration to keep the original scale fingerprint.
+      const family=original.submodules.find(s=>s.id==='family');
+      assert.deepEqual(family.variables.map(v=>[v.name,v.value]),[['font-family-primary','DM Sans'],['font-family-secondary','Sora']]);
+      family.variables=family.variables.map((v,i)=>({...v,id:i?'typography.family.font-family-icon':'typography.family.font-family-sans',name:i?'font-family-icon':'font-family-sans',figmaName:i?'Typography/Family/font-family-icon':'Typography/Family/font-family-sans',value:i?'Material Symbols Outlined':v.value,displayValue:i?'Material Symbols Outlined':v.displayValue,icon:i?'shapes':v.icon}));
+    }
     if(module.module==='colors'){
       for(const group of original.submodules){group.variables=group.variables.filter(v=>!/^colors.palette.white(?:-|$)/.test(v.id));for(const v of group.variables)for(const key of ['id','name','figmaName','reference'])if(typeof v[key]==='string')v[key]=v[key].replace(/black/gi,m=>m[0]==='B'?'Grayscale':'grayscale');}
     }
@@ -68,4 +75,15 @@ test('framework fixtures retain upstream values and native units', () => {
   assert.equal(bulma['layout.breakpoints.desktop'].value, 1024);
   assert.equal(bulma['layout.radius.radius-medium'].unit, 'em');
   assert.equal(bulma['typography.sizes.body-size'].unit, 'em');
+});
+
+test('StartToken foundations upgrade migrates legacy families and remains idempotent',()=>{
+ const data=load('starttoken'),type=data.modules.find(m=>m.module==='typography');
+ const original=structuredClone(type),family=type.submodules.find(s=>s.id==='family');
+ family.variables[0]={...family.variables[0],id:'typography.family.font-family-sans',name:'font-family-sans',figmaName:'Typography/Family/font-family-sans'};
+ family.variables[1]={...family.variables[1],id:'typography.family.font-family-icon',name:'font-family-icon',figmaName:'Typography/Family/font-family-icon',value:'Material Symbols Outlined',displayValue:'Material Symbols Outlined'};
+ const once=upgradeFoundations(data.preset,data.modules);
+ assert.deepEqual(once.modules.find(m=>m.module==='typography'),original);
+ const twice=upgradeFoundations(once.preset,once.modules);
+ assert.deepEqual(twice.modules.find(m=>m.module==='typography'),original);
 });

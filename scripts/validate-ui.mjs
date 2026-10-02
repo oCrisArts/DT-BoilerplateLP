@@ -87,6 +87,12 @@ for (const variant of ['legacy', 'new']) for (const width of [1920,1440,1024,768
   // Scroll all sections into view so reveal/parallax states are covered.
   for (const section of await page.locator('main > section').all()) { await section.scrollIntoViewIfNeeded(); await page.waitForTimeout(100); }
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),`overflow at ${width}px`);
+  for (const mockup of await page.locator('.plugin-demo').all()) {
+    const geometry=await mockup.evaluate(el=>{const c=el.querySelector('.demo-content');return {w:el.offsetWidth,h:el.offsetHeight,parent:el.parentElement.clientWidth,overflow:c.scrollWidth>c.clientWidth,scroll:getComputedStyle(c).overflowY};});
+    assert.ok(geometry.w<=420 && geometry.w<=geometry.parent+1,JSON.stringify(geometry));
+    assert.ok(Math.abs(geometry.h-geometry.w*611/420)<2,JSON.stringify(geometry));
+    assert.equal(geometry.overflow,false);assert.equal(geometry.scroll,'auto');
+  }
   for (const step of await page.locator('#how-it-works [role=tab]').all()) {
     await step.click();
     // Wait for the existing tab/reveal transitions before measuring final bounds.
