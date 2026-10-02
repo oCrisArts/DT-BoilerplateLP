@@ -200,7 +200,12 @@ const FEATURES = [
   {
     icon: "font_download",
     title: "Typography",
-    desc: "Choose your font, base size, type scale and line height, then regenerate typography values while preserving the framework structure.",
+    desc: "Choose primary, secondary and monospace fonts supported by your preset, base size, type scale and line height, then regenerate typography values while preserving the framework structure.",
+  },
+  {
+    icon: "wallpaper",
+    title: "Icons",
+    desc: "Browse six official icon libraries, configure project sizes and generate iconography configuration with visual previews.",
   },
   {
     icon: "grid_4x4",
@@ -235,17 +240,18 @@ const NEW_PLANS = [
 
 const VISUAL_DOC_PREVIEWS = [
   {
-    src: "/images/how-it-works/visual-doc-1.jpg",
+    src: "/images/how-it-works/visual-doc-1.webp",
     alt: "StartTokens Visual Foundations — customized StartToken color scales and variable paths",
   },
   {
-    src: "/images/how-it-works/visual-doc-2.jpg",
+    src: "/images/how-it-works/visual-doc-2.webp",
     alt: "StartTokens Visual Foundations — typography values and framework token names",
   },
   {
-    src: "/images/how-it-works/visual-doc-3.jpg",
+    src: "/images/how-it-works/visual-doc-3.webp",
     alt: "StartTokens Visual Foundations — layout values and framework token groups",
   },
+  {src: '/images/how-it-works/visual-doc-4.webp', alt: 'StartTokens Visual Foundations — iconography library, native size, project scale and official SVG previews'},
 ];
 
 const MONTHLY_FEATURES = [
@@ -274,6 +280,7 @@ function allVariables(modules: VariableModule[]) {
 }
 
 const WHAT_YOU_GET_DESCRIPTIONS: Record<string, string> = {
+  iconography: "Iconography variables document the selected library, delivery, behavior and project size scale. SVG artwork stays separate from Variables.",
   colors:
     "Color variables organize palettes, semantic roles and interface tokens, keeping visual decisions consistent and easy to update.",
   typography:
@@ -1191,7 +1198,7 @@ export default function App() {
       <section id="features" className="py-20 lg:py-36">
         <div className="mx-auto grid max-w-[1800px] items-center gap-10 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.5fr)_minmax(0,1fr)]">
           <ScrollReveal><SectionTag>· Features ·</SectionTag><h2 className="mt-6 text-3xl font-light xl:text-[44px]">Customize the foundation<strong className="mt-4 block text-4xl font-bold xl:text-[66px] leading-tight">without breaking the framework.</strong></h2></ScrollReveal>
-          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-3">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={feature.title.toLowerCase() as 'colors' | 'typography' | 'layout'} /></motion.div>)}</StaggeredReveal>
+          <StaggeredReveal className="grid min-w-0 gap-6 lg:grid-cols-2 xl:grid-cols-4">{FEATURES.map((feature) => <motion.div key={feature.title} whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="flex min-w-0 flex-col items-center"><h3 className="mb-4 text-xl font-semibold">{feature.title}</h3><PluginMockup initialModule={(feature.title==='Icons'?'iconography':feature.title.toLowerCase()) as 'colors' | 'typography' | 'iconography' | 'layout'} /></motion.div>)}</StaggeredReveal>
         </div>
       </section>
 
@@ -1201,7 +1208,7 @@ export default function App() {
           <ScrollReveal className="my-8 flex justify-center"><VisualDocumentationPreview isActive={true} /></ScrollReveal>
           <StaggeredReveal className="grid gap-8 md:grid-cols-3">{[
             ['Always aligned', 'Documentation reflects the values you generated.'],
-            ['Easy to inspect', 'Colors, typography and layout are organized visually.'],
+            ['Easy to inspect', 'Fonts, icon libraries, icon scales, colors and layout are documented with their final configured values.'],
             ['Ready to share', 'Give designers and developers a readable reference inside Figma.'],
           ].map(([title, desc], i) => <div key={i}><h3 className="text-2xl font-semibold">{title}</h3><p className="mt-3 text-base">{desc}</p></div>)}</StaggeredReveal>
         </div>

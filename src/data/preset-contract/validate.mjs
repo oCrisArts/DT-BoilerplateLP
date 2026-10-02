@@ -21,10 +21,10 @@ export function validatePreset(preset, expectedId) {
   check(text(preset.metadata?.name) && text(preset.metadata?.version) && text(preset.metadata?.description) && Array.isArray(preset.metadata?.sources), 'metadata');
   for (const source of preset.metadata.sources) check(/^https:\/\//.test(source.url) && text(source.version), 'source provenance');
   check(Array.isArray(preset.modules) && unique(preset.modules.map(m => m.id)), 'module list');
-  check(preset.modules.length === 3 && ['colors','typography','layout'].every(id => preset.modules.some(m => m.id === id)), 'required modules');
+  check(JSON.stringify(preset.modules.map(m=>m.id)) === JSON.stringify(['colors','typography','iconography','layout']), 'required modules');
   for (const entry of preset.modules) assertPath(entry.path);
   check(Array.isArray(preset.capabilities?.colors?.groups), 'color capabilities');
-  for (const [module, keys] of Object.entries({ typography: ['fontFamily','baseSize','typeScale','lineHeight'], layout: ['grid','breakpoints','spacing','radius','tokens'] })) {
+  for (const [module, keys] of Object.entries({ typography: ['fontFamily','baseSize','typeScale','lineHeight'], iconography: ['library','delivery','scale','colorBehavior'], layout: ['grid','breakpoints','spacing','radius','tokens'] })) {
     for (const key of keys) check(typeof preset.capabilities?.[module]?.[key] === 'boolean', `${module}.${key} capability`);
   }
   return preset;
@@ -32,6 +32,7 @@ export function validatePreset(preset, expectedId) {
 export function validateModules(preset, modules) {
   check(modules.length === preset.modules.length, 'module count');
   const variables = new Map();
+  const paths = new Set();
   for (const [index, module] of modules.entries()) {
     check(module?.schemaVersion === 1 && module.module === preset.modules[index].id, 'module identity');
     check(text(module.label) && text(module.tabIcon) && Array.isArray(module.submodules), 'module shape');
@@ -41,6 +42,7 @@ export function validateModules(preset, modules) {
       for (const v of group.variables) {
         check(text(v.id) && !variables.has(v.id), `duplicate or missing variable ${v.id}`);
         check(v.module === module.module && v.submodule === group.id && text(v.name) && text(v.figmaName) && text(v.displayValue), `variable identity ${v.id}`);
+        check(!paths.has(v.figmaName), `duplicate variable path ${v.figmaName}`); paths.add(v.figmaName);
         check(['COLOR','FLOAT','STRING'].includes(v.type), `variable type ${v.id}`);
         if (v.type === 'FLOAT') check(typeof v.value === 'number' && Number.isFinite(v.value), `numeric value ${v.id}`);
         if (v.type === 'STRING') check(typeof v.value === 'string', `string value ${v.id}`);
@@ -74,10 +76,32 @@ export function validateModules(preset, modules) {
     if (config[key].options) check(config[key].options.every(id => refs.has(id)), `${key} options`);
   }
   check(config.typeScale?.kind === 'explicit' && typeof config.typeScale.customizable === 'boolean' && Array.isArray(config.typeScale.steps) && config.typeScale.steps.length > 0 && config.typeScale.steps.every(id => refs.has(id)), 'type scale');
+  check(Number.isFinite(config.typeScale.referenceRatio) && config.typeScale.referenceRatio > 1, 'type scale reference ratio');
+  check(config.fontRoles?.primary && unique(Object.values(config.fontRoles).map(r=>r.token)), 'font roles');
+  for (const [role, item] of Object.entries(config.fontRoles)) check(['primary','secondary','monospace'].includes(role) && text(item.label) && refs.has(item.token) && variables.get(item.token).type === 'STRING' && typeof item.customizable === 'boolean', `font role ${role}`);
+  const icons = modules.find(m=>m.module==='iconography'), ic = icons.configuration;
+  const iconRefs = new Set(icons.submodules.flatMap(g=>g.variables.map(v=>v.id)));
+  for (const key of ['library','delivery','nativeSize','baseSize','colorBehavior',...(ic.verticalAlign?['verticalAlign']:[])]) check(iconRefs.has(ic[key]), `iconography ${key}`);
+  check(variables.get(ic.baseSize).type === 'FLOAT' && variables.get(ic.baseSize).value > 0, 'icon base size');
+  check(['spacing','proportional'].includes(ic.scale?.kind) && ic.scale.baseValue > 0 && Array.isArray(ic.scale.steps) && ic.scale.steps.length > 0 && unique(ic.scale.steps) && ic.scale.steps.every(id=>iconRefs.has(id) && variables.get(id).type==='FLOAT' && variables.get(id).value>0), 'icon scale');
   const layout = modules.find(m => m.module === 'layout');
   check(['none','columns','responsive-columns'].includes(layout.configuration?.grid?.kind) && ['scale','multiplier'].includes(layout.configuration?.spacing?.kind), 'layout configuration');
   for (const [key, enabled] of Object.entries(preset.capabilities.layout)) {
     check(enabled === layout.submodules.some(g => (g.id === key || (key === 'spacing' && g.id === 'space')) && g.variables.length > 0), `layout capability ${key}`);
   }
   return modules;
+}
+
+export function validateIconLibrary(library) {
+  check(library?.schemaVersion === 1 && text(library.id) && text(library.name) && text(library.provider) && text(library.version), 'icon library identity');
+  check(Array.isArray(library.delivery) && library.delivery.length > 0 && library.delivery.every(text) && library.defaultSize > 0 && text(library.nativeSize), 'icon library delivery');
+  check(Array.isArray(library.variants) && library.variants.length > 0 && unique(library.variants), 'icon variants');
+  check(/^https:\/\//.test(library.source?.url) && text(library.source.integrity) && text(library.source.license), 'icon provenance');
+  check(Array.isArray(library.icons) && library.icons.length > 0 && unique(library.icons.map(i=>`${i.variant||''}/${i.name}`)), 'icon entries');
+  for (const icon of library.icons) {
+    check(text(icon.name) && Array.isArray(icon.tags) && icon.tags.every(text) && (!icon.variant || library.variants.includes(icon.variant)), 'icon metadata');
+    check(text(icon.svg) && /<svg\b/.test(icon.svg) && /<\/svg>/.test(icon.svg) && !/<(?:script|foreignObject|iframe|image|use)\b|\bon\w+\s*=|(?:href|src)\s*=|javascript:|<!ENTITY/i.test(icon.svg), `unsafe icon SVG ${icon.name}`);
+  }
+  for (const property of Object.values(library.properties||{})) check(Array.isArray(property.values) && property.values.includes(property.default), 'icon property');
+  return library;
 }

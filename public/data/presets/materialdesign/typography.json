@@ -811,7 +811,8 @@
         "typography.label.--md-sys-typescale-label-medium-size",
         "typography.label.--md-sys-typescale-label-small-size"
       ],
-      "customizable": true
+      "customizable": true,
+      "referenceRatio": 1.2
     },
     "lineHeight": {
       "default": "typography.body.--md-sys-typescale-body-large-line-height",
@@ -833,6 +834,18 @@
         "typography.label.--md-sys-typescale-label-small-line-height"
       ],
       "customizable": true
+    },
+    "fontRoles": {
+      "primary": {
+        "label": "Primary Font",
+        "token": "typography.family.--md-ref-typeface-brand",
+        "customizable": true
+      },
+      "secondary": {
+        "label": "Secondary Font",
+        "token": "typography.family.--md-ref-typeface-plain",
+        "customizable": true
+      }
     }
   }
 }

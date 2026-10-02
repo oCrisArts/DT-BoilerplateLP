@@ -608,7 +608,8 @@
         "typography.sizes.display-2",
         "typography.sizes.display-1"
       ],
-      "customizable": true
+      "customizable": true,
+      "referenceRatio": 1.25
     },
     "lineHeight": {
       "default": "typography.lineheight.lineheight-md",
@@ -622,6 +623,13 @@
         "typography.lineheight.lineheight-2xl"
       ],
       "customizable": true
+    },
+    "fontRoles": {
+      "primary": {
+        "label": "Primary Font",
+        "token": "typography.family.font-family-sans",
+        "customizable": true
+      }
     }
   }
 }

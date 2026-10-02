@@ -236,7 +236,8 @@
         "typography.sizes.size-7",
         "typography.sizes.body-size"
       ],
-      "customizable": true
+      "customizable": true,
+      "referenceRatio": 1.25
     },
     "lineHeight": {
       "default": "typography.lineheight.body-line-height",
@@ -244,6 +245,18 @@
         "typography.lineheight.body-line-height"
       ],
       "customizable": true
+    },
+    "fontRoles": {
+      "primary": {
+        "label": "Primary Font",
+        "token": "typography.family.family-sans-serif",
+        "customizable": true
+      },
+      "monospace": {
+        "label": "Monospace Font",
+        "token": "typography.family.family-monospace",
+        "customizable": true
+      }
     }
   }
 }

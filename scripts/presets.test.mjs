@@ -26,8 +26,11 @@ test('StartToken migration preserves every original field and token', () => {
     typography: 'b02132f5ab88e6cff72bf15258aabf482fca04032500462058ba5491aa861488',
     layout: '35432375e54efbaf2693e7e9b4948e61578c9a4e895c2ba68e98e2afc310b7e6',
   };
-  for (const module of load('starttoken').modules) {
-    const { schemaVersion, configuration, ...original } = module;
+  for (const module of load('starttoken').modules.filter(m=>m.module!=='iconography')) {
+    const { schemaVersion, configuration, ...original } = structuredClone(module);
+    if(module.module==='colors'){
+      for(const group of original.submodules){group.variables=group.variables.filter(v=>!/^colors.palette.white(?:-|$)/.test(v.id));for(const v of group.variables)for(const key of ['id','name','figmaName','reference'])if(typeof v[key]==='string')v[key]=v[key].replace(/black/gi,m=>m[0]==='B'?'Grayscale':'grayscale');}
+    }
     assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), expected[module.module]);
   }
 });

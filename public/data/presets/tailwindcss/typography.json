@@ -514,7 +514,8 @@
         "typography.sizes.--text-8xl",
         "typography.sizes.--text-9xl"
       ],
-      "customizable": true
+      "customizable": true,
+      "referenceRatio": 1.25
     },
     "lineHeight": {
       "default": "typography.lineheight.--leading-normal",
@@ -526,6 +527,23 @@
         "typography.lineheight.--leading-loose"
       ],
       "customizable": true
+    },
+    "fontRoles": {
+      "primary": {
+        "label": "Primary Font",
+        "token": "typography.family.--font-sans",
+        "customizable": true
+      },
+      "secondary": {
+        "label": "Secondary Font",
+        "token": "typography.family.--font-serif",
+        "customizable": true
+      },
+      "monospace": {
+        "label": "Monospace Font",
+        "token": "typography.family.--font-mono",
+        "customizable": true
+      }
     }
   }
 }

@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "module": "iconography",
+  "label": "Icons",
+  "tabIcon": "wallpaper",
+  "configuration": {
+    "library": "iconography.configuration.icon-library",
+    "delivery": "iconography.configuration.icon-delivery",
+    "nativeSize": "iconography.configuration.icon-native-size",
+    "baseSize": "iconography.configuration.icon-base-size",
+    "colorBehavior": "iconography.configuration.icon-color-behavior",
+    "verticalAlign": "iconography.configuration.icon-vertical-align",
+    "scale": {
+      "kind": "proportional",
+      "steps": [
+        "iconography.sizes.icon-size-xs",
+        "iconography.sizes.icon-size-sm",
+        "iconography.sizes.icon-size-md",
+        "iconography.sizes.icon-size-lg",
+        "iconography.sizes.icon-size-xl",
+        "iconography.sizes.icon-size-2xl"
+      ],
+      "baseValue": 16
+    },
+    "description": "Bootstrap icons scale with 1em; project sizes are reusable extensions."
+  },
+  "submodules": [
+    {
+      "id": "configuration",
+      "label": "Configuration",
+      "icon": "settings",
+      "variables": [
+        {
+          "id": "iconography.configuration.icon-library",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-library",
+          "figmaName": "Iconography/configuration/icon-library",
+          "type": "STRING",
+          "value": "bootstrap-icons",
+          "displayValue": "bootstrap-icons"
+        },
+        {
+          "id": "iconography.configuration.icon-delivery",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-delivery",
+          "figmaName": "Iconography/configuration/icon-delivery",
+          "type": "STRING",
+          "value": "svg",
+          "displayValue": "svg"
+        },
+        {
+          "id": "iconography.configuration.icon-native-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-native-size",
+          "figmaName": "Iconography/configuration/icon-native-size",
+          "type": "STRING",
+          "value": "1em",
+          "displayValue": "1em"
+        },
+        {
+          "id": "iconography.configuration.icon-base-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-base-size",
+          "figmaName": "Iconography/configuration/icon-base-size",
+          "type": "FLOAT",
+          "value": 16,
+          "displayValue": "16px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.configuration.icon-color-behavior",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-color-behavior",
+          "figmaName": "Iconography/configuration/icon-color-behavior",
+          "type": "STRING",
+          "value": "currentColor",
+          "displayValue": "currentColor"
+        },
+        {
+          "id": "iconography.configuration.icon-vertical-align",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-vertical-align",
+          "figmaName": "Iconography/configuration/icon-vertical-align",
+          "type": "FLOAT",
+          "value": -0.125,
+          "displayValue": "-0.125em",
+          "unit": "em"
+        }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Generated scale",
+      "icon": "linear_scale",
+      "variables": [
+        {
+          "id": "iconography.sizes.icon-size-xs",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-xs",
+          "figmaName": "Iconography/sizes/icon-size-xs",
+          "type": "FLOAT",
+          "value": 12,
+          "displayValue": "12px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-sm",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-sm",
+          "figmaName": "Iconography/sizes/icon-size-sm",
+          "type": "FLOAT",
+          "value": 16,
+          "displayValue": "16px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-md",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-md",
+          "figmaName": "Iconography/sizes/icon-size-md",
+          "type": "FLOAT",
+          "value": 20,
+          "displayValue": "20px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-lg",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-lg",
+          "figmaName": "Iconography/sizes/icon-size-lg",
+          "type": "FLOAT",
+          "value": 24,
+          "displayValue": "24px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-xl",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-xl",
+          "figmaName": "Iconography/sizes/icon-size-xl",
+          "type": "FLOAT",
+          "value": 32,
+          "displayValue": "32px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-2xl",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-2xl",
+          "figmaName": "Iconography/sizes/icon-size-2xl",
+          "type": "FLOAT",
+          "value": 40,
+          "displayValue": "40px",
+          "unit": "px"
+        }
+      ]
+    }
+  ]
+}

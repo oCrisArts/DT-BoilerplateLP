@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "module": "iconography",
+  "label": "Icons",
+  "tabIcon": "wallpaper",
+  "configuration": {
+    "library": "iconography.configuration.icon-library",
+    "delivery": "iconography.configuration.icon-delivery",
+    "nativeSize": "iconography.configuration.icon-native-size",
+    "baseSize": "iconography.configuration.icon-base-size",
+    "colorBehavior": "iconography.configuration.icon-color-behavior",
+    "scale": {
+      "kind": "proportional",
+      "steps": [
+        "iconography.sizes.icon-size-small",
+        "iconography.sizes.icon-size-default",
+        "iconography.sizes.icon-size-large",
+        "iconography.sizes.icon-size-extra-large"
+      ],
+      "baseValue": 24
+    },
+    "description": "Material Symbols supports FILL, wght, GRAD and opsz. Project sizes preserve the Material optical range."
+  },
+  "submodules": [
+    {
+      "id": "configuration",
+      "label": "Configuration",
+      "icon": "settings",
+      "variables": [
+        {
+          "id": "iconography.configuration.icon-library",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-library",
+          "figmaName": "Iconography/configuration/icon-library",
+          "type": "STRING",
+          "value": "material-symbols",
+          "displayValue": "material-symbols"
+        },
+        {
+          "id": "iconography.configuration.icon-delivery",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-delivery",
+          "figmaName": "Iconography/configuration/icon-delivery",
+          "type": "STRING",
+          "value": "svg",
+          "displayValue": "svg"
+        },
+        {
+          "id": "iconography.configuration.icon-native-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-native-size",
+          "figmaName": "Iconography/configuration/icon-native-size",
+          "type": "STRING",
+          "value": "24dp",
+          "displayValue": "24dp"
+        },
+        {
+          "id": "iconography.configuration.icon-base-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-base-size",
+          "figmaName": "Iconography/configuration/icon-base-size",
+          "type": "FLOAT",
+          "value": 24,
+          "displayValue": "24px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.configuration.icon-color-behavior",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-color-behavior",
+          "figmaName": "Iconography/configuration/icon-color-behavior",
+          "type": "STRING",
+          "value": "currentColor",
+          "displayValue": "currentColor"
+        }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Generated scale",
+      "icon": "linear_scale",
+      "variables": [
+        {
+          "id": "iconography.sizes.icon-size-small",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-small",
+          "figmaName": "Iconography/sizes/icon-size-small",
+          "type": "FLOAT",
+          "value": 20,
+          "displayValue": "20px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-default",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-default",
+          "figmaName": "Iconography/sizes/icon-size-default",
+          "type": "FLOAT",
+          "value": 24,
+          "displayValue": "24px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-large",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-large",
+          "figmaName": "Iconography/sizes/icon-size-large",
+          "type": "FLOAT",
+          "value": 40,
+          "displayValue": "40px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-extra-large",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-extra-large",
+          "figmaName": "Iconography/sizes/icon-size-extra-large",
+          "type": "FLOAT",
+          "value": 48,
+          "displayValue": "48px",
+          "unit": "px"
+        }
+      ]
+    }
+  ]
+}

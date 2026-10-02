@@ -73,6 +73,12 @@
       "spacing": false,
       "radius": true,
       "tokens": false
+    },
+    "iconography": {
+      "library": true,
+      "delivery": true,
+      "scale": true,
+      "colorBehavior": true
     }
   },
   "modules": [
@@ -83,6 +89,10 @@
     {
       "id": "typography",
       "path": "typography.json"
+    },
+    {
+      "id": "iconography",
+      "path": "iconography.json"
     },
     {
       "id": "layout",

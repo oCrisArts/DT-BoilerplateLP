@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "libraries": [
+    {
+      "id": "bootstrap-icons",
+      "name": "Bootstrap Icons",
+      "path": "bootstrap-icons.json",
+      "version": "1.13.1",
+      "sha256": "780fdd0f70f8b98f0b9136cceee48a5a69b133841031e19d04e137b8c6ee894b"
+    },
+    {
+      "id": "material-symbols",
+      "name": "Material Symbols",
+      "path": "material-symbols.json",
+      "version": "737e3324305806514d7909874fa1818ae1808232",
+      "sha256": "fff7c9c0f1a32394e678f2acd3aaaf823cb5d419db9d3ddc1af72546c9b4062f"
+    },
+    {
+      "id": "lucide",
+      "name": "Lucide",
+      "path": "lucide.json",
+      "version": "0.487.0",
+      "sha256": "c6bc645e54ef1bd866bd635d96eaade90dea8f91c252257a01d08f08f6069086"
+    },
+    {
+      "id": "phosphor",
+      "name": "Phosphor",
+      "path": "phosphor.json",
+      "version": "2.1.1",
+      "sha256": "a934545651180a499ac420b0fcf42461f99a5fafd26fac16f08cd197bc9ddaa3"
+    },
+    {
+      "id": "font-awesome",
+      "name": "Font Awesome",
+      "path": "font-awesome.json",
+      "version": "6.7.2",
+      "sha256": "3211e9b31ccfd8bce20d4fa782a077b04601cd23dc6b83352287bdd41886efd5"
+    },
+    {
+      "id": "remix-icon",
+      "name": "Remix Icon",
+      "path": "remix-icon.json",
+      "version": "4.6.0",
+      "sha256": "750da683e03e29f26c7e1d41d10966ae99724607cfd36ed93e795e249b17dbc3"
+    }
+  ]
+}

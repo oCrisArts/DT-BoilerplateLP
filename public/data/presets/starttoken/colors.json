@@ -330,11 +330,11 @@
           "preview": "#fbd8d6"
         },
         {
-          "id": "colors.palette.grayscale",
+          "id": "colors.palette.black",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale",
-          "figmaName": "Colors/Palette/Grayscale-950",
+          "name": "Black",
+          "figmaName": "Colors/Palette/Black-950",
           "type": "COLOR",
           "value": {
             "r": 0.047058823529411764,
@@ -346,11 +346,11 @@
           "preview": "#0c0c0d"
         },
         {
-          "id": "colors.palette.grayscale-900",
+          "id": "colors.palette.black-900",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-900",
-          "figmaName": "Colors/Palette/Grayscale-900",
+          "name": "Black-900",
+          "figmaName": "Colors/Palette/Black-900",
           "type": "COLOR",
           "value": {
             "r": 0.1450980392156863,
@@ -362,11 +362,11 @@
           "preview": "#252526"
         },
         {
-          "id": "colors.palette.grayscale-800",
+          "id": "colors.palette.black-800",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-800",
-          "figmaName": "Colors/Palette/Grayscale-800",
+          "name": "Black-800",
+          "figmaName": "Colors/Palette/Black-800",
           "type": "COLOR",
           "value": {
             "r": 0.24313725490196078,
@@ -378,11 +378,11 @@
           "preview": "#3e3e3f"
         },
         {
-          "id": "colors.palette.grayscale-700",
+          "id": "colors.palette.black-700",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-700",
-          "figmaName": "Colors/Palette/Grayscale-700",
+          "name": "Black-700",
+          "figmaName": "Colors/Palette/Black-700",
           "type": "COLOR",
           "value": {
             "r": 0.3411764705882353,
@@ -394,11 +394,11 @@
           "preview": "#575758"
         },
         {
-          "id": "colors.palette.grayscale-600",
+          "id": "colors.palette.black-600",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-600",
-          "figmaName": "Colors/Palette/Grayscale-600",
+          "name": "Black-600",
+          "figmaName": "Colors/Palette/Black-600",
           "type": "COLOR",
           "value": {
             "r": 0.4392156862745098,
@@ -410,11 +410,11 @@
           "preview": "#707071"
         },
         {
-          "id": "colors.palette.grayscale-500",
+          "id": "colors.palette.black-500",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-500",
-          "figmaName": "Colors/Palette/Grayscale-500",
+          "name": "Black-500",
+          "figmaName": "Colors/Palette/Black-500",
           "type": "COLOR",
           "value": {
             "r": 0.5372549019607843,
@@ -426,11 +426,11 @@
           "preview": "#89898a"
         },
         {
-          "id": "colors.palette.grayscale-400",
+          "id": "colors.palette.black-400",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-400",
-          "figmaName": "Colors/Palette/Grayscale-400",
+          "name": "Black-400",
+          "figmaName": "Colors/Palette/Black-400",
           "type": "COLOR",
           "value": {
             "r": 0.6352941176470588,
@@ -442,11 +442,11 @@
           "preview": "#a2a2a3"
         },
         {
-          "id": "colors.palette.grayscale-300",
+          "id": "colors.palette.black-300",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-300",
-          "figmaName": "Colors/Palette/Grayscale-300",
+          "name": "Black-300",
+          "figmaName": "Colors/Palette/Black-300",
           "type": "COLOR",
           "value": {
             "r": 0.7333333333333333,
@@ -458,11 +458,11 @@
           "preview": "#bbbbbc"
         },
         {
-          "id": "colors.palette.grayscale-200",
+          "id": "colors.palette.black-200",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-200",
-          "figmaName": "Colors/Palette/Grayscale-200",
+          "name": "Black-200",
+          "figmaName": "Colors/Palette/Black-200",
           "type": "COLOR",
           "value": {
             "r": 0.8313725490196079,
@@ -474,11 +474,11 @@
           "preview": "#d4d4d5"
         },
         {
-          "id": "colors.palette.grayscale-100",
+          "id": "colors.palette.black-100",
           "module": "colors",
           "submodule": "palette",
-          "name": "Grayscale-100",
-          "figmaName": "Colors/Palette/Grayscale-100",
+          "name": "Black-100",
+          "figmaName": "Colors/Palette/Black-100",
           "type": "COLOR",
           "value": {
             "r": 0.9882352941176471,
@@ -488,6 +488,166 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc"
+        },
+        {
+          "id": "colors.palette.white",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White",
+          "figmaName": "Colors/Palette/White-950",
+          "type": "COLOR",
+          "value": {
+            "r": 0.9529411764705882,
+            "g": 0.9529411764705882,
+            "b": 0.9490196078431372,
+            "a": 1
+          },
+          "displayValue": "#f3f3f2",
+          "preview": "#f3f3f2"
+        },
+        {
+          "id": "colors.palette.white-900",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-900",
+          "figmaName": "Colors/Palette/White-900",
+          "type": "COLOR",
+          "value": {
+            "r": 0.8549019607843137,
+            "g": 0.8549019607843137,
+            "b": 0.8509803921568627,
+            "a": 1
+          },
+          "displayValue": "#dadad9",
+          "preview": "#dadad9"
+        },
+        {
+          "id": "colors.palette.white-800",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-800",
+          "figmaName": "Colors/Palette/White-800",
+          "type": "COLOR",
+          "value": {
+            "r": 0.7568627450980392,
+            "g": 0.7568627450980392,
+            "b": 0.7529411764705882,
+            "a": 1
+          },
+          "displayValue": "#c1c1c0",
+          "preview": "#c1c1c0"
+        },
+        {
+          "id": "colors.palette.white-700",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-700",
+          "figmaName": "Colors/Palette/White-700",
+          "type": "COLOR",
+          "value": {
+            "r": 0.6588235294117647,
+            "g": 0.6588235294117647,
+            "b": 0.6549019607843137,
+            "a": 1
+          },
+          "displayValue": "#a8a8a7",
+          "preview": "#a8a8a7"
+        },
+        {
+          "id": "colors.palette.white-600",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-600",
+          "figmaName": "Colors/Palette/White-600",
+          "type": "COLOR",
+          "value": {
+            "r": 0.5607843137254902,
+            "g": 0.5607843137254902,
+            "b": 0.5568627450980392,
+            "a": 1
+          },
+          "displayValue": "#8f8f8e",
+          "preview": "#8f8f8e"
+        },
+        {
+          "id": "colors.palette.white-500",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-500",
+          "figmaName": "Colors/Palette/White-500",
+          "type": "COLOR",
+          "value": {
+            "r": 0.4627450980392157,
+            "g": 0.4627450980392157,
+            "b": 0.45882352941176474,
+            "a": 1
+          },
+          "displayValue": "#767675",
+          "preview": "#767675"
+        },
+        {
+          "id": "colors.palette.white-400",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-400",
+          "figmaName": "Colors/Palette/White-400",
+          "type": "COLOR",
+          "value": {
+            "r": 0.3647058823529412,
+            "g": 0.3647058823529412,
+            "b": 0.36078431372549025,
+            "a": 1
+          },
+          "displayValue": "#5d5d5c",
+          "preview": "#5d5d5c"
+        },
+        {
+          "id": "colors.palette.white-300",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-300",
+          "figmaName": "Colors/Palette/White-300",
+          "type": "COLOR",
+          "value": {
+            "r": 0.2666666666666667,
+            "g": 0.2666666666666667,
+            "b": 0.26274509803921564,
+            "a": 1
+          },
+          "displayValue": "#444443",
+          "preview": "#444443"
+        },
+        {
+          "id": "colors.palette.white-200",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-200",
+          "figmaName": "Colors/Palette/White-200",
+          "type": "COLOR",
+          "value": {
+            "r": 0.1686274509803921,
+            "g": 0.1686274509803921,
+            "b": 0.16470588235294115,
+            "a": 1
+          },
+          "displayValue": "#2b2b2a",
+          "preview": "#2b2b2a"
+        },
+        {
+          "id": "colors.palette.white-100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "White-100",
+          "figmaName": "Colors/Palette/White-100",
+          "type": "COLOR",
+          "value": {
+            "r": 0.0117647058823529,
+            "g": 0.0117647058823529,
+            "b": 0.0117647058823529,
+            "a": 1
+          },
+          "displayValue": "#030303",
+          "preview": "#030303"
         }
       ]
     },
@@ -1175,7 +1335,7 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.grayscale-100"
+          "reference": "colors.palette.black-100"
         },
         {
           "id": "colors.button.primary.border",
@@ -1209,7 +1369,7 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.grayscale-100"
+          "reference": "colors.palette.black-100"
         },
         {
           "id": "colors.button.secondary.text",
@@ -1226,7 +1386,7 @@
           },
           "displayValue": "#0c0c0d",
           "preview": "#0c0c0d",
-          "reference": "colors.palette.grayscale"
+          "reference": "colors.palette.black"
         },
         {
           "id": "colors.button.secondary.border",
@@ -1243,7 +1403,7 @@
           },
           "displayValue": "#d4d4d5",
           "preview": "#d4d4d5",
-          "reference": "colors.palette.grayscale-200"
+          "reference": "colors.palette.black-200"
         },
         {
           "id": "colors.input.primary.fill",
@@ -1260,7 +1420,7 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.grayscale-100"
+          "reference": "colors.palette.black-100"
         },
         {
           "id": "colors.input.primary.text",
@@ -1277,7 +1437,7 @@
           },
           "displayValue": "#0c0c0d",
           "preview": "#0c0c0d",
-          "reference": "colors.palette.grayscale"
+          "reference": "colors.palette.black"
         },
         {
           "id": "colors.input.primary.border",
@@ -1294,7 +1454,7 @@
           },
           "displayValue": "#d4d4d5",
           "preview": "#d4d4d5",
-          "reference": "colors.palette.grayscale-200"
+          "reference": "colors.palette.black-200"
         },
         {
           "id": "colors.content.primary.text",
@@ -1311,7 +1471,7 @@
           },
           "displayValue": "#0c0c0d",
           "preview": "#0c0c0d",
-          "reference": "colors.palette.grayscale"
+          "reference": "colors.palette.black"
         },
         {
           "id": "colors.content.secondary.text",
@@ -1328,7 +1488,7 @@
           },
           "displayValue": "#707071",
           "preview": "#707071",
-          "reference": "colors.palette.grayscale-600"
+          "reference": "colors.palette.black-600"
         },
         {
           "id": "colors.surface.primary.fill",
@@ -1345,7 +1505,7 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.grayscale-100"
+          "reference": "colors.palette.black-100"
         },
         {
           "id": "colors.surface.primary.border",
@@ -1362,7 +1522,7 @@
           },
           "displayValue": "#d4d4d5",
           "preview": "#d4d4d5",
-          "reference": "colors.palette.grayscale-200"
+          "reference": "colors.palette.black-200"
         }
       ]
     }

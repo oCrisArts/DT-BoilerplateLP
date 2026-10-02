@@ -288,7 +288,8 @@
         "typography.sizes.h5-font-size",
         "typography.sizes.h6-font-size"
       ],
-      "customizable": true
+      "customizable": true,
+      "referenceRatio": 1.25
     },
     "lineHeight": {
       "default": "typography.lineheight.line-height-base",
@@ -299,6 +300,18 @@
         "typography.lineheight.headings-line-height"
       ],
       "customizable": true
+    },
+    "fontRoles": {
+      "primary": {
+        "label": "Primary Font",
+        "token": "typography.family.font-family-sans-serif",
+        "customizable": true
+      },
+      "monospace": {
+        "label": "Monospace Font",
+        "token": "typography.family.font-family-monospace",
+        "customizable": true
+      }
     }
   }
 }

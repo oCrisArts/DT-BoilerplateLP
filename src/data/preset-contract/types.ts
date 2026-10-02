@@ -1,4 +1,4 @@
-export type ModuleId = 'colors' | 'typography' | 'layout';
+export type ModuleId = 'colors' | 'typography' | 'iconography' | 'layout';
 export type VariableType = 'COLOR' | 'FLOAT' | 'STRING';
 export interface Variable {
   id: string;
@@ -18,9 +18,24 @@ export interface Submodule { id: string; label: string; icon: string; variables:
 export interface ConfigurableReference { default: string; customizable: boolean; options?: string[] }
 export interface TypographyConfiguration {
   fontFamily: ConfigurableReference;
+  fontRoles: Partial<Record<'primary' | 'secondary' | 'monospace', { label: string; token: string; customizable: boolean }>>;
   baseSize: ConfigurableReference;
-  typeScale: { kind: 'explicit'; steps: string[]; customizable: boolean };
+  typeScale: { kind: 'explicit'; steps: string[]; customizable: boolean; referenceRatio: number };
   lineHeight: ConfigurableReference;
+}
+export interface IconographyConfiguration {
+  library: string; delivery: string; nativeSize: string; baseSize: string; colorBehavior: string;
+  verticalAlign?: string;
+  scale: { kind: 'spacing' | 'proportional'; steps: string[]; baseValue: number };
+  description: string;
+}
+export interface IconEntry { name: string; svg: string; tags: string[]; variant?: string }
+export interface IconLibrary {
+  schemaVersion: 1; id: string; name: string; provider: string; version: string;
+  delivery: string[]; defaultSize: number; nativeSize: string; variants: string[];
+  properties?: Record<string, { values: (string | number)[]; default: string | number }>;
+  source: { url: string; integrity: string; license: string; scope?: string };
+  icons: IconEntry[];
 }
 export interface ColorsConfiguration {
   structure: 'grouped' | 'scales';
@@ -41,6 +56,7 @@ type ModuleBase<K extends ModuleId, C> = {
 export type Module =
   | ModuleBase<'colors', ColorsConfiguration>
   | ModuleBase<'typography', TypographyConfiguration>
+  | ModuleBase<'iconography', IconographyConfiguration>
   | ModuleBase<'layout', LayoutConfiguration>;
 export interface Preset {
   schemaVersion: 1;
@@ -49,6 +65,7 @@ export interface Preset {
   capabilities: {
     colors: { groups: string[] };
     typography: { fontFamily: boolean; baseSize: boolean; typeScale: boolean; lineHeight: boolean };
+    iconography: { library: boolean; delivery: boolean; scale: boolean; colorBehavior: boolean };
     layout: { grid: boolean; breakpoints: boolean; spacing: boolean; radius: boolean; tokens: boolean };
   };
   modules: { id: ModuleId; path: string }[];

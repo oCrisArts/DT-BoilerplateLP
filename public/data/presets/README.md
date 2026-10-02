@@ -2,7 +2,7 @@
 
 This directory is the canonical source for both the landing page and the Figma plugin. Edit data here; the plugin's `src/data/presets` is a generated offline mirror. The canonical TypeScript contract and runtime validator live in the LP's `src/data/preset-contract` and are synchronized to the same source directory in the plugin.
 
-`catalog.json` lists preset IDs, display names, manifest paths and `defaultPreset`. Readers resolve each manifest and its module paths instead of assuming three global JSON URLs. Paths are relative to the containing catalog or manifest. All presets use the `Catalog`, `Preset` and discriminated `Module` types in `src/data/preset-contract/types.ts`, with runtime checks in the adjacent `validate.mjs`.
+`catalog.json` lists preset IDs, display names, manifest paths and `defaultPreset`. Readers resolve each manifest and its ordered modules: Colors → Typography → Icons → Layout. Paths are relative to the containing catalog or manifest. All presets use the `Catalog`, `Preset` and discriminated `Module` types in `src/data/preset-contract/types.ts`, with runtime checks in the adjacent `validate.mjs`.
 
 ## Modules
 
@@ -12,7 +12,11 @@ Each module carries `schemaVersion`, `module`, `label`, `tabIcon`, ordered `subm
 - Typography configuration identifies the default font family, base size, explicit type scale and line height by variable ID. `customizable` describes future editor support. Family and line-height options reference existing variables. Explicit scale steps preserve the supplied values; they do not imply a geometric ratio. Tailwind's per-size line-height expressions are preserved in a separate group.
 - Layout capabilities independently declare grid, breakpoints, spacing, radius and tokens. Missing features are false and have no placeholder data. StartToken's existing `space` group is retained as the spacing capability. Tailwind exposes its native spacing multiplier, not an invented finite spacing scale. `grid: false` for Tailwind means this dataset supplies no fixed grid configuration; the framework still supports grid utilities.
 
-Numbers retain their native unit (`px`, `rem`, `em`, or unitless). CSS expressions remain strings. A rem is not assumed to be a fixed pixel count. StartToken retains its existing IDs, order, values, aliases and presentation fields unchanged.
+Numbers retain their native unit (`px`, `rem`, `em`, or unitless). CSS expressions remain strings. A rem is not assumed to be a fixed pixel count. StartToken Grayscale is renamed Black (including aliases), with a mirrored White palette using the same native scale profile and editing mechanism.
+
+`typography.configuration.fontRoles` maps supported semantic controls directly to native token IDs. StartToken supports Primary (sans); Bootstrap and Bulma support Primary (sans) and Monospace; Tailwind also maps Secondary to serif; Material maps Primary to brand and Secondary to plain. No semantic font token duplicates are created. Native aliases resolve after edits; brand and plain remain independent. Each preset records its reference ratio so regenerating at the original ratio preserves its native explicit proportions and units.
+
+`iconography.configuration` references configuration Variables and each preset's project size steps. Library-specific style and property Variables are materialized only for the selected library. The separately versioned `../icons` catalog contains the artwork and upstream provenance; the sync validates catalog hashes before updating either offline dataset.
 
 ## Provenance and scope
 

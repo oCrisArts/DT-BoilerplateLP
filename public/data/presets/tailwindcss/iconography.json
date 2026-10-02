@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "module": "iconography",
+  "label": "Icons",
+  "tabIcon": "wallpaper",
+  "configuration": {
+    "library": "iconography.configuration.icon-library",
+    "delivery": "iconography.configuration.icon-delivery",
+    "nativeSize": "iconography.configuration.icon-native-size",
+    "baseSize": "iconography.configuration.icon-base-size",
+    "colorBehavior": "iconography.configuration.icon-color-behavior",
+    "scale": {
+      "kind": "spacing",
+      "steps": [
+        "iconography.sizes.--icon-size-3",
+        "iconography.sizes.--icon-size-4",
+        "iconography.sizes.--icon-size-5",
+        "iconography.sizes.--icon-size-6",
+        "iconography.sizes.--icon-size-8",
+        "iconography.sizes.--icon-size-10"
+      ],
+      "baseValue": 24
+    },
+    "description": "Tailwind has no default icon library. Lucide is a project default; sizes follow the 4px spacing unit."
+  },
+  "submodules": [
+    {
+      "id": "configuration",
+      "label": "Configuration",
+      "icon": "settings",
+      "variables": [
+        {
+          "id": "iconography.configuration.icon-library",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-library",
+          "figmaName": "Iconography/configuration/icon-library",
+          "type": "STRING",
+          "value": "lucide",
+          "displayValue": "lucide"
+        },
+        {
+          "id": "iconography.configuration.icon-delivery",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-delivery",
+          "figmaName": "Iconography/configuration/icon-delivery",
+          "type": "STRING",
+          "value": "svg",
+          "displayValue": "svg"
+        },
+        {
+          "id": "iconography.configuration.icon-native-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-native-size",
+          "figmaName": "Iconography/configuration/icon-native-size",
+          "type": "STRING",
+          "value": "24px",
+          "displayValue": "24px"
+        },
+        {
+          "id": "iconography.configuration.icon-base-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-base-size",
+          "figmaName": "Iconography/configuration/icon-base-size",
+          "type": "FLOAT",
+          "value": 24,
+          "displayValue": "24px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.configuration.icon-color-behavior",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-color-behavior",
+          "figmaName": "Iconography/configuration/icon-color-behavior",
+          "type": "STRING",
+          "value": "currentColor",
+          "displayValue": "currentColor"
+        }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Generated scale",
+      "icon": "linear_scale",
+      "variables": [
+        {
+          "id": "iconography.sizes.--icon-size-3",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "--icon-size-3",
+          "figmaName": "Iconography/sizes/--icon-size-3",
+          "type": "FLOAT",
+          "value": 12,
+          "displayValue": "12px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.--icon-size-4",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "--icon-size-4",
+          "figmaName": "Iconography/sizes/--icon-size-4",
+          "type": "FLOAT",
+          "value": 16,
+          "displayValue": "16px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.--icon-size-5",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "--icon-size-5",
+          "figmaName": "Iconography/sizes/--icon-size-5",
+          "type": "FLOAT",
+          "value": 20,
+          "displayValue": "20px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.--icon-size-6",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "--icon-size-6",
+          "figmaName": "Iconography/sizes/--icon-size-6",
+          "type": "FLOAT",
+          "value": 24,
+          "displayValue": "24px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.--icon-size-8",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "--icon-size-8",
+          "figmaName": "Iconography/sizes/--icon-size-8",
+          "type": "FLOAT",
+          "value": 32,
+          "displayValue": "32px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.--icon-size-10",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "--icon-size-10",
+          "figmaName": "Iconography/sizes/--icon-size-10",
+          "type": "FLOAT",
+          "value": 40,
+          "displayValue": "40px",
+          "unit": "px"
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { upgradeFoundations } from './upgrade-foundations.mjs';
 // Material Web token snapshots are Apache-2.0, copyright Google LLC.
 // Only the public $supported-tokens lists are imported. No values are invented.
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -80,9 +81,10 @@ export function buildMaterialDesignPreset() {
     description:'Material Design 3, official Material Web v2.5.0 tokens (Google Material 3 v0.192). Default light color scheme; native rem typography and px shapes.',
     sources:filenames.flatMap(name=>[`tokens/_${name}.scss`,`tokens/versions/v0_192/_${name}.scss`]).map(path=>({url:`https://github.com/material-components/material-web/blob/${MATERIAL_COMMIT}/${path}`,version:`@material/web ${MATERIAL_VERSION}; Google Material 3 v0.192; commit ${MATERIAL_COMMIT}`})),
   },capabilities:{colors:{groups:colorGroups},typography:{fontFamily:true,baseSize:true,typeScale:true,lineHeight:true},layout:{grid:false,breakpoints:false,spacing:false,radius:true,tokens:false}},modules:modules.map(m=>({id:m.module,path:`${m.module}.json`}))};
-  validatePreset(preset,'materialdesign');
-  validateModules(preset,modules);
-  return {preset,modules};
+  const upgraded=upgradeFoundations(preset,modules);
+  validatePreset(upgraded.preset,'materialdesign');
+  validateModules(upgraded.preset,upgraded.modules);
+  return upgraded;
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

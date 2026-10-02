@@ -1,3 +1,4 @@
+import IconographyDemo from './IconographyDemo';
 import { colorFamilies, recolorFamily, parseColor, colorValue, hex } from '@/utils/color-values';
 import { useEffect, useId, useRef, useState } from 'react';
 import { catalog, loadPreset } from '@/data/presets';
@@ -7,7 +8,8 @@ import './plugin-demo.css';
 const logos = (id: string) => `/images/presets/${id === 'starttoken' ? 'starttokens' : id}.svg`;
 const subtitles = {
   colors: 'Pick a main color to generate the full framework color scale automatically.',
-  typography: 'Set type values and regenerate the framework scale.',
+  typography: 'Choose primary, secondary and monospace fonts, then generate the type scale.',
+  iconography: 'Configure the icon library, delivery and project size scale.',
   layout: 'Adjust layout values while preserving framework token names.',
 };
 const variables = (m: Module) => m.submodules.flatMap(s => s.variables);
@@ -34,7 +36,7 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
     try {
       const data = await loadPreset(id);
       if (ticket !== request.current) return;
-      setSource(data); setSelected(true); setEdits({}); setQuery(''); setStatus(''); setRatio(1.25);
+      setSource(data); setSelected(true); setEdits({}); setQuery(''); setStatus(''); setRatio((data.modules.find(m=>m.module==='typography')!.configuration as any).typeScale.referenceRatio);
     } catch { if (ticket === request.current) setError(true); }
     finally { if (ticket === request.current) setLoading(false); }
   };
@@ -63,13 +65,11 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
   const generateScale = () => {
     if (!base) return;
     // Demo uses only the preset's explicit size steps, retaining every name and unit.
-    const sizes = [...new Set(steps.map(v => pixels(v)))].sort((a,b) => a-b);
-    const anchor = sizes.indexOf(pixels(base));
     const next: Record<string,string> = {};
     for (const v of steps) {
-      const px = pixels(base, value(base)) * ratio ** (sizes.indexOf(pixels(v)) - Math.max(0, anchor));
-      const n = px / (v.unit === 'rem' || v.unit === 'em' ? 16 : 1);
-      next[v.id] = `${Number(n.toFixed(3))}${v.unit ?? ''}`;
+      const exponent=Math.log(pixels(v)/pixels(base))/Math.log(config!.typeScale.referenceRatio);
+      const px=pixels(base,value(base))*ratio**exponent;
+      next[v.id]=`${Number((px/(v.unit==='rem'||v.unit==='em'?16:1)).toFixed(4))}${v.unit??''}`;
     }
     setEdits(prev => ({ ...prev, ...next })); setStatus('Typography scale updated in this demo.');
   };
@@ -105,15 +105,15 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
         <p>{subtitles[active]}</p><p className="demo-helper">Token names stay unchanged — only values are customized.</p>
         <input className="demo-search" type="search" aria-label="Search tokens" placeholder="Search tokens…" value={query} onChange={e => setQuery(e.target.value)} />
         {type && family && base && line ? <>
-          <details open><summary>Configuration</summary><div className="demo-configuration">
-            <label>Font Family<select aria-label="Font Family" value={value(family)} disabled={!config?.fontFamily.customizable} onChange={e => edit(family,e.target.value)}>{[...new Set([family.displayValue, 'DM Sans', 'Arial', 'Georgia', 'Courier New'])].map(f => <option key={f}>{f}</option>)}</select></label>
+          <details open><summary>Font Families</summary><div className="demo-configuration">
+            {Object.entries(config!.fontRoles).map(([role,control])=>{const font=typeVars.find(v=>v.id===control.token)!;return <label key={role}>{control.label}<input aria-label={control.label} list={`${uid}-fonts`} value={value(font)} onChange={e=>edit(font,e.target.value)}/></label>;})}<datalist id={`${uid}-fonts`}>{['DM Sans','Inter','Roboto','Inconsolata','Sora','JetBrains Mono','Arial','Georgia','Courier New'].map(name=><option key={name}>{name}</option>)}</datalist><small>Demo fonts. The plugin lists all fonts available in Figma.</small></div></details><div className="demo-configuration">
             <label>Base Size<input aria-label="Base Size" type="number" min="1" max="96" step="any" value={pixels(base,value(base))} disabled={!config?.baseSize.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 96) edit(base, `${e.target.valueAsNumber / (base.unit === 'rem' || base.unit === 'em' ? 16 : 1)}${base.unit ?? ''}`); }} /> <small>px</small></label>
             <label>Type Scale<select aria-label="Type Scale" value={ratio} disabled={!config?.typeScale.customizable} onChange={e => setRatio(Number(e.target.value))}>{[[1.067,'Minor Second'],[1.125,'Major Second'],[1.2,'Minor Third'],[1.25,'Major Third'],[1.333,'Perfect Fourth'],[1.5,'Perfect Fifth'],[1.618,'Golden Ratio']].map(([r,n]) => <option key={r} value={r}>{n} · {r}</option>)}</select></label>
             <label>Line Height<input aria-label="Line Height" type="number" min="0.5" max="100" step="0.1" value={Number.parseFloat(value(line))} disabled={!config?.lineHeight.customizable} onChange={e => { if (e.target.valueAsNumber > 0 && e.target.valueAsNumber <= 100) edit(line, `${e.target.value}${line.unit ?? ''}`); }} /></label>
             <button className="demo-generate-scale" onClick={generateScale}>Generate scale</button>
-          </div></details>
+          </div>
           <details open><summary>Generated scale</summary>{steps.filter(v => matches(v,query)).map(v => <div key={v.id} className="demo-type-preview"><span style={{ fontFamily: value(family), fontSize: Math.max(10,Math.min(38,pixels(v,value(v)))) , lineHeight: line.unit ? '1.4' : Math.min(3,Number.parseFloat(value(line))) }}>Aa</span><span><small>{value(v)}</small><code>{v.name}</code></span></div>)}</details>
-        </> : module.submodules.filter(s => s.label.toLowerCase().includes(query.toLowerCase()) || s.variables.some(v => matches(v,query))).map((s,i) => {
+        </> : module.module==='iconography'?<IconographyDemo module={module} edits={edits} onEdit={values=>setEdits(prev=>({...prev,...values}))}/> : module.submodules.filter(s => s.label.toLowerCase().includes(query.toLowerCase()) || s.variables.some(v => matches(v,query))).map((s,i) => {
           const list = s.variables.filter(v => s.label.toLowerCase().includes(query.toLowerCase()) || matches(v,query));
           return <details key={`${source?.preset.id}-${active}-${s.id}-${Boolean(query)}`} open={query ? true : i === 0}><summary>{s.label}</summary>
             {active === 'colors' ? colorFamilies(s.variables).filter(({tokens}) => s.label.toLowerCase().includes(query.toLowerCase()) || tokens.some(v => matches(v,query))).map(({tokens,base}) => <div key={base.id} className="demo-color-family">{tokenField(base, next => editFamily(tokens,base,next))}{tokens.length > 1 && <><div className="demo-scale">{tokens.map(v => <label key={v.id} title={`${v.name}: ${value(v)}`}><input type="color" aria-label={`${v.name} scale color`} value={hex(parseColor(value(v)) ?? parseColor(v.displayValue)!, false)} onChange={e => edit(v,colorValue(parseColor(e.target.value)!,v))} style={{ background: value(v) }} /><span>{v.name.match(/(\d+)$/)?.[1]}</span></label>)}</div><details><summary>Edit individual tokens</summary>{tokens.map(v => tokenField(v))}</details></>}</div>) : list.map(v => <div key={v.id}>{tokenField(v)}

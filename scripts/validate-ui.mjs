@@ -45,7 +45,7 @@ for (const preset of catalog.presets) {
       const labels = await demo.locator('[role=tabpanel] > details > summary').allTextContents();
       assert.deepEqual(labels,source.submodules.map(s=>s.label));
     } else {
-      await demo.getByLabel('Font Family',{exact:true}).selectOption('Georgia');
+      await demo.getByLabel('Primary Font',{exact:true}).fill('Georgia');
       await demo.getByLabel('Type Scale',{exact:true}).selectOption('1.5');
       await demo.getByRole('button',{name:'Generate scale',exact:true}).click();
       assert.match(await demo.getByRole('status').innerText(),/updated/);
@@ -74,7 +74,7 @@ for (const preset of catalog.presets) {
   assert.equal(await demo.getByRole('tab',{name:'Typography',exact:true}).getAttribute('aria-selected'),'true');
   await page.screenshot({path:`validation-output/${preset.id}.png`});
   await demo.getByRole('button',{name:'Back to presets'}).click();
-  report.push(`${preset.name}: real groups, three tabs, color edit, type scale, search, keyboard navigation passed`);
+  report.push(`${preset.name}: real groups, four tabs, color edit, type scale, search, keyboard navigation passed`);
 }
 for (const variant of ['legacy', 'new']) for (const width of [1920,1440,1024,768,390,320]) {
   await page.setViewportSize({width,height:900});
@@ -120,6 +120,8 @@ await page.route('**/functions/v1/create-checkout-session',async r=>{
 });
 for (const [variant, plan, label] of [['legacy','monthly','Get Started'], ['legacy','lifetime','Get Lifetime Access'], ['new','monthly','Start Monthly'], ['new','annual','Get Annual'], ['new','lifetime','Get Lifetime']]) {
   await navigate(versionUrl(variant));
+  await page.locator('#pricing').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => (window.dataLayer || []).some(event => Array.from(event)[1] === 'pricing_view'));
   await page.locator('#pricing').getByRole('button',{name:label,exact:true}).click();
   await page.waitForURL('**/cancel?qa=checkout');
   assert.deepEqual(requests.at(-1), {plan, pricingVersion:variant, email:null, userId:null});
@@ -164,8 +166,8 @@ const problemSolvedActive = await page.locator('header nav').getByRole('link', {
 assert.equal(problemSolvedActive, 'location');
 report.push('Scroll spy: navigation highlights active section on scroll');
 
-assert.deepEqual(await page.locator('#features h3').allTextContents(),['Colors','Typography','Layout']);
-assert.equal(await page.locator('#features .plugin-demo').count(),3);
+assert.deepEqual(await page.locator('#features h3').allTextContents(),['Colors','Typography','Icons','Layout']);
+assert.equal(await page.locator('#features .plugin-demo').count(),4);
 assert.equal(await page.locator('#how-it-works').count(),1);
 assert.equal(await page.locator('#how-it-works [role=tab]').count(),3);
 report.push('Features uses existing mockups; How it works is one section with three tabs');

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "module": "iconography",
+  "label": "Icons",
+  "tabIcon": "wallpaper",
+  "configuration": {
+    "library": "iconography.configuration.icon-library",
+    "delivery": "iconography.configuration.icon-delivery",
+    "nativeSize": "iconography.configuration.icon-native-size",
+    "baseSize": "iconography.configuration.icon-base-size",
+    "colorBehavior": "iconography.configuration.icon-color-behavior",
+    "scale": {
+      "kind": "proportional",
+      "steps": [
+        "iconography.sizes.icon-size-small",
+        "iconography.sizes.icon-size-normal",
+        "iconography.sizes.icon-size-medium",
+        "iconography.sizes.icon-size-large"
+      ],
+      "baseValue": 16
+    },
+    "description": "Bulma provides icon container sizes, not a built-in library. Font Awesome is its documented integration."
+  },
+  "submodules": [
+    {
+      "id": "configuration",
+      "label": "Configuration",
+      "icon": "settings",
+      "variables": [
+        {
+          "id": "iconography.configuration.icon-library",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-library",
+          "figmaName": "Iconography/configuration/icon-library",
+          "type": "STRING",
+          "value": "font-awesome",
+          "displayValue": "font-awesome"
+        },
+        {
+          "id": "iconography.configuration.icon-delivery",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-delivery",
+          "figmaName": "Iconography/configuration/icon-delivery",
+          "type": "STRING",
+          "value": "svg",
+          "displayValue": "svg"
+        },
+        {
+          "id": "iconography.configuration.icon-native-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-native-size",
+          "figmaName": "Iconography/configuration/icon-native-size",
+          "type": "STRING",
+          "value": "1em",
+          "displayValue": "1em"
+        },
+        {
+          "id": "iconography.configuration.icon-base-size",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-base-size",
+          "figmaName": "Iconography/configuration/icon-base-size",
+          "type": "FLOAT",
+          "value": 16,
+          "displayValue": "16px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.configuration.icon-color-behavior",
+          "module": "iconography",
+          "submodule": "configuration",
+          "name": "icon-color-behavior",
+          "figmaName": "Iconography/configuration/icon-color-behavior",
+          "type": "STRING",
+          "value": "currentColor",
+          "displayValue": "currentColor"
+        }
+      ]
+    },
+    {
+      "id": "sizes",
+      "label": "Generated scale",
+      "icon": "linear_scale",
+      "variables": [
+        {
+          "id": "iconography.sizes.icon-size-small",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-small",
+          "figmaName": "Iconography/sizes/icon-size-small",
+          "type": "FLOAT",
+          "value": 16,
+          "displayValue": "16px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-normal",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-normal",
+          "figmaName": "Iconography/sizes/icon-size-normal",
+          "type": "FLOAT",
+          "value": 24,
+          "displayValue": "24px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-medium",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-medium",
+          "figmaName": "Iconography/sizes/icon-size-medium",
+          "type": "FLOAT",
+          "value": 32,
+          "displayValue": "32px",
+          "unit": "px"
+        },
+        {
+          "id": "iconography.sizes.icon-size-large",
+          "module": "iconography",
+          "submodule": "sizes",
+          "name": "icon-size-large",
+          "figmaName": "Iconography/sizes/icon-size-large",
+          "type": "FLOAT",
+          "value": 48,
+          "displayValue": "48px",
+          "unit": "px"
+        }
+      ]
+    }
+  ]
+}
