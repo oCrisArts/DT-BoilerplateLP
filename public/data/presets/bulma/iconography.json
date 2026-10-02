@@ -35,7 +35,8 @@
           "figmaName": "Iconography/configuration/icon-library",
           "type": "STRING",
           "value": "font-awesome",
-          "displayValue": "font-awesome"
+          "displayValue": "font-awesome",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-delivery",
@@ -45,7 +46,8 @@
           "figmaName": "Iconography/configuration/icon-delivery",
           "type": "STRING",
           "value": "svg",
-          "displayValue": "svg"
+          "displayValue": "svg",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-native-size",
@@ -55,7 +57,8 @@
           "figmaName": "Iconography/configuration/icon-native-size",
           "type": "STRING",
           "value": "1em",
-          "displayValue": "1em"
+          "displayValue": "1em",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-base-size",
@@ -66,7 +69,8 @@
           "type": "FLOAT",
           "value": 16,
           "displayValue": "16px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-color-behavior",
@@ -76,7 +80,8 @@
           "figmaName": "Iconography/configuration/icon-color-behavior",
           "type": "STRING",
           "value": "currentColor",
-          "displayValue": "currentColor"
+          "displayValue": "currentColor",
+          "tier": "primitive"
         }
       ]
     },
@@ -94,7 +99,8 @@
           "type": "FLOAT",
           "value": 16,
           "displayValue": "16px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-normal",
@@ -105,7 +111,8 @@
           "type": "FLOAT",
           "value": 24,
           "displayValue": "24px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-medium",
@@ -116,7 +123,8 @@
           "type": "FLOAT",
           "value": 32,
           "displayValue": "32px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-large",
@@ -127,7 +135,8 @@
           "type": "FLOAT",
           "value": 48,
           "displayValue": "48px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         }
       ]
     }

@@ -1,3 +1,4 @@
+import { completeFoundations } from './complete-foundations.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 const root = new URL('../public/data/presets/', import.meta.url);
 const read = path => JSON.parse(readFileSync(new URL(path, root), 'utf8'));
@@ -51,7 +52,7 @@ export function upgradeFoundations(preset, modules) {
   const iconography = {schemaVersion:1,module:'iconography',label:'Icons',tabIcon:'wallpaper',configuration:{library:'iconography.configuration.icon-library',delivery:'iconography.configuration.icon-delivery',nativeSize:'iconography.configuration.icon-native-size',baseSize:'iconography.configuration.icon-base-size',colorBehavior:'iconography.configuration.icon-color-behavior',...(preset.id==='bootstrap'?{verticalAlign:'iconography.configuration.icon-vertical-align'}:{}),scale:{kind:preset.id==='tailwindcss'?'spacing':'proportional',steps:scale.map(v=>v.id),baseValue:base},description},submodules:[{id:'configuration',label:'Configuration',icon:'settings',variables:configVars},{id:'sizes',label:'Generated scale',icon:'linear_scale',variables:scale}]};
   preset.capabilities.iconography = {library:true,delivery:true,scale:true,colorBehavior:true};
   preset.modules = [{id:'colors',path:'colors.json'},{id:'typography',path:'typography.json'},{id:'iconography',path:'iconography.json'},{id:'layout',path:'layout.json'}];
-  return {preset,modules:[modules.find(m=>m.module==='colors'),typography,iconography,modules.find(m=>m.module==='layout')]};
+  return completeFoundations(preset,[modules.find(m=>m.module==='colors'),typography,iconography,modules.find(m=>m.module==='layout')]);
 }
 if (process.argv[1] && import.meta.url === new URL('file:///' + process.argv[1].replaceAll('\\','/')).href) {
   for(const entry of read('catalog.json').presets){

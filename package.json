@@ -12,7 +12,9 @@
     "test:ui": "node scripts/validate-ui.mjs",
     "dev": "vite",
     "test:icons": "node --test scripts/icons.test.mjs",
-    "generate:icons": "node scripts/generate-icon-catalog.mjs"
+    "generate:icons": "node scripts/generate-icon-catalog.mjs",
+    "test:exports": "node --test scripts/exports.test.mjs",
+    "test:exports:ui": "node scripts/export-ui.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

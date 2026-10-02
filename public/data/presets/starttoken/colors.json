@@ -23,7 +23,8 @@
             "a": 1
           },
           "displayValue": "#05061a",
-          "preview": "#05061a"
+          "preview": "#05061a",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-900",
@@ -39,7 +40,8 @@
             "a": 1
           },
           "displayValue": "#090c2e",
-          "preview": "#090c2e"
+          "preview": "#090c2e",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-800",
@@ -55,7 +57,8 @@
             "a": 1
           },
           "displayValue": "#141852",
-          "preview": "#141852"
+          "preview": "#141852",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-700",
@@ -71,7 +74,8 @@
             "a": 1
           },
           "displayValue": "#1e2270",
-          "preview": "#1e2270"
+          "preview": "#1e2270",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-600",
@@ -87,7 +91,8 @@
             "a": 1
           },
           "displayValue": "#2d328e",
-          "preview": "#2d328e"
+          "preview": "#2d328e",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-500",
@@ -103,7 +108,8 @@
             "a": 1
           },
           "displayValue": "#5e6ad2",
-          "preview": "#5e6ad2"
+          "preview": "#5e6ad2",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-400",
@@ -119,7 +125,8 @@
             "a": 1
           },
           "displayValue": "#8b94e0",
-          "preview": "#8b94e0"
+          "preview": "#8b94e0",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-300",
@@ -135,7 +142,8 @@
             "a": 1
           },
           "displayValue": "#b3bcea",
-          "preview": "#b3bcea"
+          "preview": "#b3bcea",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-200",
@@ -151,7 +159,8 @@
             "a": 1
           },
           "displayValue": "#d5d9f3",
-          "preview": "#d5d9f3"
+          "preview": "#d5d9f3",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.primary-100",
@@ -167,7 +176,8 @@
             "a": 1
           },
           "displayValue": "#eceef9",
-          "preview": "#eceef9"
+          "preview": "#eceef9",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary",
@@ -183,7 +193,8 @@
             "a": 1
           },
           "displayValue": "#3d1a00",
-          "preview": "#3d1a00"
+          "preview": "#3d1a00",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-900",
@@ -199,7 +210,8 @@
             "a": 1
           },
           "displayValue": "#5a2805",
-          "preview": "#5a2805"
+          "preview": "#5a2805",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-800",
@@ -215,7 +227,8 @@
             "a": 1
           },
           "displayValue": "#7a3a0a",
-          "preview": "#7a3a0a"
+          "preview": "#7a3a0a",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-700",
@@ -231,7 +244,8 @@
             "a": 1
           },
           "displayValue": "#9d4d10",
-          "preview": "#9d4d10"
+          "preview": "#9d4d10",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-600",
@@ -247,7 +261,8 @@
             "a": 1
           },
           "displayValue": "#c26216",
-          "preview": "#c26216"
+          "preview": "#c26216",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-500",
@@ -263,7 +278,8 @@
             "a": 1
           },
           "displayValue": "#e1580e",
-          "preview": "#e1580e"
+          "preview": "#e1580e",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-400",
@@ -279,7 +295,8 @@
             "a": 1
           },
           "displayValue": "#e97a42",
-          "preview": "#e97a42"
+          "preview": "#e97a42",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-300",
@@ -295,7 +312,8 @@
             "a": 1
           },
           "displayValue": "#f09a76",
-          "preview": "#f09a76"
+          "preview": "#f09a76",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-200",
@@ -311,7 +329,8 @@
             "a": 1
           },
           "displayValue": "#f6b9a9",
-          "preview": "#f6b9a9"
+          "preview": "#f6b9a9",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.secondary-100",
@@ -327,7 +346,8 @@
             "a": 1
           },
           "displayValue": "#fbd8d6",
-          "preview": "#fbd8d6"
+          "preview": "#fbd8d6",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black",
@@ -343,7 +363,8 @@
             "a": 1
           },
           "displayValue": "#0c0c0d",
-          "preview": "#0c0c0d"
+          "preview": "#0c0c0d",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-900",
@@ -359,7 +380,8 @@
             "a": 1
           },
           "displayValue": "#252526",
-          "preview": "#252526"
+          "preview": "#252526",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-800",
@@ -375,7 +397,8 @@
             "a": 1
           },
           "displayValue": "#3e3e3f",
-          "preview": "#3e3e3f"
+          "preview": "#3e3e3f",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-700",
@@ -391,7 +414,8 @@
             "a": 1
           },
           "displayValue": "#575758",
-          "preview": "#575758"
+          "preview": "#575758",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-600",
@@ -407,7 +431,8 @@
             "a": 1
           },
           "displayValue": "#707071",
-          "preview": "#707071"
+          "preview": "#707071",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-500",
@@ -423,7 +448,8 @@
             "a": 1
           },
           "displayValue": "#89898a",
-          "preview": "#89898a"
+          "preview": "#89898a",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-400",
@@ -439,7 +465,8 @@
             "a": 1
           },
           "displayValue": "#a2a2a3",
-          "preview": "#a2a2a3"
+          "preview": "#a2a2a3",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-300",
@@ -455,7 +482,8 @@
             "a": 1
           },
           "displayValue": "#bbbbbc",
-          "preview": "#bbbbbc"
+          "preview": "#bbbbbc",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-200",
@@ -471,7 +499,8 @@
             "a": 1
           },
           "displayValue": "#d4d4d5",
-          "preview": "#d4d4d5"
+          "preview": "#d4d4d5",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-100",
@@ -487,7 +516,8 @@
             "a": 1
           },
           "displayValue": "#fcfcfc",
-          "preview": "#fcfcfc"
+          "preview": "#fcfcfc",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white",
@@ -503,7 +533,8 @@
             "a": 1
           },
           "displayValue": "#f3f3f2",
-          "preview": "#f3f3f2"
+          "preview": "#f3f3f2",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-900",
@@ -519,7 +550,8 @@
             "a": 1
           },
           "displayValue": "#dadad9",
-          "preview": "#dadad9"
+          "preview": "#dadad9",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-800",
@@ -535,7 +567,8 @@
             "a": 1
           },
           "displayValue": "#c1c1c0",
-          "preview": "#c1c1c0"
+          "preview": "#c1c1c0",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-700",
@@ -551,7 +584,8 @@
             "a": 1
           },
           "displayValue": "#a8a8a7",
-          "preview": "#a8a8a7"
+          "preview": "#a8a8a7",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-600",
@@ -567,7 +601,8 @@
             "a": 1
           },
           "displayValue": "#8f8f8e",
-          "preview": "#8f8f8e"
+          "preview": "#8f8f8e",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-500",
@@ -583,7 +618,8 @@
             "a": 1
           },
           "displayValue": "#767675",
-          "preview": "#767675"
+          "preview": "#767675",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-400",
@@ -599,7 +635,8 @@
             "a": 1
           },
           "displayValue": "#5d5d5c",
-          "preview": "#5d5d5c"
+          "preview": "#5d5d5c",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-300",
@@ -615,7 +652,8 @@
             "a": 1
           },
           "displayValue": "#444443",
-          "preview": "#444443"
+          "preview": "#444443",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-200",
@@ -631,7 +669,8 @@
             "a": 1
           },
           "displayValue": "#2b2b2a",
-          "preview": "#2b2b2a"
+          "preview": "#2b2b2a",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-100",
@@ -647,7 +686,8 @@
             "a": 1
           },
           "displayValue": "#030303",
-          "preview": "#030303"
+          "preview": "#030303",
+          "tier": "primitive"
         }
       ]
     },
@@ -670,7 +710,8 @@
             "a": 1
           },
           "displayValue": "#330404",
-          "preview": "#330404"
+          "preview": "#330404",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-900",
@@ -686,7 +727,8 @@
             "a": 1
           },
           "displayValue": "#520b0b",
-          "preview": "#520b0b"
+          "preview": "#520b0b",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-800",
@@ -702,7 +744,8 @@
             "a": 1
           },
           "displayValue": "#771414",
-          "preview": "#771414"
+          "preview": "#771414",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-700",
@@ -718,7 +761,8 @@
             "a": 1
           },
           "displayValue": "#9d2020",
-          "preview": "#9d2020"
+          "preview": "#9d2020",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-600",
@@ -734,7 +778,8 @@
             "a": 1
           },
           "displayValue": "#c43232",
-          "preview": "#c43232"
+          "preview": "#c43232",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-500",
@@ -750,7 +795,8 @@
             "a": 1
           },
           "displayValue": "#ef4444",
-          "preview": "#ef4444"
+          "preview": "#ef4444",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-400",
@@ -766,7 +812,8 @@
             "a": 1
           },
           "displayValue": "#f47070",
-          "preview": "#f47070"
+          "preview": "#f47070",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-300",
@@ -782,7 +829,8 @@
             "a": 1
           },
           "displayValue": "#f79898",
-          "preview": "#f79898"
+          "preview": "#f79898",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-200",
@@ -798,7 +846,8 @@
             "a": 1
           },
           "displayValue": "#f9bebe",
-          "preview": "#f9bebe"
+          "preview": "#f9bebe",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.danger-100",
@@ -814,7 +863,8 @@
             "a": 1
           },
           "displayValue": "#fde3e3",
-          "preview": "#fde3e3"
+          "preview": "#fde3e3",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning",
@@ -830,7 +880,8 @@
             "a": 1
           },
           "displayValue": "#3d1400",
-          "preview": "#3d1400"
+          "preview": "#3d1400",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-900",
@@ -846,7 +897,8 @@
             "a": 1
           },
           "displayValue": "#5d2003",
-          "preview": "#5d2003"
+          "preview": "#5d2003",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-800",
@@ -862,7 +914,8 @@
             "a": 1
           },
           "displayValue": "#813206",
-          "preview": "#813206"
+          "preview": "#813206",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-700",
@@ -878,7 +931,8 @@
             "a": 1
           },
           "displayValue": "#a74709",
-          "preview": "#a74709"
+          "preview": "#a74709",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-600",
@@ -894,7 +948,8 @@
             "a": 1
           },
           "displayValue": "#cf600c",
-          "preview": "#cf600c"
+          "preview": "#cf600c",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-500",
@@ -910,7 +965,8 @@
             "a": 1
           },
           "displayValue": "#f59e0b",
-          "preview": "#f59e0b"
+          "preview": "#f59e0b",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-400",
@@ -926,7 +982,8 @@
             "a": 1
           },
           "displayValue": "#f7b351",
-          "preview": "#f7b351"
+          "preview": "#f7b351",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-300",
@@ -942,7 +999,8 @@
             "a": 1
           },
           "displayValue": "#f9c88f",
-          "preview": "#f9c88f"
+          "preview": "#f9c88f",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-200",
@@ -958,7 +1016,8 @@
             "a": 1
           },
           "displayValue": "#fbdcc1",
-          "preview": "#fbdcc1"
+          "preview": "#fbdcc1",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.warning-100",
@@ -974,7 +1033,8 @@
             "a": 1
           },
           "displayValue": "#fdeee5",
-          "preview": "#fdeee5"
+          "preview": "#fdeee5",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info",
@@ -990,7 +1050,8 @@
             "a": 1
           },
           "displayValue": "#040b20",
-          "preview": "#040b20"
+          "preview": "#040b20",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-900",
@@ -1006,7 +1067,8 @@
             "a": 1
           },
           "displayValue": "#0b1838",
-          "preview": "#0b1838"
+          "preview": "#0b1838",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-800",
@@ -1022,7 +1084,8 @@
             "a": 1
           },
           "displayValue": "#142852",
-          "preview": "#142852"
+          "preview": "#142852",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-700",
@@ -1038,7 +1101,8 @@
             "a": 1
           },
           "displayValue": "#1e3a70",
-          "preview": "#1e3a70"
+          "preview": "#1e3a70",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-600",
@@ -1054,7 +1118,8 @@
             "a": 1
           },
           "displayValue": "#2b4f8f",
-          "preview": "#2b4f8f"
+          "preview": "#2b4f8f",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-500",
@@ -1070,7 +1135,8 @@
             "a": 1
           },
           "displayValue": "#3b82f6",
-          "preview": "#3b82f6"
+          "preview": "#3b82f6",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-400",
@@ -1086,7 +1152,8 @@
             "a": 1
           },
           "displayValue": "#6a9cf8",
-          "preview": "#6a9cf8"
+          "preview": "#6a9cf8",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-300",
@@ -1102,7 +1169,8 @@
             "a": 1
           },
           "displayValue": "#99b6fa",
-          "preview": "#99b6fa"
+          "preview": "#99b6fa",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-200",
@@ -1118,7 +1186,8 @@
             "a": 1
           },
           "displayValue": "#c8d0fc",
-          "preview": "#c8d0fc"
+          "preview": "#c8d0fc",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.info-100",
@@ -1134,7 +1203,8 @@
             "a": 1
           },
           "displayValue": "#e4e8fe",
-          "preview": "#e4e8fe"
+          "preview": "#e4e8fe",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success",
@@ -1150,7 +1220,8 @@
             "a": 1
           },
           "displayValue": "#031208",
-          "preview": "#031208"
+          "preview": "#031208",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-900",
@@ -1166,7 +1237,8 @@
             "a": 1
           },
           "displayValue": "#071e0e",
-          "preview": "#071e0e"
+          "preview": "#071e0e",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-800",
@@ -1182,7 +1254,8 @@
             "a": 1
           },
           "displayValue": "#0c2d15",
-          "preview": "#0c2d15"
+          "preview": "#0c2d15",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-700",
@@ -1198,7 +1271,8 @@
             "a": 1
           },
           "displayValue": "#133f1e",
-          "preview": "#133f1e"
+          "preview": "#133f1e",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-600",
@@ -1214,7 +1288,8 @@
             "a": 1
           },
           "displayValue": "#1a5428",
-          "preview": "#1a5428"
+          "preview": "#1a5428",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-500",
@@ -1230,7 +1305,8 @@
             "a": 1
           },
           "displayValue": "#22c55e",
-          "preview": "#22c55e"
+          "preview": "#22c55e",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-400",
@@ -1246,7 +1322,8 @@
             "a": 1
           },
           "displayValue": "#4dd084",
-          "preview": "#4dd084"
+          "preview": "#4dd084",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-300",
@@ -1262,7 +1339,8 @@
             "a": 1
           },
           "displayValue": "#7adbaa",
-          "preview": "#7adbaa"
+          "preview": "#7adbaa",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-200",
@@ -1278,7 +1356,8 @@
             "a": 1
           },
           "displayValue": "#a7e6d0",
-          "preview": "#a7e6d0"
+          "preview": "#a7e6d0",
+          "tier": "primitive"
         },
         {
           "id": "colors.semantic.success-100",
@@ -1294,7 +1373,8 @@
             "a": 1
           },
           "displayValue": "#d4f1e8",
-          "preview": "#d4f1e8"
+          "preview": "#d4f1e8",
+          "tier": "primitive"
         }
       ]
     },
@@ -1318,7 +1398,8 @@
           },
           "displayValue": "#5e6ad2",
           "preview": "#5e6ad2",
-          "reference": "colors.palette.primary-500"
+          "reference": "colors.palette.primary-500",
+          "tier": "component"
         },
         {
           "id": "colors.button.primary.text",
@@ -1335,7 +1416,8 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.black-100"
+          "reference": "colors.palette.black-100",
+          "tier": "component"
         },
         {
           "id": "colors.button.primary.border",
@@ -1352,7 +1434,8 @@
           },
           "displayValue": "#2d328e",
           "preview": "#2d328e",
-          "reference": "colors.palette.primary-600"
+          "reference": "colors.palette.primary-600",
+          "tier": "component"
         },
         {
           "id": "colors.button.secondary.fill",
@@ -1369,7 +1452,8 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.black-100"
+          "reference": "colors.palette.black-100",
+          "tier": "component"
         },
         {
           "id": "colors.button.secondary.text",
@@ -1386,7 +1470,8 @@
           },
           "displayValue": "#0c0c0d",
           "preview": "#0c0c0d",
-          "reference": "colors.palette.black"
+          "reference": "colors.palette.black",
+          "tier": "component"
         },
         {
           "id": "colors.button.secondary.border",
@@ -1403,7 +1488,8 @@
           },
           "displayValue": "#d4d4d5",
           "preview": "#d4d4d5",
-          "reference": "colors.palette.black-200"
+          "reference": "colors.palette.black-200",
+          "tier": "component"
         },
         {
           "id": "colors.input.primary.fill",
@@ -1420,7 +1506,8 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.black-100"
+          "reference": "colors.palette.black-100",
+          "tier": "component"
         },
         {
           "id": "colors.input.primary.text",
@@ -1437,7 +1524,8 @@
           },
           "displayValue": "#0c0c0d",
           "preview": "#0c0c0d",
-          "reference": "colors.palette.black"
+          "reference": "colors.palette.black",
+          "tier": "component"
         },
         {
           "id": "colors.input.primary.border",
@@ -1454,7 +1542,8 @@
           },
           "displayValue": "#d4d4d5",
           "preview": "#d4d4d5",
-          "reference": "colors.palette.black-200"
+          "reference": "colors.palette.black-200",
+          "tier": "component"
         },
         {
           "id": "colors.content.primary.text",
@@ -1471,7 +1560,8 @@
           },
           "displayValue": "#0c0c0d",
           "preview": "#0c0c0d",
-          "reference": "colors.palette.black"
+          "reference": "colors.palette.black",
+          "tier": "semantic"
         },
         {
           "id": "colors.content.secondary.text",
@@ -1488,7 +1578,8 @@
           },
           "displayValue": "#707071",
           "preview": "#707071",
-          "reference": "colors.palette.black-600"
+          "reference": "colors.palette.black-600",
+          "tier": "semantic"
         },
         {
           "id": "colors.surface.primary.fill",
@@ -1505,7 +1596,8 @@
           },
           "displayValue": "#fcfcfc",
           "preview": "#fcfcfc",
-          "reference": "colors.palette.black-100"
+          "reference": "colors.palette.black-100",
+          "tier": "semantic"
         },
         {
           "id": "colors.surface.primary.border",
@@ -1522,7 +1614,8 @@
           },
           "displayValue": "#d4d4d5",
           "preview": "#d4d4d5",
-          "reference": "colors.palette.black-200"
+          "reference": "colors.palette.black-200",
+          "tier": "semantic"
         }
       ]
     }

@@ -1,3 +1,4 @@
+import {codeName,scopesFor} from './token-metadata.mjs';
 // Shared by the canonical data build, plugin sync, and both readers.
 const check = (condition, message) => { if (!condition) throw new Error(`Invalid preset data: ${message}`); };
 const text = value => typeof value === 'string' && value.length > 0;
@@ -27,12 +28,15 @@ export function validatePreset(preset, expectedId) {
   for (const [module, keys] of Object.entries({ typography: ['fontFamily','baseSize','typeScale','lineHeight'], iconography: ['library','delivery','scale','colorBehavior'], layout: ['grid','breakpoints','spacing','radius','tokens'] })) {
     for (const key of keys) check(typeof preset.capabilities?.[module]?.[key] === 'boolean', `${module}.${key} capability`);
   }
+  for(const key of ['borderWidth','borderStyle','opacity'])if(preset.capabilities.layout[key]!==undefined)check(typeof preset.capabilities.layout[key]==='boolean','layout.'+key+' capability');
+  if(preset.capabilities.typography.letterSpacing!==undefined)check(typeof preset.capabilities.typography.letterSpacing==='boolean','letterSpacing capability');
   return preset;
 }
 export function validateModules(preset, modules) {
   check(modules.length === preset.modules.length, 'module count');
   const variables = new Map();
   const paths = new Set();
+  const codeNames = new Set();
   for (const [index, module] of modules.entries()) {
     check(module?.schemaVersion === 1 && module.module === preset.modules[index].id, 'module identity');
     check(text(module.label) && text(module.tabIcon) && Array.isArray(module.submodules), 'module shape');
@@ -50,12 +54,16 @@ export function validateModules(preset, modules) {
           const value = v.value;
           check(typeof value === 'string' ? /^(#[a-f\d]{3,8}|hsl\(.+\)|oklch\(.+\))$/i.test(value) : value && ['r','g','b','a'].every(k => typeof value[k] === 'number' && value[k] >= 0 && value[k] <= 1), `color value ${v.id}`);
         }
+        check(!v.tier || ['primitive','semantic','component'].includes(v.tier), 'token tier '+v.id);
+        const code=codeName(v.figmaName);check(code && !codeNames.has(code),'duplicate code syntax '+v.figmaName);codeNames.add(code);
+        if(v.type==='COLOR')check(JSON.stringify(scopesFor(v))==='["ALL_SCOPES"]','unrestricted color scopes');
         variables.set(v.id, v);
       }
     }
   }
   for (const v of variables.values()) {
     if (v.reference) check(variables.has(v.reference) && variables.get(v.reference).type === v.type, `invalid alias ${v.id}`);
+    if(v.reference)check(v.unit===variables.get(v.reference).unit,'alias unit mismatch '+v.id);
     const seen = new Set([v.id]);
     let target = v;
     while (target.reference) {
@@ -69,6 +77,7 @@ export function validateModules(preset, modules) {
   check(['grouped','scales'].includes(colors.configuration?.structure) && Array.isArray(colors.configuration?.colorFormats), 'color configuration');
   check(JSON.stringify(preset.capabilities.colors.groups) === JSON.stringify(colors.submodules.map(g => g.id)), 'color groups mismatch');
   const typography = modules.find(m => m.module === 'typography');
+  if(preset.capabilities.typography.letterSpacing!==undefined)check(preset.capabilities.typography.letterSpacing===typography.submodules.some(g=>g.variables.some(v=>/tracking|letter-spacing/.test(v.name))),'letterSpacing capability mismatch');
   const config = typography.configuration;
   const refs = new Set(typography.submodules.flatMap(g => g.variables.map(v => v.id)));
   for (const key of ['fontFamily','baseSize','lineHeight']) {

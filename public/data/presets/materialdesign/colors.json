@@ -5,6 +5,420 @@
   "tabIcon": "palette",
   "submodules": [
     {
+      "id": "palette",
+      "label": "Reference Palette",
+      "icon": "palette",
+      "variables": [
+        {
+          "id": "colors.palette.--md-ref-palette-primary100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-primary100",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-primary100",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-primary10",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-primary10",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-primary10",
+          "type": "COLOR",
+          "value": "#21005d",
+          "displayValue": "#21005d",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-primary30",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-primary30",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-primary30",
+          "type": "COLOR",
+          "value": "#4f378b",
+          "displayValue": "#4f378b",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-primary40",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-primary40",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-primary40",
+          "type": "COLOR",
+          "value": "#6750a4",
+          "displayValue": "#6750a4",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-primary90",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-primary90",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-primary90",
+          "type": "COLOR",
+          "value": "#eaddff",
+          "displayValue": "#eaddff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-primary80",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-primary80",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-primary80",
+          "type": "COLOR",
+          "value": "#d0bcff",
+          "displayValue": "#d0bcff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-secondary100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-secondary100",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-secondary100",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-secondary10",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-secondary10",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-secondary10",
+          "type": "COLOR",
+          "value": "#1d192b",
+          "displayValue": "#1d192b",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-secondary30",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-secondary30",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-secondary30",
+          "type": "COLOR",
+          "value": "#4a4458",
+          "displayValue": "#4a4458",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-secondary40",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-secondary40",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-secondary40",
+          "type": "COLOR",
+          "value": "#625b71",
+          "displayValue": "#625b71",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-secondary90",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-secondary90",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-secondary90",
+          "type": "COLOR",
+          "value": "#e8def8",
+          "displayValue": "#e8def8",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-secondary80",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-secondary80",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-secondary80",
+          "type": "COLOR",
+          "value": "#ccc2dc",
+          "displayValue": "#ccc2dc",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-tertiary100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-tertiary100",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-tertiary100",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-tertiary10",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-tertiary10",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-tertiary10",
+          "type": "COLOR",
+          "value": "#31111d",
+          "displayValue": "#31111d",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-tertiary30",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-tertiary30",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-tertiary30",
+          "type": "COLOR",
+          "value": "#633b48",
+          "displayValue": "#633b48",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-tertiary40",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-tertiary40",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-tertiary40",
+          "type": "COLOR",
+          "value": "#7d5260",
+          "displayValue": "#7d5260",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-tertiary90",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-tertiary90",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-tertiary90",
+          "type": "COLOR",
+          "value": "#ffd8e4",
+          "displayValue": "#ffd8e4",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-tertiary80",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-tertiary80",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-tertiary80",
+          "type": "COLOR",
+          "value": "#efb8c8",
+          "displayValue": "#efb8c8",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-error40",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-error40",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-error40",
+          "type": "COLOR",
+          "value": "#b3261e",
+          "displayValue": "#b3261e",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-error90",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-error90",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-error90",
+          "type": "COLOR",
+          "value": "#f9dedc",
+          "displayValue": "#f9dedc",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-error100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-error100",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-error100",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-error10",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-error10",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-error10",
+          "type": "COLOR",
+          "value": "#410e0b",
+          "displayValue": "#410e0b",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral10",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral10",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral10",
+          "type": "COLOR",
+          "value": "#1d1b20",
+          "displayValue": "#1d1b20",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral-variant30",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral-variant30",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral-variant30",
+          "type": "COLOR",
+          "value": "#49454f",
+          "displayValue": "#49454f",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral98",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral98",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral98",
+          "type": "COLOR",
+          "value": "#fef7ff",
+          "displayValue": "#fef7ff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral94",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral94",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral94",
+          "type": "COLOR",
+          "value": "#f3edf7",
+          "displayValue": "#f3edf7",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral92",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral92",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral92",
+          "type": "COLOR",
+          "value": "#ece6f0",
+          "displayValue": "#ece6f0",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral90",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral90",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral90",
+          "type": "COLOR",
+          "value": "#e6e0e9",
+          "displayValue": "#e6e0e9",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral96",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral96",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral96",
+          "type": "COLOR",
+          "value": "#f7f2fa",
+          "displayValue": "#f7f2fa",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral100",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral100",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral100",
+          "type": "COLOR",
+          "value": "#fff",
+          "displayValue": "#fff",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral87",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral87",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral87",
+          "type": "COLOR",
+          "value": "#ded8e1",
+          "displayValue": "#ded8e1",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral-variant90",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral-variant90",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral-variant90",
+          "type": "COLOR",
+          "value": "#e7e0ec",
+          "displayValue": "#e7e0ec",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral95",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral95",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral95",
+          "type": "COLOR",
+          "value": "#f5eff7",
+          "displayValue": "#f5eff7",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral20",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral20",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral20",
+          "type": "COLOR",
+          "value": "#322f35",
+          "displayValue": "#322f35",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral-variant50",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral-variant50",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral-variant50",
+          "type": "COLOR",
+          "value": "#79747e",
+          "displayValue": "#79747e",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral-variant80",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral-variant80",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral-variant80",
+          "type": "COLOR",
+          "value": "#cac4d0",
+          "displayValue": "#cac4d0",
+          "tier": "primitive"
+        },
+        {
+          "id": "colors.palette.--md-ref-palette-neutral0",
+          "module": "colors",
+          "submodule": "palette",
+          "name": "--md-ref-palette-neutral0",
+          "figmaName": "Colors/Reference Palette/--md-ref-palette-neutral0",
+          "type": "COLOR",
+          "value": "#000",
+          "displayValue": "#000",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
       "id": "primary",
       "label": "Primary",
       "icon": "palette",
@@ -18,7 +432,9 @@
           "type": "COLOR",
           "value": "#fff",
           "displayValue": "#fff",
-          "preview": "#fff"
+          "preview": "#fff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary100"
         },
         {
           "id": "colors.primary.--md-sys-color-on-primary-container",
@@ -29,7 +445,9 @@
           "type": "COLOR",
           "value": "#21005d",
           "displayValue": "#21005d",
-          "preview": "#21005d"
+          "preview": "#21005d",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary10"
         },
         {
           "id": "colors.primary.--md-sys-color-on-primary-fixed",
@@ -40,7 +458,9 @@
           "type": "COLOR",
           "value": "#21005d",
           "displayValue": "#21005d",
-          "preview": "#21005d"
+          "preview": "#21005d",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary10"
         },
         {
           "id": "colors.primary.--md-sys-color-on-primary-fixed-variant",
@@ -51,7 +471,9 @@
           "type": "COLOR",
           "value": "#4f378b",
           "displayValue": "#4f378b",
-          "preview": "#4f378b"
+          "preview": "#4f378b",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary30"
         },
         {
           "id": "colors.primary.--md-sys-color-primary",
@@ -62,7 +484,9 @@
           "type": "COLOR",
           "value": "#6750a4",
           "displayValue": "#6750a4",
-          "preview": "#6750a4"
+          "preview": "#6750a4",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary40"
         },
         {
           "id": "colors.primary.--md-sys-color-primary-container",
@@ -73,7 +497,9 @@
           "type": "COLOR",
           "value": "#eaddff",
           "displayValue": "#eaddff",
-          "preview": "#eaddff"
+          "preview": "#eaddff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary90"
         },
         {
           "id": "colors.primary.--md-sys-color-primary-fixed",
@@ -84,7 +510,9 @@
           "type": "COLOR",
           "value": "#eaddff",
           "displayValue": "#eaddff",
-          "preview": "#eaddff"
+          "preview": "#eaddff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary90"
         },
         {
           "id": "colors.primary.--md-sys-color-primary-fixed-dim",
@@ -95,7 +523,9 @@
           "type": "COLOR",
           "value": "#d0bcff",
           "displayValue": "#d0bcff",
-          "preview": "#d0bcff"
+          "preview": "#d0bcff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary80"
         }
       ]
     },
@@ -113,7 +543,9 @@
           "type": "COLOR",
           "value": "#fff",
           "displayValue": "#fff",
-          "preview": "#fff"
+          "preview": "#fff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary100"
         },
         {
           "id": "colors.secondary.--md-sys-color-on-secondary-container",
@@ -124,7 +556,9 @@
           "type": "COLOR",
           "value": "#1d192b",
           "displayValue": "#1d192b",
-          "preview": "#1d192b"
+          "preview": "#1d192b",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary10"
         },
         {
           "id": "colors.secondary.--md-sys-color-on-secondary-fixed",
@@ -135,7 +569,9 @@
           "type": "COLOR",
           "value": "#1d192b",
           "displayValue": "#1d192b",
-          "preview": "#1d192b"
+          "preview": "#1d192b",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary10"
         },
         {
           "id": "colors.secondary.--md-sys-color-on-secondary-fixed-variant",
@@ -146,7 +582,9 @@
           "type": "COLOR",
           "value": "#4a4458",
           "displayValue": "#4a4458",
-          "preview": "#4a4458"
+          "preview": "#4a4458",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary30"
         },
         {
           "id": "colors.secondary.--md-sys-color-secondary",
@@ -157,7 +595,9 @@
           "type": "COLOR",
           "value": "#625b71",
           "displayValue": "#625b71",
-          "preview": "#625b71"
+          "preview": "#625b71",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary40"
         },
         {
           "id": "colors.secondary.--md-sys-color-secondary-container",
@@ -168,7 +608,9 @@
           "type": "COLOR",
           "value": "#e8def8",
           "displayValue": "#e8def8",
-          "preview": "#e8def8"
+          "preview": "#e8def8",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary90"
         },
         {
           "id": "colors.secondary.--md-sys-color-secondary-fixed",
@@ -179,7 +621,9 @@
           "type": "COLOR",
           "value": "#e8def8",
           "displayValue": "#e8def8",
-          "preview": "#e8def8"
+          "preview": "#e8def8",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary90"
         },
         {
           "id": "colors.secondary.--md-sys-color-secondary-fixed-dim",
@@ -190,7 +634,9 @@
           "type": "COLOR",
           "value": "#ccc2dc",
           "displayValue": "#ccc2dc",
-          "preview": "#ccc2dc"
+          "preview": "#ccc2dc",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-secondary80"
         }
       ]
     },
@@ -208,7 +654,9 @@
           "type": "COLOR",
           "value": "#fff",
           "displayValue": "#fff",
-          "preview": "#fff"
+          "preview": "#fff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary100"
         },
         {
           "id": "colors.tertiary.--md-sys-color-on-tertiary-container",
@@ -219,7 +667,9 @@
           "type": "COLOR",
           "value": "#31111d",
           "displayValue": "#31111d",
-          "preview": "#31111d"
+          "preview": "#31111d",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary10"
         },
         {
           "id": "colors.tertiary.--md-sys-color-on-tertiary-fixed",
@@ -230,7 +680,9 @@
           "type": "COLOR",
           "value": "#31111d",
           "displayValue": "#31111d",
-          "preview": "#31111d"
+          "preview": "#31111d",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary10"
         },
         {
           "id": "colors.tertiary.--md-sys-color-on-tertiary-fixed-variant",
@@ -241,7 +693,9 @@
           "type": "COLOR",
           "value": "#633b48",
           "displayValue": "#633b48",
-          "preview": "#633b48"
+          "preview": "#633b48",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary30"
         },
         {
           "id": "colors.tertiary.--md-sys-color-tertiary",
@@ -252,7 +706,9 @@
           "type": "COLOR",
           "value": "#7d5260",
           "displayValue": "#7d5260",
-          "preview": "#7d5260"
+          "preview": "#7d5260",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary40"
         },
         {
           "id": "colors.tertiary.--md-sys-color-tertiary-container",
@@ -263,7 +719,9 @@
           "type": "COLOR",
           "value": "#ffd8e4",
           "displayValue": "#ffd8e4",
-          "preview": "#ffd8e4"
+          "preview": "#ffd8e4",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary90"
         },
         {
           "id": "colors.tertiary.--md-sys-color-tertiary-fixed",
@@ -274,7 +732,9 @@
           "type": "COLOR",
           "value": "#ffd8e4",
           "displayValue": "#ffd8e4",
-          "preview": "#ffd8e4"
+          "preview": "#ffd8e4",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary90"
         },
         {
           "id": "colors.tertiary.--md-sys-color-tertiary-fixed-dim",
@@ -285,7 +745,9 @@
           "type": "COLOR",
           "value": "#efb8c8",
           "displayValue": "#efb8c8",
-          "preview": "#efb8c8"
+          "preview": "#efb8c8",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-tertiary80"
         }
       ]
     },
@@ -303,7 +765,9 @@
           "type": "COLOR",
           "value": "#b3261e",
           "displayValue": "#b3261e",
-          "preview": "#b3261e"
+          "preview": "#b3261e",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-error40"
         },
         {
           "id": "colors.error.--md-sys-color-error-container",
@@ -314,7 +778,9 @@
           "type": "COLOR",
           "value": "#f9dedc",
           "displayValue": "#f9dedc",
-          "preview": "#f9dedc"
+          "preview": "#f9dedc",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-error90"
         },
         {
           "id": "colors.error.--md-sys-color-on-error",
@@ -325,7 +791,9 @@
           "type": "COLOR",
           "value": "#fff",
           "displayValue": "#fff",
-          "preview": "#fff"
+          "preview": "#fff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-error100"
         },
         {
           "id": "colors.error.--md-sys-color-on-error-container",
@@ -336,7 +804,9 @@
           "type": "COLOR",
           "value": "#410e0b",
           "displayValue": "#410e0b",
-          "preview": "#410e0b"
+          "preview": "#410e0b",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-error10"
         }
       ]
     },
@@ -354,7 +824,9 @@
           "type": "COLOR",
           "value": "#1d1b20",
           "displayValue": "#1d1b20",
-          "preview": "#1d1b20"
+          "preview": "#1d1b20",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral10"
         },
         {
           "id": "colors.surface.--md-sys-color-on-surface-variant",
@@ -365,7 +837,9 @@
           "type": "COLOR",
           "value": "#49454f",
           "displayValue": "#49454f",
-          "preview": "#49454f"
+          "preview": "#49454f",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral-variant30"
         },
         {
           "id": "colors.surface.--md-sys-color-surface",
@@ -376,7 +850,9 @@
           "type": "COLOR",
           "value": "#fef7ff",
           "displayValue": "#fef7ff",
-          "preview": "#fef7ff"
+          "preview": "#fef7ff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral98"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-bright",
@@ -387,7 +863,9 @@
           "type": "COLOR",
           "value": "#fef7ff",
           "displayValue": "#fef7ff",
-          "preview": "#fef7ff"
+          "preview": "#fef7ff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral98"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-container",
@@ -398,7 +876,9 @@
           "type": "COLOR",
           "value": "#f3edf7",
           "displayValue": "#f3edf7",
-          "preview": "#f3edf7"
+          "preview": "#f3edf7",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral94"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-container-high",
@@ -409,7 +889,9 @@
           "type": "COLOR",
           "value": "#ece6f0",
           "displayValue": "#ece6f0",
-          "preview": "#ece6f0"
+          "preview": "#ece6f0",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral92"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-container-highest",
@@ -420,7 +902,9 @@
           "type": "COLOR",
           "value": "#e6e0e9",
           "displayValue": "#e6e0e9",
-          "preview": "#e6e0e9"
+          "preview": "#e6e0e9",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral90"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-container-low",
@@ -431,7 +915,9 @@
           "type": "COLOR",
           "value": "#f7f2fa",
           "displayValue": "#f7f2fa",
-          "preview": "#f7f2fa"
+          "preview": "#f7f2fa",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral96"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-container-lowest",
@@ -442,7 +928,9 @@
           "type": "COLOR",
           "value": "#fff",
           "displayValue": "#fff",
-          "preview": "#fff"
+          "preview": "#fff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral100"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-dim",
@@ -453,7 +941,9 @@
           "type": "COLOR",
           "value": "#ded8e1",
           "displayValue": "#ded8e1",
-          "preview": "#ded8e1"
+          "preview": "#ded8e1",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral87"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-tint",
@@ -464,7 +954,9 @@
           "type": "COLOR",
           "value": "#6750a4",
           "displayValue": "#6750a4",
-          "preview": "#6750a4"
+          "preview": "#6750a4",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary40"
         },
         {
           "id": "colors.surface.--md-sys-color-surface-variant",
@@ -475,7 +967,9 @@
           "type": "COLOR",
           "value": "#e7e0ec",
           "displayValue": "#e7e0ec",
-          "preview": "#e7e0ec"
+          "preview": "#e7e0ec",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral-variant90"
         }
       ]
     },
@@ -493,7 +987,9 @@
           "type": "COLOR",
           "value": "#f5eff7",
           "displayValue": "#f5eff7",
-          "preview": "#f5eff7"
+          "preview": "#f5eff7",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral95"
         },
         {
           "id": "colors.inverse.--md-sys-color-inverse-primary",
@@ -504,7 +1000,9 @@
           "type": "COLOR",
           "value": "#d0bcff",
           "displayValue": "#d0bcff",
-          "preview": "#d0bcff"
+          "preview": "#d0bcff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-primary80"
         },
         {
           "id": "colors.inverse.--md-sys-color-inverse-surface",
@@ -515,7 +1013,9 @@
           "type": "COLOR",
           "value": "#322f35",
           "displayValue": "#322f35",
-          "preview": "#322f35"
+          "preview": "#322f35",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral20"
         }
       ]
     },
@@ -533,7 +1033,9 @@
           "type": "COLOR",
           "value": "#79747e",
           "displayValue": "#79747e",
-          "preview": "#79747e"
+          "preview": "#79747e",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral-variant50"
         },
         {
           "id": "colors.outline.--md-sys-color-outline-variant",
@@ -544,7 +1046,9 @@
           "type": "COLOR",
           "value": "#cac4d0",
           "displayValue": "#cac4d0",
-          "preview": "#cac4d0"
+          "preview": "#cac4d0",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral-variant80"
         }
       ]
     },
@@ -562,7 +1066,9 @@
           "type": "COLOR",
           "value": "#fef7ff",
           "displayValue": "#fef7ff",
-          "preview": "#fef7ff"
+          "preview": "#fef7ff",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral98"
         },
         {
           "id": "colors.utility.--md-sys-color-on-background",
@@ -573,7 +1079,9 @@
           "type": "COLOR",
           "value": "#1d1b20",
           "displayValue": "#1d1b20",
-          "preview": "#1d1b20"
+          "preview": "#1d1b20",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral10"
         },
         {
           "id": "colors.utility.--md-sys-color-scrim",
@@ -584,7 +1092,9 @@
           "type": "COLOR",
           "value": "#000",
           "displayValue": "#000",
-          "preview": "#000"
+          "preview": "#000",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral0"
         },
         {
           "id": "colors.utility.--md-sys-color-shadow",
@@ -595,7 +1105,9 @@
           "type": "COLOR",
           "value": "#000",
           "displayValue": "#000",
-          "preview": "#000"
+          "preview": "#000",
+          "tier": "semantic",
+          "reference": "colors.palette.--md-ref-palette-neutral0"
         }
       ]
     }

@@ -18,7 +18,8 @@
           "type": "COLOR",
           "value": "#fff",
           "displayValue": "#fff",
-          "preview": "#fff"
+          "preview": "#fff",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-100",
@@ -29,7 +30,8 @@
           "type": "COLOR",
           "value": "#f8f9fa",
           "displayValue": "#f8f9fa",
-          "preview": "#f8f9fa"
+          "preview": "#f8f9fa",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-200",
@@ -40,7 +42,8 @@
           "type": "COLOR",
           "value": "#e9ecef",
           "displayValue": "#e9ecef",
-          "preview": "#e9ecef"
+          "preview": "#e9ecef",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-300",
@@ -51,7 +54,8 @@
           "type": "COLOR",
           "value": "#dee2e6",
           "displayValue": "#dee2e6",
-          "preview": "#dee2e6"
+          "preview": "#dee2e6",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-400",
@@ -62,7 +66,8 @@
           "type": "COLOR",
           "value": "#ced4da",
           "displayValue": "#ced4da",
-          "preview": "#ced4da"
+          "preview": "#ced4da",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-500",
@@ -73,7 +78,8 @@
           "type": "COLOR",
           "value": "#adb5bd",
           "displayValue": "#adb5bd",
-          "preview": "#adb5bd"
+          "preview": "#adb5bd",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-600",
@@ -84,7 +90,8 @@
           "type": "COLOR",
           "value": "#6c757d",
           "displayValue": "#6c757d",
-          "preview": "#6c757d"
+          "preview": "#6c757d",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-700",
@@ -95,7 +102,8 @@
           "type": "COLOR",
           "value": "#495057",
           "displayValue": "#495057",
-          "preview": "#495057"
+          "preview": "#495057",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-800",
@@ -106,7 +114,8 @@
           "type": "COLOR",
           "value": "#343a40",
           "displayValue": "#343a40",
-          "preview": "#343a40"
+          "preview": "#343a40",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.gray-900",
@@ -117,7 +126,8 @@
           "type": "COLOR",
           "value": "#212529",
           "displayValue": "#212529",
-          "preview": "#212529"
+          "preview": "#212529",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black",
@@ -128,7 +138,8 @@
           "type": "COLOR",
           "value": "#000",
           "displayValue": "#000",
-          "preview": "#000"
+          "preview": "#000",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.blue",
@@ -139,7 +150,8 @@
           "type": "COLOR",
           "value": "#0d6efd",
           "displayValue": "#0d6efd",
-          "preview": "#0d6efd"
+          "preview": "#0d6efd",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.indigo",
@@ -150,7 +162,8 @@
           "type": "COLOR",
           "value": "#6610f2",
           "displayValue": "#6610f2",
-          "preview": "#6610f2"
+          "preview": "#6610f2",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.purple",
@@ -161,7 +174,8 @@
           "type": "COLOR",
           "value": "#6f42c1",
           "displayValue": "#6f42c1",
-          "preview": "#6f42c1"
+          "preview": "#6f42c1",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.pink",
@@ -172,7 +186,8 @@
           "type": "COLOR",
           "value": "#d63384",
           "displayValue": "#d63384",
-          "preview": "#d63384"
+          "preview": "#d63384",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.red",
@@ -183,7 +198,8 @@
           "type": "COLOR",
           "value": "#dc3545",
           "displayValue": "#dc3545",
-          "preview": "#dc3545"
+          "preview": "#dc3545",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.orange",
@@ -194,7 +210,8 @@
           "type": "COLOR",
           "value": "#fd7e14",
           "displayValue": "#fd7e14",
-          "preview": "#fd7e14"
+          "preview": "#fd7e14",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.yellow",
@@ -205,7 +222,8 @@
           "type": "COLOR",
           "value": "#ffc107",
           "displayValue": "#ffc107",
-          "preview": "#ffc107"
+          "preview": "#ffc107",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.green",
@@ -216,7 +234,8 @@
           "type": "COLOR",
           "value": "#198754",
           "displayValue": "#198754",
-          "preview": "#198754"
+          "preview": "#198754",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.teal",
@@ -227,7 +246,8 @@
           "type": "COLOR",
           "value": "#20c997",
           "displayValue": "#20c997",
-          "preview": "#20c997"
+          "preview": "#20c997",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.cyan",
@@ -238,7 +258,8 @@
           "type": "COLOR",
           "value": "#0dcaf0",
           "displayValue": "#0dcaf0",
-          "preview": "#0dcaf0"
+          "preview": "#0dcaf0",
+          "tier": "primitive"
         }
       ]
     },
@@ -256,7 +277,9 @@
           "type": "COLOR",
           "value": "#0d6efd",
           "displayValue": "#0d6efd",
-          "preview": "#0d6efd"
+          "preview": "#0d6efd",
+          "reference": "colors.palette.blue",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.secondary",
@@ -267,7 +290,9 @@
           "type": "COLOR",
           "value": "#6c757d",
           "displayValue": "#6c757d",
-          "preview": "#6c757d"
+          "preview": "#6c757d",
+          "reference": "colors.palette.gray-600",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.success",
@@ -278,7 +303,9 @@
           "type": "COLOR",
           "value": "#198754",
           "displayValue": "#198754",
-          "preview": "#198754"
+          "preview": "#198754",
+          "reference": "colors.palette.green",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.info",
@@ -289,7 +316,9 @@
           "type": "COLOR",
           "value": "#0dcaf0",
           "displayValue": "#0dcaf0",
-          "preview": "#0dcaf0"
+          "preview": "#0dcaf0",
+          "reference": "colors.palette.cyan",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.warning",
@@ -300,7 +329,9 @@
           "type": "COLOR",
           "value": "#ffc107",
           "displayValue": "#ffc107",
-          "preview": "#ffc107"
+          "preview": "#ffc107",
+          "reference": "colors.palette.yellow",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.danger",
@@ -311,7 +342,9 @@
           "type": "COLOR",
           "value": "#dc3545",
           "displayValue": "#dc3545",
-          "preview": "#dc3545"
+          "preview": "#dc3545",
+          "reference": "colors.palette.red",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.light",
@@ -322,7 +355,9 @@
           "type": "COLOR",
           "value": "#f8f9fa",
           "displayValue": "#f8f9fa",
-          "preview": "#f8f9fa"
+          "preview": "#f8f9fa",
+          "reference": "colors.palette.gray-100",
+          "tier": "semantic"
         },
         {
           "id": "colors.theme.dark",
@@ -333,7 +368,9 @@
           "type": "COLOR",
           "value": "#212529",
           "displayValue": "#212529",
-          "preview": "#212529"
+          "preview": "#212529",
+          "reference": "colors.palette.gray-900",
+          "tier": "semantic"
         }
       ]
     }

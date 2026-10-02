@@ -18,7 +18,8 @@
           "type": "FLOAT",
           "value": 4,
           "displayValue": "4",
-          "icon": "smartphone"
+          "icon": "smartphone",
+          "tier": "primitive"
         },
         {
           "id": "layout.grid.columns-tablet",
@@ -29,7 +30,8 @@
           "type": "FLOAT",
           "value": 8,
           "displayValue": "8",
-          "icon": "tablet"
+          "icon": "tablet",
+          "tier": "primitive"
         },
         {
           "id": "layout.grid.columns-desktop",
@@ -40,7 +42,8 @@
           "type": "FLOAT",
           "value": 12,
           "displayValue": "12",
-          "icon": "desktop_windows"
+          "icon": "desktop_windows",
+          "tier": "primitive"
         },
         {
           "id": "layout.grid.gutters",
@@ -52,7 +55,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.grid.padding",
@@ -64,7 +68,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "padding"
+          "icon": "padding",
+          "tier": "primitive"
         },
         {
           "id": "layout.grid.margin",
@@ -76,7 +81,8 @@
           "value": 24,
           "unit": "px",
           "displayValue": "24px",
-          "icon": "margin"
+          "icon": "margin",
+          "tier": "primitive"
         }
       ]
     },
@@ -94,7 +100,8 @@
           "type": "FLOAT",
           "value": 0,
           "displayValue": "0px",
-          "icon": "rounded_corner"
+          "icon": "rounded_corner",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.radius-xs",
@@ -106,7 +113,8 @@
           "value": 4,
           "unit": "px",
           "displayValue": "4px",
-          "icon": "rounded_corner"
+          "icon": "rounded_corner",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.radius-sm",
@@ -118,7 +126,8 @@
           "value": 8,
           "unit": "px",
           "displayValue": "8px",
-          "icon": "rounded_corner"
+          "icon": "rounded_corner",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.radius-md",
@@ -130,7 +139,8 @@
           "value": 12,
           "unit": "px",
           "displayValue": "12px",
-          "icon": "rounded_corner"
+          "icon": "rounded_corner",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.radius-lg",
@@ -142,7 +152,20 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "rounded_corner"
+          "icon": "rounded_corner",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.radius.radius-full",
+          "module": "layout",
+          "submodule": "radius",
+          "name": "radius-full",
+          "figmaName": "Layout/Radius/radius-full",
+          "type": "FLOAT",
+          "value": 9999,
+          "unit": "px",
+          "displayValue": "9999px",
+          "tier": "primitive"
         }
       ]
     },
@@ -161,7 +184,8 @@
           "value": 4,
           "unit": "px",
           "displayValue": "4px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-8",
@@ -173,7 +197,8 @@
           "value": 8,
           "unit": "px",
           "displayValue": "8px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-12",
@@ -185,7 +210,8 @@
           "value": 12,
           "unit": "px",
           "displayValue": "12px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-16",
@@ -197,7 +223,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-24",
@@ -209,7 +236,8 @@
           "value": 24,
           "unit": "px",
           "displayValue": "24px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-32",
@@ -221,7 +249,8 @@
           "value": 32,
           "unit": "px",
           "displayValue": "32px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-40",
@@ -233,7 +262,8 @@
           "value": 40,
           "unit": "px",
           "displayValue": "40px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-48",
@@ -245,7 +275,8 @@
           "value": 48,
           "unit": "px",
           "displayValue": "48px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-56",
@@ -257,7 +288,8 @@
           "value": 56,
           "unit": "px",
           "displayValue": "56px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-64",
@@ -269,7 +301,8 @@
           "value": 64,
           "unit": "px",
           "displayValue": "64px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-72",
@@ -281,7 +314,8 @@
           "value": 72,
           "unit": "px",
           "displayValue": "72px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-80",
@@ -293,7 +327,8 @@
           "value": 80,
           "unit": "px",
           "displayValue": "80px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-96",
@@ -305,7 +340,8 @@
           "value": 96,
           "unit": "px",
           "displayValue": "96px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-112",
@@ -317,7 +353,8 @@
           "value": 112,
           "unit": "px",
           "displayValue": "112px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-128",
@@ -329,7 +366,8 @@
           "value": 128,
           "unit": "px",
           "displayValue": "128px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-144",
@@ -341,7 +379,8 @@
           "value": 144,
           "unit": "px",
           "displayValue": "144px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
         },
         {
           "id": "layout.space.spacing-160",
@@ -353,7 +392,20 @@
           "value": 160,
           "unit": "px",
           "displayValue": "160px",
-          "icon": "space_bar"
+          "icon": "space_bar",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.space.spacing-0",
+          "module": "layout",
+          "submodule": "space",
+          "name": "spacing-0",
+          "figmaName": "Layout/Space/0",
+          "type": "FLOAT",
+          "value": 0,
+          "unit": "px",
+          "displayValue": "0px",
+          "tier": "primitive"
         }
       ]
     },
@@ -373,7 +425,8 @@
           "unit": "px",
           "displayValue": "40px",
           "icon": "height",
-          "reference": "layout.space.spacing-40"
+          "reference": "layout.space.spacing-40",
+          "tier": "component"
         },
         {
           "id": "layout.button.primary.padding-inline",
@@ -386,7 +439,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "padding",
-          "reference": "layout.space.spacing-16"
+          "reference": "layout.space.spacing-16",
+          "tier": "component"
         },
         {
           "id": "layout.button.primary.padding-block",
@@ -399,7 +453,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "padding",
-          "reference": "layout.space.spacing-8"
+          "reference": "layout.space.spacing-8",
+          "tier": "component"
         },
         {
           "id": "layout.button.primary.gap",
@@ -412,7 +467,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "space_bar",
-          "reference": "layout.space.spacing-8"
+          "reference": "layout.space.spacing-8",
+          "tier": "component"
         },
         {
           "id": "layout.button.primary.radius",
@@ -425,7 +481,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "rounded_corner",
-          "reference": "layout.radius.radius-sm"
+          "reference": "layout.radius.radius-sm",
+          "tier": "component"
         },
         {
           "id": "layout.button.secondary.height",
@@ -438,7 +495,8 @@
           "unit": "px",
           "displayValue": "40px",
           "icon": "height",
-          "reference": "layout.space.spacing-40"
+          "reference": "layout.space.spacing-40",
+          "tier": "component"
         },
         {
           "id": "layout.button.secondary.padding-inline",
@@ -451,7 +509,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "padding",
-          "reference": "layout.space.spacing-16"
+          "reference": "layout.space.spacing-16",
+          "tier": "component"
         },
         {
           "id": "layout.button.secondary.padding-block",
@@ -464,7 +523,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "padding",
-          "reference": "layout.space.spacing-8"
+          "reference": "layout.space.spacing-8",
+          "tier": "component"
         },
         {
           "id": "layout.button.secondary.gap",
@@ -477,7 +537,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "space_bar",
-          "reference": "layout.space.spacing-8"
+          "reference": "layout.space.spacing-8",
+          "tier": "component"
         },
         {
           "id": "layout.button.secondary.radius",
@@ -490,7 +551,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "rounded_corner",
-          "reference": "layout.radius.radius-sm"
+          "reference": "layout.radius.radius-sm",
+          "tier": "component"
         },
         {
           "id": "layout.input.primary.height",
@@ -503,7 +565,8 @@
           "unit": "px",
           "displayValue": "40px",
           "icon": "height",
-          "reference": "layout.space.spacing-40"
+          "reference": "layout.space.spacing-40",
+          "tier": "component"
         },
         {
           "id": "layout.input.primary.padding-inline",
@@ -516,7 +579,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "padding",
-          "reference": "layout.space.spacing-16"
+          "reference": "layout.space.spacing-16",
+          "tier": "component"
         },
         {
           "id": "layout.input.primary.padding-block",
@@ -529,7 +593,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "padding",
-          "reference": "layout.space.spacing-8"
+          "reference": "layout.space.spacing-8",
+          "tier": "component"
         },
         {
           "id": "layout.input.primary.gap",
@@ -542,7 +607,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "space_bar",
-          "reference": "layout.space.spacing-8"
+          "reference": "layout.space.spacing-8",
+          "tier": "component"
         },
         {
           "id": "layout.input.primary.radius",
@@ -555,7 +621,8 @@
           "unit": "px",
           "displayValue": "8px",
           "icon": "rounded_corner",
-          "reference": "layout.radius.radius-sm"
+          "reference": "layout.radius.radius-sm",
+          "tier": "component"
         },
         {
           "id": "layout.surface.primary.padding",
@@ -568,7 +635,8 @@
           "unit": "px",
           "displayValue": "24px",
           "icon": "padding",
-          "reference": "layout.space.spacing-24"
+          "reference": "layout.space.spacing-24",
+          "tier": "semantic"
         },
         {
           "id": "layout.surface.primary.gap",
@@ -581,7 +649,8 @@
           "unit": "px",
           "displayValue": "24px",
           "icon": "space_bar",
-          "reference": "layout.space.spacing-24"
+          "reference": "layout.space.spacing-24",
+          "tier": "semantic"
         },
         {
           "id": "layout.surface.primary.radius",
@@ -594,7 +663,254 @@
           "unit": "px",
           "displayValue": "12px",
           "icon": "rounded_corner",
-          "reference": "layout.radius.radius-md"
+          "reference": "layout.radius.radius-md",
+          "tier": "semantic"
+        }
+      ]
+    },
+    {
+      "id": "breakpoints",
+      "label": "Breakpoints",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.breakpoints.breakpoint-mobile",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "breakpoint-mobile",
+          "figmaName": "Layout/Breakpoints/breakpoint-mobile",
+          "type": "FLOAT",
+          "value": 0,
+          "unit": "px",
+          "displayValue": "0px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.breakpoints.breakpoint-tablet",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "breakpoint-tablet",
+          "figmaName": "Layout/Breakpoints/breakpoint-tablet",
+          "type": "FLOAT",
+          "value": 768,
+          "unit": "px",
+          "displayValue": "768px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.breakpoints.breakpoint-desktop",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "breakpoint-desktop",
+          "figmaName": "Layout/Breakpoints/breakpoint-desktop",
+          "type": "FLOAT",
+          "value": 1024,
+          "unit": "px",
+          "displayValue": "1024px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.breakpoints.breakpoint-wide",
+          "module": "layout",
+          "submodule": "breakpoints",
+          "name": "breakpoint-wide",
+          "figmaName": "Layout/Breakpoints/breakpoint-wide",
+          "type": "FLOAT",
+          "value": 1440,
+          "unit": "px",
+          "displayValue": "1440px",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
+      "id": "borderWidth",
+      "label": "Border Width",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.borderWidth.border-width-0",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "border-width-0",
+          "figmaName": "Layout/Border Width/border-width-0",
+          "type": "FLOAT",
+          "value": 0,
+          "unit": "px",
+          "displayValue": "0px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.border-width-1",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "border-width-1",
+          "figmaName": "Layout/Border Width/border-width-1",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "px",
+          "displayValue": "1px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.border-width-2",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "border-width-2",
+          "figmaName": "Layout/Border Width/border-width-2",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "px",
+          "displayValue": "2px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.border-width-4",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "border-width-4",
+          "figmaName": "Layout/Border Width/border-width-4",
+          "type": "FLOAT",
+          "value": 4,
+          "unit": "px",
+          "displayValue": "4px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.border-width-8",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "border-width-8",
+          "figmaName": "Layout/Border Width/border-width-8",
+          "type": "FLOAT",
+          "value": 8,
+          "unit": "px",
+          "displayValue": "8px",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
+      "id": "borderStyle",
+      "label": "Border Style",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.borderStyle.border-style-none",
+          "module": "layout",
+          "submodule": "borderStyle",
+          "name": "border-style-none",
+          "figmaName": "Layout/Border Style/border-style-none",
+          "type": "STRING",
+          "value": "none",
+          "displayValue": "none",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderStyle.border-style-solid",
+          "module": "layout",
+          "submodule": "borderStyle",
+          "name": "border-style-solid",
+          "figmaName": "Layout/Border Style/border-style-solid",
+          "type": "STRING",
+          "value": "solid",
+          "displayValue": "solid",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderStyle.border-style-dashed",
+          "module": "layout",
+          "submodule": "borderStyle",
+          "name": "border-style-dashed",
+          "figmaName": "Layout/Border Style/border-style-dashed",
+          "type": "STRING",
+          "value": "dashed",
+          "displayValue": "dashed",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderStyle.border-style-dotted",
+          "module": "layout",
+          "submodule": "borderStyle",
+          "name": "border-style-dotted",
+          "figmaName": "Layout/Border Style/border-style-dotted",
+          "type": "STRING",
+          "value": "dotted",
+          "displayValue": "dotted",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderStyle.border-style-double",
+          "module": "layout",
+          "submodule": "borderStyle",
+          "name": "border-style-double",
+          "figmaName": "Layout/Border Style/border-style-double",
+          "type": "STRING",
+          "value": "double",
+          "displayValue": "double",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
+      "id": "opacity",
+      "label": "Opacity",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.opacity.opacity-0",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "opacity-0",
+          "figmaName": "Layout/Opacity/opacity-0",
+          "type": "FLOAT",
+          "value": 0,
+          "displayValue": "0",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.opacity-25",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "opacity-25",
+          "figmaName": "Layout/Opacity/opacity-25",
+          "type": "FLOAT",
+          "value": 0.25,
+          "displayValue": "0.25",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.opacity-50",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "opacity-50",
+          "figmaName": "Layout/Opacity/opacity-50",
+          "type": "FLOAT",
+          "value": 0.5,
+          "displayValue": "0.5",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.opacity-75",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "opacity-75",
+          "figmaName": "Layout/Opacity/opacity-75",
+          "type": "FLOAT",
+          "value": 0.75,
+          "displayValue": "0.75",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.opacity-100",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "opacity-100",
+          "figmaName": "Layout/Opacity/opacity-100",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1",
+          "tier": "primitive"
         }
       ]
     }

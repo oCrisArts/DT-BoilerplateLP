@@ -51,6 +51,7 @@
   "capabilities": {
     "colors": {
       "groups": [
+        "palette",
         "primary",
         "secondary",
         "tertiary",
@@ -65,14 +66,18 @@
       "fontFamily": true,
       "baseSize": true,
       "typeScale": true,
-      "lineHeight": true
+      "lineHeight": true,
+      "letterSpacing": false
     },
     "layout": {
       "grid": false,
       "breakpoints": false,
       "spacing": false,
       "radius": true,
-      "tokens": false
+      "tokens": false,
+      "borderWidth": false,
+      "borderStyle": false,
+      "opacity": false
     },
     "iconography": {
       "library": true,

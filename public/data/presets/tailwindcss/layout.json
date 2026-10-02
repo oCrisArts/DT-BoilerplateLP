@@ -18,7 +18,8 @@
           "type": "FLOAT",
           "value": 40,
           "unit": "rem",
-          "displayValue": "40rem"
+          "displayValue": "40rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.--breakpoint-md",
@@ -29,7 +30,8 @@
           "type": "FLOAT",
           "value": 48,
           "unit": "rem",
-          "displayValue": "48rem"
+          "displayValue": "48rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.--breakpoint-lg",
@@ -40,7 +42,8 @@
           "type": "FLOAT",
           "value": 64,
           "unit": "rem",
-          "displayValue": "64rem"
+          "displayValue": "64rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.--breakpoint-xl",
@@ -51,7 +54,8 @@
           "type": "FLOAT",
           "value": 80,
           "unit": "rem",
-          "displayValue": "80rem"
+          "displayValue": "80rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.--breakpoint-2xl",
@@ -62,7 +66,8 @@
           "type": "FLOAT",
           "value": 96,
           "unit": "rem",
-          "displayValue": "96rem"
+          "displayValue": "96rem",
+          "tier": "primitive"
         }
       ]
     },
@@ -80,7 +85,8 @@
           "type": "FLOAT",
           "value": 0.25,
           "unit": "rem",
-          "displayValue": "0.25rem"
+          "displayValue": "0.25rem",
+          "tier": "primitive"
         }
       ]
     },
@@ -98,7 +104,8 @@
           "type": "FLOAT",
           "value": 0.125,
           "unit": "rem",
-          "displayValue": "0.125rem"
+          "displayValue": "0.125rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-sm",
@@ -109,7 +116,8 @@
           "type": "FLOAT",
           "value": 0.25,
           "unit": "rem",
-          "displayValue": "0.25rem"
+          "displayValue": "0.25rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-md",
@@ -120,7 +128,8 @@
           "type": "FLOAT",
           "value": 0.375,
           "unit": "rem",
-          "displayValue": "0.375rem"
+          "displayValue": "0.375rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-lg",
@@ -131,7 +140,8 @@
           "type": "FLOAT",
           "value": 0.5,
           "unit": "rem",
-          "displayValue": "0.5rem"
+          "displayValue": "0.5rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-xl",
@@ -142,7 +152,8 @@
           "type": "FLOAT",
           "value": 0.75,
           "unit": "rem",
-          "displayValue": "0.75rem"
+          "displayValue": "0.75rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-2xl",
@@ -153,7 +164,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-3xl",
@@ -164,7 +176,8 @@
           "type": "FLOAT",
           "value": 1.5,
           "unit": "rem",
-          "displayValue": "1.5rem"
+          "displayValue": "1.5rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.--radius-4xl",
@@ -175,7 +188,8 @@
           "type": "FLOAT",
           "value": 2,
           "unit": "rem",
-          "displayValue": "2rem"
+          "displayValue": "2rem",
+          "tier": "primitive"
         }
       ]
     }

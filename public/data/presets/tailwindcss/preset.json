@@ -45,14 +45,18 @@
       "fontFamily": true,
       "baseSize": true,
       "typeScale": true,
-      "lineHeight": true
+      "lineHeight": true,
+      "letterSpacing": true
     },
     "layout": {
       "grid": false,
       "breakpoints": true,
       "spacing": true,
       "radius": true,
-      "tokens": false
+      "tokens": false,
+      "borderWidth": false,
+      "borderStyle": false,
+      "opacity": false
     },
     "iconography": {
       "library": true,

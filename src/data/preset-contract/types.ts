@@ -13,6 +13,7 @@ export interface Variable {
   preview?: string;
   icon?: string;
   reference?: string;
+  tier?: 'primitive' | 'semantic' | 'component';
 }
 export interface Submodule { id: string; label: string; icon: string; variables: Variable[] }
 export interface ConfigurableReference { default: string; customizable: boolean; options?: string[] }
@@ -64,9 +65,9 @@ export interface Preset {
   metadata: { name: string; version: string; description: string; sources: { url: string; version: string }[] };
   capabilities: {
     colors: { groups: string[] };
-    typography: { fontFamily: boolean; baseSize: boolean; typeScale: boolean; lineHeight: boolean };
+    typography: { fontFamily: boolean; baseSize: boolean; typeScale: boolean; lineHeight: boolean; letterSpacing?: boolean };
     iconography: { library: boolean; delivery: boolean; scale: boolean; colorBehavior: boolean };
-    layout: { grid: boolean; breakpoints: boolean; spacing: boolean; radius: boolean; tokens: boolean };
+    layout: { grid: boolean; breakpoints: boolean; spacing: boolean; radius: boolean; tokens: boolean; borderWidth?: boolean; borderStyle?: boolean; opacity?: boolean };
   };
   modules: { id: ModuleId; path: string }[];
 }

@@ -9,7 +9,7 @@ Upstream files are Copyright Google LLC, Apache-2.0; see [LICENSE](LICENSE).
 `../materialdesign-data.mjs` reads the public `$supported-tokens` allowlists and
 resolves defaults from `tokens/versions/v0_192`. The preset includes:
 
-- 49 system colors, using official `values-light()` and the reference palette.
+- 49 system colors plus their 37 referenced palette primitives, using official `values-light()` and the reference palette.
 - 5 typeface references plus 62 typescale tokens: 15 roles with font, size,
   line-height and weight; the two supported prominent label weights.
 - 7 scalar system shapes, including `corner-full: 9999px`.

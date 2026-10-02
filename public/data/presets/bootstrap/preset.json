@@ -9,6 +9,10 @@
       {
         "url": "https://raw.githubusercontent.com/twbs/bootstrap/v5.3.3/scss/_variables.scss",
         "version": "5.3.3"
+      },
+      {
+        "url": "https://github.com/twbs/bootstrap/blob/v5.3.3/scss/_utilities.scss",
+        "version": "5.3.3"
       }
     ]
   },
@@ -23,14 +27,18 @@
       "fontFamily": true,
       "baseSize": true,
       "typeScale": true,
-      "lineHeight": true
+      "lineHeight": true,
+      "letterSpacing": false
     },
     "layout": {
       "grid": true,
       "breakpoints": true,
       "spacing": true,
       "radius": true,
-      "tokens": false
+      "tokens": false,
+      "borderWidth": true,
+      "borderStyle": true,
+      "opacity": true
     },
     "iconography": {
       "library": true,

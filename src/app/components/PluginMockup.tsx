@@ -1,3 +1,4 @@
+import { ExportPanel } from './ExportPanel';
 import IconographyDemo from './IconographyDemo';
 import { colorFamilies, recolorFamily, parseColor, colorValue, hex } from '@/utils/color-values';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -124,6 +125,7 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
           </details>;
         })}
         {query && !variables(module).some(v => matches(v,query)) && !module.submodules.some(s => s.label.toLowerCase().includes(query.toLowerCase())) && <p role="status">No tokens found.</p>}
+        <div><ExportPanel tokens={source!.modules.flatMap(variables).map(v=>edits[v.id]===undefined?v:{...v,reference:undefined,value:v.type==='FLOAT'?Number.parseFloat(edits[v.id]):v.type==='COLOR'?(parseColor(edits[v.id])||v.value):edits[v.id],displayValue:edits[v.id]})}/></div>
         <p role="status" className="demo-helper">{status}</p>
       </div>}
     </div>

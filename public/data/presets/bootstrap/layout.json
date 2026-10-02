@@ -17,7 +17,8 @@
           "figmaName": "Layout/Grid/grid-columns",
           "type": "FLOAT",
           "value": 12,
-          "displayValue": "12"
+          "displayValue": "12",
+          "tier": "primitive"
         },
         {
           "id": "layout.grid.grid-gutter-width",
@@ -28,7 +29,8 @@
           "type": "FLOAT",
           "value": 1.5,
           "unit": "rem",
-          "displayValue": "1.5rem"
+          "displayValue": "1.5rem",
+          "tier": "primitive"
         }
       ]
     },
@@ -46,7 +48,8 @@
           "type": "FLOAT",
           "value": 0,
           "unit": "px",
-          "displayValue": "0px"
+          "displayValue": "0px",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.sm",
@@ -57,7 +60,8 @@
           "type": "FLOAT",
           "value": 576,
           "unit": "px",
-          "displayValue": "576px"
+          "displayValue": "576px",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.md",
@@ -68,7 +72,8 @@
           "type": "FLOAT",
           "value": 768,
           "unit": "px",
-          "displayValue": "768px"
+          "displayValue": "768px",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.lg",
@@ -79,7 +84,8 @@
           "type": "FLOAT",
           "value": 992,
           "unit": "px",
-          "displayValue": "992px"
+          "displayValue": "992px",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.xl",
@@ -90,7 +96,8 @@
           "type": "FLOAT",
           "value": 1200,
           "unit": "px",
-          "displayValue": "1200px"
+          "displayValue": "1200px",
+          "tier": "primitive"
         },
         {
           "id": "layout.breakpoints.xxl",
@@ -101,7 +108,8 @@
           "type": "FLOAT",
           "value": 1400,
           "unit": "px",
-          "displayValue": "1400px"
+          "displayValue": "1400px",
+          "tier": "primitive"
         }
       ]
     },
@@ -118,7 +126,8 @@
           "figmaName": "Layout/Spacing/0",
           "type": "FLOAT",
           "value": 0,
-          "displayValue": "0"
+          "displayValue": "0",
+          "tier": "primitive"
         },
         {
           "id": "layout.spacing.1",
@@ -129,7 +138,8 @@
           "type": "FLOAT",
           "value": 0.25,
           "unit": "rem",
-          "displayValue": ".25rem"
+          "displayValue": ".25rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.spacing.2",
@@ -140,7 +150,8 @@
           "type": "FLOAT",
           "value": 0.5,
           "unit": "rem",
-          "displayValue": ".5rem"
+          "displayValue": ".5rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.spacing.3",
@@ -151,7 +162,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.spacing.4",
@@ -162,7 +174,8 @@
           "type": "FLOAT",
           "value": 1.5,
           "unit": "rem",
-          "displayValue": "1.5rem"
+          "displayValue": "1.5rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.spacing.5",
@@ -173,7 +186,8 @@
           "type": "FLOAT",
           "value": 3,
           "unit": "rem",
-          "displayValue": "3rem"
+          "displayValue": "3rem",
+          "tier": "primitive"
         }
       ]
     },
@@ -191,7 +205,8 @@
           "type": "FLOAT",
           "value": 0.375,
           "unit": "rem",
-          "displayValue": ".375rem"
+          "displayValue": ".375rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.border-radius-sm",
@@ -202,7 +217,8 @@
           "type": "FLOAT",
           "value": 0.25,
           "unit": "rem",
-          "displayValue": ".25rem"
+          "displayValue": ".25rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.border-radius-lg",
@@ -213,7 +229,8 @@
           "type": "FLOAT",
           "value": 0.5,
           "unit": "rem",
-          "displayValue": ".5rem"
+          "displayValue": ".5rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.border-radius-xl",
@@ -224,7 +241,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.border-radius-xxl",
@@ -235,7 +253,8 @@
           "type": "FLOAT",
           "value": 2,
           "unit": "rem",
-          "displayValue": "2rem"
+          "displayValue": "2rem",
+          "tier": "primitive"
         },
         {
           "id": "layout.radius.border-radius-pill",
@@ -246,7 +265,155 @@
           "type": "FLOAT",
           "value": 50,
           "unit": "rem",
-          "displayValue": "50rem"
+          "displayValue": "50rem",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
+      "id": "borderWidth",
+      "label": "Border Width",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.borderWidth.1",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "1",
+          "figmaName": "Layout/Border Width/1",
+          "type": "FLOAT",
+          "value": 1,
+          "unit": "px",
+          "displayValue": "1px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.2",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "2",
+          "figmaName": "Layout/Border Width/2",
+          "type": "FLOAT",
+          "value": 2,
+          "unit": "px",
+          "displayValue": "2px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.3",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "3",
+          "figmaName": "Layout/Border Width/3",
+          "type": "FLOAT",
+          "value": 3,
+          "unit": "px",
+          "displayValue": "3px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.4",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "4",
+          "figmaName": "Layout/Border Width/4",
+          "type": "FLOAT",
+          "value": 4,
+          "unit": "px",
+          "displayValue": "4px",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.borderWidth.5",
+          "module": "layout",
+          "submodule": "borderWidth",
+          "name": "5",
+          "figmaName": "Layout/Border Width/5",
+          "type": "FLOAT",
+          "value": 5,
+          "unit": "px",
+          "displayValue": "5px",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
+      "id": "borderStyle",
+      "label": "Border Style",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.borderStyle.border-style",
+          "module": "layout",
+          "submodule": "borderStyle",
+          "name": "border-style",
+          "figmaName": "Layout/Border Style/border-style",
+          "type": "STRING",
+          "value": "solid",
+          "displayValue": "solid",
+          "tier": "primitive"
+        }
+      ]
+    },
+    {
+      "id": "opacity",
+      "label": "Opacity",
+      "icon": "tune",
+      "variables": [
+        {
+          "id": "layout.opacity.0",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "0",
+          "figmaName": "Layout/Opacity/0",
+          "type": "FLOAT",
+          "value": 0,
+          "displayValue": "0",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.25",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "25",
+          "figmaName": "Layout/Opacity/25",
+          "type": "FLOAT",
+          "value": 0.25,
+          "displayValue": "0.25",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.50",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "50",
+          "figmaName": "Layout/Opacity/50",
+          "type": "FLOAT",
+          "value": 0.5,
+          "displayValue": "0.5",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.75",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "75",
+          "figmaName": "Layout/Opacity/75",
+          "type": "FLOAT",
+          "value": 0.75,
+          "displayValue": "0.75",
+          "tier": "primitive"
+        },
+        {
+          "id": "layout.opacity.100",
+          "module": "layout",
+          "submodule": "opacity",
+          "name": "100",
+          "figmaName": "Layout/Opacity/100",
+          "type": "FLOAT",
+          "value": 1,
+          "displayValue": "1",
+          "tier": "primitive"
         }
       ]
     }

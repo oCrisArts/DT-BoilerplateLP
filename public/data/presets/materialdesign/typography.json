@@ -17,7 +17,8 @@
           "figmaName": "Typography/Typeface/--md-ref-typeface-brand",
           "type": "STRING",
           "value": "Roboto",
-          "displayValue": "Roboto"
+          "displayValue": "Roboto",
+          "tier": "primitive"
         },
         {
           "id": "typography.family.--md-ref-typeface-plain",
@@ -27,7 +28,8 @@
           "figmaName": "Typography/Typeface/--md-ref-typeface-plain",
           "type": "STRING",
           "value": "Roboto",
-          "displayValue": "Roboto"
+          "displayValue": "Roboto",
+          "tier": "primitive"
         },
         {
           "id": "typography.family.--md-ref-typeface-weight-bold",
@@ -37,7 +39,8 @@
           "figmaName": "Typography/Typeface/--md-ref-typeface-weight-bold",
           "type": "FLOAT",
           "value": 700,
-          "displayValue": "700"
+          "displayValue": "700",
+          "tier": "primitive"
         },
         {
           "id": "typography.family.--md-ref-typeface-weight-medium",
@@ -47,7 +50,8 @@
           "figmaName": "Typography/Typeface/--md-ref-typeface-weight-medium",
           "type": "FLOAT",
           "value": 500,
-          "displayValue": "500"
+          "displayValue": "500",
+          "tier": "primitive"
         },
         {
           "id": "typography.family.--md-ref-typeface-weight-regular",
@@ -57,7 +61,8 @@
           "figmaName": "Typography/Typeface/--md-ref-typeface-weight-regular",
           "type": "FLOAT",
           "value": 400,
-          "displayValue": "400"
+          "displayValue": "400",
+          "tier": "primitive"
         }
       ]
     },
@@ -75,7 +80,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-large-line-height",
@@ -86,7 +92,8 @@
           "type": "FLOAT",
           "value": 4,
           "unit": "rem",
-          "displayValue": "4rem"
+          "displayValue": "4rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-large-size",
@@ -97,7 +104,8 @@
           "type": "FLOAT",
           "value": 3.5625,
           "unit": "rem",
-          "displayValue": "3.5625rem"
+          "displayValue": "3.5625rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-large-weight",
@@ -108,7 +116,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-medium-font",
@@ -119,7 +128,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-medium-line-height",
@@ -130,7 +140,8 @@
           "type": "FLOAT",
           "value": 3.25,
           "unit": "rem",
-          "displayValue": "3.25rem"
+          "displayValue": "3.25rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-medium-size",
@@ -141,7 +152,8 @@
           "type": "FLOAT",
           "value": 2.8125,
           "unit": "rem",
-          "displayValue": "2.8125rem"
+          "displayValue": "2.8125rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-medium-weight",
@@ -152,7 +164,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-small-font",
@@ -163,7 +176,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-small-line-height",
@@ -174,7 +188,8 @@
           "type": "FLOAT",
           "value": 2.75,
           "unit": "rem",
-          "displayValue": "2.75rem"
+          "displayValue": "2.75rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-small-size",
@@ -185,7 +200,8 @@
           "type": "FLOAT",
           "value": 2.25,
           "unit": "rem",
-          "displayValue": "2.25rem"
+          "displayValue": "2.25rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.display.--md-sys-typescale-display-small-weight",
@@ -196,7 +212,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         }
       ]
     },
@@ -214,7 +231,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-large-line-height",
@@ -225,7 +243,8 @@
           "type": "FLOAT",
           "value": 2.5,
           "unit": "rem",
-          "displayValue": "2.5rem"
+          "displayValue": "2.5rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-large-size",
@@ -236,7 +255,8 @@
           "type": "FLOAT",
           "value": 2,
           "unit": "rem",
-          "displayValue": "2rem"
+          "displayValue": "2rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-large-weight",
@@ -247,7 +267,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-medium-font",
@@ -258,7 +279,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-medium-line-height",
@@ -269,7 +291,8 @@
           "type": "FLOAT",
           "value": 2.25,
           "unit": "rem",
-          "displayValue": "2.25rem"
+          "displayValue": "2.25rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-medium-size",
@@ -280,7 +303,8 @@
           "type": "FLOAT",
           "value": 1.75,
           "unit": "rem",
-          "displayValue": "1.75rem"
+          "displayValue": "1.75rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-medium-weight",
@@ -291,7 +315,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-small-font",
@@ -302,7 +327,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-small-line-height",
@@ -313,7 +339,8 @@
           "type": "FLOAT",
           "value": 2,
           "unit": "rem",
-          "displayValue": "2rem"
+          "displayValue": "2rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-small-size",
@@ -324,7 +351,8 @@
           "type": "FLOAT",
           "value": 1.5,
           "unit": "rem",
-          "displayValue": "1.5rem"
+          "displayValue": "1.5rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.headline.--md-sys-typescale-headline-small-weight",
@@ -335,7 +363,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         }
       ]
     },
@@ -353,7 +382,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-brand"
+          "reference": "typography.family.--md-ref-typeface-brand",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-large-line-height",
@@ -364,7 +394,8 @@
           "type": "FLOAT",
           "value": 1.75,
           "unit": "rem",
-          "displayValue": "1.75rem"
+          "displayValue": "1.75rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-large-size",
@@ -375,7 +406,8 @@
           "type": "FLOAT",
           "value": 1.375,
           "unit": "rem",
-          "displayValue": "1.375rem"
+          "displayValue": "1.375rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-large-weight",
@@ -386,7 +418,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-medium-font",
@@ -397,7 +430,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-medium-line-height",
@@ -408,7 +442,8 @@
           "type": "FLOAT",
           "value": 1.5,
           "unit": "rem",
-          "displayValue": "1.5rem"
+          "displayValue": "1.5rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-medium-size",
@@ -419,7 +454,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-medium-weight",
@@ -430,7 +466,8 @@
           "type": "FLOAT",
           "value": 500,
           "displayValue": "500",
-          "reference": "typography.family.--md-ref-typeface-weight-medium"
+          "reference": "typography.family.--md-ref-typeface-weight-medium",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-small-font",
@@ -441,7 +478,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-small-line-height",
@@ -452,7 +490,8 @@
           "type": "FLOAT",
           "value": 1.25,
           "unit": "rem",
-          "displayValue": "1.25rem"
+          "displayValue": "1.25rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-small-size",
@@ -463,7 +502,8 @@
           "type": "FLOAT",
           "value": 0.875,
           "unit": "rem",
-          "displayValue": "0.875rem"
+          "displayValue": "0.875rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.title.--md-sys-typescale-title-small-weight",
@@ -474,7 +514,8 @@
           "type": "FLOAT",
           "value": 500,
           "displayValue": "500",
-          "reference": "typography.family.--md-ref-typeface-weight-medium"
+          "reference": "typography.family.--md-ref-typeface-weight-medium",
+          "tier": "semantic"
         }
       ]
     },
@@ -492,7 +533,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-large-line-height",
@@ -503,7 +545,8 @@
           "type": "FLOAT",
           "value": 1.5,
           "unit": "rem",
-          "displayValue": "1.5rem"
+          "displayValue": "1.5rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-large-size",
@@ -514,7 +557,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-large-weight",
@@ -525,7 +569,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-medium-font",
@@ -536,7 +581,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-medium-line-height",
@@ -547,7 +593,8 @@
           "type": "FLOAT",
           "value": 1.25,
           "unit": "rem",
-          "displayValue": "1.25rem"
+          "displayValue": "1.25rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-medium-size",
@@ -558,7 +605,8 @@
           "type": "FLOAT",
           "value": 0.875,
           "unit": "rem",
-          "displayValue": "0.875rem"
+          "displayValue": "0.875rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-medium-weight",
@@ -569,7 +617,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-small-font",
@@ -580,7 +629,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-small-line-height",
@@ -591,7 +641,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-small-size",
@@ -602,7 +653,8 @@
           "type": "FLOAT",
           "value": 0.75,
           "unit": "rem",
-          "displayValue": "0.75rem"
+          "displayValue": "0.75rem",
+          "tier": "semantic"
         },
         {
           "id": "typography.body.--md-sys-typescale-body-small-weight",
@@ -613,7 +665,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "reference": "typography.family.--md-ref-typeface-weight-regular"
+          "reference": "typography.family.--md-ref-typeface-weight-regular",
+          "tier": "semantic"
         }
       ]
     },
@@ -631,7 +684,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-large-line-height",
@@ -642,7 +696,8 @@
           "type": "FLOAT",
           "value": 1.25,
           "unit": "rem",
-          "displayValue": "1.25rem"
+          "displayValue": "1.25rem",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-large-size",
@@ -653,7 +708,8 @@
           "type": "FLOAT",
           "value": 0.875,
           "unit": "rem",
-          "displayValue": "0.875rem"
+          "displayValue": "0.875rem",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-large-weight",
@@ -664,7 +720,8 @@
           "type": "FLOAT",
           "value": 500,
           "displayValue": "500",
-          "reference": "typography.family.--md-ref-typeface-weight-medium"
+          "reference": "typography.family.--md-ref-typeface-weight-medium",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-large-weight-prominent",
@@ -675,7 +732,8 @@
           "type": "FLOAT",
           "value": 700,
           "displayValue": "700",
-          "reference": "typography.family.--md-ref-typeface-weight-bold"
+          "reference": "typography.family.--md-ref-typeface-weight-bold",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-medium-font",
@@ -686,7 +744,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-medium-line-height",
@@ -697,7 +756,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-medium-size",
@@ -708,7 +768,8 @@
           "type": "FLOAT",
           "value": 0.75,
           "unit": "rem",
-          "displayValue": "0.75rem"
+          "displayValue": "0.75rem",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-medium-weight",
@@ -719,7 +780,8 @@
           "type": "FLOAT",
           "value": 500,
           "displayValue": "500",
-          "reference": "typography.family.--md-ref-typeface-weight-medium"
+          "reference": "typography.family.--md-ref-typeface-weight-medium",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-medium-weight-prominent",
@@ -730,7 +792,8 @@
           "type": "FLOAT",
           "value": 700,
           "displayValue": "700",
-          "reference": "typography.family.--md-ref-typeface-weight-bold"
+          "reference": "typography.family.--md-ref-typeface-weight-bold",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-small-font",
@@ -741,7 +804,8 @@
           "type": "STRING",
           "value": "Roboto",
           "displayValue": "Roboto",
-          "reference": "typography.family.--md-ref-typeface-plain"
+          "reference": "typography.family.--md-ref-typeface-plain",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-small-line-height",
@@ -752,7 +816,8 @@
           "type": "FLOAT",
           "value": 1,
           "unit": "rem",
-          "displayValue": "1rem"
+          "displayValue": "1rem",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-small-size",
@@ -763,7 +828,8 @@
           "type": "FLOAT",
           "value": 0.6875,
           "unit": "rem",
-          "displayValue": "0.6875rem"
+          "displayValue": "0.6875rem",
+          "tier": "component"
         },
         {
           "id": "typography.label.--md-sys-typescale-label-small-weight",
@@ -774,7 +840,8 @@
           "type": "FLOAT",
           "value": 500,
           "displayValue": "500",
-          "reference": "typography.family.--md-ref-typeface-weight-medium"
+          "reference": "typography.family.--md-ref-typeface-weight-medium",
+          "tier": "component"
         }
       ]
     }

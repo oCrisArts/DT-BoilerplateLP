@@ -25,6 +25,18 @@
       {
         "url": "https://raw.githubusercontent.com/jgthms/bulma/1.0.2/sass/grid/columns.scss",
         "version": "1.0.2"
+      },
+      {
+        "url": "https://github.com/jgthms/bulma/blob/1.0.2/sass/utilities/controls.scss",
+        "version": "1.0.2"
+      },
+      {
+        "url": "https://github.com/jgthms/bulma/blob/1.0.2/sass/form/shared.scss",
+        "version": "1.0.2"
+      },
+      {
+        "url": "https://bulma.io/documentation/elements/button/",
+        "version": "1.0.2"
       }
     ]
   },
@@ -39,14 +51,18 @@
       "fontFamily": true,
       "baseSize": true,
       "typeScale": true,
-      "lineHeight": true
+      "lineHeight": true,
+      "letterSpacing": false
     },
     "layout": {
       "grid": true,
       "breakpoints": true,
       "spacing": true,
       "radius": true,
-      "tokens": false
+      "tokens": false,
+      "borderWidth": true,
+      "borderStyle": true,
+      "opacity": true
     },
     "iconography": {
       "library": true,

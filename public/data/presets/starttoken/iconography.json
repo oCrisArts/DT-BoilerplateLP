@@ -37,7 +37,8 @@
           "figmaName": "Iconography/configuration/icon-library",
           "type": "STRING",
           "value": "material-symbols",
-          "displayValue": "material-symbols"
+          "displayValue": "material-symbols",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-delivery",
@@ -47,7 +48,8 @@
           "figmaName": "Iconography/configuration/icon-delivery",
           "type": "STRING",
           "value": "svg",
-          "displayValue": "svg"
+          "displayValue": "svg",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-native-size",
@@ -57,7 +59,8 @@
           "figmaName": "Iconography/configuration/icon-native-size",
           "type": "STRING",
           "value": "24px",
-          "displayValue": "24px"
+          "displayValue": "24px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-base-size",
@@ -68,7 +71,8 @@
           "type": "FLOAT",
           "value": 24,
           "displayValue": "24px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.configuration.icon-color-behavior",
@@ -78,7 +82,8 @@
           "figmaName": "Iconography/configuration/icon-color-behavior",
           "type": "STRING",
           "value": "currentColor",
-          "displayValue": "currentColor"
+          "displayValue": "currentColor",
+          "tier": "primitive"
         }
       ]
     },
@@ -96,7 +101,8 @@
           "type": "FLOAT",
           "value": 12,
           "displayValue": "12px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-sm",
@@ -107,7 +113,8 @@
           "type": "FLOAT",
           "value": 16,
           "displayValue": "16px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-md",
@@ -118,7 +125,8 @@
           "type": "FLOAT",
           "value": 20,
           "displayValue": "20px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-lg",
@@ -129,7 +137,8 @@
           "type": "FLOAT",
           "value": 24,
           "displayValue": "24px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-xl",
@@ -140,7 +149,8 @@
           "type": "FLOAT",
           "value": 32,
           "displayValue": "32px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         },
         {
           "id": "iconography.sizes.icon-size-2xl",
@@ -151,7 +161,8 @@
           "type": "FLOAT",
           "value": 40,
           "displayValue": "40px",
-          "unit": "px"
+          "unit": "px",
+          "tier": "primitive"
         }
       ]
     }

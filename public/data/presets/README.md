@@ -33,3 +33,40 @@ StartToken maps Primary to `Typography/Family/font-family-primary` and Secondary
 ## Validation and synchronization
 
 Run `node scripts/validate-presets.mjs` and `node --test scripts/presets.test.mjs` in the LP. The LP build validates the dataset. The plugin build runs `scripts/sync-variable-data.mjs`, which validates the source before mirroring the entire directory and removing stale generated files. Set `PRESET_SOURCE_DIR` to the LP's absolute `public/data/presets` directory when the repositories are not siblings. Missing or invalid sources fail the build; the sync never silently uses stale data.
+
+## Foundations and compatibility
+
+Run `node scripts/complete-foundations.mjs` to apply the additive, idempotent foundation migration. `upgrade-foundations.mjs` calls the same migration. Existing IDs, names, values, units, Variable Paths and existing reference edges are regression-tested against `scripts/fixtures/foundations-baseline.json`.
+
+| Preset | Additions / native limits |
+| --- | --- |
+| StartToken | Space 0 (0px), radius-full (9999px), breakpoints mobile/tablet/desktop/wide (0/768/1024/1440px), border widths 0/1/2/4/8px, none/solid/dashed/dotted/double borders, opacity 0/.25/.5/.75/1, tracking tight/normal/wide (-.025/0/.025em). These are StartToken's own defaults, not attributed to another framework. |
+| Bootstrap 5.3.3 | Native border-widths map 1–5px, border-style solid and opacity utilities 0/25/50/75/100. Existing zero spacing, breakpoints and pill radius retained. No global tracking token is invented. |
+| Tailwind 4.1.12 | Native --tracking-* scale in em. Its --spacing multiplier, breakpoints and radius theme stay intact. Utilities such as rounded-full, spacing zero, arbitrary border widths/styles and opacity are not fabricated into finite theme-token scales. |
+| Bulma 1.0.2 | control-border-width (1px), input-border-style (solid), button-disabled-opacity (.5). Existing zero spacing, breakpoints and radius-rounded retained. No global tracking scale is invented. |
+| Material Web 2.5.0 | Existing scalar shape tokens retained. Referenced native md-ref-palette primitives added for the existing system color aliases. No artificial layout scale: the checked-in public supported-token lists exclude tracking and do not expose the requested additional layout foundations. |
+
+Native sources: [Bootstrap variables](https://github.com/twbs/bootstrap/blob/v5.3.3/scss/_variables.scss), [Bootstrap utilities](https://github.com/twbs/bootstrap/blob/v5.3.3/scss/_utilities.scss), [Tailwind theme](https://github.com/tailwindlabs/tailwindcss/blob/v4.1.12/packages/tailwindcss/theme.css), [Bulma controls](https://github.com/jgthms/bulma/blob/1.0.2/sass/utilities/controls.scss), [Bulma inputs](https://github.com/jgthms/bulma/blob/1.0.2/sass/form/shared.scss), [Bulma button opacity](https://bulma.io/documentation/elements/button/). Material sources and commit are recorded in `scripts/materialdesign-source/README.md`.
+
+## Primitive → Semantic → Component
+
+The optional `tier` field organizes tokens internally without moving groups or changing names/paths. Raw tonal scales remain primitives even when their historic group label is Semantic. Existing content/surface roles reference primitives; existing component aliases are retained exactly, including legacy direct primitive references. We do not insert duplicate pass-through roles just to force a three-level chain. Missing native Bootstrap/Bulma role references and Material system-to-reference-palette links are filled from upstream relationships, not inferred from coincident colors.
+
+Runtime customization resolves references. An explicit edit to an alias overrides that relationship only in the final payload; it does not change the canonical preset. Unedited aliases remain actual Figma Variable aliases and references in the exports. No Light/Dark mode is added.
+
+## Figma metadata and code names
+
+All COLOR Variables use `ALL_SCOPES`, including semantic and component colors. Numeric typography, radius, borders, opacity, sizes and spacing use compatible scopes. Strings with no compatible narrow scope stay unrestricted. Scopes and code syntax are metadata, never additional tokens.
+
+Code names derive deterministically from the full path: `Colors/Content/Primary/Text` → `--color-content-primary-text`; `Layout/Space/4` → `--space-4`. Other paths retain all segments, normalized to kebab case. Collisions fail validation rather than silently dropping a token. The [Figma API](https://developers.figma.com/docs/plugins/api/Variable/) has one WEB slot, populated with the CSS var() expression. SCSS/Sass/Tailwind mappings and tier/unit metadata are retained in plugin data. No fictitious Figma platform is used.
+
+## Export
+
+The shared `preset-contract/exports.mjs` prepares one final, alias-resolved payload used by generation and every exporter. The plugin and LP demo expose DTCG, CSS, SCSS, indented Sass and Tailwind previews with copy/download.
+
+- CSS exports all tokens as Custom Properties, retaining aliases with var().
+- SCSS and indented Sass emit dependencies first and preserve alias references. Sass has no declaration semicolons or braces.
+- Tailwind exports a JS config (v3, or v4 through @config) with only categories present in the payload. Keys use deterministic full-path names, avoiding duplicate native leaf names. Its named `tokens` export retains every token, including values with no Tailwind category (for example icon configuration and border styles).
+- DTCG/JSON retains path hierarchy, aliases, type/value and exact source names/units in `$extensions.org.starttokens`. DTCG 2025.10 supports px/rem dimensions; native em/percent values remain numbers with their original unit in this extension. General configuration strings and expressions use the `string` extension type, since the standard has no equivalent for every framework value. Consumers of these extensions must read their native unit/type metadata; there is no silent unit conversion. Color objects preserve their native srgb/hsl/oklch space. Reserved path characters are escaped reversibly, with the original name/path in the extension.
+
+Validation: LP `node --test scripts/*.test.mjs`, `node scripts/export-ui.mjs`, `npm run build`; plugin `npm run sync:data`, `npm test`, `npm run build`. Export UI tests compare preview, clipboard and downloaded bytes to the exact message payload sent to the plugin. Integration tests verify real generation logic with a Figma API double, including aliases/scopes/code syntax and every documented Variable.

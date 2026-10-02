@@ -18,7 +18,8 @@
           "type": "STRING",
           "value": "DM Sans",
           "displayValue": "DM Sans",
-          "icon": "format_shapes"
+          "icon": "format_shapes",
+          "tier": "primitive"
         },
         {
           "id": "typography.family.font-family-secondary",
@@ -29,7 +30,8 @@
           "type": "STRING",
           "value": "Sora",
           "displayValue": "Sora",
-          "icon": "format_shapes"
+          "icon": "format_shapes",
+          "tier": "primitive"
         }
       ]
     },
@@ -48,7 +50,8 @@
           "value": 9,
           "unit": "px",
           "displayValue": "9px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.small",
@@ -60,7 +63,8 @@
           "value": 11,
           "unit": "px",
           "displayValue": "11px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.helper",
@@ -72,7 +76,8 @@
           "value": 13,
           "unit": "px",
           "displayValue": "13px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.label",
@@ -84,7 +89,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.code",
@@ -96,7 +102,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.p",
@@ -108,7 +115,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.button",
@@ -120,7 +128,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.input",
@@ -132,7 +141,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.table",
@@ -144,7 +154,8 @@
           "value": 16,
           "unit": "px",
           "displayValue": "16px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.legend",
@@ -156,7 +167,8 @@
           "value": 20,
           "unit": "px",
           "displayValue": "20px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.h6",
@@ -168,7 +180,8 @@
           "value": 20,
           "unit": "px",
           "displayValue": "20px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.h5",
@@ -180,7 +193,8 @@
           "value": 24,
           "unit": "px",
           "displayValue": "24px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.h4",
@@ -192,7 +206,8 @@
           "value": 30,
           "unit": "px",
           "displayValue": "30px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.h3",
@@ -204,7 +219,8 @@
           "value": 36,
           "unit": "px",
           "displayValue": "36px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.h2",
@@ -216,7 +232,8 @@
           "value": 44,
           "unit": "px",
           "displayValue": "44px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.h1",
@@ -228,7 +245,8 @@
           "value": 54,
           "unit": "px",
           "displayValue": "54px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.display-4",
@@ -240,7 +258,8 @@
           "value": 66,
           "unit": "px",
           "displayValue": "66px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.display-3",
@@ -252,7 +271,8 @@
           "value": 81,
           "unit": "px",
           "displayValue": "81px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.display-2",
@@ -264,7 +284,8 @@
           "value": 99,
           "unit": "px",
           "displayValue": "99px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         },
         {
           "id": "typography.sizes.display-1",
@@ -276,7 +297,8 @@
           "value": 121,
           "unit": "px",
           "displayValue": "121px",
-          "icon": "text_fields"
+          "icon": "text_fields",
+          "tier": "primitive"
         }
       ]
     },
@@ -294,7 +316,8 @@
           "type": "FLOAT",
           "value": 300,
           "displayValue": "300",
-          "icon": "format_bold"
+          "icon": "format_bold",
+          "tier": "primitive"
         },
         {
           "id": "typography.weight.font-weight-regular",
@@ -305,7 +328,8 @@
           "type": "FLOAT",
           "value": 400,
           "displayValue": "400",
-          "icon": "format_bold"
+          "icon": "format_bold",
+          "tier": "primitive"
         },
         {
           "id": "typography.weight.font-weight-medium",
@@ -316,7 +340,8 @@
           "type": "FLOAT",
           "value": 500,
           "displayValue": "500",
-          "icon": "format_bold"
+          "icon": "format_bold",
+          "tier": "primitive"
         },
         {
           "id": "typography.weight.font-weight-bold",
@@ -327,7 +352,8 @@
           "type": "FLOAT",
           "value": 700,
           "displayValue": "700",
-          "icon": "format_bold"
+          "icon": "format_bold",
+          "tier": "primitive"
         }
       ]
     },
@@ -345,7 +371,8 @@
           "type": "FLOAT",
           "value": 0,
           "displayValue": "0",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         },
         {
           "id": "typography.lineheight.lineheight-xs",
@@ -356,7 +383,8 @@
           "type": "FLOAT",
           "value": 1,
           "displayValue": "1.0",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         },
         {
           "id": "typography.lineheight.lineheight-sm",
@@ -367,7 +395,8 @@
           "type": "FLOAT",
           "value": 1.2,
           "displayValue": "1.2",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         },
         {
           "id": "typography.lineheight.lineheight-md",
@@ -378,7 +407,8 @@
           "type": "FLOAT",
           "value": 1.4,
           "displayValue": "1.4",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         },
         {
           "id": "typography.lineheight.lineheight-lg",
@@ -389,7 +419,8 @@
           "type": "FLOAT",
           "value": 1.6,
           "displayValue": "1.6",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         },
         {
           "id": "typography.lineheight.lineheight-xl",
@@ -400,7 +431,8 @@
           "type": "FLOAT",
           "value": 1.8,
           "displayValue": "1.8",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         },
         {
           "id": "typography.lineheight.lineheight-2xl",
@@ -411,7 +443,8 @@
           "type": "FLOAT",
           "value": 2,
           "displayValue": "2.0",
-          "icon": "format_line_spacing"
+          "icon": "format_line_spacing",
+          "tier": "primitive"
         }
       ]
     },
@@ -431,7 +464,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "text_fields",
-          "reference": "typography.sizes.button"
+          "reference": "typography.sizes.button",
+          "tier": "component"
         },
         {
           "id": "typography.button.primary.weight",
@@ -443,7 +477,8 @@
           "value": 500,
           "displayValue": "500",
           "icon": "format_bold",
-          "reference": "typography.weight.font-weight-medium"
+          "reference": "typography.weight.font-weight-medium",
+          "tier": "component"
         },
         {
           "id": "typography.button.primary.line-height",
@@ -455,7 +490,8 @@
           "value": 1.4,
           "displayValue": "1.4",
           "icon": "format_line_spacing",
-          "reference": "typography.lineheight.lineheight-md"
+          "reference": "typography.lineheight.lineheight-md",
+          "tier": "component"
         },
         {
           "id": "typography.button.secondary.size",
@@ -468,7 +504,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "text_fields",
-          "reference": "typography.sizes.button"
+          "reference": "typography.sizes.button",
+          "tier": "component"
         },
         {
           "id": "typography.button.secondary.weight",
@@ -480,7 +517,8 @@
           "value": 500,
           "displayValue": "500",
           "icon": "format_bold",
-          "reference": "typography.weight.font-weight-medium"
+          "reference": "typography.weight.font-weight-medium",
+          "tier": "component"
         },
         {
           "id": "typography.button.secondary.line-height",
@@ -492,7 +530,8 @@
           "value": 1.4,
           "displayValue": "1.4",
           "icon": "format_line_spacing",
-          "reference": "typography.lineheight.lineheight-md"
+          "reference": "typography.lineheight.lineheight-md",
+          "tier": "component"
         },
         {
           "id": "typography.input.primary.size",
@@ -505,7 +544,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "text_fields",
-          "reference": "typography.sizes.input"
+          "reference": "typography.sizes.input",
+          "tier": "component"
         },
         {
           "id": "typography.input.primary.weight",
@@ -517,7 +557,8 @@
           "value": 400,
           "displayValue": "400",
           "icon": "format_bold",
-          "reference": "typography.weight.font-weight-regular"
+          "reference": "typography.weight.font-weight-regular",
+          "tier": "component"
         },
         {
           "id": "typography.input.primary.line-height",
@@ -529,7 +570,8 @@
           "value": 1.4,
           "displayValue": "1.4",
           "icon": "format_line_spacing",
-          "reference": "typography.lineheight.lineheight-md"
+          "reference": "typography.lineheight.lineheight-md",
+          "tier": "component"
         },
         {
           "id": "typography.label.primary.size",
@@ -542,7 +584,8 @@
           "unit": "px",
           "displayValue": "16px",
           "icon": "text_fields",
-          "reference": "typography.sizes.label"
+          "reference": "typography.sizes.label",
+          "tier": "component"
         },
         {
           "id": "typography.label.primary.weight",
@@ -554,7 +597,8 @@
           "value": 500,
           "displayValue": "500",
           "icon": "format_bold",
-          "reference": "typography.weight.font-weight-medium"
+          "reference": "typography.weight.font-weight-medium",
+          "tier": "component"
         },
         {
           "id": "typography.label.primary.line-height",
@@ -566,7 +610,51 @@
           "value": 1.4,
           "displayValue": "1.4",
           "icon": "format_line_spacing",
-          "reference": "typography.lineheight.lineheight-md"
+          "reference": "typography.lineheight.lineheight-md",
+          "tier": "component"
+        }
+      ]
+    },
+    {
+      "id": "tracking",
+      "label": "Tracking",
+      "icon": "format_letter_spacing",
+      "variables": [
+        {
+          "id": "typography.tracking.letter-spacing-tight",
+          "module": "typography",
+          "submodule": "tracking",
+          "name": "letter-spacing-tight",
+          "figmaName": "Typography/Tracking/letter-spacing-tight",
+          "type": "FLOAT",
+          "value": -0.025,
+          "unit": "em",
+          "displayValue": "-0.025em",
+          "tier": "primitive"
+        },
+        {
+          "id": "typography.tracking.letter-spacing-normal",
+          "module": "typography",
+          "submodule": "tracking",
+          "name": "letter-spacing-normal",
+          "figmaName": "Typography/Tracking/letter-spacing-normal",
+          "type": "FLOAT",
+          "value": 0,
+          "unit": "em",
+          "displayValue": "0em",
+          "tier": "primitive"
+        },
+        {
+          "id": "typography.tracking.letter-spacing-wide",
+          "module": "typography",
+          "submodule": "tracking",
+          "name": "letter-spacing-wide",
+          "figmaName": "Typography/Tracking/letter-spacing-wide",
+          "type": "FLOAT",
+          "value": 0.025,
+          "unit": "em",
+          "displayValue": "0.025em",
+          "tier": "primitive"
         }
       ]
     }

@@ -18,7 +18,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 4%)",
           "displayValue": "hsl(221, 14%, 4%)",
-          "preview": "hsl(221, 14%, 4%)"
+          "preview": "hsl(221, 14%, 4%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-bis",
@@ -29,7 +30,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 9%)",
           "displayValue": "hsl(221, 14%, 9%)",
-          "preview": "hsl(221, 14%, 9%)"
+          "preview": "hsl(221, 14%, 9%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.black-ter",
@@ -40,7 +42,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 14%)",
           "displayValue": "hsl(221, 14%, 14%)",
-          "preview": "hsl(221, 14%, 14%)"
+          "preview": "hsl(221, 14%, 14%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.grey-darker",
@@ -51,7 +54,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 21%)",
           "displayValue": "hsl(221, 14%, 21%)",
-          "preview": "hsl(221, 14%, 21%)"
+          "preview": "hsl(221, 14%, 21%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.grey-dark",
@@ -62,7 +66,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 29%)",
           "displayValue": "hsl(221, 14%, 29%)",
-          "preview": "hsl(221, 14%, 29%)"
+          "preview": "hsl(221, 14%, 29%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.grey",
@@ -73,7 +78,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 48%)",
           "displayValue": "hsl(221, 14%, 48%)",
-          "preview": "hsl(221, 14%, 48%)"
+          "preview": "hsl(221, 14%, 48%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.grey-light",
@@ -84,7 +90,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 71%)",
           "displayValue": "hsl(221, 14%, 71%)",
-          "preview": "hsl(221, 14%, 71%)"
+          "preview": "hsl(221, 14%, 71%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.grey-lighter",
@@ -95,7 +102,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 86%)",
           "displayValue": "hsl(221, 14%, 86%)",
-          "preview": "hsl(221, 14%, 86%)"
+          "preview": "hsl(221, 14%, 86%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.grey-lightest",
@@ -106,7 +114,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 93%)",
           "displayValue": "hsl(221, 14%, 93%)",
-          "preview": "hsl(221, 14%, 93%)"
+          "preview": "hsl(221, 14%, 93%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-ter",
@@ -117,7 +126,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 96%)",
           "displayValue": "hsl(221, 14%, 96%)",
-          "preview": "hsl(221, 14%, 96%)"
+          "preview": "hsl(221, 14%, 96%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white-bis",
@@ -128,7 +138,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 98%)",
           "displayValue": "hsl(221, 14%, 98%)",
-          "preview": "hsl(221, 14%, 98%)"
+          "preview": "hsl(221, 14%, 98%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.white",
@@ -139,7 +150,8 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 100%)",
           "displayValue": "hsl(221, 14%, 100%)",
-          "preview": "hsl(221, 14%, 100%)"
+          "preview": "hsl(221, 14%, 100%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.orange",
@@ -150,7 +162,8 @@
           "type": "COLOR",
           "value": "hsl(14, 100%, 53%)",
           "displayValue": "hsl(14, 100%, 53%)",
-          "preview": "hsl(14, 100%, 53%)"
+          "preview": "hsl(14, 100%, 53%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.yellow",
@@ -161,7 +174,8 @@
           "type": "COLOR",
           "value": "hsl(42, 100%, 53%)",
           "displayValue": "hsl(42, 100%, 53%)",
-          "preview": "hsl(42, 100%, 53%)"
+          "preview": "hsl(42, 100%, 53%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.green",
@@ -172,7 +186,8 @@
           "type": "COLOR",
           "value": "hsl(153, 53%, 53%)",
           "displayValue": "hsl(153, 53%, 53%)",
-          "preview": "hsl(153, 53%, 53%)"
+          "preview": "hsl(153, 53%, 53%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.turquoise",
@@ -183,7 +198,8 @@
           "type": "COLOR",
           "value": "hsl(171, 100%, 41%)",
           "displayValue": "hsl(171, 100%, 41%)",
-          "preview": "hsl(171, 100%, 41%)"
+          "preview": "hsl(171, 100%, 41%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.cyan",
@@ -194,7 +210,8 @@
           "type": "COLOR",
           "value": "hsl(198, 100%, 70%)",
           "displayValue": "hsl(198, 100%, 70%)",
-          "preview": "hsl(198, 100%, 70%)"
+          "preview": "hsl(198, 100%, 70%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.blue",
@@ -205,7 +222,8 @@
           "type": "COLOR",
           "value": "hsl(233, 100%, 63%)",
           "displayValue": "hsl(233, 100%, 63%)",
-          "preview": "hsl(233, 100%, 63%)"
+          "preview": "hsl(233, 100%, 63%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.purple",
@@ -216,7 +234,8 @@
           "type": "COLOR",
           "value": "hsl(271, 100%, 71%)",
           "displayValue": "hsl(271, 100%, 71%)",
-          "preview": "hsl(271, 100%, 71%)"
+          "preview": "hsl(271, 100%, 71%)",
+          "tier": "primitive"
         },
         {
           "id": "colors.palette.red",
@@ -227,7 +246,8 @@
           "type": "COLOR",
           "value": "hsl(348, 100%, 70%)",
           "displayValue": "hsl(348, 100%, 70%)",
-          "preview": "hsl(348, 100%, 70%)"
+          "preview": "hsl(348, 100%, 70%)",
+          "tier": "primitive"
         }
       ]
     },
@@ -245,7 +265,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 100%)",
           "displayValue": "hsl(221, 14%, 100%)",
-          "preview": "hsl(221, 14%, 100%)"
+          "preview": "hsl(221, 14%, 100%)",
+          "reference": "colors.palette.white",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.scheme-main-bis",
@@ -256,7 +278,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 98%)",
           "displayValue": "hsl(221, 14%, 98%)",
-          "preview": "hsl(221, 14%, 98%)"
+          "preview": "hsl(221, 14%, 98%)",
+          "reference": "colors.palette.white-bis",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.scheme-main-ter",
@@ -267,7 +291,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 96%)",
           "displayValue": "hsl(221, 14%, 96%)",
-          "preview": "hsl(221, 14%, 96%)"
+          "preview": "hsl(221, 14%, 96%)",
+          "reference": "colors.palette.white-ter",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.scheme-invert",
@@ -278,7 +304,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 4%)",
           "displayValue": "hsl(221, 14%, 4%)",
-          "preview": "hsl(221, 14%, 4%)"
+          "preview": "hsl(221, 14%, 4%)",
+          "reference": "colors.palette.black",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.scheme-invert-bis",
@@ -289,7 +317,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 9%)",
           "displayValue": "hsl(221, 14%, 9%)",
-          "preview": "hsl(221, 14%, 9%)"
+          "preview": "hsl(221, 14%, 9%)",
+          "reference": "colors.palette.black-bis",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.scheme-invert-ter",
@@ -300,7 +330,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 14%)",
           "displayValue": "hsl(221, 14%, 14%)",
-          "preview": "hsl(221, 14%, 14%)"
+          "preview": "hsl(221, 14%, 14%)",
+          "reference": "colors.palette.black-ter",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.text",
@@ -311,7 +343,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 29%)",
           "displayValue": "hsl(221, 14%, 29%)",
-          "preview": "hsl(221, 14%, 29%)"
+          "preview": "hsl(221, 14%, 29%)",
+          "reference": "colors.palette.grey-dark",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.text-weak",
@@ -322,7 +356,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 48%)",
           "displayValue": "hsl(221, 14%, 48%)",
-          "preview": "hsl(221, 14%, 48%)"
+          "preview": "hsl(221, 14%, 48%)",
+          "reference": "colors.palette.grey",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.text-strong",
@@ -333,7 +369,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 21%)",
           "displayValue": "hsl(221, 14%, 21%)",
-          "preview": "hsl(221, 14%, 21%)"
+          "preview": "hsl(221, 14%, 21%)",
+          "reference": "colors.palette.grey-darker",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.primary",
@@ -344,7 +382,9 @@
           "type": "COLOR",
           "value": "hsl(171, 100%, 41%)",
           "displayValue": "hsl(171, 100%, 41%)",
-          "preview": "hsl(171, 100%, 41%)"
+          "preview": "hsl(171, 100%, 41%)",
+          "reference": "colors.palette.turquoise",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.info",
@@ -355,7 +395,9 @@
           "type": "COLOR",
           "value": "hsl(198, 100%, 70%)",
           "displayValue": "hsl(198, 100%, 70%)",
-          "preview": "hsl(198, 100%, 70%)"
+          "preview": "hsl(198, 100%, 70%)",
+          "reference": "colors.palette.cyan",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.success",
@@ -366,7 +408,9 @@
           "type": "COLOR",
           "value": "hsl(153, 53%, 53%)",
           "displayValue": "hsl(153, 53%, 53%)",
-          "preview": "hsl(153, 53%, 53%)"
+          "preview": "hsl(153, 53%, 53%)",
+          "reference": "colors.palette.green",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.warning",
@@ -377,7 +421,9 @@
           "type": "COLOR",
           "value": "hsl(42, 100%, 53%)",
           "displayValue": "hsl(42, 100%, 53%)",
-          "preview": "hsl(42, 100%, 53%)"
+          "preview": "hsl(42, 100%, 53%)",
+          "reference": "colors.palette.yellow",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.danger",
@@ -388,7 +434,9 @@
           "type": "COLOR",
           "value": "hsl(348, 100%, 70%)",
           "displayValue": "hsl(348, 100%, 70%)",
-          "preview": "hsl(348, 100%, 70%)"
+          "preview": "hsl(348, 100%, 70%)",
+          "reference": "colors.palette.red",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.light",
@@ -399,7 +447,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 96%)",
           "displayValue": "hsl(221, 14%, 96%)",
-          "preview": "hsl(221, 14%, 96%)"
+          "preview": "hsl(221, 14%, 96%)",
+          "reference": "colors.palette.white-ter",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.dark",
@@ -410,7 +460,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 21%)",
           "displayValue": "hsl(221, 14%, 21%)",
-          "preview": "hsl(221, 14%, 21%)"
+          "preview": "hsl(221, 14%, 21%)",
+          "reference": "colors.palette.grey-darker",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.link",
@@ -421,7 +473,9 @@
           "type": "COLOR",
           "value": "hsl(233, 100%, 63%)",
           "displayValue": "hsl(233, 100%, 63%)",
-          "preview": "hsl(233, 100%, 63%)"
+          "preview": "hsl(233, 100%, 63%)",
+          "reference": "colors.palette.blue",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.background",
@@ -432,7 +486,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 96%)",
           "displayValue": "hsl(221, 14%, 96%)",
-          "preview": "hsl(221, 14%, 96%)"
+          "preview": "hsl(221, 14%, 96%)",
+          "reference": "colors.palette.white-ter",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.border",
@@ -443,7 +499,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 86%)",
           "displayValue": "hsl(221, 14%, 86%)",
-          "preview": "hsl(221, 14%, 86%)"
+          "preview": "hsl(221, 14%, 86%)",
+          "reference": "colors.palette.grey-lighter",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.border-weak",
@@ -454,7 +512,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 93%)",
           "displayValue": "hsl(221, 14%, 93%)",
-          "preview": "hsl(221, 14%, 93%)"
+          "preview": "hsl(221, 14%, 93%)",
+          "reference": "colors.palette.grey-lightest",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.code",
@@ -465,7 +525,9 @@
           "type": "COLOR",
           "value": "hsl(348, 100%, 70%)",
           "displayValue": "hsl(348, 100%, 70%)",
-          "preview": "hsl(348, 100%, 70%)"
+          "preview": "hsl(348, 100%, 70%)",
+          "reference": "colors.palette.red",
+          "tier": "semantic"
         },
         {
           "id": "colors.roles.shadow-color",
@@ -476,7 +538,9 @@
           "type": "COLOR",
           "value": "hsl(221, 14%, 4%)",
           "displayValue": "hsl(221, 14%, 4%)",
-          "preview": "hsl(221, 14%, 4%)"
+          "preview": "hsl(221, 14%, 4%)",
+          "reference": "colors.palette.black",
+          "tier": "semantic"
         }
       ]
     }

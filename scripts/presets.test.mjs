@@ -29,6 +29,8 @@ test('StartToken migration preserves every original field and token', () => {
   };
   for (const module of load('starttoken').modules.filter(m=>m.module!=='iconography')) {
     const { schemaVersion, configuration, ...original } = structuredClone(module);
+    const baseline=JSON.parse(readFileSync(new URL('./fixtures/foundations-baseline.json',import.meta.url),'utf8')).starttoken;
+    original.submodules=original.submodules.map(g=>({...g,variables:g.variables.filter(v=>baseline.some(b=>b.id===v.id)).map(({tier,...v})=>v)})).filter(g=>g.variables.length);
     if(module.module==='typography'){
       // Reverse only the requested Family migration to keep the original scale fingerprint.
       const family=original.submodules.find(s=>s.id==='family');
@@ -53,7 +55,7 @@ test('rejects duplicate IDs, missing aliases, cycles and incorrect capabilities'
     ({ modules }) => { const group = modules[0].submodules[0]; group.variables.push(group.variables[0]); },
     ({ modules }) => { modules[0].submodules[0].variables[0].reference = 'missing'; },
     ({ modules }) => { const v = modules[0].submodules[0].variables[0]; v.reference = v.id; },
-    ({ preset }) => { preset.capabilities.layout.breakpoints = true; },
+    ({ preset }) => { preset.capabilities.layout.breakpoints = !preset.capabilities.layout.breakpoints; },
     ({ modules }) => { modules[1].configuration.baseSize.default = 'missing'; },
   ]) {
     const data = load('starttoken');
