@@ -1,3 +1,4 @@
+import { stripePrices, publicPricing } from './fixtures/pricing.mjs';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -9,22 +10,24 @@ const legacyLifetime = 'price_1Tl5YCGjwjNbQit1821CEBPI';
 const env = {
   STRIPE_SECRET_KEY: 'test-only', STRIPE_WEBHOOK_SECRET: 'test-only',
   SUPABASE_URL: 'https://example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'test-only', BASE_URL: 'https://starttokens.test',
-  STRIPE_PRICE_MONTHLY_NEW: 'price_1UIAm9GjwjNbQit1eNhhv5vX',
-  STRIPE_PRICE_ANNUAL_NEW: 'price_1UIAnuGjwjNbQit1MngrZ5qo',
-  STRIPE_PRICE_LIFETIME_NEW: 'price_1UIAocGjwjNbQit11jG4GtK1',
 };
 const matrix = [
   ['legacy','monthly',legacyMonthly], ['legacy','lifetime',legacyLifetime],
-  ['new','monthly',env.STRIPE_PRICE_MONTHLY_NEW], ['new','annual',env.STRIPE_PRICE_ANNUAL_NEW], ['new','lifetime',env.STRIPE_PRICE_LIFETIME_NEW],
+  ['new','monthly',publicPricing.monthly.priceId], ['new','annual',publicPricing.annual.priceId], ['new','lifetime',publicPricing.lifetime.priceId],
 ];
 function harness(name, options = {}) {
-  const calls = { sessions: [], writes: [] };
-  const session = {id:'cs_test', customer:'cus_test', customer_details:{email:'qa@example.com'}, subscription:options.lifetime ? null : 'sub_test'};
+  const calls = { sessions: [], writes: [], lookups: [] };
+  const session = {metadata:options.metadata || {},id:'cs_test', customer:'cus_test', customer_details:{email:'qa@example.com'}, subscription:options.lifetime ? null : 'sub_test'};
   class Stripe {
     static createFetchHttpClient() { return {}; }
+    prices = {list:async params => {
+      calls.lookups.push(params);
+      if(options.stripeError) throw Error('Sensitive upstream secret test-only');
+      return {data:(options.prices || stripePrices).filter(price=>price.active && params.lookup_keys.includes(price.lookup_key))};
+    }};
     checkout = {sessions:{
       create: async params => { calls.sessions.push(params); return {url:'https://checkout.stripe.com/test',id:'cs_test'}; },
-      retrieve: async () => ({line_items:{data:[{price:{id:options.price,product:'same_product_for_every_new_price'}}]}}),
+      retrieve: async () => ({metadata:options.metadata || {},line_items:{data:[{price:options.checkoutPrice || stripePrices.find(price=>price.id===options.price) || {id:options.price}}]}}),
     }};
     webhooks = {constructEventAsync:async () => {
       if(options.invalidSignature) throw Error('Invalid signature');
@@ -51,13 +54,14 @@ const request = body => new Request('https://example.invalid',{method:'POST',hea
 for(const [pricingVersion,plan,price] of matrix) {
   test(`checkout ${pricingVersion}/${plan}: price, mode, metadata and preserved redirects`,async () => {
     const h=harness('create-checkout-session');
-    const res=await h.handler(request({pricingVersion,plan,email:'qa@example.com',userId:'qa-user'}));
+    const res=await h.handler(request({pricingVersion,plan,priceId:price,email:'qa@example.com',userId:'qa-user'}));
     assert.equal(res.status,200);
     const params=h.sessions[0];
     assert.equal(params.line_items[0].price,price);
     assert.equal(params.mode,plan==='lifetime'?'payment':'subscription');
     assert.equal(params.metadata.pricing_version,pricingVersion);
     assert.equal(params.metadata.plan,plan);
+    if(pricingVersion==='new'){assert.equal(params.metadata.price_id,price);assert.equal(params.metadata.pricing_lookup_key,'starttoken_'+plan);assert.deepEqual(JSON.parse(JSON.stringify(h.lookups[0])),{active:true,lookup_keys:['starttoken_'+plan],limit:10});}
     assert.equal(params.metadata.user_id,'qa-user');
     assert.equal(params.customer_email,'qa@example.com');
     assert.equal(params.allow_promotion_codes,true);
@@ -78,17 +82,16 @@ for(const [pricingVersion,plan,price] of matrix) {
     }
   });
 }
-test('legacy clients keep original pricing; env overrides and verified new defaults work',async () => {
+test('legacy compatibility remains isolated from lookup-based plans',async () => {
   const h=harness('create-checkout-session');
   assert.equal((await h.handler(request({plan:'monthly'}))).status,200);
   assert.equal(h.sessions[0].line_items[0].price,legacyMonthly);
+  assert.equal(h.lookups.length,0);
   const configured=harness('create-checkout-session',{env:{STRIPE_PRICE_MONTHLY_LEGACY:'price_configured'}});
   await configured.handler(request({plan:'monthly'}));
   assert.equal(configured.sessions[0].line_items[0].price,'price_configured');
-  const missing=harness('create-checkout-session',{env:{STRIPE_PRICE_ANNUAL_NEW:undefined}});
-  assert.equal((await missing.handler(request({plan:'annual',pricingVersion:'new'}))).status,200);
-  assert.equal(missing.sessions[0].line_items[0].price,env.STRIPE_PRICE_ANNUAL_NEW);
 });
+
 test('invalid combinations return 400 without contacting Stripe; CORS preserved',async () => {
   const h=harness('create-checkout-session');
   for(const body of [{pricingVersion:'legacy',plan:'annual'},{pricingVersion:'invalid',plan:'monthly'},{variant:'A',plan:'annual'},{variant:'C',plan:'monthly'},{variant:'B',plan:'free'},{plan:'bogus'},{plan:'annual'}]) assert.equal((await h.handler(request(body))).status,400);
@@ -120,9 +123,97 @@ for(const [pricingVersion,plan,price] of matrix) test(`verify-license accepts ${
 });
 
 test('already-published A/B API clients remain compatible',async()=>{
- for(const [variant,plan,price] of [['A','monthly',legacyMonthly],['A','lifetime',legacyLifetime],['B','annual',env.STRIPE_PRICE_ANNUAL_NEW]]){
+ for(const [variant,plan,price] of [['A','monthly',legacyMonthly],['A','lifetime',legacyLifetime],['B','annual',publicPricing.annual.priceId]]){
   const h=harness('create-checkout-session');
   assert.equal((await h.handler(request({variant,plan}))).status,200);
   assert.equal(h.sessions[0].line_items[0].price,price);
  }
+});
+
+const getRequest = () => new Request('https://example.invalid', {method:'GET'});
+test('get-pricing returns only public active Stripe prices, with CORS and no secrets',async()=>{
+  const h=harness('get-pricing');
+  const res=await h.handler(getRequest());
+  assert.equal(res.status,200);assert.equal(res.headers.get('Access-Control-Allow-Origin'),'*');
+  const data=await res.json();assert.deepEqual(data,publicPricing);
+  assert.deepEqual(JSON.parse(JSON.stringify(h.lookups[0])),{active:true,lookup_keys:['starttoken_monthly','starttoken_annual','starttoken_lifetime'],limit:10});
+  for(const price of Object.values(data))assert.deepEqual(Object.keys(price).sort(),['amount','currency','interval','priceId']);
+  assert.equal((await h.handler(new Request('https://example.invalid',{method:'OPTIONS'}))).status,204);
+  assert.equal((await h.handler(request({}))).status,405);
+});
+
+test('public prices and checkout always use the same Stripe Price; rotated or forged IDs cannot silently change the charge',async()=>{
+  const response=await harness('get-pricing').handler(getRequest());const displayed=await response.json();
+  for(const plan of ['monthly','annual','lifetime']){
+    const checkout=harness('create-checkout-session');
+    assert.equal((await checkout.handler(request({plan,pricingVersion:'new',priceId:displayed[plan].priceId}))).status,200);
+    assert.equal(checkout.sessions[0].line_items[0].price,displayed[plan].priceId);
+  }
+  const prices=stripePrices.map(price=>({...price,id:price.id+'_rotated',unit_amount:price.unit_amount+100}));
+  const stale=harness('create-checkout-session',{prices});
+  const result=await stale.handler(request({plan:'monthly',pricingVersion:'new',priceId:displayed.monthly.priceId}));
+  assert.equal(result.status,409);assert.equal((await result.json()).code,'price_changed');assert.equal(stale.sessions.length,0);
+  const refreshed=await (await harness('get-pricing',{prices}).handler(getRequest())).json();
+  assert.equal(refreshed.monthly.amount,publicPricing.monthly.amount+100);
+  assert.equal((await stale.handler(request({plan:'monthly',pricingVersion:'new',priceId:refreshed.monthly.priceId}))).status,200);
+  assert.equal(stale.sessions[0].line_items[0].price,refreshed.monthly.priceId);
+  const invalid=harness('create-checkout-session');
+  assert.equal((await invalid.handler(request({plan:'monthly',pricingVersion:'new'}))).status,400);
+  assert.equal((await invalid.handler(request({plan:'lifetime',pricingVersion:'new',priceId:displayed.monthly.priceId}))).status,409);
+  assert.equal(invalid.sessions.length,0);
+});
+
+test('missing/inactive/duplicate/invalid prices and Stripe outages fail without exposing upstream details',async()=>{
+  const invalidSets=[[],stripePrices.slice(1),stripePrices.map(p=>({...p,active:false})),[...stripePrices,stripePrices[0]],
+    stripePrices.map(p=>({...p,unit_amount:null})),stripePrices.map(p=>({...p,billing_scheme:'tiered'})),
+    stripePrices.map(p=>({...p,recurring:{interval:'day',interval_count:1,usage_type:'licensed'}})),
+    stripePrices.map(p=>({...p,recurring:{interval:'month',interval_count:2,usage_type:'licensed'}}))];
+  for(const options of [...invalidSets.map(prices=>({prices})),{stripeError:true},{env:{STRIPE_SECRET_KEY:undefined}}]){
+    const response=await harness('get-pricing',options).handler(getRequest());
+    assert.equal(response.status,503);assert.equal(response.headers.get('Access-Control-Allow-Origin'),'*');
+    assert.deepEqual(await response.json(),{error:'Pricing temporarily unavailable'});
+  }
+  const h=harness('create-checkout-session',{stripeError:true});
+  assert.equal((await h.handler(request({pricingVersion:'new',plan:'monthly',priceId:publicPricing.monthly.priceId}))).status,503);
+  assert.equal(h.sessions.length,0);
+});
+
+test('webhook identifies replaced Prices by lookup key and completed sessions by stable metadata after key transfer',async()=>{
+  for(const original of stripePrices)for(const transferred of [false,true]){
+    const plan=original.lookup_key.replace('starttoken_','');
+    const price={...original,id:'price_replaced_'+plan,lookup_key:transferred?null:original.lookup_key,active:!transferred};
+    const h=harness('stripe-webhook',{checkoutPrice:price,lifetime:plan==='lifetime',metadata:{plan,price_id:price.id,pricing_lookup_key:original.lookup_key}});
+    assert.equal((await h.handler(new Request('https://example.invalid',{method:'POST',headers:{'Stripe-Signature':'test'},body:'{}'}))).status,200);
+    assert.equal(h.writes[0].lifetime,plan==='lifetime');
+  }
+  for(const options of [
+    {checkoutPrice:{...stripePrices[0],lookup_key:'starttoken_lifetime'}},
+    {checkoutPrice:{...stripePrices[0],lookup_key:null},metadata:{plan:'lifetime'}},
+    {checkoutPrice:{...stripePrices[0],lookup_key:null},metadata:{price_id:'another_price',pricing_lookup_key:'starttoken_monthly'}},
+  ]){
+    const h=harness('stripe-webhook',options);
+    assert.equal((await h.handler(new Request('https://example.invalid',{method:'POST',headers:{'Stripe-Signature':'test'},body:'{}'}))).status,400);
+    assert.equal(h.writes.length,0);
+  }
+});
+
+test('frontend formats Stripe minor units with Intl and validates missing public data',()=>{
+  const context=vm.createContext({module:{exports:{}},Intl,fetch(){},AbortSignal});
+  vm.runInContext(transformSync(readFileSync('src/utils/pricing.ts','utf8'),{loader:'ts',format:'cjs'}).code,context);
+  const {formatPrice,validatePricing}=context.module.exports;
+  assert.equal(formatPrice(publicPricing.monthly),'$12.34');
+  assert.equal(formatPrice({amount:1500,currency:'jpy'}),'¥1,500');
+  assert.equal(formatPrice({amount:12345,currency:'kwd'}),new Intl.NumberFormat('en-US',{style:'currency',currency:'KWD'}).format(12.345));
+  assert.equal(validatePricing(publicPricing),publicPricing);
+  for(const data of [null,{}, {...publicPricing,annual:{...publicPricing.annual,amount:-1}}, {...publicPricing,lifetime:{...publicPricing.lifetime,interval:'month'}}])assert.throws(()=>validatePricing(data));
+  assert.doesNotMatch(readFileSync('src/app/App.tsx','utf8'),/\$7\.99|\$59\.99|\$99\.90|STRIPE_SECRET_KEY/);
+});
+
+test('Stripe can configure a zero amount without a local monetary override',async()=>{
+  const prices=stripePrices.map(price=>({...price,unit_amount:0}));
+  const response=await harness('get-pricing',{prices}).handler(getRequest());
+  assert.equal(response.status,200);
+  const data=await response.json();assert.equal(data.monthly.amount,0);
+  const h=harness('create-checkout-session',{prices});
+  assert.equal((await h.handler(request({plan:'monthly',pricingVersion:'new',priceId:data.monthly.priceId}))).status,200);
 });

@@ -1,4 +1,4 @@
-import { ACTIVE_PRICING_VERSION, type PaidPlan } from "../utils/pricing";
+import { ACTIVE_PRICING_VERSION, SUPABASE_URL, fetchPricing, formatPrice, type PublicPricing, type PaidPlan } from "../utils/pricing";
 import PluginMockup from "./components/PluginMockup";
 import { useRef, useState, useEffect, useId } from "react";
 import { catalog, presetNames, loadPreset } from "@/data/presets";
@@ -232,10 +232,10 @@ const PRESET_DESCRIPTIONS: Record<string, string> = {
   starttoken: "A framework-neutral starting point for new products.",
 };
 const NEW_PLANS = [
-  { plan: 'free', title: 'Free', price: '$0', period: '', desc: 'Try StartTokens', cta: 'Generate for free' },
-  { plan: 'monthly', title: 'Monthly', price: '$7.99', period: '/ month', desc: 'Best for occasional projects.', cta: 'Start Monthly' },
-  { plan: 'annual', title: 'Annual', price: '$59.99', period: '/ year', desc: 'Best for designers', cta: 'Get Annual' },
-  { plan: 'lifetime', title: 'Lifetime', price: '$99.90', period: 'one-time', desc: 'Pay once. Keep using', cta: 'Get Lifetime' },
+  { plan: 'free', title: 'Free', period: '', desc: 'Try StartTokens', cta: 'Generate for free' },
+  { plan: 'monthly', title: 'Monthly', period: '/ month', desc: 'Best for occasional projects.', cta: 'Start Monthly' },
+  { plan: 'annual', title: 'Annual', period: '/ year', desc: 'Best for designers', cta: 'Get Annual' },
+  { plan: 'lifetime', title: 'Lifetime', period: 'one-time', desc: 'Pay once. Keep using', cta: 'Get Lifetime' },
 ] as const;
 
 const VISUAL_DOC_PREVIEWS = [
@@ -254,12 +254,6 @@ const VISUAL_DOC_PREVIEWS = [
   {src: '/images/how-it-works/visual-doc-4.webp', alt: 'StartTokens Visual Foundations — iconography library, native size, project scale and official SVG previews'},
 ];
 
-const MONTHLY_FEATURES = [
-  "Unlimited Generations", `${catalog.presets.length} Ready-to-use Presets`, "Colors", "Typography", "Layout",
-  "Custom Color Scales", "Typography Scale Generation", "Native Figma Variable Collections",
-  "Visual Foundations Documentation", "Future Updates", "Priority Support",
-];
-const LIFETIME_FEATURES = [...MONTHLY_FEATURES, "One-time Payment"];
 
 const FAQS = [
   { q: "What exactly does StartTokens generate?", a: "StartTokens generates native Figma Variables for Colors, Typography and Layout, plus an organized Visual Foundations documentation page from the same values." },
@@ -895,6 +889,33 @@ export default function App() {
   const [userId, setUserId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [pricing, setPricing] = useState<PublicPricing | null>(null);
+  const [pricingLoading, setPricingLoading] = useState(true);
+  const [pricingError, setPricingError] = useState('');
+  const pricingRef = useRef<HTMLElement>(null);
+  const pricingRequest = useRef(0);
+  const reloadPricing = async () => {
+    const request = ++pricingRequest.current;
+    setPricingLoading(true);setPricingError('');setPricing(null);
+    try {
+      const prices = await fetchPricing();
+      if (request === pricingRequest.current) setPricing(prices);
+    } catch {
+      if (request === pricingRequest.current) setPricingError('Prices temporarily unavailable. Please retry.');
+    } finally {
+      if (request === pricingRequest.current) setPricingLoading(false);
+    }
+  };
+  useEffect(() => {
+    const element = pricingRef.current;
+    if (!element) return;
+    if (!('IntersectionObserver' in window)) { void reloadPricing();return () => { pricingRequest.current++; }; }
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) { observer.disconnect();void reloadPricing(); }
+    }, { rootMargin: '200px' });
+    observer.observe(element);
+    return () => { observer.disconnect();pricingRequest.current++; };
+  }, []);
   const [activeStep, setActiveStep] = useState(0);
   const [variableModules, setVariableModules] = useState<VariableModule[]>(EMPTY_MODULES);
   const heroRef = useRef<HTMLElement>(null);
@@ -953,10 +974,11 @@ export default function App() {
   }, []);
 
   // Stripe Checkout API configuration
-  const SUPABASE_URL = "https://lyexuguaeuwdtjeqwmst.supabase.co";
   const CREATE_CHECKOUT_FUNCTION = `${SUPABASE_URL}/functions/v1/create-checkout-session`;
 
   const handlePayment = async (plan: PaidPlan, passedEmail?: string | null, passedUserId?: string | null) => {
+    if (!pricing || pricingLoading || isRedirecting) return;
+    setIsRedirecting(true);
     try {
       const response = await fetch(CREATE_CHECKOUT_FUNCTION, {
         method: 'POST',
@@ -967,11 +989,17 @@ export default function App() {
         body: JSON.stringify({
           plan,
           pricingVersion,
+          priceId: pricing[plan].priceId,
           email: passedEmail || email || null,
           userId: passedUserId || userId || null
         })
       });
 
+      if (response.status === 409) {
+        await reloadPricing();
+        alert('Prices changed. Please review the updated prices and choose your plan again.');
+        return;
+      }
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Failed to create checkout session - Response status:', response.status);
@@ -1076,115 +1104,21 @@ export default function App() {
         </div>
       </section>
 
-      {pricingVersion === 'legacy' ? (
-      <section id="pricing" data-pricing-version="legacy" className="py-20 lg:py-28 border-t border-border">
-        <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal className="mb-10 max-w-3xl">
-            <SectionTag>· Simple pricing ·</SectionTag>
-            <h2 className="mt-2 text-3xl lg:text-5xl font-extrabold text-foreground leading-tight">
-              Choose your plan
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground">
-              Unlock unlimited token generations with flexible pricing options.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {/* Monthly */}
-            <ScrollReveal>
-            <motion.div 
-              whileHover={{ y: -6, scale: 1.02 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full rounded-xl border border-border bg-white p-7 lg:p-8 hover:shadow-lg hover:border-accent/50 transition-all duration-500 ease-out"
-            >
-              <div className="mb-7">
-                <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-widest">Monthly</span>
-                <div className="mt-2 flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-foreground">$5.99</span>
-                  <span className="text-sm text-muted-foreground">/month</span>
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground">Pay monthly, cancel anytime.</p>
-              </div>
-              <button 
-                onClick={() => { trackPricingClick('monthly', pricingVersion); handlePayment('monthly'); }}
-                className="block w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-center text-foreground hover:bg-muted transition-colors mb-7"
-              >
-                Get Started
-              </button>
-              <ul className="space-y-3">
-                {MONTHLY_FEATURES.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
-                    <MI icon="check" size={15} className="shrink-0 text-muted-foreground" style={{ marginTop: 1 }} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-            </ScrollReveal>
-
-            {/* Lifetime */}
-            <ScrollReveal delay={0.08}>
-            <motion.div 
-              whileHover={{ y: -6, scale: 1.02 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full"
-            >
-            <TiltCard depth={3} className="h-full">
-            <div
-              className="h-full rounded-xl p-7 lg:p-8 relative overflow-hidden hover:shadow-lg transition-all duration-300"
-              style={{ border: "1.5px solid rgba(94,106,210,0.35)", background: "linear-gradient(135deg,rgba(94,106,210,0.04) 0%,rgba(94,106,210,0.01) 100%)" }}
-            >
-              <div className="absolute top-4 right-4">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide text-white" style={{ background: "#5E6AD2" }}>
-                  Best Value
-                </span>
-              </div>
-              <div className="mb-7">
-                <span className="text-[11px] font-mono uppercase tracking-widest" style={{ color: "#5E6AD2" }}>Lifetime</span>
-                <div className="mt-2 flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-foreground">$49.90</span>
-                </div>
-                <p className="mt-1 text-xs font-medium" style={{ color: "#5E6AD2" }}>One-time payment</p>
-                <p className="mt-2 text-sm text-muted-foreground">Pay once, own forever.</p>
-              </div>
-              <button 
-                onClick={() => { trackPricingClick('lifetime', pricingVersion); handlePayment('lifetime'); }}
-                className="block w-full py-2.5 rounded-lg text-sm font-semibold text-center text-white hover:opacity-90 transition-opacity mb-7" 
-                style={{ background: "#5E6AD2" }}
-              >
-                Get Lifetime Access
-              </button>
-              <ul className="space-y-3">
-                {LIFETIME_FEATURES.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
-                    <MI icon="check" size={15} className="shrink-0" style={{ color: "#5E6AD2", marginTop: 1 }} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            </TiltCard>
-            </motion.div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-      ) : (
-      <section id="pricing" data-pricing-version="new" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
+      <section ref={pricingRef} id="pricing" data-pricing-version="new" className="bg-[#05061a] py-20 text-[#eceef9] lg:py-36 xl:flex xl:min-h-[min(56.25vw,1080px)] xl:items-center">
         <div className="mx-auto grid w-full max-w-[1800px] gap-8 px-5 sm:px-10 lg:px-[60px] 2xl:grid-cols-[minmax(0,0.32fr)_minmax(0,1fr)]">
-          <ScrollReveal><SectionTag>· Pricing ·</SectionTag><h2 className="mt-6 text-5xl font-bold xl:text-[66px]">Start free</h2><p className="mt-6 text-2xl font-light leading-relaxed xl:text-3xl">Generate once for free. Upgrade when StartTokens earns a place in your workflow.</p></ScrollReveal>
+          <ScrollReveal><SectionTag>· Pricing ·</SectionTag><h2 className="mt-6 text-5xl font-bold xl:text-[66px]">Start free</h2><p className="mt-6 text-2xl font-light leading-relaxed xl:text-3xl">Generate once for free. Upgrade when StartTokens earns a place in your workflow.</p>{pricingLoading&&<p role="status" className="mt-4 text-sm">Loading prices…</p>}{pricingError&&<p role="alert" className="mt-4 text-sm">{pricingError} <button onClick={()=>void reloadPricing()} className="underline">Retry</button></p>}</ScrollReveal>
           <div className="grid min-w-0 gap-6 md:grid-cols-2 xl:grid-cols-4">{NEW_PLANS.map((item, i) => <ScrollReveal key={item.plan} delay={i * 0.08}><motion.article 
             whileHover={{ y: -6, scale: 1.02 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 text-foreground hover:shadow-lg hover:border-accent/50 transition-all duration-300"
           >
             <span className="self-start rounded-full bg-accent/10 px-3 py-1 text-xs font-bold text-accent">{item.title}</span><h3 className="mt-3 text-2xl font-bold">{item.title}</h3><p className="mt-1 min-h-12 text-base">{item.desc}</p>
-            <p className="my-4 flex flex-wrap items-baseline gap-1"><strong className="text-[40px] leading-none">{item.price}</strong><span className="text-sm">{item.period}</span></p>
+            <p className="my-4 flex flex-wrap items-baseline gap-1"><strong className="text-[40px] leading-none">{item.plan === 'free' ? new Intl.NumberFormat('en-US', { style: 'currency', currency: pricing?.monthly.currency || 'USD', maximumFractionDigits: 0 }).format(0) : pricing ? formatPrice(pricing[item.plan]) : '—'}</strong><span className="text-sm">{item.plan === 'free' ? '' : pricing ? (pricing[item.plan].interval ? '/ ' + pricing[item.plan].interval : 'one-time') : item.period}</span></p>
             <ul className="mb-6 space-y-3 text-base">{[item.plan === 'free' ? '1 complete generation' : 'Unlimited generation', 'All available presets', 'Colors, Typography and Layout', 'Native Figma Variables', 'Visual Documentation', 'No account required'].map(feature => <li key={feature} className="flex items-start gap-2"><span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-white"><MI icon="check" size={14} /></span>{feature}</li>)}</ul>
-            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={(event) => { trackPricingClick('free', pricingVersion); trackFigmaInstallClick(event, 'free'); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button onClick={() => { trackPricingClick(item.plan, pricingVersion); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
+            {item.plan === 'free' ? <a href={INSTALL_URL} target="_blank" rel="noopener noreferrer" onClick={(event) => { trackPricingClick('free', pricingVersion); trackFigmaInstallClick(event, 'free'); }} className="mt-auto flex min-h-14 items-center justify-center rounded-lg bg-accent px-3 py-3 text-center text-base font-bold text-white hover:opacity-90">{item.cta}</a> : <button disabled={!pricing || pricingLoading || isRedirecting} onClick={() => { trackPricingClick(item.plan, pricingVersion); void handlePayment(item.plan); }} className="mt-auto min-h-14 rounded-lg bg-accent px-3 py-3 text-base font-bold text-white hover:opacity-90">{item.cta}</button>}
           </motion.article></ScrollReveal>)}</div>
         </div>
-      </section>)}
+      </section>
 
       <section id="how-it-works" className="bg-accent/10 py-16 lg:py-20">
         <div className="mx-auto max-w-[1800px] px-5 sm:px-10 lg:px-[60px]">

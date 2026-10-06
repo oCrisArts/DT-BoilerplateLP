@@ -1,3 +1,4 @@
+import { publicPricing } from './fixtures/pricing.mjs';
 import { createRequire } from 'node:module';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
@@ -5,15 +6,6 @@ const require = createRequire(process.env.WORKSPACE_NODE_PACKAGES ? process.env.
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless:true, channel:process.env.BROWSER_CHANNEL || 'msedge' });
 const base = process.env.LP_URL || 'http://127.0.0.1:5174';
-// Test-only compile override: the deployed application has no runtime override.
-const { createServer } = await import('vite');
-const legacyServer = await createServer({server:{port:0,host:'127.0.0.1'},plugins:[{
- name:'test-legacy-pricing',enforce:'pre',transform(code,id){
-  if(id.replaceAll('\\','/').endsWith('/src/utils/pricing.ts')) return code.replace("PricingVersion = 'new'", "PricingVersion = 'legacy'");
- }
-}]});
-await legacyServer.listen();
-const versionUrl = version => version === 'legacy' ? `http://127.0.0.1:${legacyServer.httpServer.address().port}` : base;
 mkdirSync('validation-output', { recursive:true });
 const report = [];
 const page = await browser.newPage({ viewport:{width:1440,height:1000} });
@@ -22,6 +14,7 @@ page.setDefaultNavigationTimeout(60000);
 const navigate = url => page.goto(url, { waitUntil: 'domcontentloaded' });
 const errors = [];
 page.on('pageerror', e => errors.push(e.message));
+await page.route('**/functions/v1/get-pricing',route=>route.fulfill({contentType:'application/json',body:JSON.stringify(publicPricing)}));
 await page.route(/google-analytics|googletagmanager|clarity\.ms|hotjar/, r => r.abort());
 await navigate(base); await page.waitForSelector('.demo-presets');
 await page.waitForTimeout(400);
@@ -76,14 +69,16 @@ for (const preset of catalog.presets) {
   await demo.getByRole('button',{name:'Back to presets'}).click();
   report.push(`${preset.name}: real groups, four tabs, color edit, type scale, search, keyboard navigation passed`);
 }
-for (const variant of ['legacy', 'new']) for (const width of [1920,1440,1024,768,390,320]) {
+for (const variant of ['new']) for (const width of [1920,1440,1024,768,390,320]) {
   await page.setViewportSize({width,height:900});
-  await navigate(versionUrl(variant)); await page.waitForSelector('.demo-presets');
+  await navigate(base); await page.waitForSelector('.demo-presets');
   const pricing = page.locator('#pricing');
   assert.equal(await pricing.getAttribute('data-pricing-version'), variant);
+  await pricing.scrollIntoViewIfNeeded();
+  await pricing.getByText('$12.34',{exact:true}).waitFor();
   const prices = await pricing.innerText();
-  for (const price of variant === 'legacy' ? ['$5.99', '$49.90'] : ['Free', '$0', '$7.99', '$59.99', '$99.90']) assert.ok(prices.includes(price));
-  assert.equal(await pricing.getByRole('button').count(), variant === 'legacy' ? 2 : 3);
+  for (const price of ['Free', '$0', '$12.34', '$98.76', '$234.56']) assert.ok(prices.includes(price));
+  assert.equal(await pricing.getByRole('button').count(), 3);
   // Scroll all sections into view so reveal/parallax states are covered.
   for (const section of await page.locator('main > section').all()) { await section.scrollIntoViewIfNeeded(); await page.waitForTimeout(100); }
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),`overflow at ${width}px`);
@@ -124,13 +119,13 @@ await page.route('**/functions/v1/create-checkout-session',async r=>{
   funnels.push(await page.evaluate(() => (window.dataLayer || []).map(event => Array.from(event)).filter(event => ['pricing_view','pricing_click','checkout_started'].includes(event[1]))));
   await r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({url:base+'/cancel?qa=checkout'})});
 });
-for (const [variant, plan, label] of [['legacy','monthly','Get Started'], ['legacy','lifetime','Get Lifetime Access'], ['new','monthly','Start Monthly'], ['new','annual','Get Annual'], ['new','lifetime','Get Lifetime']]) {
-  await navigate(versionUrl(variant));
+for (const [variant, plan, label] of [['new','monthly','Start Monthly'], ['new','annual','Get Annual'], ['new','lifetime','Get Lifetime']]) {
+  await navigate(base);
   await page.locator('#pricing').scrollIntoViewIfNeeded();
   await page.waitForFunction(() => (window.dataLayer || []).some(event => Array.from(event)[1] === 'pricing_view'));
   await page.locator('#pricing').getByRole('button',{name:label,exact:true}).click();
   await page.waitForURL('**/cancel?qa=checkout');
-  assert.deepEqual(requests.at(-1), {plan, pricingVersion:variant, email:null, userId:null});
+  assert.deepEqual(requests.at(-1), {plan, pricingVersion:variant, priceId:publicPricing[plan].priceId, email:null, userId:null});
   const events = funnels.at(-1);
   assert.deepEqual(events.map(event=>event[1]), ['pricing_view','pricing_click']);
   for (const event of events) assert.equal(event[2].pricing_version,variant);
@@ -139,8 +134,8 @@ for (const [variant, plan, label] of [['legacy','monthly','Get Started'], ['lega
 await navigate(base+'/?email=qa%2Btest%40example.com&user_id=qa-user#pricing');
 await page.locator('#pricing').getByRole('button',{name:'Get Annual',exact:true}).click();
 await page.waitForURL('**/cancel?qa=checkout');
-assert.deepEqual(requests.at(-1),{plan:'annual',pricingVersion:'new',email:'qa+test@example.com',userId:'qa-user'});
-report.push('All five checkouts and plugin email handoff use active configuration');
+assert.deepEqual(requests.at(-1),{plan:'annual',pricingVersion:'new',priceId:publicPricing.annual.priceId,email:'qa+test@example.com',userId:'qa-user'});
+report.push('All three checkouts and plugin email handoff use active configuration');
 await navigate(base);
 await page.evaluate(()=>localStorage.setItem('starttokens_pricing_variant','A'));
 for(const query of ['', '?pricing_variant=A','?pricing_variant=B','?plan=monthly']) {
@@ -183,8 +178,8 @@ const progressBar = await page.locator('header .bg-accent').first().isVisible();
 assert.ok(progressBar, 'Scroll progress bar is visible in header');
 report.push('Scroll progress bar: visible in header');
 const sharedSections = [];
-for (const variant of ['legacy','new']) {
-  await navigate(versionUrl(variant));
+for (const variant of ['new']) {
+  await navigate(base);
   await page.locator('#features .demo-tabs').first().waitFor();
   sharedSections.push(await page.locator('main > section:not(#pricing)').allTextContents());
 }
@@ -207,4 +202,3 @@ writeFileSync('validation-output/report.json',JSON.stringify({report,errors},nul
 console.log(report.join('\n'));
 await page.close();
 await browser.close();
-await legacyServer.close();

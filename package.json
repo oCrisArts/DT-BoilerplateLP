@@ -4,8 +4,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "test": "node --test scripts/*.test.mjs",
     "build": "node scripts/validate-presets.mjs && node scripts/validate-icons.mjs && vite build",
     "test:presets": "node --test scripts/presets.test.mjs",
+    "test:pricing:ui": "node scripts/pricing-ui.mjs",
     "test:pricing": "node --test scripts/pricing.test.mjs",
     "test:analytics": "node --test scripts/analytics.test.mjs",
     "test:analytics:ui": "node scripts/validate-analytics.mjs",

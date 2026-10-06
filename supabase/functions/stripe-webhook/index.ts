@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
-import Stripe from "npm:stripe"
+import Stripe from "npm:stripe@14.25.0"
 import { identifyPrice } from "../_shared/pricing.ts"
 
 serve(async (req) => {
@@ -55,8 +55,8 @@ serve(async (req) => {
         expand: ['line_items']
       });
 
-      const priceId = sessionWithLineItems.line_items?.data?.[0]?.price?.id;
-      const plan = priceId ? identifyPrice(priceId, name => Deno.env.get(name)) : undefined;
+      const price = sessionWithLineItems.line_items?.data?.[0]?.price;
+      const plan = price ? identifyPrice(price, name => Deno.env.get(name), sessionWithLineItems.metadata || session.metadata || {}) : undefined;
       if (!plan) {
         console.error('Unrecognized checkout Price ID');
         return new Response(JSON.stringify({ error: 'Unrecognized price' }), { status: 400 });

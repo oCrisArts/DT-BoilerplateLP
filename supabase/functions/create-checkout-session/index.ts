@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import Stripe from "npm:stripe"
-import { getPrices } from "../_shared/pricing.ts"
+import Stripe from "npm:stripe@14.25.0"
+import { getLegacyPrices, resolvePricing, LOOKUP_KEYS, type PaidPlan } from "../_shared/pricing.ts"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,7 +15,7 @@ serve(async (req) => {
   }
 
   try {
-    const { plan, pricingVersion: requestedVersion, variant, email, userId } = await req.json()
+    const { plan, pricingVersion: requestedVersion, variant, email, userId, priceId: displayedPriceId } = await req.json()
     // Backward compatibility for already-published clients, not an experiment.
     const pricingVersion = requestedVersion ?? (variant === undefined || variant === 'A' ? 'legacy' : variant === 'B' ? 'new' : null);
 
@@ -43,15 +43,24 @@ serve(async (req) => {
     // Get the base URL for redirects
     const baseUrl = Deno.env.get('BASE_URL') || 'http://localhost:5173'
 
-    // Select price based on plan
-    const prices = getPrices(name => Deno.env.get(name));
-    const priceId = pricingVersion === 'legacy'
-      ? prices.legacy[plan as keyof typeof prices.legacy]
-      : prices.new[plan as keyof typeof prices.new];
-    if (!priceId) {
-      return new Response(JSON.stringify({ error: 'Pricing is not configured for this plan' }), {
-        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
+    let priceId: string;
+    if (pricingVersion === 'legacy') {
+      const prices = getLegacyPrices(name => Deno.env.get(name));
+      priceId = prices[plan as keyof typeof prices];
+    } else {
+      // Bind checkout to the exact Price displayed by the modern LP.
+      // Published variant B clients may omit it for technical compatibility.
+      if (requestedVersion === 'new' && (typeof displayedPriceId !== 'string' || !displayedPriceId)) {
+        return new Response(JSON.stringify({ error: 'Displayed price is required' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      try {
+        priceId = (await resolvePricing(stripe, [plan as PaidPlan]))[plan as PaidPlan].priceId;
+      } catch {
+        return new Response(JSON.stringify({ error: 'Pricing temporarily unavailable' }), { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+      if (displayedPriceId !== undefined && displayedPriceId !== priceId) {
+        return new Response(JSON.stringify({ error: 'Pricing changed. Refresh prices and try again.', code: 'price_changed' }), { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
     }
 
     // Create checkout session
@@ -72,7 +81,8 @@ serve(async (req) => {
         plan: plan,
         pricing_version: pricingVersion,
         pricing_variant: pricingVersion === 'legacy' ? 'A' : 'B',
-        user_id: userId || ''
+        user_id: userId || '',
+        ...(pricingVersion === 'new' ? { pricing_lookup_key: LOOKUP_KEYS[plan as PaidPlan], price_id: priceId } : {})
       }
     }
 
@@ -91,7 +101,7 @@ serve(async (req) => {
     console.error('Error creating checkout session:', error)
     const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     console.error('Error details:', errorMessage)
-    return new Response(JSON.stringify({ error: 'Failed to create checkout session', details: errorMessage }), {
+    return new Response(JSON.stringify({ error: 'Failed to create checkout session' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })

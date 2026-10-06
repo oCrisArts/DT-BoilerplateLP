@@ -1,3 +1,4 @@
+import { publicPricing } from './fixtures/pricing.mjs';
 import { createRequire } from 'node:module';
 import assert from 'node:assert/strict';
 const require=createRequire(process.env.WORKSPACE_NODE_PACKAGES ? process.env.WORKSPACE_NODE_PACKAGES+'/package.json' : import.meta.url);
@@ -7,6 +8,7 @@ const page=await browser.newPage({viewport:{width:1440,height:900}});
 const calls=[];await page.exposeFunction('captureAnalytics',(provider,args)=>calls.push({provider,args}));
 await page.addInitScript(()=>{for(const [name,provider] of [['gtag','ga'],['clarity','clarity'],['hj','hj']])window[name]=(...args)=>window.captureAnalytics(provider,args);});
 await page.route(/googletagmanager|google-analytics|clarity\.ms|hotjar/,route=>route.abort());
+await page.route('**/functions/v1/get-pricing',route=>route.fulfill({contentType:'application/json',body:JSON.stringify(publicPricing)}));
 let checkoutMode='success';await page.route('**/functions/v1/create-checkout-session',route=>route.fulfill({status:checkoutMode==='success'?200:500,contentType:'application/json',body:JSON.stringify(checkoutMode==='success'?{url:'http://127.0.0.1:5174/success'}:{error:'test failure'})}));
 page.on('dialog',dialog=>dialog.dismiss());
 const events=name=>calls.filter(c=>c.provider==='ga'&&c.args[0]==='event'&&c.args[1]===name);

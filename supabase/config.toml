@@ -1,0 +1,4 @@
+# Public read-only prices accessed with the project's anonymous JWT.
+# Stripe credentials remain inside the Edge Function.
+[functions.get-pricing]
+verify_jwt = true
