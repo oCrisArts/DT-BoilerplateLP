@@ -1,8 +1,18 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/data/icons/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+      },
+      "continue": true
+    },
+    { "handle": "filesystem" },
+    { "src": "/data/icons/(.*)", "status": 404 },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }

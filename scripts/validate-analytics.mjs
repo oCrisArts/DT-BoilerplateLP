@@ -17,7 +17,7 @@ try{
  await page.waitForSelector('#hero');await page.waitForTimeout(500);
  assert.equal(events('page_view').length,1);assert.equal(events('pricing_view').length,0);
  for(const name of ['Privacy','Terms','Contact']){await page.locator('footer').getByRole('link',{name,exact:true}).click();await page.waitForURL('**/'+name.toLowerCase());await page.waitForTimeout(100);assert.equal(events('page_view').at(-1).args[2].page_path,'/'+name.toLowerCase());}
- await page.getByRole('link',{name:'StartTokens',exact:true}).click();await page.waitForSelector('#hero');
+ await page.getByRole('link',{name:'StartToken',exact:true}).click();await page.waitForSelector('#hero');
  const pageCount=events('page_view').length;
  for(const id of ['problem-solved','presets','how-it-works','features','visual-docs','pricing','faq']){
   await page.evaluate(id=>window.scrollTo({top:document.getElementById(id).offsetTop-200,behavior:'instant'}),id);

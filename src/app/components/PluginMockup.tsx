@@ -1,4 +1,5 @@
-import { ExportPanel } from './ExportPanel';
+import { GenerationResultScreen, type GenerationSnapshot } from './generation-result';
+import { prepareTokens } from '@/data/preset-contract/exports.mjs';
 import IconographyDemo from './IconographyDemo';
 import { colorFamilies, recolorFamily, parseColor, colorValue, hex } from '@/utils/color-values';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -26,6 +27,8 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
   const [query, setQuery] = useState('');
   const [edits, setEdits] = useState<Record<string, string>>({});
   const [status, setStatus] = useState('');
+  const [generation,setGeneration]=useState<GenerationSnapshot|null>(null);
+  const generate=()=>{if(source)setGeneration({presetName:source.preset.metadata.name,tokens:structuredClone(prepareTokens(source.modules.flatMap(variables).map(v=>edits[v.id]===undefined?v:{...v,reference:undefined,value:v.type==='FLOAT'?Number.parseFloat(edits[v.id]):v.type==='COLOR'?(parseColor(edits[v.id])||v.value):edits[v.id],displayValue:edits[v.id]})))});};
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [ratio, setRatio] = useState(1.25);
@@ -45,7 +48,7 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
     if (initialModule) void select(catalog.defaultPreset);
     return () => { request.current++; };
   }, []);
-  useEffect(() => { content.current?.scrollTo(0, 0); }, [active, selected, source]);
+  useEffect(() => { content.current?.scrollTo(0, 0); }, [active, selected, source,generation]);
   const module = source?.modules.find(m => m.module === active);
   const value = (v: Variable) => edits[v.id] ?? v.displayValue;
   const edit = (v: Variable, next: string) => { setEdits(prev => ({ ...prev, [v.id]: next })); setStatus(''); };
@@ -88,9 +91,9 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
       }
     }} />{v.unit && <small>{v.unit}</small>}
   </label>;
-  return <div className={`plugin-demo bg-white relative rounded-[16px] flex flex-col w-full min-w-0 max-w-[420px] aspect-[420/611] ${className}`} aria-label="Interactive StartTokens plugin demo" style={{ boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
-    <div className="demo-header"><img src={logos('starttoken')} alt="" width="14" height="22" /><span>StartTokens</span><small>v0.1</small></div>
-    {selected && source && <>
+  return <div className={`plugin-demo ${generation?'has-result':''} bg-white relative rounded-[16px] flex flex-col w-full min-w-0 max-w-[420px] aspect-[420/611] ${className}`} aria-label="Interactive StartToken plugin demo" style={{ boxShadow: '0px 24px 64px -12px rgba(0,0,0,0.14), 0px 0px 0px 1px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.08)' }}>
+    <div className="demo-header"><img src={logos('starttoken')} alt="" width="14" height="22" /><span>StartToken</span><small>v0.1</small></div>
+    {selected && source && !generation && <>
       <div className="demo-preset"><button onClick={back} aria-label="Back to presets">←</button><img src={logos(source.preset.id)} alt="" width="25" height="25" /><span>{source.preset.metadata.name}</span></div>
       <div role="tablist" aria-label="Token categories" className="demo-tabs">{source.modules.map((m,i) => <button key={m.module} role="tab" id={`${uid}-${m.module}`} aria-selected={active === m.module} aria-controls={`${uid}-panel`} tabIndex={active === m.module ? 0 : -1} onClick={() => { setActive(m.module); setQuery(''); }} onKeyDown={e => {
         if (!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
@@ -102,7 +105,7 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
     <div className="demo-content" ref={content}>
       {loading && <p role="status">Loading preset…</p>}
       {error && <p role="alert">Unable to load preset. <button onClick={() => void select(source?.preset.id ?? catalog.defaultPreset)}>Try again</button></p>}
-      {!selected ? <><h2>Welcome</h2><p>Choose a preset to customize your design token package.</p><div className="demo-presets">{catalog.presets.map(p => <button key={p.id} disabled={loading} onClick={() => void select(p.id)}><img src={logos(p.id)} alt="" width="30" height="30" /><span>{p.name}</span></button>)}</div></> : module && <div role="tabpanel" id={`${uid}-panel`} aria-labelledby={`${uid}-${active}`} tabIndex={0}>
+      {generation?<GenerationResultScreen snapshot={generation} result={{count:generation.tokens.length,created:0,updated:0,documentationGenerated:false}} demo/>:!selected ? <><h2>Welcome</h2><p>Choose a preset to customize your design token package.</p><div className="demo-presets">{catalog.presets.map(p => <button key={p.id} disabled={loading} onClick={() => void select(p.id)}><img src={logos(p.id)} alt="" width="30" height="30" /><span>{p.name}</span></button>)}</div></> : module && <div role="tabpanel" id={`${uid}-panel`} aria-labelledby={`${uid}-${active}`} tabIndex={0}>
         <p>{subtitles[active]}</p><p className="demo-helper">Token names stay unchanged — only values are customized.</p>
         <input className="demo-search" type="search" aria-label="Search tokens" placeholder="Search tokens…" value={query} onChange={e => setQuery(e.target.value)} />
         {type && family && base && line ? <>
@@ -125,10 +128,9 @@ export default function PluginMockup({ initialModule, className = '' }: { initia
           </details>;
         })}
         {query && !variables(module).some(v => matches(v,query)) && !module.submodules.some(s => s.label.toLowerCase().includes(query.toLowerCase())) && <p role="status">No tokens found.</p>}
-        <div><ExportPanel tokens={source!.modules.flatMap(variables).map(v=>edits[v.id]===undefined?v:{...v,reference:undefined,value:v.type==='FLOAT'?Number.parseFloat(edits[v.id]):v.type==='COLOR'?(parseColor(edits[v.id])||v.value):edits[v.id],displayValue:edits[v.id]})}/></div>
         <p role="status" className="demo-helper">{status}</p>
       </div>}
     </div>
-    {selected && <div className="demo-footer"><button onClick={() => setStatus('Demo preview ready. Install StartTokens on Figma to generate native Variables and Visual Documentation.')}>Generate tokens <span aria-hidden="true">▷</span></button><small>Interactive demo · Generate in Figma</small></div>}
+    {generation?<div className="result-footer"><button onClick={()=>setGeneration(null)}>Back to configuration</button></div>:selected && <div className="demo-footer"><button onClick={generate}>Generate tokens <span aria-hidden="true">▷</span></button><small>Interactive demo · Generate in Figma</small></div>}
   </div>;
 }

@@ -62,6 +62,8 @@ Code names derive deterministically from the full path: `Colors/Content/Primary/
 
 ## Export
 
+Export is available on the result screen after successful generation, for paid plugin users who can generate tokens. The LP mockup demonstrates this flow locally; it does not create Figma Variables.
+
 The shared `preset-contract/exports.mjs` prepares one final, alias-resolved payload used by generation and every exporter. The plugin and LP demo expose DTCG, CSS, SCSS, indented Sass and Tailwind previews with copy/download.
 
 - CSS exports all tokens as Custom Properties, retaining aliases with var().

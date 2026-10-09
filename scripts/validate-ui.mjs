@@ -22,7 +22,7 @@ const heroBounds = await page.locator('#hero .plugin-demo').boundingBox();
 assert.ok(heroBounds.x >= 0 && heroBounds.x + heroBounds.width <= 1440, 'Hero mockup stays fully in view');
 await page.screenshot({path:'validation-output/desktop.png',fullPage:true});
 assert.equal(await page.locator('h1').count(),1);
-assert.equal(await page.title(),'StartTokens — Figma Variables & Design Tokens Generator');
+assert.equal(await page.title(),'StartToken — Framework Design Tokens for Figma');
 assert.match(await page.locator('meta[name=description]').getAttribute('content'),/^Customize Bootstrap/);
 const catalog = JSON.parse(readFileSync('public/data/presets/catalog.json'));
 const demo = page.locator('#hero .plugin-demo');
@@ -95,7 +95,7 @@ for (const variant of ['new']) for (const width of [1920,1440,1024,768,390,320])
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),`step overflow at ${width}px`);
   }
   const faq = page.locator('#faq button').first(); await faq.click(); assert.equal(await faq.getAttribute('aria-expanded'),'true'); await faq.click(); assert.equal(await faq.getAttribute('aria-expanded'),'false');
-  if (width < 1280) { await page.getByRole('button',{name:'Open navigation'}).click(); await page.locator('#mobile-navigation').getByRole('link',{name:'Pricing',exact:true}).click(); assert.match(page.url(),/#pricing/); }
+  if (width < 1280) { await page.getByRole('button',{name:'Open navigation'}).click(); await page.locator('#mobile-navigation').getByRole('link',{name:'Pricing',exact:true}).click(); await page.waitForFunction(() => location.hash === '#pricing' && Math.abs(document.getElementById('pricing').getBoundingClientRect().top) < 150); }
   const visibleText = await page.locator('body').innerText();
   assert.doesNotMatch(visibleText,/DT Boilerplate|DS Boilerplate|Carbon|Ant Design|Export (CSS|JSON|DTCG)/i);
   await page.evaluate(() => window.scrollTo({top:0,behavior:'instant'}));
@@ -149,7 +149,7 @@ report.push('Old query overrides and storage are ignored; reload preserves stati
 await navigate(base);
 const free = page.locator('#pricing').getByRole('link',{name:'Generate for free'});
 assert.equal(await free.getAttribute('href'),'https://www.figma.com/community/plugin/1651310914400769393');
-for (const label of ['Fastest Way','Problem Solved','Presets','Features','Visual Docs','Pricing','FAQ']) {
+for (const label of ['Overview','Problem Solved','Presets','How it works','Features','Visual Docs','Pricing','FAQ']) {
   const link = page.locator('header nav').getByRole('link',{name:label,exact:true});
   const target = (await link.getAttribute('href')).split('#')[1];
   assert.equal(await page.locator('#'+target).count(),1);
@@ -159,7 +159,7 @@ report.push('Catalog-driven presets, all navigation targets and free plugin inst
 
 // Test scroll spy functionality
 await navigate(base);
-const initialActiveLink = await page.locator('header nav').getByRole('link', {name: 'Fastest Way', exact: true}).getAttribute('aria-current');
+const initialActiveLink = await page.locator('header nav').getByRole('link', {name: 'Overview', exact: true}).getAttribute('aria-current');
 assert.equal(initialActiveLink, 'location');
 await page.locator('#problem-solved').scrollIntoViewIfNeeded();
 await page.waitForTimeout(300);
@@ -177,14 +177,17 @@ report.push('Features uses existing mockups; How it works is one section with th
 const progressBar = await page.locator('header .bg-accent').first().isVisible();
 assert.ok(progressBar, 'Scroll progress bar is visible in header');
 report.push('Scroll progress bar: visible in header');
-const sharedSections = [];
-for (const variant of ['new']) {
-  await navigate(base);
-  await page.locator('#features .demo-tabs').first().waitFor();
-  sharedSections.push(await page.locator('main > section:not(#pricing)').allTextContents());
+const sectionOrder = ['hero','problem-solved','presets','how-it-works','features','visual-docs','pricing','faq','get-started'];
+await navigate(base);
+assert.deepEqual(await page.locator('main > section').evaluateAll(elements => elements.map(el => el.id)), sectionOrder);
+assert.deepEqual(await page.locator('header nav a').evaluateAll(elements => elements.map(el => el.hash.slice(1))), sectionOrder.slice(0,-1));
+assert.doesNotMatch(await page.locator('body').innerText(), /StartTokens|30 Seconds|fastest way/i);
+assert.equal(await page.locator('a[href="#"], a[href=""]').count(), 0);
+for (const id of sectionOrder.slice(0,-1)) {
+  await page.locator('header nav a[href="/#'+id+'"]').click();
+  await page.waitForFunction(id => location.hash === '#'+id && document.querySelector('header nav a[href="/#'+id+'"]').getAttribute('aria-current') === 'location' && Math.abs(document.getElementById(id).getBoundingClientRect().top) < 150, id);
 }
-assert.deepEqual(sharedSections[0],sharedSections[1]);
-report.push('All landing sections outside Pricing are identical between variants');
+report.push('Section order, menu order, hash navigation, ScrollSpy, factual copy and consistent StartToken branding verified');
 await page.emulateMedia({reducedMotion:'reduce'}); await navigate(base);
 assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');
 await page.locator('#visual-docs').scrollIntoViewIfNeeded();

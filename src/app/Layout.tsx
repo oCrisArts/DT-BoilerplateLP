@@ -34,7 +34,7 @@ function MI({
 }
 
 const NAV_LINKS = [
-  { label: "Fastest Way", href: "/#hero", section: "hero" },
+  { label: "Overview", href: "/#hero", section: "hero" },
   { label: "Problem Solved", href: "/#problem-solved", section: "problem-solved" },
   { label: "Presets", href: "/#presets", section: "presets" },
   { label: "How it works", href: "/#how-it-works", section: "how-it-works" },
@@ -108,7 +108,7 @@ export default function Layout() {
             <span
               className="text-xl font-semibold"
             >
-              StartTokens
+              StartToken
             </span>
           </Link>
 
@@ -210,7 +210,7 @@ export default function Layout() {
             <span
               className="text-sm font-semibold"
             >
-              StartTokens
+              StartToken
             </span>
           </div>
           <div className="flex items-center gap-6 text-xs text-muted-foreground flex-wrap justify-center">
@@ -226,12 +226,6 @@ export default function Layout() {
             >
               Terms
             </Link>
-            <a
-              href="#"
-              className="hover:text-foreground transition-colors"
-            >
-              Changelog
-            </a>
             <a
               href="https://www.figma.com/community/plugin/1651310914400769393"
               target="_blank"
@@ -250,7 +244,7 @@ export default function Layout() {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground">            
-              © 2025 StartTokens by 
+              © 2026 StartToken by
             </span>
             <a href="https://ocris.art.br/" target="_blank" rel="noopener noreferrer" aria-label="Visit oCris Arts">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
