@@ -34,11 +34,10 @@ function MI({
 }
 
 const NAV_LINKS = [
-  { label: "Overview", href: "/#hero", section: "hero" },
-  { label: "Problem Solved", href: "/#problem-solved", section: "problem-solved" },
+  { label: "Problem", href: "/#problem-solved", section: "problem-solved" },
   { label: "Presets", href: "/#presets", section: "presets" },
   { label: "How it works", href: "/#how-it-works", section: "how-it-works" },
-  { label: "Features", href: "/#features", section: "features" },
+  { label: "Foundations", href: "/#features", section: "features" },
   { label: "Visual Docs", href: "/#visual-docs", section: "visual-docs" },
   { label: "Pricing", href: "/#pricing", section: "pricing" },
   { label: "FAQ", href: "/#faq", section: "faq" },

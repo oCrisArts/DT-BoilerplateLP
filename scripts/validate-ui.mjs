@@ -23,7 +23,7 @@ assert.ok(heroBounds.x >= 0 && heroBounds.x + heroBounds.width <= 1440, 'Hero mo
 await page.screenshot({path:'validation-output/desktop.png',fullPage:true});
 assert.equal(await page.locator('h1').count(),1);
 assert.equal(await page.title(),'StartToken — Framework Design Tokens for Figma');
-assert.match(await page.locator('meta[name=description]').getAttribute('content'),/^Customize Bootstrap/);
+assert.match(await page.locator('meta[name=description]').getAttribute('content'),/^Customize framework foundations/);
 const catalog = JSON.parse(readFileSync('public/data/presets/catalog.json'));
 const demo = page.locator('#hero .plugin-demo');
 for (const preset of catalog.presets) {
@@ -149,7 +149,7 @@ report.push('Old query overrides and storage are ignored; reload preserves stati
 await navigate(base);
 const free = page.locator('#pricing').getByRole('link',{name:'Generate for free'});
 assert.equal(await free.getAttribute('href'),'https://www.figma.com/community/plugin/1651310914400769393');
-for (const label of ['Overview','Problem Solved','Presets','How it works','Features','Visual Docs','Pricing','FAQ']) {
+for (const label of ['Problem','Presets','How it works','Foundations','Visual Docs','Pricing','FAQ']) {
   const link = page.locator('header nav').getByRole('link',{name:label,exact:true});
   const target = (await link.getAttribute('href')).split('#')[1];
   assert.equal(await page.locator('#'+target).count(),1);
@@ -159,11 +159,10 @@ report.push('Catalog-driven presets, all navigation targets and free plugin inst
 
 // Test scroll spy functionality
 await navigate(base);
-const initialActiveLink = await page.locator('header nav').getByRole('link', {name: 'Overview', exact: true}).getAttribute('aria-current');
-assert.equal(initialActiveLink, 'location');
+assert.equal(await page.locator('header nav [aria-current="location"]').count(), 0);
 await page.locator('#problem-solved').scrollIntoViewIfNeeded();
 await page.waitForTimeout(300);
-const problemSolvedActive = await page.locator('header nav').getByRole('link', {name: 'Problem Solved', exact: true}).getAttribute('aria-current');
+const problemSolvedActive = await page.locator('header nav').getByRole('link', {name: 'Problem', exact: true}).getAttribute('aria-current');
 assert.equal(problemSolvedActive, 'location');
 report.push('Scroll spy: navigation highlights active section on scroll');
 
@@ -180,10 +179,10 @@ report.push('Scroll progress bar: visible in header');
 const sectionOrder = ['hero','problem-solved','presets','how-it-works','features','visual-docs','pricing','faq','get-started'];
 await navigate(base);
 assert.deepEqual(await page.locator('main > section').evaluateAll(elements => elements.map(el => el.id)), sectionOrder);
-assert.deepEqual(await page.locator('header nav a').evaluateAll(elements => elements.map(el => el.hash.slice(1))), sectionOrder.slice(0,-1));
+assert.deepEqual(await page.locator('header nav a').evaluateAll(elements => elements.map(el => el.hash.slice(1))), sectionOrder.slice(1,-1));
 assert.doesNotMatch(await page.locator('body').innerText(), /StartTokens|30 Seconds|fastest way/i);
 assert.equal(await page.locator('a[href="#"], a[href=""]').count(), 0);
-for (const id of sectionOrder.slice(0,-1)) {
+for (const id of sectionOrder.slice(1,-1)) {
   await page.locator('header nav a[href="/#'+id+'"]').click();
   await page.waitForFunction(id => location.hash === '#'+id && document.querySelector('header nav a[href="/#'+id+'"]').getAttribute('aria-current') === 'location' && Math.abs(document.getElementById(id).getBoundingClientRect().top) < 150, id);
 }
